@@ -11,12 +11,4 @@ mod "gcp_compliance" {
     title         = "Steampipe Mod for GCP Compliance"
     description   = "Compliance and audit reports, queries, and actions for GCP. Open source CLI. No DB required."
   }
-
-  /*
-  # dependencies
-  requires {
-    steampipe ">0.3.0"
-    plugin "gcp"
-  }
-  */
 }
