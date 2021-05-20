@@ -18,7 +18,7 @@ select
     else 'ok'
   end status,
   case
-    when name not like '%@'|| project||'.iam.gserviceaccount.com' then 'Google-created service account ' || title || ' excluded.'
+    when name not like '%@' || project || '.iam.gserviceaccount.com' then 'Google-created service account ' || title || ' excluded.'
     when name in (select user_name from user_roles) then title || ' has admin privileges.'
     else title || ' has no admin privileges.'
   end reason,
