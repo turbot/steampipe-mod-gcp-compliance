@@ -41,7 +41,7 @@ control "cis_v120_2_2" {
   title          = "2.2 Ensure that sinks are configured for all log entries"
   description    = "It is recommended to create a sink that will export copies of all the log entries. This can help aggregate logs from multiple projects and export them to a Security Information and Event Management (SIEM)."
   sql            = query.logging_sink_configured_for_all_resource.sql
-  #documentation = file("./cis_v120/docs/cis_v120_2_2.md")
+  documentation = file("./cis_v120/docs/cis_v120_2_2.md")
 
   tags = merge(local.cis_v120_2_common_tags, {
     cis_item_id = "2.2"
