@@ -40,7 +40,7 @@ benchmark "cis_v120_6" {
 
 benchmark "cis_v120_6_1" {
   title          = "6.1 MySQL Database"
-  #documentation = file("./cis_v120/docs/cis_v120_6_1.md")
+  documentation = file("./cis_v120/docs/cis_v120_6_1.md")
   children = [
     control.cis_v120_6_1_1,
     control.cis_v120_6_1_2,
