@@ -6,7 +6,7 @@ locals {
 
 benchmark "cis_v120_1" {
   title = "1 Identity and Access Management"
-  #documentation = file("./cis_v120/docs/cis_v120_1.md")
+  documentation = file("./cis_v120/docs/cis_v120_1.md")
   children = [
     control.cis_v120_1_1,
     control.cis_v120_1_2,
