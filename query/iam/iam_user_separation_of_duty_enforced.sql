@@ -35,8 +35,8 @@ select
   end status,
   case
     when user_name in (select user_name from account_users) and user_name in (select user_name from account_admin_users)
-      then  user_name || ' assigned with both Service Account Admin & Service Account User roles.'
-    else user_name || ' not assigned with both Service Account Admin & Service Account User roles.'
+      then  user_name || ' assigned with both Service Account Admin and Service Account User roles.'
+    else user_name || ' not assigned with both Service Account Admin and Service Account User roles.'
   end reason,
   -- Additional Dimensions
   project
