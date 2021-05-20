@@ -161,7 +161,7 @@ control "cis_v120_1_11" {
   title          = "1.11 Ensure that Separation of duties is enforced while assigning KMS related roles to users"
   description    = "It is recommended that the principle of 'Separation of Duties' is enforced while assigning KMS related roles to users."
   sql            = query.manual_control.sql
-  #documentation = file("./cis_v120/docs/cis_v120_1_11.md")
+  documentation = file("./cis_v120/docs/cis_v120_1_11.md")
 
   tags = merge(local.cis_v120_1_common_tags, {
     cis_item_id = "1.11"
@@ -174,7 +174,7 @@ control "cis_v120_1_12" {
   title          = "1.12 Ensure API keys are not created for a project"
   description    = "Keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to use standard authentication flow instead."
   sql            = query.manual_control.sql
-  #documentation = file("./cis_v120/docs/cis_v120_1_12.md")
+  documentation = file("./cis_v120/docs/cis_v120_1_12.md")
 
   tags = merge(local.cis_v120_1_common_tags, {
     cis_item_id = "1.12"
@@ -187,7 +187,7 @@ control "cis_v120_1_13" {
   title          = "1.13 Ensure API keys are restricted to use by only specified Hosts and Apps"
   description    = "Unrestricted keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to restrict API key usage to trusted hosts, HTTP referrers and apps."
   sql            = query.manual_control.sql
-  #documentation = file("./cis_v120/docs/cis_v120_1_13.md")
+  documentation = file("./cis_v120/docs/cis_v120_1_13.md")
 
   tags = merge(local.cis_v120_1_common_tags, {
     cis_item_id = "1.13"
@@ -200,7 +200,7 @@ control "cis_v120_1_14" {
   title          = "1.14 Ensure API keys are restricted to only APIs that application needs access"
   description    = "API keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to restrict API keys to use (call) only APIs required by an application."
   sql            = query.manual_control.sql
-  #documentation = file("./cis_v120/docs/cis_v120_1_14.md")
+  documentation = file("./cis_v120/docs/cis_v120_1_14.md")
 
   tags = merge(local.cis_v120_1_common_tags, {
     cis_item_id = "1.14"
@@ -213,7 +213,7 @@ control "cis_v120_1_15" {
   title          = "1.15 Ensure API keys are rotated every 90 days"
   description    = "It is recommended to rotate API keys every 90 days."
   sql            = query.manual_control.sql
-  #documentation = file("./cis_v120/docs/cis_v120_1_15.md")
+  documentation = file("./cis_v120/docs/cis_v120_1_15.md")
 
   tags = merge(local.cis_v120_1_common_tags, {
     cis_item_id = "1.15"
