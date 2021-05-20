@@ -170,7 +170,7 @@ control "cis_v120_2_11" {
 control "cis_v120_2_12" {
   title          = "2.12 Ensure that Cloud DNS logging is enabled for all VPC networks"
   description    = "Cloud DNS logging records the queries from the name servers within your VPC to Stackdriver. Logged queries can come from Compute Engine VMs, GKE containers, or other GCP resources provisioned within the VPC."
-  sql            = query.manual_control.sql
+  sql            = query.compute_network_dns_logging_enabled.sql
   #documentation = file("./cis_v120/docs/cis_v120_2_12.md")
 
   tags = merge(local.cis_v120_2_common_tags, {
