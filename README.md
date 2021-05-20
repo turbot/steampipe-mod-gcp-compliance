@@ -1,4 +1,4 @@
-![image](https://hub.steampipe.io/public/images/mods/turbot/gcp-compliance-social-graphic.png)
+![image](https://hub.steampipe.io/images/mods/turbot/gcp-compliance-social-graphic.png)
 
 # GCP Compliance Mod for Steampipe
 

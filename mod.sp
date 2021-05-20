@@ -9,6 +9,7 @@ mod "gcp_compliance" {
 
   opengraph {
     title         = "Steampipe Mod for GCP Compliance"
-    description   = "Compliance and audit reports, queries, and actions for GCP. Open source CLI. No DB required."
+    description   = "Run individual configuration, compliance and security controls or full compliance benchmarks for CIS across all your GCP projects using Steampipe."
+    #image        = "/images/mods/turbot/gcp-compliance-social-graphic.png"  
   }
 }
