@@ -6,7 +6,7 @@ locals {
 
 benchmark "cis_v120_2" {
   title          = "2 Logging and Monitoring"
-  #documentation = file("./cis_v120/docs/cis_v120_2.md")
+  documentation = file("./cis_v120/docs/cis_v120_2.md")
   children = [
     control.cis_v120_2_1,
     control.cis_v120_2_2,
@@ -28,7 +28,7 @@ control "cis_v120_2_1" {
   title          = "2.1 Ensure that Cloud Audit Logging is configured properly across all services and all users from a project"
   description    = "It is recommended that Cloud Audit Logging is configured to track all admin activities and read, write access to user data."
   sql            = query.audit_logging_configured_for_all_service.sql
-  #documentation = file("./cis_v120/docs/cis_v120_2_1.md")
+  documentation = file("./cis_v120/docs/cis_v120_2_1.md")
 
   tags = merge(local.cis_v120_2_common_tags, {
     cis_item_id = "2.1"
