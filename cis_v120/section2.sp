@@ -67,7 +67,7 @@ control "cis_v120_2_4" {
   title          = "2.4 Ensure log metric filter and alerts exist for project ownership assignments/changes"
   description    = "In order to prevent unnecessary project ownership assignments to users/service-accounts and further misuses of projects and resources, all roles/Owner assignments should be monitored. Members (users/Service-Accounts) with a role assignment to primitive role roles/Owner are project owners."
   sql            = query.logging_metric_alert_project_ownership_assignment.sql
-  #documentation = file("./cis_v120/docs/cis_v120_2_4.md")
+  documentation = file("./cis_v120/docs/cis_v120_2_4.md")
 
   tags = merge(local.cis_v120_2_common_tags, {
     cis_item_id = "2.4"
@@ -80,7 +80,7 @@ control "cis_v120_2_5" {
   title          = "2.5 Ensure that the log metric filter and alerts exist for Audit Configuration changes"
   description    = "Cloud audit logging records information includes the identity of the API caller, the time of the API call, the source IP address of the API caller, the request parameters, and the response elements returned by GCP services. Cloud audit logging provides a history of GCP API calls for an account, including API calls made via the console, SDKs, command-line tools, and other GCP services."
   sql            = query.logging_metric_alert_audit_configuration_changes.sql
-  #documentation = file("./cis_v120/docs/cis_v120_2_5.md")
+  documentation = file("./cis_v120/docs/cis_v120_2_5.md")
 
   tags = merge(local.cis_v120_2_common_tags, {
     cis_item_id = "2.5"
@@ -93,7 +93,7 @@ control "cis_v120_2_6" {
   title          = "2.6 Ensure that the log metric filter and alerts exist for Custom Role changes"
   description    = "It is recommended that a metric filter and alarm be established for changes to Identity and Access Management (IAM) role creation, deletion and updating activities."
   sql            = query.logging_metric_alert_custom_role_changes.sql
-  #documentation = file("./cis_v120/docs/cis_v120_2_6.md")
+  documentation = file("./cis_v120/docs/cis_v120_2_6.md")
 
   tags = merge(local.cis_v120_2_common_tags, {
     cis_item_id = "2.6"
@@ -106,7 +106,7 @@ control "cis_v120_2_7" {
   title          = "2.7 Ensure that the log metric filter and alerts exist for VPC Network Firewall rule changes"
   description    = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) Network Firewall rule changes."
   sql            = query.logging_metric_alert_firewall_rule_changes.sql
-  #documentation = file("./cis_v120/docs/cis_v120_2_7.md")
+  documentation = file("./cis_v120/docs/cis_v120_2_7.md")
 
   tags = merge(local.cis_v120_2_common_tags, {
     cis_item_id = "2.7"
@@ -119,7 +119,7 @@ control "cis_v120_2_8" {
   title          = "2.8 Ensure that the log metric filter and alerts exist for VPC network route changes"
   description    = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) network route changes."
   sql            = query.logging_metric_alert_network_route_changes.sql
-  #documentation = file("./cis_v120/docs/cis_v120_2_8.md")
+  documentation = file("./cis_v120/docs/cis_v120_2_8.md")
 
   tags = merge(local.cis_v120_2_common_tags, {
     cis_item_id = "2.8"
@@ -132,7 +132,7 @@ control "cis_v120_2_9" {
   title          = "2.9 Ensure that the log metric filter and alerts exist for VPC network changes"
   description    = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) network changes."
   sql            = query.logging_metric_alert_network_changes.sql
-  #documentation = file("./cis_v120/docs/cis_v120_2_9.md")
+  documentation = file("./cis_v120/docs/cis_v120_2_9.md")
 
   tags = merge(local.cis_v120_2_common_tags, {
     cis_item_id = "2.9"
@@ -145,7 +145,7 @@ control "cis_v120_2_10" {
   title          = "2.10 Ensure that the log metric filter and alerts exist for Cloud Storage IAM permission changes"
   description    = "It is recommended that a metric filter and alarm be established for Cloud Storage Bucket IAM changes."
   sql            = query.logging_metric_alert_storage_iam_permission_changes.sql
-  #documentation = file("./cis_v120/docs/cis_v120_2_10.md")
+  documentation = file("./cis_v120/docs/cis_v120_2_10.md")
 
   tags = merge(local.cis_v120_2_common_tags, {
     cis_item_id = "2.10"
@@ -158,7 +158,7 @@ control "cis_v120_2_11" {
   title          = "2.11 Ensure that the log metric filter and alerts exist for SQL instance configuration changes"
   description    = "It is recommended that a metric filter and alarm be established for SQL instance configuration changes."
   sql            = query.logging_metric_alert_sql_instance_configuration_changes.sql
-  #documentation = file("./cis_v120/docs/cis_v120_2_11.md")
+  documentation = file("./cis_v120/docs/cis_v120_2_11.md")
 
   tags = merge(local.cis_v120_2_common_tags, {
     cis_item_id = "2.11"
@@ -171,7 +171,7 @@ control "cis_v120_2_12" {
   title          = "2.12 Ensure that Cloud DNS logging is enabled for all VPC networks"
   description    = "Cloud DNS logging records the queries from the name servers within your VPC to Stackdriver. Logged queries can come from Compute Engine VMs, GKE containers, or other GCP resources provisioned within the VPC."
   sql            = query.manual_control.sql
-  #documentation = file("./cis_v120/docs/cis_v120_2_12.md")
+  documentation = file("./cis_v120/docs/cis_v120_2_12.md")
 
   tags = merge(local.cis_v120_2_common_tags, {
     cis_item_id = "2.12"
