@@ -1,7 +1,7 @@
 mod "gcp_compliance" {
   # hub metadata
   title          = "GCP Compliance"
-  description    = "Steampipe Mod for Google Cloud Platform (GCP) Compliance"
+  description    = "Run individual configuration, compliance and security controls or full compliance benchmarks for CIS across all your GCP projects using Steampipe."
   color          = "#ea4335"
   documentation  = file("./docs/index.md")
   icon           = "/images/mods/turbot/gcp-compliance.svg"
