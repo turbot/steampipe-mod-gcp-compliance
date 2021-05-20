@@ -12,7 +12,7 @@ with filter_data as (
 )
 select
   -- Required Columns
-  project resource,
+  'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
   case
     when (select count(metric_name) from filter_data) > 0 then 'ok'
     else 'alarm'
@@ -23,6 +23,6 @@ select
     else 'Log metric and alert do not exist for custom role changes.'
   end reason,
   -- Additional Dimensions
-  project
+  project_id
 from
-  gcp_iam_policy;
+  gcp_project;
