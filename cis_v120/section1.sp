@@ -108,7 +108,7 @@ control "cis_v120_1_6" {
 control "cis_v120_1_7" {
   title          = "1.7 Ensure user-managed/external keys for service accounts are rotated every 90 days or less"
   description    = "Service Account keys consist of a key ID (Private_key_Id) and Private key, which are used to sign programmatic requests users make to Google cloud services accessible to that particular service account. It is recommended that all Service Account keys are regularly rotated."
-  sql            = query.iam_service_account_user_managed_external_key_rotation_period.sql
+  sql            = query.iam_service_account_key_age_90.sql
   #documentation = file("./cis_v120/docs/cis_v120_1_7.md")
 
   tags = merge(local.cis_v120_1_common_tags, {
