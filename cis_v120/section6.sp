@@ -24,7 +24,7 @@ locals {
 
 benchmark "cis_v120_6" {
   title          = "6 Cloud SQL Database Services"
-  #documentation = file("./cis_v120/docs/cis_v120_6.md")
+  documentation = file("./cis_v120/docs/cis_v120_6.md")
   children = [
     benchmark.cis_v120_6_1,
     benchmark.cis_v120_6_2,
