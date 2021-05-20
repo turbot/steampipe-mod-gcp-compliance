@@ -23,8 +23,8 @@ locals {
 }
 
 benchmark "cis_v120_6" {
-  title = "6 Cloud SQL Database Services"
-  #documentation = file("./cis_v120/docs/cis_v120_6.md")
+  title         = "6 Cloud SQL Database Services"
+  documentation = file("./cis_v120/docs/cis_v120_6.md")
   children = [
     benchmark.cis_v120_6_1,
     benchmark.cis_v120_6_2,
@@ -39,8 +39,8 @@ benchmark "cis_v120_6" {
 }
 
 benchmark "cis_v120_6_1" {
-  title = "6.1 MySQL Database"
-  #documentation = file("./cis_v120/docs/cis_v120_6_1.md")
+  title         = "6.1 MySQL Database"
+  documentation = file("./cis_v120/docs/cis_v120_6_1.md")
   children = [
     control.cis_v120_6_1_1,
     control.cis_v120_6_1_2,
@@ -50,10 +50,10 @@ benchmark "cis_v120_6_1" {
 }
 
 control "cis_v120_6_1_1" {
-  title       = "6.1.1 Ensure that a MySQL database instance does not allow anyone to connect with administrative privileges"
-  description = "It is recommended to set a password for the administrative user (root by default) to prevent unauthorized access to the SQL database instances. This recommendation is applicable only for MySQL Instances. PostgreSQL does not offer any setting for No Password from the cloud console."
-  #documentation = file("./cis_v120/docs/cis_v120_6_1_1.md")
-  sql = query.manual_control.sql
+  title         = "6.1.1 Ensure that a MySQL database instance does not allow anyone to connect with administrative privileges"
+  description   = "It is recommended to set a password for the administrative user (root by default) to prevent unauthorized access to the SQL database instances. This recommendation is applicable only for MySQL Instances. PostgreSQL does not offer any setting for No Password from the cloud console."
+  documentation = file("./cis_v120/docs/cis_v120_6_1_1.md")
+  sql           = query.manual_control.sql
 
   tags = merge(local.cis_v120_6_1_common_tags, {
     cis_item_id = "6.1.1"
@@ -63,10 +63,10 @@ control "cis_v120_6_1_1" {
 }
 
 control "cis_v120_6_1_2" {
-  title       = "6.1.2 Ensure 'skip_show_database' database flag for Cloud SQL Mysql instance is set to 'on'"
-  description = "It is recommended to set skip_show_database database flag for Cloud SQL Mysql instance to on."
-  #documentation = file("./cis_v120/docs/cis_v120_6_1_2.md")
-  sql = query.sql_instance_mysql_skip_show_database_flag_on.sql
+  title         = "6.1.2 Ensure 'skip_show_database' database flag for Cloud SQL Mysql instance is set to 'on'"
+  description   = "It is recommended to set skip_show_database database flag for Cloud SQL Mysql instance to on."
+  documentation = file("./cis_v120/docs/cis_v120_6_1_2.md")
+  sql           = query.sql_instance_mysql_skip_show_database_flag_on.sql
 
   tags = merge(local.cis_v120_6_1_common_tags, {
     cis_item_id = "6.1.2"
@@ -76,10 +76,10 @@ control "cis_v120_6_1_2" {
 }
 
 control "cis_v120_6_1_3" {
-  title       = "6.1.3 Ensure that the 'local_infile' database flag for a Cloud SQL Mysql instance is set to 'off'"
-  description = "It is recommended to set the local_infile database flag for a Cloud SQL MySQL instance to off."
-  #documentation = file("./cis_v120/docs/cis_v120_6_1_3.md")
-  sql = query.sql_instance_mysql_local_infile_database_flag_off.sql
+  title         = "6.1.3 Ensure that the 'local_infile' database flag for a Cloud SQL Mysql instance is set to 'off'"
+  description   = "It is recommended to set the local_infile database flag for a Cloud SQL MySQL instance to off."
+  documentation = file("./cis_v120/docs/cis_v120_6_1_3.md")
+  sql           = query.sql_instance_mysql_local_infile_database_flag_off.sql
 
   tags = merge(local.cis_v120_6_1_common_tags, {
     cis_item_id = "6.1.3"
