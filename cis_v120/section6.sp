@@ -23,8 +23,8 @@ locals {
 }
 
 benchmark "cis_v120_6" {
-  title = "6 Cloud SQL Database Services"
-  #documentation = file("./cis_v120/docs/cis_v120_6.md")
+  title         = "6 Cloud SQL Database Services"
+  documentation = file("./cis_v120/docs/cis_v120_6.md")
   children = [
     benchmark.cis_v120_6_1,
     benchmark.cis_v120_6_2,
@@ -39,8 +39,8 @@ benchmark "cis_v120_6" {
 }
 
 benchmark "cis_v120_6_1" {
-  title = "6.1 MySQL Database"
-  #documentation = file("./cis_v120/docs/cis_v120_6_1.md")
+  title         = "6.1 MySQL Database"
+  documentation = file("./cis_v120/docs/cis_v120_6_1.md")
   children = [
     control.cis_v120_6_1_1,
     control.cis_v120_6_1_2,
@@ -50,10 +50,10 @@ benchmark "cis_v120_6_1" {
 }
 
 control "cis_v120_6_1_1" {
-  title       = "6.1.1 Ensure that a MySQL database instance does not allow anyone to connect with administrative privileges"
-  description = "It is recommended to set a password for the administrative user (root by default) to prevent unauthorized access to the SQL database instances. This recommendation is applicable only for MySQL Instances. PostgreSQL does not offer any setting for No Password from the cloud console."
-  #documentation = file("./cis_v120/docs/cis_v120_6_1_1.md")
-  sql = query.manual_control.sql
+  title         = "6.1.1 Ensure that a MySQL database instance does not allow anyone to connect with administrative privileges"
+  description   = "It is recommended to set a password for the administrative user (root by default) to prevent unauthorized access to the SQL database instances. This recommendation is applicable only for MySQL Instances. PostgreSQL does not offer any setting for No Password from the cloud console."
+  documentation = file("./cis_v120/docs/cis_v120_6_1_1.md")
+  sql           = query.manual_control.sql
 
   tags = merge(local.cis_v120_6_1_common_tags, {
     cis_item_id = "6.1.1"
@@ -63,10 +63,10 @@ control "cis_v120_6_1_1" {
 }
 
 control "cis_v120_6_1_2" {
-  title       = "6.1.2 Ensure 'skip_show_database' database flag for Cloud SQL Mysql instance is set to 'on'"
-  description = "It is recommended to set skip_show_database database flag for Cloud SQL Mysql instance to on."
-  #documentation = file("./cis_v120/docs/cis_v120_6_1_2.md")
-  sql = query.sql_instance_mysql_skip_show_database_flag_on.sql
+  title         = "6.1.2 Ensure 'skip_show_database' database flag for Cloud SQL Mysql instance is set to 'on'"
+  description   = "It is recommended to set skip_show_database database flag for Cloud SQL Mysql instance to on."
+  documentation = file("./cis_v120/docs/cis_v120_6_1_2.md")
+  sql           = query.sql_instance_mysql_skip_show_database_flag_on.sql
 
   tags = merge(local.cis_v120_6_1_common_tags, {
     cis_item_id = "6.1.2"
@@ -76,10 +76,10 @@ control "cis_v120_6_1_2" {
 }
 
 control "cis_v120_6_1_3" {
-  title       = "6.1.3 Ensure that the 'local_infile' database flag for a Cloud SQL Mysql instance is set to 'off'"
-  description = "It is recommended to set the local_infile database flag for a Cloud SQL MySQL instance to off."
-  #documentation = file("./cis_v120/docs/cis_v120_6_1_3.md")
-  sql = query.sql_instance_mysql_local_infile_database_flag_off.sql
+  title         = "6.1.3 Ensure that the 'local_infile' database flag for a Cloud SQL Mysql instance is set to 'off'"
+  description   = "It is recommended to set the local_infile database flag for a Cloud SQL MySQL instance to off."
+  documentation = file("./cis_v120/docs/cis_v120_6_1_3.md")
+  sql           = query.sql_instance_mysql_local_infile_database_flag_off.sql
 
   tags = merge(local.cis_v120_6_1_common_tags, {
     cis_item_id = "6.1.3"
@@ -337,10 +337,10 @@ benchmark "cis_v120_6_3" {
 }
 
 control "cis_v120_6_3_1" {
-  title       = "6.3.1 Ensure 'external scripts enabled' database flag for Cloud SQL SQL Server instance is set to 'off'"
-  description = "It is recommended to set external scripts enabled database flag for Cloud SQL SQL Server instance to off."
-  #documentation = file("./cis_v120/docs/cis_v120_6_3_1.md")
-  sql = query.sql_instance_sql_external_scripts_enabled_database_flag_off.sql
+  title         = "6.3.1 Ensure 'external scripts enabled' database flag for Cloud SQL SQL Server instance is set to 'off'"
+  description   = "It is recommended to set external scripts enabled database flag for Cloud SQL SQL Server instance to off."
+  documentation = file("./cis_v120/docs/cis_v120_6_3_1.md")
+  sql           = query.sql_instance_sql_external_scripts_enabled_database_flag_off.sql
 
   tags = merge(local.cis_v120_6_3_common_tags, {
     cis_item_id = "6.3.1"
@@ -350,10 +350,10 @@ control "cis_v120_6_3_1" {
 }
 
 control "cis_v120_6_3_2" {
-  title       = "6.3.2 Ensure that the 'cross db ownership chaining' database flag for Cloud SQL SQL Server instance is set to 'off'"
-  description = "It is recommended to set cross db ownership chaining database flag for Cloud SQL SQL Server instance to off."
-  #documentation = file("./cis_v120/docs/cis_v120_6_3_2.md")
-  sql = query.sql_instance_sql_cross_db_ownership_chaining_database_flag_off.sql
+  title         = "6.3.2 Ensure that the 'cross db ownership chaining' database flag for Cloud SQL SQL Server instance is set to 'off'"
+  description   = "It is recommended to set cross db ownership chaining database flag for Cloud SQL SQL Server instance to off."
+  documentation = file("./cis_v120/docs/cis_v120_6_3_2.md")
+  sql           = query.sql_instance_sql_cross_db_ownership_chaining_database_flag_off.sql
 
   tags = merge(local.cis_v120_6_3_common_tags, {
     cis_item_id = "6.3.2"
@@ -363,10 +363,10 @@ control "cis_v120_6_3_2" {
 }
 
 control "cis_v120_6_3_3" {
-  title       = "6.3.3 Ensure 'user connections' database flag for Cloud SQL SQL Server instance is set as appropriate"
-  description = "It is recommended to set user connections database flag for Cloud SQL SQL Server instance according organization-defined value."
-  #documentation = file("./cis_v120/docs/cis_v120_6_3_3.md")
-  sql = query.sql_instance_sql_user_connections_database_flag_configured.sql
+  title         = "6.3.3 Ensure 'user connections' database flag for Cloud SQL SQL Server instance is set as appropriate"
+  description   = "It is recommended to set user connections database flag for Cloud SQL SQL Server instance according organization-defined value."
+  documentation = file("./cis_v120/docs/cis_v120_6_3_3.md")
+  sql           = query.sql_instance_sql_user_connections_database_flag_configured.sql
 
   tags = merge(local.cis_v120_6_3_common_tags, {
     cis_item_id = "6.3.3"
@@ -376,10 +376,10 @@ control "cis_v120_6_3_3" {
 }
 
 control "cis_v120_6_3_4" {
-  title       = "6.3.4 Ensure 'user options' database flag for Cloud SQL SQL Server instance is not configured"
-  description = "It is recommended that, user options database flag for Cloud SQL SQL Server instance should not be configured."
-  #documentation = file("./cis_v120/docs/cis_v120_6_3_4.md")
-  sql = query.sql_instance_sql_user_options_database_flag_not_configured.sql
+  title         = "6.3.4 Ensure 'user options' database flag for Cloud SQL SQL Server instance is not configured"
+  description   = "It is recommended that, user options database flag for Cloud SQL SQL Server instance should not be configured."
+  documentation = file("./cis_v120/docs/cis_v120_6_3_4.md")
+  sql           = query.sql_instance_sql_user_options_database_flag_not_configured.sql
 
   tags = merge(local.cis_v120_6_3_common_tags, {
     cis_item_id = "6.3.4"
@@ -389,10 +389,10 @@ control "cis_v120_6_3_4" {
 }
 
 control "cis_v120_6_3_5" {
-  title       = "6.3.5 Ensure 'remote access' database flag for Cloud SQL SQL Server instance is set to 'off'"
-  description = "It is recommended to set remote access database flag for Cloud SQL SQL Server instance to off."
-  #documentation = file("./cis_v120/docs/cis_v120_6_3_5.md")
-  sql = query.sql_instance_sql_remote_access_database_flag_off.sql
+  title         = "6.3.5 Ensure 'remote access' database flag for Cloud SQL SQL Server instance is set to 'off'"
+  description   = "It is recommended to set remote access database flag for Cloud SQL SQL Server instance to off."
+  documentation = file("./cis_v120/docs/cis_v120_6_3_5.md")
+  sql           = query.sql_instance_sql_remote_access_database_flag_off.sql
 
   tags = merge(local.cis_v120_6_3_common_tags, {
     cis_item_id = "6.3.5"
@@ -402,10 +402,10 @@ control "cis_v120_6_3_5" {
 }
 
 control "cis_v120_6_3_6" {
-  title       = "6.3.6 Ensure '3625 (trace flag)' database flag for Cloud SQL SQL Server instance is set to 'off'"
-  description = "It is recommended to set 3625 (trace flag) database flag for Cloud SQL SQL Server instance to off."
-  #documentation = file("./cis_v120/docs/cis_v120_6_3_6.md")
-  sql = query.sql_instance_sql_3625_trace_database_flag_off.sql
+  title         = "6.3.6 Ensure '3625 (trace flag)' database flag for Cloud SQL SQL Server instance is set to 'off'"
+  description   = "It is recommended to set 3625 (trace flag) database flag for Cloud SQL SQL Server instance to off."
+  documentation = file("./cis_v120/docs/cis_v120_6_3_6.md")
+  sql           = query.sql_instance_sql_3625_trace_database_flag_off.sql
 
   tags = merge(local.cis_v120_6_3_common_tags, {
     cis_item_id = "6.3.6"
@@ -415,10 +415,10 @@ control "cis_v120_6_3_6" {
 }
 
 control "cis_v120_6_3_7" {
-  title       = "6.3.7 Ensure that the 'contained database authentication' database flag for Cloud SQL on the SQL Server instance is set to 'off'"
-  description = "It is recommended to set contained database authentication database flag for Cloud SQL on the SQL Server instance is set to off."
-  #documentation = file("./cis_v120/docs/cis_v120_6_3_7.md")
-  sql = query.sql_instance_sql_contained_database_authentication_database_flag_off.sql
+  title         = "6.3.7 Ensure that the 'contained database authentication' database flag for Cloud SQL on the SQL Server instance is set to 'off'"
+  description   = "It is recommended to set contained database authentication database flag for Cloud SQL on the SQL Server instance is set to off."
+  documentation = file("./cis_v120/docs/cis_v120_6_3_7.md")
+  sql           = query.sql_instance_sql_contained_database_authentication_database_flag_off.sql
 
   tags = merge(local.cis_v120_6_3_common_tags, {
     cis_item_id = "6.3.7"
@@ -428,10 +428,10 @@ control "cis_v120_6_3_7" {
 }
 
 control "cis_v120_6_4" {
-  title       = "6.4 Ensure that the Cloud SQL database instance requires all incoming connections to use SSL"
-  description = "It is recommended to enforce all incoming connections to SQL database instance to use SSL."
-  #documentation = file("./cis_v120/docs/cis_v120_6_4.md")
-  sql = query.sql_instance_require_ssl_enabled.sql
+  title         = "6.4 Ensure that the Cloud SQL database instance requires all incoming connections to use SSL"
+  description   = "It is recommended to enforce all incoming connections to SQL database instance to use SSL."
+  documentation = file("./cis_v120/docs/cis_v120_6_4.md")
+  sql           = query.sql_instance_require_ssl_enabled.sql
 
   tags = merge(local.cis_v120_6_common_tags, {
     cis_item_id = "6.4"
@@ -441,10 +441,10 @@ control "cis_v120_6_4" {
 }
 
 control "cis_v120_6_5" {
-  title       = "6.5 Ensure that Cloud SQL database instances are not open to the world"
-  description = "Database Server should accept connections only from trusted Network(s)/IP(s) and restrict access from the world."
-  #documentation = file("./cis_v120/docs/cis_v120_6_5.md")
-  sql = query.sql_instance_not_open_to_internet.sql
+  title         = "6.5 Ensure that Cloud SQL database instances are not open to the world"
+  description   = "Database Server should accept connections only from trusted Network(s)/IP(s) and restrict access from the world."
+  documentation = file("./cis_v120/docs/cis_v120_6_5.md")
+  sql           = query.sql_instance_not_open_to_internet.sql
 
   tags = merge(local.cis_v120_6_common_tags, {
     cis_item_id = "6.5"
@@ -454,10 +454,10 @@ control "cis_v120_6_5" {
 }
 
 control "cis_v120_6_6" {
-  title       = "6.6 Ensure that Cloud SQL database instances do not have public IPs"
-  description = "It is recommended to configure Second Generation Sql instance to use private IPs instead of public IPs."
-  #documentation = file("./cis_v120/docs/cis_v120_6_6.md")
-  sql = query.sql_instance_with_no_public_ips.sql
+  title         = "6.6 Ensure that Cloud SQL database instances do not have public IPs"
+  description   = "It is recommended to configure Second Generation Sql instance to use private IPs instead of public IPs."
+  documentation = file("./cis_v120/docs/cis_v120_6_6.md")
+  sql           = query.sql_instance_with_no_public_ips.sql
 
   tags = merge(local.cis_v120_6_common_tags, {
     cis_item_id = "6.6"
@@ -467,10 +467,10 @@ control "cis_v120_6_6" {
 }
 
 control "cis_v120_6_7" {
-  title       = "6.7 Ensure that Cloud SQL database instances are configured with automated backups"
-  description = "It is recommended to have all SQL database instances set to enable automated backups."
-  #documentation = file("./cis_v120/docs/cis_v120_6_7.md")
-  sql = query.sql_instance_automated_backups_enabled.sql
+  title         = "6.7 Ensure that Cloud SQL database instances are configured with automated backups"
+  description   = "It is recommended to have all SQL database instances set to enable automated backups."
+  documentation = file("./cis_v120/docs/cis_v120_6_7.md")
+  sql           = query.sql_instance_automated_backups_enabled.sql
 
   tags = merge(local.cis_v120_6_common_tags, {
     cis_item_id = "6.7"

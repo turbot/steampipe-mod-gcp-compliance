@@ -21,7 +21,7 @@ select
     else 'Sinks not configured for all log entries.'
   end reason,
   -- Additional Dimensions
-  p.project as project
+  p.project_id as project
 from
-  gcp_iam_policy p
-  left join project_sink_count s on split_part(s.gcp_project, ',', 1) = p.project;
+  gcp_project p
+  left join project_sink_count s on split_part(s.gcp_project, ',', 1) = p.project_id;
