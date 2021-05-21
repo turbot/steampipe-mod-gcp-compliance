@@ -3,7 +3,7 @@
 # GCP Compliance Mod for Steampipe
 
 Run individual configuration, compliance and security controls
-or full compliance benchmarks for CIS and PCI across all your AWS accounts.
+or full compliance benchmarks for CIS across all your GCP Projects.
 
 Can you write SQL and HCL? [Fork this repo](#developing) as the basis for your own custom compliance checks!
 
