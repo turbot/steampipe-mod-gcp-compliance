@@ -134,7 +134,7 @@ control "cis_v120_1_8" {
 control "cis_v120_1_9" {
   title         = "1.9 Ensure that Cloud KMS cryptokeys are not anonymously or publicly accessible"
   description   = "It is recommended that the IAM policy on Cloud KMS cryptokeys should restrict anonymous and/or public access."
-  sql           = query.manual_control.sql
+  sql           = query.kms_key_not_publicly_accessible.sql
   documentation = file("./cis_v120/docs/cis_v120_1_9.md")
 
   tags = merge(local.cis_v120_1_common_tags, {
@@ -147,7 +147,7 @@ control "cis_v120_1_9" {
 control "cis_v120_1_10" {
   title         = "1.10 Ensure KMS encryption keys are rotated within a period of 90 days"
   description   = "Google Cloud Key Management Service stores cryptographic keys in a hierarchical structure designed for useful and elegant access control management. The format for the rotation schedule depends on the client library that is used. For the gcloud command-line tool, the next rotation time must be in ISO or RFC3339 format, and the rotation period must be in the form INTEGER[UNIT], where units can be one of seconds (s), minutes (m), hours (h) or days (d)."
-  sql           = query.manual_control.sql
+  sql           = query.kms_key_rotated_within_90_day.sql
   documentation = file("./cis_v120/docs/cis_v120_1_10.md")
 
   tags = merge(local.cis_v120_1_common_tags, {
@@ -160,7 +160,7 @@ control "cis_v120_1_10" {
 control "cis_v120_1_11" {
   title         = "1.11 Ensure that Separation of duties is enforced while assigning KMS related roles to users"
   description   = "It is recommended that the principle of 'Separation of Duties' is enforced while assigning KMS related roles to users."
-  sql           = query.manual_control.sql
+  sql           = query.kms_key_separation_of_duties_enforced.sql
   documentation = file("./cis_v120/docs/cis_v120_1_11.md")
 
   tags = merge(local.cis_v120_1_common_tags, {
