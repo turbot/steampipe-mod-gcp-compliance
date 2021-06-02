@@ -35,8 +35,8 @@ select
   end status,
   case
     when user_name in (select user_name from kms_encrypt_decrypt_users) and user_name in (select user_name from kms_admin_users)
-      then  user_name || ' assigned with both KMS Admin and other Encrypter/Decrypter roles.'
-    else user_name || ' not assigned with both KMS Admin and other Encrypter/Decrypter roles.'
+      then user_name || ' assigned KMS admin and additional encrypter/decrypter roles.'
+    else user_name || ' not assigned KMS admin and additional encrypter/decrypter roles.'
   end reason,
   -- Additional Dimensions
   project
