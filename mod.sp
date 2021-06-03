@@ -5,7 +5,7 @@ mod "gcp_compliance" {
   color         = "#ea4335"
   documentation = file("./docs/index.md")
   icon          = "/images/mods/turbot/gcp-compliance.svg"
-  categories    = ["CIS", "Compliance", "GCP", "Public Cloud", "Security"]
+  categories    = ["cis", "compliance", "gcp", "public cloud", "security"]
 
   opengraph {
     title        = "Steampipe Mod for GCP Compliance"
