@@ -17,8 +17,8 @@ select
     else 'ok'
   end as status,
   case
-    when org.display_name is null then a.member || ' having non-corporate login credentials.'
-    else a.member || ' having corporate login credentials.'
+    when org.display_name is null then a.member || ' uses non-corporate login credentials.'
+    else a.member || ' uses corporate login credentials.'
   end as reason,
   -- Additional Dimensions
   a.project
