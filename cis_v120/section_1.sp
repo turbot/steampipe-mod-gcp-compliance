@@ -30,7 +30,7 @@ benchmark "cis_v120_1" {
 control "cis_v120_1_1" {
   title         = "1.1 Ensure that corporate login credentials are used"
   description   = "Use corporate login credentials instead of personal accounts, such as Gmail accounts."
-  sql           = query.manual_control.sql
+  sql           = query.iam_user_uses_corporate_login_credentials.sql
   documentation = file("./cis_v120/docs/cis_v120_1_1.md")
 
   tags = merge(local.cis_v120_1_common_tags, {
