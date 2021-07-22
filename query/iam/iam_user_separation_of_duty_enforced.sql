@@ -2,7 +2,7 @@ with users_with_roles as (
   select
     distinct split_part(member_entity, ':', 2) as user_name,
     project,
-    p -> 'role' as assigned_role
+    p ->> 'role' as assigned_role
   from
     gcp_iam_policy,
     jsonb_array_elements(bindings) as p,
@@ -16,7 +16,7 @@ account_admin_users as(
     project
   from
     users_with_roles
-  where assigned_role = '"roles/iam.serviceAccountAdmin"'
+  where assigned_role = 'roles/iam.serviceAccountAdmin'
 ),
 account_users as(
   select
@@ -24,7 +24,7 @@ account_users as(
     project
   from
     users_with_roles
-  where assigned_role = '"roles/iam.serviceAccountUser"'
+  where assigned_role = 'roles/iam.serviceAccountUser'
 )
 select
   -- Required Columns
