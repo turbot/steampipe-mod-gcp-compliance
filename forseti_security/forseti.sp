@@ -28,7 +28,7 @@ benchmark "forseti_security" {
 control "cmek_rotation_one_hundred_days" {
   title         = "CMEK should be rotated within 100 days"
   description   = "Checks that CMEK rotation policy is in place and is sufficiently short."
-  sql           = query.iam_user_uses_corporate_login_credentials.sql
+  sql           = query.kms_key_rotated_within_100_day.sql
 
   tags = merge(local.forseti_security_common_tags, {
     severity  = "high"
@@ -38,7 +38,7 @@ control "cmek_rotation_one_hundred_days" {
 control "denylist_public_users" {
   title         = "Deny public users IAM access"
   description   = "Prevent public users from having access to resources via IAM."
-  sql           = query.iam_user_uses_corporate_login_credentials.sql
+  sql           = query.iam_user_denylist_public.sql
 
   tags = merge(local.forseti_security_common_tags, {
     severity  = "high"
@@ -78,7 +78,7 @@ control "require_bq_table_iam" {
 control "restrict_firewall_rule_world_open" {
   title         = "Check open firewall rules allowing ingress"
   description   = "Checks for open firewall rules allowing ingress from the internet."
-  sql           = query.compute_firewall_rule_ssh_access_restricted.sql.sql
+  sql           = query.compute_firewall_rule_ssh_access_restricted.sql
 
   tags = merge(local.forseti_security_common_tags, {
     severity  = "high"
