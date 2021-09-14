@@ -14,7 +14,7 @@ benchmark "forseti_security" {
   children = [
       control.cmek_rotation_one_hundred_days,
       control.denylist_public_users,
-      control.iam-restrict-service-account-key-age-one-hundred-days,
+      control.iam_restrict_service_account_key_age_one_hundred_days,
       control.only_my_domain,
       control.require_bq_table_iam,
       control.restrict_firewall_rule_world_open,
@@ -31,7 +31,7 @@ control "cmek_rotation_one_hundred_days" {
   sql           = query.iam_user_uses_corporate_login_credentials.sql
 
   tags = merge(local.forseti_security_common_tags, {
-      severity  = "high"
+    severity  = "high"
   })
 }
 
@@ -41,17 +41,17 @@ control "denylist_public_users" {
   sql           = query.iam_user_uses_corporate_login_credentials.sql
 
   tags = merge(local.forseti_security_common_tags, {
-      severity  = "high"
+    severity  = "high"
   })
 }
 
-control "iam-restrict-service-account-key-age-one-hundred-days" {
+control "iam_restrict_service_account_key_age_one_hundred_days" {
   title         = "Service account keys older than 100 days"
   description   = "Checks if service account keys are older than 100 days."
-  sql           = query.iam_user_uses_corporate_login_credentials.sql
+  sql           = query.iam_service_account_key_age_100.sql
 
   tags = merge(local.forseti_security_common_tags, {
-      severity  = "high"
+    severity  = "high"
   })
 }
 
@@ -61,7 +61,7 @@ control "only_my_domain" {
   sql           = query.iam_user_uses_corporate_login_credentials.sql
 
   tags = merge(local.forseti_security_common_tags, {
-      severity  = "high"
+    severity  = "high"
   })
 }
 
@@ -71,27 +71,27 @@ control "require_bq_table_iam" {
   sql           = query.bigquery_dataset_not_publicly_accessible.sql
 
   tags = merge(local.forseti_security_common_tags, {
-      severity  = "high"
+    severity  = "high"
   })
 }
 
 control "restrict_firewall_rule_world_open" {
   title         = "Check open firewall rules allowing ingress"
   description   = "Checks for open firewall rules allowing ingress from the internet."
-  sql           = query.iam_user_uses_corporate_login_credentials.sql
+  sql           = query.compute_firewall_rule_ssh_access_restricted.sql.sql
 
   tags = merge(local.forseti_security_common_tags, {
-      severity  = "high"
+    severity  = "high"
   })
 }
 
 control "restrict_firewall_rule_world_open_tcp_udp_all_ports" {
   title         = "Check open firewall rules allowing TCP/UDP"
   description   = "Checks for open firewall rules allowing TCP/UDP from the internet."
-  sql           = query.iam_user_uses_corporate_login_credentials.sql
+  sql           = query.compute_firewall_rule_rdp_access_restricted.sql
 
   tags = merge(local.forseti_security_common_tags, {
-      severity  = "high"
+    severity  = "high"
   })
 }
 
@@ -101,7 +101,7 @@ control "restrict_gmail_bigquery_dataset" {
   sql           = query.bigquery_dataset_restrict_gmail.sql
 
   tags = merge(local.forseti_security_common_tags, {
-      severity  = "high"
+    severity  = "high"
   })
 }
 
@@ -111,7 +111,7 @@ control "restrict_googlegroups_bigquery_dataset" {
   sql           = query.bigquery_dataset_restrict_googlegroups.sql
 
   tags = merge(local.forseti_security_common_tags, {
-      severity  = "high"
+    severity  = "high"
   })
 }
 
@@ -121,6 +121,6 @@ control "sql_world_readable" {
   sql           = query.sql_instance_not_open_to_internet.sql
 
   tags = merge(local.forseti_security_common_tags, {
-      severity  = "high"
+    severity  = "high"
   })
 }
