@@ -3,6 +3,7 @@
 _Big fixes_
 
 - Fixed broken links to the Mod developer guide in README.md
+- Removed the unnecessary quotes from `iam_user_separation_of_duty_enforced` query
 
 ## v0.4 [2021-07-01]
 
