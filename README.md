@@ -35,7 +35,7 @@ steampipe plugin install gcp
 
 3) Clone this repo:
 ```sh
-git clone git@github.com:turbot/steampipe-mod-gcp-compliance
+git clone https://github.com/turbot/steampipe-mod-gcp-compliance.git
 cd steampipe-mod-gcp-compliance
 ```
 
