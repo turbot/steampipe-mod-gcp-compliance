@@ -37,7 +37,8 @@ benchmark "cft_scorecard" {
       control.restrict_firewall_rule_world_open,
       control.restrict_gmail_bigquery_dataset,
       control.restrict_googlegroups_bigquery_dataset,
-      control.sql_world_readable,
+      control.service_versions,
+      control.sql_world_readable
   ]
 }
 
@@ -295,6 +296,16 @@ control "gke_restrict_pod_traffic" {
   title         = "Kubernetes cluster network policy"
   description   = "Checks that GKE clusters have a Network Policy installed."
   sql           = query.kubernetes_cluster_network_policy_installed.sql
+
+  tags = merge(local.cft_scorecard_common_tags, {
+    severity  = "high"
+  })
+}
+
+control "service_versions" {
+  title         = "App Engine application version"
+  description   = "Limit the number App Engine application versions simultaneously running."
+  sql           = query.manual_control.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity  = "high"
