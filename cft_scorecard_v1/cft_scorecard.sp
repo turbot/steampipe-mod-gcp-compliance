@@ -8,7 +8,6 @@ locals {
 
 benchmark "cft_scorecard" {
   title         = "CFT Scorecard v1"
-  description   = "Forseti Security Benchmark covers foundational security elements of Google Cloud Platform."
   documentation = file("./cft_scorecard_v1/docs/cft_scorecard_overview.md")
   tags          = local.cft_scorecard_common_tags
   children = [
