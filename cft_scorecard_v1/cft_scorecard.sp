@@ -82,8 +82,8 @@ control "restrict_firewall_rule_rdp_world_open" {
 }
 
 control "restrict_firewall_rule_ssh_world_open" {
-  title         = "Check open firewall rules allowing SSH"
-  description   = "Checks for open firewall rules allowing SSH from the internet."
+  title         = "Checks for open firewall rules allowing SSH from the internet"
+  # description   = "Checks for open firewall rules allowing SSH from the internet."
   sql           = query.compute_firewall_rule_ssh_access_restricted.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
@@ -92,8 +92,8 @@ control "restrict_firewall_rule_ssh_world_open" {
 }
 
 control "restrict_gmail_bigquery_dataset" {
-  title         = "Restrict gmail BigQuery dataset access"
-  description   = "Enforce corporate domain by banning gmail.com addresses access to BigQuery datasets."
+  title         = "Enforce corporate domain by banning gmail.com addresses access to BigQuery datasets"
+  # description   = "Enforce corporate domain by banning gmail.com addresses access to BigQuery datasets."
   sql           = query.bigquery_dataset_restrict_gmail.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
@@ -102,8 +102,8 @@ control "restrict_gmail_bigquery_dataset" {
 }
 
 control "restrict_googlegroups_bigquery_dataset" {
-  title         = "Restrict google groups BigQuery dataset access"
-  description   = "Enforce corporate domain by banning googlegroups.com addresses access to BigQuery datasets."
+  title         = "Enforce corporate domain by banning googlegroups.com addresses access to BigQuery datasets"
+  # description   = "Enforce corporate domain by banning googlegroups.com addresses access to BigQuery datasets."
   sql           = query.bigquery_dataset_restrict_googlegroups.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
@@ -112,8 +112,8 @@ control "restrict_googlegroups_bigquery_dataset" {
 }
 
 control "sql_world_readable" {
-  title         = "Cloud SQL instances world readable"
-  description   = "Checks if Cloud SQL instances are world readable."
+  title         = "Checks if Cloud SQL instances are world readable"
+  # description   = "Checks if Cloud SQL instances are world readable."
   sql           = query.sql_instance_not_open_to_internet.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
@@ -122,8 +122,8 @@ control "sql_world_readable" {
 }
 
 control "prevent_public_ip_cloudsql" {
-  title         = "Cloud SQL instance assigned public IP"
-  description   = "Prevents a public IP from being assigned to a Cloud SQL instance."
+  title         = "Prevents a public IP from being assigned to a Cloud SQL instance"
+  # description   = "Prevents a public IP from being assigned to a Cloud SQL instance."
   sql           = query.sql_instance_with_no_public_ips.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
@@ -182,8 +182,8 @@ control "enable_network_flow_logs" {
 }
 
 control "enable_network_private_google_access" {
-  title         = "VPC subnetwork private Google access"
-  description   = "Ensure Private Google Access is enabled for all subnetworks in VPC."
+  title         = "Ensure Private Google Access is enabled for all subnetworks in VPC"
+  # description   = "Ensure Private Google Access is enabled for all subnetworks in VPC."
   sql           = query.compute_subnetwork_private_ip_google_access.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
@@ -192,8 +192,8 @@ control "enable_network_private_google_access" {
 }
 
 control "allow_only_private_cluster" {
-  title         = "GKE private clusters"
-  description   = "Verifies all GKE clusters are Private Clusters."
+  title         = "Verifies all GKE clusters are Private Clusters"
+  # description   = "Verifies all GKE clusters are Private Clusters."
   sql           = query.kubernetes_cluster_private_cluster_config_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
