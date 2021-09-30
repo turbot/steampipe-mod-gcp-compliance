@@ -1,8 +1,7 @@
 locals {
   cft_scorecard_common_tags = {
-    benchmark   = "cft_scorecard"
-    version     = "v1"
-    plugin      = "gcp"
+    cft_scorecard_v1   = "true"
+    plugin             = "gcp"
   }
 }
 
@@ -47,7 +46,6 @@ control "denylist_public_users" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -57,7 +55,6 @@ control "require_bq_table_iam" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -67,7 +64,6 @@ control "restrict_firewall_rule_world_open" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -77,7 +73,6 @@ control "restrict_firewall_rule_rdp_world_open" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -87,7 +82,6 @@ control "restrict_firewall_rule_ssh_world_open" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -97,7 +91,6 @@ control "restrict_gmail_bigquery_dataset" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -107,7 +100,7 @@ control "restrict_googlegroups_bigquery_dataset" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
+
   })
 }
 
@@ -117,7 +110,6 @@ control "sql_world_readable" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -127,7 +119,6 @@ control "prevent_public_ip_cloudsql" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -137,17 +128,16 @@ control "require_ssl_sql" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
 control "require_bucket_policy_only" {
-  title         = "Check if Cloud Storage buckets have Bucket Policy Only turned on"
+  title         = "Check if Cloud Storage buckets have Bucket Only Policy turned on"
   sql           = query.storage_bucket_bucket_policy_only_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
+
   })
 }
 
@@ -157,7 +147,6 @@ control "dnssec_prevent_rsasha1_ksk" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -167,7 +156,6 @@ control "dnssec_prevent_rsasha1_zsk" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -177,7 +165,6 @@ control "enable_network_flow_logs" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -187,17 +174,15 @@ control "enable_network_private_google_access" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
 control "allow_only_private_cluster" {
-  title         = "Verify all GKE clusters are private clusters"
+  title         = "Verify all GKE clusters are Private Clusters"
   sql           = query.kubernetes_cluster_private_cluster_config_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -207,47 +192,42 @@ control "disable_gke_dashboard" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
 control "disable_gke_default_service_account" {
-  title         = "Ensure default service account is not used for project access in Kubernetes clusters"
+  title         = "Ensure default Service account is not used for Project access in Kubernetes Engine clusters"
   sql           = query.kubernetes_cluster_service_account_default.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
 control "disable_gke_legacy_abac" {
-  title         = "Ensure legacy authorization is set to disabled on Kubernetes clusters"
+  title         = "Ensure Legacy Authorization is set to Disabled on Kubernetes Engine Clusters"
   sql           = query.kubernetes_cluster_legacy_abac_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
 control "disable_gke_legacy_endpoints" {
-  title         = "Check that legacy metadata endpoints are disabled on Kubernetes clusters"
+  title         = "Check that legacy metadata endpoints are disabled on Kubernetes clusters(disabled by default since GKE 1.12+)"
   sql           = query.kubernetes_cluster_legacy_endpoints_disabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
 control "enable_alias_ip_ranges" {
-  title         = "Ensure Kubernetes Cluster is created with alias IP ranges enabled"
+  title         = "Ensure Kubernetes Cluster is created with Alias IP ranges enabled"
   sql           = query.kubernetes_cluster_use_ip_aliases.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
@@ -257,56 +237,50 @@ control "enable_auto_repair" {
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
 control "enable_auto_upgrade" {
-  title         = "Ensure automatic node upgrade is enabled on all node pools in a GKE cluster"
+  title         = "Ensure Automatic node upgrades is enabled on Kubernetes Engine Clusters nodes"
   sql           = query.kubernetes_cluster_auto_repair_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
 control "enable_gke_master_authorized_networks" {
-  title         = "Ensure master authorized networks are enabled on GKE clusters"
+  title         = "Ensure Master authorized networks is set to Enabled on Kubernetes Engine Clusters"
   sql           = query.kubernetes_cluster_master_authorized_networks_config_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
 control "gke_container_optimized_os" {
-  title         = "Ensure Container-Optimized OS is used for Kubernetes engine clusters"
+  title         = "Ensure Container-Optimized OS (cos) is used for Kubernetes engine clusters"
   sql           = query.kubernetes_cluster_node_config_image_cos_containerd.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
 control "gke_restrict_pod_traffic" {
-  title         = "Check that GKE clusters have a network policy installed"
+  title         = "Check that GKE clusters have a Network Policy installed"
   sql           = query.kubernetes_cluster_network_policy_installed.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "security"
   })
 }
 
 control "service_versions" {
-  title         = "Limit the number of App Engine application versions running simultaneously"
+  title         = "Limit the number of App Engine application versions simultaneously running or installed"
   sql           = query.manual_control.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
     severity     = "high"
-    control_type = "operational_efficiency"
   })
 }
