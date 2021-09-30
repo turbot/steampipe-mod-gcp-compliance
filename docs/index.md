@@ -9,6 +9,8 @@ Run individual configuration, compliance and security controls or full complianc
 ## References
 [GCP](https://cloud.google.com) provides on-demand cloud computing platforms and APIs to authenticated customers on a metered pay-as-you-go basis.
 
+[CFT Scorecard](https://cloud.google.com/foundation-toolkit/) provides a set of security best-practice checks to detect misconfigurations and violations in Google Cloud resources and projects.
+
 [CIS GCP Benchmarks](https://www.cisecurity.org/benchmark/google_cloud_computing_platform/) provide a predefined set of compliance and security best-practice checks for GCP projects.
 
 [Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
