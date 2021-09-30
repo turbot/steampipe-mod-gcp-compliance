@@ -46,7 +46,8 @@ control "denylist_public_users" {
   sql           = query.iam_user_denylist_public.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -55,7 +56,8 @@ control "require_bq_table_iam" {
   sql           = query.bigquery_dataset_not_publicly_accessible.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -64,7 +66,8 @@ control "restrict_firewall_rule_world_open" {
   sql           = query.compute_firewall_rule_ssh_access_restricted.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -73,7 +76,8 @@ control "restrict_firewall_rule_rdp_world_open" {
   sql           = query.compute_firewall_rule_rdp_access_restricted.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -82,7 +86,8 @@ control "restrict_firewall_rule_ssh_world_open" {
   sql           = query.compute_firewall_rule_ssh_access_restricted.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -91,7 +96,8 @@ control "restrict_gmail_bigquery_dataset" {
   sql           = query.bigquery_dataset_restrict_gmail.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -100,7 +106,8 @@ control "restrict_googlegroups_bigquery_dataset" {
   sql           = query.bigquery_dataset_restrict_googlegroups.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -109,7 +116,8 @@ control "sql_world_readable" {
   sql           = query.sql_instance_not_open_to_internet.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -118,7 +126,8 @@ control "prevent_public_ip_cloudsql" {
   sql           = query.sql_instance_with_no_public_ips.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -127,7 +136,8 @@ control "require_ssl_sql" {
   sql           = query.sql_instance_require_ssl_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -136,7 +146,8 @@ control "require_bucket_policy_only" {
   sql           = query.storage_bucket_bucket_policy_only_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -145,7 +156,8 @@ control "dnssec_prevent_rsasha1_ksk" {
   sql           = query.dns_managed_zone_key_signing_not_using_rsasha1.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -154,7 +166,8 @@ control "dnssec_prevent_rsasha1_zsk" {
   sql           = query.dns_managed_zone_zone_signing_not_using_rsasha1.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -163,7 +176,8 @@ control "enable_network_flow_logs" {
   sql           = query.compute_subnetwork_flow_log_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -172,7 +186,8 @@ control "enable_network_private_google_access" {
   sql           = query.compute_subnetwork_private_ip_google_access.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -181,7 +196,8 @@ control "allow_only_private_cluster" {
   sql           = query.kubernetes_cluster_private_cluster_config_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -190,7 +206,8 @@ control "disable_gke_dashboard" {
   sql           = query.kubernetes_cluster_dashboard_disabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -199,7 +216,8 @@ control "disable_gke_default_service_account" {
   sql           = query.kubernetes_cluster_service_account_default.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -208,7 +226,8 @@ control "disable_gke_legacy_abac" {
   sql           = query.kubernetes_cluster_legacy_abac_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -217,7 +236,8 @@ control "disable_gke_legacy_endpoints" {
   sql           = query.kubernetes_cluster_legacy_endpoints_disabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -226,7 +246,8 @@ control "enable_alias_ip_ranges" {
   sql           = query.kubernetes_cluster_use_ip_aliases.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -235,7 +256,8 @@ control "enable_auto_repair" {
   sql           = query.kubernetes_cluster_auto_repair_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -244,7 +266,8 @@ control "enable_auto_upgrade" {
   sql           = query.kubernetes_cluster_auto_repair_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -253,7 +276,8 @@ control "enable_gke_master_authorized_networks" {
   sql           = query.kubernetes_cluster_master_authorized_networks_config_enabled.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -262,7 +286,8 @@ control "gke_container_optimized_os" {
   sql           = query.kubernetes_cluster_node_config_image_cos_containerd.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -271,7 +296,8 @@ control "gke_restrict_pod_traffic" {
   sql           = query.kubernetes_cluster_network_policy_installed.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "security"
   })
 }
 
@@ -280,6 +306,7 @@ control "service_versions" {
   sql           = query.manual_control.sql
 
   tags = merge(local.cft_scorecard_common_tags, {
-    severity  = "high"
+    severity     = "high"
+    control_type = "operational_efficiency"
   })
 }
