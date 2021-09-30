@@ -1,8 +1,8 @@
 locals {
   forseti_security_common_tags = {
-    benchmark   = "forseti_security"
-    version     = "v2.26.0"
-    plugin      = "gcp"
+    forseti_security   = "true"
+    version            = "v2.26.0"
+    plugin             = "gcp"
   }
 }
 

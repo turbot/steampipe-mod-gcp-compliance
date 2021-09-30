@@ -11,7 +11,7 @@ Run individual configuration, compliance and security controls or full CIS compl
 
 [CIS GCP Benchmarks](https://www.cisecurity.org/benchmark/google_cloud_computing_platform/) provide a predefined set of compliance and security best-practice checks for GCP projects.
 
-[Forseti Security Benchmark](https://forsetisecurity.org/docs/latest/) provides a set of security best practice checks for GCP projects.
+[Forseti Security Benchmark](https://forsetisecurity.org/docs/latest/concepts/best-practices.html) provides a set of security best practice checks for GCP projects so that you can take action to secure resources and minimize security risks.
 
 [Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
 
