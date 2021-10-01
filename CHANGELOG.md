@@ -1,3 +1,10 @@
+## v0.5 [2021-09-23]
+
+_Bug fixes_
+
+- Fixed broken links to the Mod developer guide in README.md
+- Removed the unnecessary quotes from `iam_user_separation_of_duty_enforced` query
+
 ## v0.4 [2021-07-01]
 
 _What's new?_
