@@ -1,8 +1,7 @@
 locals {
   forseti_security_common_tags = {
-    forseti_security   = "true"
-    version            = "v2.26.0"
-    plugin             = "gcp"
+    forseti_security_v226   = "true"
+    plugin                  = "gcp"
   }
 }
 
