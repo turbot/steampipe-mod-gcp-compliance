@@ -39,12 +39,3 @@ benchmark "cft_scorecard" {
       control.sql_world_readable
   ]
 }
-
-control "service_versions" {
-  title         = "Limit the number of App Engine application versions simultaneously running or installed"
-  sql           = query.manual_control.sql
-
-  tags = merge(local.cft_scorecard_common_tags, {
-    severity     = "high"
-  })
-}

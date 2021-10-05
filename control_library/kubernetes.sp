@@ -8,7 +8,7 @@ control "allow_only_private_cluster" {
   title         = "Verify all GKE clusters are Private Clusters"
   sql           = query.kubernetes_cluster_private_cluster_config_enabled.sql
 
-  tags = merge(local.cft_scorecard_common_tags, {
+  tags = merge(local.control_library_kubernetes_common_tags, {
     cft_scorecard_v1   = "true"
     severity           = "high"
   })
@@ -18,7 +18,7 @@ control "disable_gke_dashboard" {
   title         = "Ensure Kubernetes web UI/Dashboard is disabled"
   sql           = query.kubernetes_cluster_dashboard_disabled.sql
 
-  tags = merge(local.cft_scorecard_common_tags, {
+  tags = merge(local.control_library_kubernetes_common_tags, {
     cft_scorecard_v1   = "true"
     severity           = "high"
   })
@@ -28,7 +28,7 @@ control "disable_gke_default_service_account" {
   title         = "Ensure default Service account is not used for Project access in Kubernetes Engine clusters"
   sql           = query.kubernetes_cluster_service_account_default.sql
 
-  tags = merge(local.cft_scorecard_common_tags, {
+  tags = merge(local.control_library_kubernetes_common_tags, {
     cft_scorecard_v1   = "true"
     severity           = "high"
   })
@@ -38,7 +38,7 @@ control "disable_gke_legacy_abac" {
   title         = "Ensure Legacy Authorization is set to Disabled on Kubernetes Engine Clusters"
   sql           = query.kubernetes_cluster_legacy_abac_enabled.sql
 
-  tags = merge(local.cft_scorecard_common_tags, {
+  tags = merge(local.control_library_kubernetes_common_tags, {
     cft_scorecard_v1   = "true"
     severity           = "high"
   })
@@ -48,7 +48,7 @@ control "disable_gke_legacy_endpoints" {
   title         = "Check that legacy metadata endpoints are disabled on Kubernetes clusters(disabled by default since GKE 1.12+)"
   sql           = query.kubernetes_cluster_legacy_endpoints_disabled.sql
 
-  tags = merge(local.cft_scorecard_common_tags, {
+  tags = merge(local.control_library_kubernetes_common_tags, {
     cft_scorecard_v1   = "true"
     severity           = "high"
   })
