@@ -58,7 +58,7 @@ control "enable_alias_ip_ranges" {
   title         = "Ensure Kubernetes Cluster is created with Alias IP ranges enabled"
   sql           = query.kubernetes_cluster_use_ip_aliases.sql
 
-  tags = merge(local.cft_scorecard_common_tags, {
+  tags = merge(local.control_library_kubernetes_common_tags, {
     cft_scorecard_v1   = "true"
     severity           = "high"
   })
@@ -68,7 +68,7 @@ control "enable_auto_repair" {
   title         = "Ensure automatic node repair is enabled on all node pools in a GKE cluster"
   sql           = query.kubernetes_cluster_auto_repair_enabled.sql
 
-  tags = merge(local.cft_scorecard_common_tags, {
+  tags = merge(local.control_library_kubernetes_common_tags, {
     cft_scorecard_v1   = "true"
     severity           = "high"
   })
@@ -78,7 +78,7 @@ control "enable_auto_upgrade" {
   title         = "Ensure Automatic node upgrades is enabled on Kubernetes Engine Clusters nodes"
   sql           = query.kubernetes_cluster_auto_repair_enabled.sql
 
-  tags = merge(local.cft_scorecard_common_tags, {
+  tags = merge(local.control_library_kubernetes_common_tags, {
     cft_scorecard_v1   = "true"
     severity           = "high"
   })
@@ -88,7 +88,7 @@ control "enable_gke_master_authorized_networks" {
   title         = "Ensure Master authorized networks is set to Enabled on Kubernetes Engine Clusters"
   sql           = query.kubernetes_cluster_master_authorized_networks_config_enabled.sql
 
-  tags = merge(local.cft_scorecard_common_tags, {
+  tags = merge(local.control_library_kubernetes_common_tags, {
     cft_scorecard_v1   = "true"
     severity           = "high"
   })
@@ -98,7 +98,7 @@ control "gke_container_optimized_os" {
   title         = "Ensure Container-Optimized OS (cos) is used for Kubernetes engine clusters"
   sql           = query.kubernetes_cluster_node_config_image_cos_containerd.sql
 
-  tags = merge(local.cft_scorecard_common_tags, {
+  tags = merge(local.control_library_kubernetes_common_tags, {
     cft_scorecard_v1   = "true"
     severity           = "high"
   })
@@ -108,7 +108,7 @@ control "gke_restrict_pod_traffic" {
   title         = "Check that GKE clusters have a Network Policy installed"
   sql           = query.kubernetes_cluster_network_policy_installed.sql
 
-  tags = merge(local.cft_scorecard_common_tags, {
+  tags = merge(local.control_library_kubernetes_common_tags, {
     cft_scorecard_v1   = "true"
     severity           = "high"
   })
