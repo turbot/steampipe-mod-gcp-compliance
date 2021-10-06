@@ -25,4 +25,4 @@ select
   p.project
 from
   gcp_iam_policy as p
-  left join unapproved_bindings as b on p.project = b.project
+  left join unapproved_bindings as b on p.project = b.project;

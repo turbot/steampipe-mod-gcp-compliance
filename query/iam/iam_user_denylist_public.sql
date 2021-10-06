@@ -1,4 +1,3 @@
-
 with user_with_acces as (
   select
     distinct project
