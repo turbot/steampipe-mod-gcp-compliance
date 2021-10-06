@@ -5,7 +5,7 @@ locals {
   }
 }
 
-benchmark "cft_scorecard" {
+benchmark "cft_scorecard_v1" {
   title         = "CFT Scorecard v1"
   documentation = file("./cft_scorecard_v1/docs/cft_scorecard_overview.md")
   tags          = local.cft_scorecard_common_tags
