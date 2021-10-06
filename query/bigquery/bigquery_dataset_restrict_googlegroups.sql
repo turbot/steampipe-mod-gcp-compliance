@@ -16,9 +16,9 @@ select
   end as status,
   case
     when b.dataset_id is null
-      then a.dataset_id || ' googlegroups.com addresses do not have access to BigQuery datasets'
+      then a.dataset_id || ' enforces corporate domain by banning googlegroups.com addresses access.'
     else 
-     a.dataset_id || ' googlegroups.com addresses have access to BigQuery datasets'
+     a.dataset_id || ' does not enforce corporate domain by banning googlegroups.com addresses access.'
   end as reason,
   -- Additional Dimensions
   a.project
