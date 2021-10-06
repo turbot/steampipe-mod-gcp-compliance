@@ -11,4 +11,4 @@ select
   -- Additional Dimensions
   project
 from
-  gcp_service_account_key
+  gcp_service_account_key;
