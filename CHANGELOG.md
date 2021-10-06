@@ -1,3 +1,10 @@
+## v0.6 [2021-10-06]
+
+_What's new?_
+
+- Added: CFT Scorecard v1 benchmark (`steampipe check benchmark.cft_scorecard_v1`)
+- Added: Forseti Security v2.26.0 benchmark (`steampipe check benchmark.forseti_security_v226`)
+
 ## v0.5 [2021-09-23]
 
 _Bug fixes_
