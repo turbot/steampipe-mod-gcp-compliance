@@ -4,6 +4,16 @@ locals {
   }
 }
 
+control "enable_network_firewall_logs" {
+  title         = "Ensure Firewall logs is enabled for every firewall in VPC Network"
+  sql           = query.compute_firewall_log_config_enabled.sql
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    healthcare_baseline_v1  = "true"
+    severity                = "high"
+  })
+}
+
 control "restrict_firewall_rule_world_open" {
   title         = "Check for open firewall rules allowing ingress from the internet"
   sql           = query.compute_firewall_rule_ssh_access_restricted.sql
