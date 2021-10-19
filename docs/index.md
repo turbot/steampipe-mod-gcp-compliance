@@ -15,6 +15,10 @@ Run individual configuration, compliance and security controls or full complianc
 
 [Forseti Security Benchmark](https://forsetisecurity.org/docs/latest/concepts/best-practices.html) provides a set of security best practice checks for GCP projects so that you can take action to secure resources and minimize security risks.
 
+[GKE Hardening](https://github.com/GoogleCloudPlatform/policy-library/blob/master/docs/bundles/gke-hardening-v2019.11.11.md) provides a collection of configurations crucial for good cluster security.
+
+[Healthcare Baseline](https://github.com/GoogleCloudPlatform/policy-library/blob/master/docs/bundles/healthcare-baseline-v1.md) includes a set of security based configurations which help to improve your Google Cloud Platform (GCP) environments
+
 [Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
 
 [Steampipe Mods](https://steampipe.io/docs/reference/mod-resources#mod) are collections of `named queries`, and codified `controls` that can be used to test current configuration of your cloud resources against a desired configuration.

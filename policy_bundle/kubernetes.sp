@@ -19,8 +19,9 @@ control "disable_gke_dashboard" {
   sql           = query.kubernetes_cluster_dashboard_disabled.sql
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
-    cft_scorecard_v1   = "true"
-    severity           = "high"
+    cft_scorecard_v1    = "true"
+    gke_hardening_v2019 = "true"
+    severity            = "high"
   })
 }
 
@@ -39,8 +40,9 @@ control "disable_gke_legacy_abac" {
   sql           = query.kubernetes_cluster_legacy_abac_enabled.sql
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
-    cft_scorecard_v1   = "true"
-    severity           = "high"
+    cft_scorecard_v1    = "true"
+    gke_hardening_v2019 = "true"
+    severity            = "high"
   })
 }
 
@@ -79,8 +81,9 @@ control "enable_auto_upgrade" {
   sql           = query.kubernetes_cluster_auto_repair_enabled.sql
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
-    cft_scorecard_v1   = "true"
-    severity           = "high"
+    cft_scorecard_v1    = "true"
+    gke_hardening_v2019 = "true"
+    severity            = "high"
   })
 }
 
@@ -89,8 +92,9 @@ control "enable_gke_master_authorized_networks" {
   sql           = query.kubernetes_cluster_master_authorized_networks_config_enabled.sql
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
-    cft_scorecard_v1   = "true"
-    severity           = "high"
+    cft_scorecard_v1    = "true"
+    gke_hardening_v2019 = "true"
+    severity            = "high"
   })
 }
 
