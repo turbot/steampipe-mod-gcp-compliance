@@ -4,7 +4,9 @@ repository: "https://github.com/turbot/steampipe-mod-gcp-compliance"
 
 # GCP Compliance Mod
 
-Run individual configuration, compliance and security controls or full compliance benchmarks for `CIS`, `Forseti Security` and `CFT Scorecard` for all your GCP projects. 
+Run individual configuration, compliance and security controls or full compliance benchmarks for `CIS`, `Forseti Security` and `CFT Scorecard` for all your GCP projects.
+
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v140_console.png)
 
 ## References
 [GCP](https://cloud.google.com) provides on-demand cloud computing platforms and APIs to authenticated customers on a metered pay-as-you-go basis.
