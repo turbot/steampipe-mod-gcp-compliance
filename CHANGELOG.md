@@ -1,3 +1,9 @@
+## v0.8 [2022-03-17]
+
+_Bug fixes_
+
+- Fixed the `kubernetes_cluster_private_cluster_config_enabled` query to correctly evaluate which GKE clusters are private ([#59](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/59))
+
 ## v0.7 [2021-11-10]
 
 _Enhancements_
