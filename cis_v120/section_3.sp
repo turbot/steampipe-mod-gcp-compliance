@@ -19,7 +19,10 @@ benchmark "cis_v120_3" {
     control.cis_v120_3_9,
     control.cis_v120_3_10
   ]
-  tags = local.cis_v120_3_common_tags
+
+  tags = merge(local.cis_v120_3_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "cis_v120_3_1" {
@@ -32,6 +35,7 @@ control "cis_v120_3_1" {
     cis_item_id = "3.1"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "GCP/VPC"
   })
 }
 
@@ -45,6 +49,7 @@ control "cis_v120_3_2" {
     cis_item_id = "3.2"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/VPC"
   })
 }
 
@@ -58,6 +63,7 @@ control "cis_v120_3_3" {
     cis_item_id = "3.3"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/DNS"
   })
 }
 
@@ -71,6 +77,7 @@ control "cis_v120_3_4" {
     cis_item_id = "3.4"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "GCP/DNS"
   })
 }
 
@@ -84,6 +91,7 @@ control "cis_v120_3_5" {
     cis_item_id = "3.5"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "GCP/DNS"
   })
 }
 
@@ -97,6 +105,7 @@ control "cis_v120_3_6" {
     cis_item_id = "3.6"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "GCP/VPC"
   })
 }
 
@@ -110,6 +119,7 @@ control "cis_v120_3_7" {
     cis_item_id = "3.7"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "GCP/VPC"
   })
 }
 
@@ -123,6 +133,7 @@ control "cis_v120_3_8" {
     cis_item_id = "3.8"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/VPC"
   })
 }
 
@@ -136,6 +147,7 @@ control "cis_v120_3_9" {
     cis_item_id = "3.9"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "GCP/VPC"
   })
 }
 
@@ -149,5 +161,6 @@ control "cis_v120_3_10" {
     cis_item_id = "3.10"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "GCP/VPC"
   })
 }

@@ -20,7 +20,10 @@ benchmark "cis_v120_4" {
     control.cis_v120_4_10,
     control.cis_v120_4_11
   ]
-  tags = local.cis_v120_4_common_tags
+
+  tags = merge(local.cis_v120_4_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "cis_v120_4_1" {
@@ -33,6 +36,7 @@ control "cis_v120_4_1" {
     cis_item_id = "4.1"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Compute"
   })
 }
 
@@ -46,6 +50,7 @@ control "cis_v120_4_2" {
     cis_item_id = "4.2"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Compute"
   })
 }
 
@@ -59,6 +64,7 @@ control "cis_v120_4_3" {
     cis_item_id = "4.3"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Compute"
   })
 }
 
@@ -72,6 +78,7 @@ control "cis_v120_4_4" {
     cis_item_id = "4.4"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Compute"
   })
 }
 
@@ -85,6 +92,7 @@ control "cis_v120_4_5" {
     cis_item_id = "4.5"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Compute"
   })
 }
 
@@ -98,6 +106,7 @@ control "cis_v120_4_6" {
     cis_item_id = "4.6"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Compute"
   })
 }
 
@@ -111,6 +120,7 @@ control "cis_v120_4_7" {
     cis_item_id = "4.7"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "GCP/Compute"
   })
 }
 
@@ -124,6 +134,7 @@ control "cis_v120_4_8" {
     cis_item_id = "4.8"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "GCP/Compute"
   })
 }
 
@@ -137,6 +148,7 @@ control "cis_v120_4_9" {
     cis_item_id = "4.9"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "GCP/Compute"
   })
 }
 
@@ -150,6 +162,7 @@ control "cis_v120_4_10" {
     cis_item_id = "4.10"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "GCP/AppEngine"
   })
 }
 
@@ -163,5 +176,6 @@ control "cis_v120_4_11" {
     cis_item_id = "4.11"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "GCP/Compute"
   })
 }

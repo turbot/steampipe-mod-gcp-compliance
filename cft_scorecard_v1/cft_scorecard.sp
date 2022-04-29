@@ -1,14 +1,12 @@
 locals {
-  cft_scorecard_common_tags = {
+  cft_scorecard_common_tags = merge(local.gcp_compliance_common_tags, {
     cft_scorecard_v1   = "true"
-    plugin             = "gcp"
-  }
+  })
 }
 
 benchmark "cft_scorecard_v1" {
   title         = "CFT Scorecard v1"
   documentation = file("./cft_scorecard_v1/docs/cft_scorecard_overview.md")
-  tags          = local.cft_scorecard_common_tags
   children = [
       control.allow_only_private_cluster,
       control.denylist_public_users,
@@ -38,4 +36,8 @@ benchmark "cft_scorecard_v1" {
       control.service_versions,
       control.sql_world_readable
   ]
+
+  tags = merge(local.cft_scorecard_common_tags, {
+    type = "Benchmark"
+  })
 }

@@ -1,7 +1,7 @@
 locals {
-  policy_bundle_kubernetes_common_tags = {
-    service = "kubernetes"
-  }
+  policy_bundle_kubernetes_common_tags = merge(local.gcp_compliance_common_tags, {
+    service = "GCP/Kubernetes"    
+  })
 }
 
 control "allow_only_private_cluster" {

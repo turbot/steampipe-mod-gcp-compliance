@@ -1,7 +1,7 @@
 locals {
-  policy_bundle_sql_common_tags = {
-    service = "sql"
-  }
+  policy_bundle_sql_common_tags = merge(local.gcp_compliance_common_tags, {
+    service = "GCP/SQL"    
+  })
 }
 
 control "sql_world_readable" {

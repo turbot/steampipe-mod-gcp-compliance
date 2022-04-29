@@ -1,7 +1,7 @@
 locals {
-  policy_bundle_dns_common_tags = {
-    service = "dns"
-  }
+  policy_bundle_dns_common_tags = merge(local.gcp_compliance_common_tags, {
+    service = "GCP/DNS"    
+  })
 }
 
 control "dnssec_prevent_rsasha1_ksk" {
