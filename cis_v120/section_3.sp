@@ -35,7 +35,7 @@ control "cis_v120_3_1" {
     cis_item_id = "3.1"
     cis_level   = "2"
     cis_type    = "automated"
-    service     = "GCP/VPC"
+    service     = "GCP/Compute"
   })
 }
 
@@ -49,7 +49,7 @@ control "cis_v120_3_2" {
     cis_item_id = "3.2"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/VPC"
+    service     = "GCP/Compute"
   })
 }
 
@@ -105,7 +105,7 @@ control "cis_v120_3_6" {
     cis_item_id = "3.6"
     cis_level   = "2"
     cis_type    = "automated"
-    service     = "GCP/VPC"
+    service     = "GCP/Compute"
   })
 }
 
@@ -119,7 +119,7 @@ control "cis_v120_3_7" {
     cis_item_id = "3.7"
     cis_level   = "2"
     cis_type    = "automated"
-    service     = "GCP/VPC"
+    service     = "GCP/Compute"
   })
 }
 
@@ -133,7 +133,7 @@ control "cis_v120_3_8" {
     cis_item_id = "3.8"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/VPC"
+    service     = "GCP/Compute"
   })
 }
 
@@ -147,7 +147,7 @@ control "cis_v120_3_9" {
     cis_item_id = "3.9"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "GCP/VPC"
+    service     = "GCP/Compute"
   })
 }
 
@@ -161,6 +161,6 @@ control "cis_v120_3_10" {
     cis_item_id = "3.10"
     cis_level   = "2"
     cis_type    = "manual"
-    service     = "GCP/VPC"
+    service     = "GCP/Compute"
   })
 }

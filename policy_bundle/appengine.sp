@@ -1,6 +1,6 @@
 locals {
   policy_bundle_appengine_common_tags = merge(local.gcp_compliance_common_tags, {
-    service = "GCP/AppEngine"    
+    service = "GCP/AppEngine"
   })
 }
 

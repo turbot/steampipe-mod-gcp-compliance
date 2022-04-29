@@ -1,6 +1,6 @@
 locals {
   policy_bundle_iam_common_tags = merge(local.gcp_compliance_common_tags, {
-    service = "GCP/IAM"    
+    service = "GCP/IAM"
   })
 }
 

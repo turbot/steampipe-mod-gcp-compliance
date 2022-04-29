@@ -1,6 +1,6 @@
 locals {
   policy_bundle_sql_common_tags = merge(local.gcp_compliance_common_tags, {
-    service = "GCP/SQL"    
+    service = "GCP/SQL"
   })
 }
 

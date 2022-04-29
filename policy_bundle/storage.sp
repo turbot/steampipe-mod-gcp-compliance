@@ -1,6 +1,6 @@
 locals {
   policy_bundle_storage_common_tags = merge(local.gcp_compliance_common_tags, {
-    service = "GCP/Storage"    
+    service = "GCP/Storage"
   })
 }
 

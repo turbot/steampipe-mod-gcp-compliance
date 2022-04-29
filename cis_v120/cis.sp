@@ -1,5 +1,5 @@
 locals {
-  cis_v120_common_tags = merge (local.gcp_compliance_common_tags, {
+  cis_v120_common_tags = merge(local.gcp_compliance_common_tags, {
     benchmark   = "cis"
     cis_version = "v1.2.0"
   })
