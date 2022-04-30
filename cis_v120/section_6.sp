@@ -1,6 +1,7 @@
 locals {
   cis_v120_6_common_tags = merge(local.cis_v120_common_tags, {
     cis_section_id = "6"
+    service        = "GCP/SQL"
   })
 }
 
@@ -64,7 +65,6 @@ control "cis_v120_6_1_1" {
     cis_item_id = "6.1.1"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -78,7 +78,6 @@ control "cis_v120_6_1_2" {
     cis_item_id = "6.1.2"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -92,7 +91,6 @@ control "cis_v120_6_1_3" {
     cis_item_id = "6.1.3"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -119,7 +117,7 @@ benchmark "cis_v120_6_2" {
   ]
 
   tags = merge(local.cis_v120_6_2_common_tags, {
-    type = "Benchmark"
+    type    = "Benchmark"
   })
 }
 
@@ -133,7 +131,6 @@ control "cis_v120_6_2_1" {
     cis_item_id = "6.2.1"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -147,7 +144,6 @@ control "cis_v120_6_2_2" {
     cis_item_id = "6.2.2"
     cis_level   = "2"
     cis_type    = "manual"
-    service     = "GCP/SQL"
   })
 }
 
@@ -161,7 +157,6 @@ control "cis_v120_6_2_3" {
     cis_item_id = "6.2.3"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -175,7 +170,6 @@ control "cis_v120_6_2_4" {
     cis_item_id = "6.2.4"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -189,7 +183,6 @@ control "cis_v120_6_2_5" {
     cis_item_id = "6.2.5"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "GCP/SQL"
   })
 }
 
@@ -203,7 +196,6 @@ control "cis_v120_6_2_6" {
     cis_item_id = "6.2.6"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -217,7 +209,6 @@ control "cis_v120_6_2_7" {
     cis_item_id = "6.2.7"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "GCP/SQL"
   })
 }
 
@@ -231,7 +222,6 @@ control "cis_v120_6_2_8" {
     cis_item_id = "6.2.8"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -245,7 +235,6 @@ control "cis_v120_6_2_9" {
     cis_item_id = "6.2.9"
     cis_level   = "2"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -259,7 +248,6 @@ control "cis_v120_6_2_10" {
     cis_item_id = "6.2.10"
     cis_level   = "2"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -273,7 +261,6 @@ control "cis_v120_6_2_11" {
     cis_item_id = "6.2.11"
     cis_level   = "2"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -287,7 +274,6 @@ control "cis_v120_6_2_12" {
     cis_item_id = "6.2.12"
     cis_level   = "2"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -301,7 +287,6 @@ control "cis_v120_6_2_13" {
     cis_item_id = "6.2.13"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "GCP/SQL"
   })
 }
 
@@ -315,7 +300,6 @@ control "cis_v120_6_2_14" {
     cis_item_id = "6.2.14"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -329,7 +313,6 @@ control "cis_v120_6_2_15" {
     cis_item_id = "6.2.15"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -343,7 +326,6 @@ control "cis_v120_6_2_16" {
     cis_item_id = "6.2.16"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -361,7 +343,7 @@ benchmark "cis_v120_6_3" {
   ]
 
   tags = merge(local.cis_v120_6_3_common_tags, {
-    type = "Benchmark"
+    type    = "Benchmark"
   })
 }
 
@@ -375,7 +357,6 @@ control "cis_v120_6_3_1" {
     cis_item_id = "6.3.1"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -389,7 +370,6 @@ control "cis_v120_6_3_2" {
     cis_item_id = "6.3.2"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -403,7 +383,6 @@ control "cis_v120_6_3_3" {
     cis_item_id = "6.3.3"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -417,7 +396,6 @@ control "cis_v120_6_3_4" {
     cis_item_id = "6.3.4"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -431,7 +409,6 @@ control "cis_v120_6_3_5" {
     cis_item_id = "6.3.5"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -445,7 +422,6 @@ control "cis_v120_6_3_6" {
     cis_item_id = "6.3.6"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -459,7 +435,6 @@ control "cis_v120_6_3_7" {
     cis_item_id = "6.3.7"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -473,7 +448,6 @@ control "cis_v120_6_4" {
     cis_item_id = "6.4"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -487,7 +461,6 @@ control "cis_v120_6_5" {
     cis_item_id = "6.5"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -501,7 +474,6 @@ control "cis_v120_6_6" {
     cis_item_id = "6.6"
     cis_level   = "2"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }
 
@@ -515,6 +487,5 @@ control "cis_v120_6_7" {
     cis_item_id = "6.7"
     cis_level   = "1"
     cis_type    = "automated"
-    service     = "GCP/SQL"
   })
 }

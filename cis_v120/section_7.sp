@@ -14,7 +14,8 @@ benchmark "cis_v120_7" {
   ]
 
   tags = merge(local.cis_v120_7_common_tags, {
-    type = "Benchmark"
+    type    = "Benchmark"
+    service = "GCP/BigQuery"
   })
 }
 
@@ -28,7 +29,6 @@ control "cis_v120_7_1" {
     cis_item_id = "7.1"
     cis_type    = "automated"
     cis_level   = "1"
-    service     = "GCP/BigQuery"
   })
 }
 
@@ -42,7 +42,6 @@ control "cis_v120_7_2" {
     cis_item_id = "7.2"
     cis_type    = "automated"
     cis_level   = "2"
-    service     = "GCP/BigQuery"
   })
 }
 
@@ -56,6 +55,5 @@ control "cis_v120_7_3" {
     cis_item_id = "7.3"
     cis_type    = "automated"
     cis_level   = "2"
-    service     = "GCP/BigQuery"
   })
 }
