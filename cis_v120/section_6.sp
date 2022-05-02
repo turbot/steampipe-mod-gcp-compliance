@@ -1,28 +1,24 @@
 locals {
   cis_v120_6_common_tags = merge(local.cis_v120_common_tags, {
     cis_section_id = "6"
-    service        = "GCP/SQL"
   })
 }
 
 locals {
   cis_v120_6_1_common_tags = merge(local.cis_v120_6_common_tags, {
     cis_section_id = "6.1"
-    service        = "GCP/SQL"
   })
 }
 
 locals {
   cis_v120_6_2_common_tags = merge(local.cis_v120_6_common_tags, {
     cis_section_id = "6.2"
-    service        = "GCP/SQL"
   })
 }
 
 locals {
   cis_v120_6_3_common_tags = merge(local.cis_v120_6_common_tags, {
     cis_section_id = "6.3"
-    service        = "GCP/SQL"
   })
 }
 
