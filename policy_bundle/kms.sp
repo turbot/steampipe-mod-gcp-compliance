@@ -1,7 +1,7 @@
 locals {
-  policy_bundle_kms_common_tags = {
-    service = "kms"
-  }
+  policy_bundle_kms_common_tags = merge(local.gcp_compliance_common_tags, {
+    service = "GCP/KMS"
+  })
 }
 
 control "cmek_rotation_one_hundred_days" {

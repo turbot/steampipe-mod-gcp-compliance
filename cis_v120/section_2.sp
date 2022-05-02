@@ -21,7 +21,10 @@ benchmark "cis_v120_2" {
     control.cis_v120_2_11,
     control.cis_v120_2_12
   ]
-  tags = local.cis_v120_2_common_tags
+
+  tags = merge(local.cis_v120_2_common_tags, {
+    type    = "Benchmark"
+  })
 }
 
 control "cis_v120_2_1" {
@@ -34,6 +37,7 @@ control "cis_v120_2_1" {
     cis_item_id = "2.1"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
@@ -47,6 +51,7 @@ control "cis_v120_2_2" {
     cis_item_id = "2.2"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
@@ -60,6 +65,7 @@ control "cis_v120_2_3" {
     cis_item_id = "2.3"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
@@ -73,6 +79,7 @@ control "cis_v120_2_4" {
     cis_item_id = "2.4"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
@@ -86,6 +93,7 @@ control "cis_v120_2_5" {
     cis_item_id = "2.5"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
@@ -99,6 +107,7 @@ control "cis_v120_2_6" {
     cis_item_id = "2.6"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
@@ -112,6 +121,7 @@ control "cis_v120_2_7" {
     cis_item_id = "2.7"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
@@ -125,6 +135,7 @@ control "cis_v120_2_8" {
     cis_item_id = "2.8"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
@@ -138,6 +149,7 @@ control "cis_v120_2_9" {
     cis_item_id = "2.9"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
@@ -151,6 +163,7 @@ control "cis_v120_2_10" {
     cis_item_id = "2.10"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
@@ -164,6 +177,7 @@ control "cis_v120_2_11" {
     cis_item_id = "2.11"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
@@ -177,5 +191,6 @@ control "cis_v120_2_12" {
     cis_item_id = "2.12"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/DNS"
   })
 }

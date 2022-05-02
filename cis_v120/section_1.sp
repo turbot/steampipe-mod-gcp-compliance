@@ -24,7 +24,10 @@ benchmark "cis_v120_1" {
     control.cis_v120_1_14,
     control.cis_v120_1_15
   ]
-  tags = local.cis_v120_1_common_tags
+
+  tags = merge(local.cis_v120_1_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "cis_v120_1_1" {
@@ -37,6 +40,7 @@ control "cis_v120_1_1" {
     cis_item_id = "1.1"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/IAM"
   })
 }
 
@@ -50,6 +54,7 @@ control "cis_v120_1_2" {
     cis_item_id = "1.2"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "GCP/IAM"
   })
 }
 
@@ -63,6 +68,7 @@ control "cis_v120_1_3" {
     cis_item_id = "1.3"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "GCP/IAM"
   })
 }
 
@@ -76,6 +82,7 @@ control "cis_v120_1_4" {
     cis_item_id = "1.4"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/IAM"
   })
 }
 
@@ -89,6 +96,7 @@ control "cis_v120_1_5" {
     cis_item_id = "1.5"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/IAM"
   })
 }
 
@@ -102,6 +110,7 @@ control "cis_v120_1_6" {
     cis_item_id = "1.6"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/IAM"
   })
 }
 
@@ -115,6 +124,7 @@ control "cis_v120_1_7" {
     cis_item_id = "1.7"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/IAM"
   })
 }
 
@@ -128,6 +138,7 @@ control "cis_v120_1_8" {
     cis_item_id = "1.8"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "GCP/IAM"
   })
 }
 
@@ -141,6 +152,7 @@ control "cis_v120_1_9" {
     cis_item_id = "1.9"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/KMS"
   })
 }
 
@@ -154,6 +166,7 @@ control "cis_v120_1_10" {
     cis_item_id = "1.10"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/KMS"
   })
 }
 
@@ -167,6 +180,7 @@ control "cis_v120_1_11" {
     cis_item_id = "1.11"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "GCP/KMS"
   })
 }
 
@@ -180,6 +194,7 @@ control "cis_v120_1_12" {
     cis_item_id = "1.12"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "GCP/IAM"
   })
 }
 
@@ -193,6 +208,7 @@ control "cis_v120_1_13" {
     cis_item_id = "1.13"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "GCP/IAM"
   })
 }
 
@@ -206,6 +222,7 @@ control "cis_v120_1_14" {
     cis_item_id = "1.14"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "GCP/IAM"
   })
 }
 
@@ -219,5 +236,6 @@ control "cis_v120_1_15" {
     cis_item_id = "1.15"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "GCP/IAM"
   })
 }

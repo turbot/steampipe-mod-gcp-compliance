@@ -1,7 +1,7 @@
 locals {
-  policy_bundle_bigquery_common_tags = {
-    service = "bigquery"
-  }
+  policy_bundle_bigquery_common_tags = merge(local.gcp_compliance_common_tags, {
+    service = "GCP/BigQuery"
+  })
 }
 
 control "require_bq_table_iam" {
@@ -34,6 +34,5 @@ control "restrict_googlegroups_bigquery_dataset" {
     cft_scorecard_v1        = "true"
     forseti_security_v226   = "true"
     severity                = "high"
-
   })
 }

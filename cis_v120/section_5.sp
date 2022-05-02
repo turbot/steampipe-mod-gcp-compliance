@@ -11,7 +11,11 @@ benchmark "cis_v120_5" {
     control.cis_v120_5_1,
     control.cis_v120_5_2
   ]
-  tags = local.cis_v120_5_common_tags
+
+  tags = merge(local.cis_v120_5_common_tags, {
+    type    = "Benchmark"
+    service = "GCP/Storage"
+  })
 }
 
 control "cis_v120_5_1" {
@@ -24,6 +28,7 @@ control "cis_v120_5_1" {
     cis_item_id = "5.1"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Storage"
   })
 }
 
@@ -37,5 +42,6 @@ control "cis_v120_5_2" {
     cis_item_id = "5.2"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "GCP/Storage"
   })
 }
