@@ -1,3 +1,12 @@
+// Benchmarks and controls for specific services should override the "service" tag
+locals {
+  gcp_compliance_common_tags = {
+    category = "Compliance"
+    plugin   = "gcp"
+    service  = "GCP"
+  }
+}
+
 mod "gcp_compliance" {
   # hub metadata
   title         = "GCP Compliance"

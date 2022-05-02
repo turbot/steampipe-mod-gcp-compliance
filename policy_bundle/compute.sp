@@ -1,7 +1,7 @@
 locals {
-  policy_bundle_compute_common_tags = {
-    service = "compute"
-  }
+  policy_bundle_compute_common_tags = merge(local.gcp_compliance_common_tags, {
+    service = "GCP/Compute"
+  })
 }
 
 control "restrict_firewall_rule_world_open" {
