@@ -34,6 +34,5 @@ control "restrict_googlegroups_bigquery_dataset" {
     cft_scorecard_v1        = "true"
     forseti_security_v226   = "true"
     severity                = "high"
-
   })
 }

@@ -24,7 +24,6 @@ benchmark "cis_v120_2" {
 
   tags = merge(local.cis_v120_2_common_tags, {
     type    = "Benchmark"
-    service = "GCP/Logging"
   })
 }
 
@@ -38,6 +37,7 @@ control "cis_v120_2_1" {
     cis_item_id = "2.1"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
@@ -51,6 +51,7 @@ control "cis_v120_2_2" {
     cis_item_id = "2.2"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/Logging"
   })
 }
 
