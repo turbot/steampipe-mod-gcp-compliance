@@ -1,3 +1,9 @@
+## v0.9 [2022-05-02]
+
+_Enhancements_
+
+- Added `category`, `service`, and `type` tags to benchmarks and controls. ([#64](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/64))
+
 ## v0.8 [2022-03-17]
 
 _Bug fixes_
