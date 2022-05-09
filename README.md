@@ -5,10 +5,10 @@
 This mod **Includes full support for v1.2.0 CIS, CFT Scorecard and Forseti Security benchmarks**.
 
 Run checks in a dashboard:
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/update-doc-fix/docs/gcp_compliance_cis_v120_dashboard.png)
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_compliance_cis_v120_dashboard.png)
 
 Or in a terminal:
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/update-doc-fix/docs/gcp_cis_v120_console.png)
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v120_console.png)
 
 Includes support for:
 1. [Identity and Access Management](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v120_1)

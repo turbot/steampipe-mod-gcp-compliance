@@ -6,9 +6,9 @@ repository: "https://github.com/turbot/steampipe-mod-gcp-compliance"
 
 Run individual configuration, compliance and security controls or full compliance benchmarks for `CIS`, `Forseti Security` and `CFT Scorecard` for all your GCP projects.
 
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/update-doc-fix/docs/gcp_compliance_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/update-doc-fix/docs/gcp_compliance_cis_v120_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/update-doc-fix/docs/gcp_cis_v120_console.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_compliance_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_compliance_cis_v120_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v120_console.png" width="50%" type="thumbnail"/>
 
 ## References
 
