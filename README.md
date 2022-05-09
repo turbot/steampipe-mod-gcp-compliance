@@ -2,7 +2,7 @@
 
 80+ checks covering industry defined security best practices for Google Cloud services.
 
-This mod **Includes full support for v1.2.0 CIS, CFT Scorecard and Forseti Security benchmarks**.
+**Includes full support for v1.2.0 CIS, CFT Scorecard and Forseti Security benchmarks**.
 
 Run checks in a dashboard:
 ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_compliance_cis_v120_dashboard.png)
