@@ -1,4 +1,4 @@
-# GCP Compliance Scanning Tool
+# GCP Compliance Mod for Steampipe
 
 80+ checks covering industry defined security best practices for Google Cloud services.
 
