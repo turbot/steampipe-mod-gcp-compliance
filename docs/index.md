@@ -77,7 +77,7 @@ steampipe check all
 Run a single benchmark:
 
 ```sh
-steampipe check benchmark.cis_v120
+steampipe check benchmark.cis_v130
 ```
 
 Run a specific control:
