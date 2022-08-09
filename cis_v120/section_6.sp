@@ -1,5 +1,5 @@
 locals {
-  cis_v120_6_common_tags = merge(local.cis_v130_common_tags, {
+  cis_v120_6_common_tags = merge(local.cis_v120_common_tags, {
     cis_section_id = "6"
   })
 }
@@ -26,9 +26,9 @@ benchmark "cis_v120_6" {
   title         = "6 Cloud SQL Database Services"
   documentation = file("./cis_v120/docs/cis_v120_6.md")
   children = [
-    benchmark.cis_v130_6_1,
-    benchmark.cis_v130_6_2,
-    benchmark.cis_v130_6_3,
+    benchmark.cis_v120_6_1,
+    benchmark.cis_v120_6_2,
+    benchmark.cis_v120_6_3,
     control.cis_v120_6_4,
     control.cis_v120_6_5,
     control.cis_v120_6_6,
