@@ -1,3 +1,4 @@
+-- Please note: The table gcp_organization requires the resourcemanager.organizations.get permission to retrieve organization details.
 with user_with_acces as (
   select
     distinct split_part(m, ':', 2) as member,
