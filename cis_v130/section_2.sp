@@ -208,7 +208,7 @@ control "cis_v130_2_13" {
     cis_item_id = "2.13"
     cis_level   = "2"
     cis_type    = "automated"
-    service     = "GCP/Project" ## TODO
+    service     = "GCP/Project"
   })
 }
 
@@ -222,20 +222,20 @@ control "cis_v130_2_14" {
     cis_item_id = "2.14"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "GCP/Project" ## TODO
+    service     = "GCP/Project"
   })
 }
 
 control "cis_v130_2_15" {
   title         = "2.15 Ensure 'Access Approval' is 'Enabled'"
   description   = "GCP Access Approval enables you to require your organizations' explicit approval whenever Google support try to access your projects. You can then select users within your organization who can approve these requests through giving them a security role in IAM. All access requests display which Google Employee requested them in an email or Pub/Sub message that you can choose to Approve. This adds an additional control and logging of who in your organization approved/denied these requests."
-  sql           = query.manual_control.sql
+  sql           = query.project_accessapproval_settings_enabled.sql
   documentation = file("./cis_v130/docs/cis_v130_2_15.md")
 
   tags = merge(local.cis_v130_2_common_tags, {
     cis_item_id = "2.15"
     cis_level   = "2"
     cis_type    = "automated"
-    service     = "GCP/Project" ## TODO
+    service     = "GCP/Project"
   })
 }

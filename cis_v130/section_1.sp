@@ -246,28 +246,28 @@ control "cis_v130_1_15" {
 control "cis_v130_1_16" {
   title         = "1.16 Ensure essential contacts is configured for Organization"
   description   = "It is recommended that Essential Contacts is configured to designate email addresses for Google Cloud services to notify of important technical or security information."
-  sql           = query.manual_control.sql
+  sql           = query.organization_essentialcontacts_configured.sql
   documentation = file("./cis_v130/docs/cis_v130_1_16.md")
 
   tags = merge(local.cis_v130_1_common_tags, {
     cis_item_id = "1.16"
     cis_level   = "1"
-    cis_type    = "manual"
-    service     = "GCP/Organization" ## TODO
+    cis_type    = "automated"
+    service     = "GCP/Organization"
   })
 }
 
 control "cis_v130_1_17" {
   title         = "1.17 Ensure that dataproc cluster is encrypted using customer-managed encryption key"
   description   = "When you use Dataproc, cluster and job data is stored on Persistent Disks (PDs) associated with the Compute Engine VMs in your cluster and in a Cloud Storage staging bucket. This PD and bucket data is encrypted using a Google-generated data encryption key (DEK) and key encryption key (KEK). The CMEK feature allows you to create, use, and revoke the key encryption key (KEK). Google still controls the data encryption key (DEK)."
-  sql           = query.manual_control.sql
+  sql           = query.dataproc_cluster_encryption_with_cmek.sql
   documentation = file("./cis_v130/docs/cis_v130_1_17.md")
 
   tags = merge(local.cis_v130_1_common_tags, {
     cis_item_id = "1.17"
     cis_level   = "2"
-    cis_type    = "manual"
-    service     = "GCP/Dataproc" ## TODO
+    cis_type    = "automated"
+    service     = "GCP/Dataproc"
   })
 }
 
