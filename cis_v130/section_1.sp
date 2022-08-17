@@ -246,7 +246,7 @@ control "cis_v130_1_15" {
 control "cis_v130_1_16" {
   title         = "1.16 Ensure essential contacts is configured for Organization"
   description   = "It is recommended that Essential Contacts is configured to designate email addresses for Google Cloud services to notify of important technical or security information."
-  sql           = query.organization_essentialcontacts_configured.sql
+  sql           = query.organization_essential_contacts_configured.sql
   documentation = file("./cis_v130/docs/cis_v130_1_16.md")
 
   tags = merge(local.cis_v130_1_common_tags, {

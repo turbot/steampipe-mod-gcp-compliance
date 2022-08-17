@@ -229,7 +229,7 @@ control "cis_v130_2_14" {
 control "cis_v130_2_15" {
   title         = "2.15 Ensure 'Access Approval' is 'Enabled'"
   description   = "GCP Access Approval enables you to require your organizations' explicit approval whenever Google support try to access your projects. You can then select users within your organization who can approve these requests through giving them a security role in IAM. All access requests display which Google Employee requested them in an email or Pub/Sub message that you can choose to Approve. This adds an additional control and logging of who in your organization approved/denied these requests."
-  sql           = query.project_accessapproval_settings_enabled.sql
+  sql           = query.project_access_approval_settings_enabled.sql
   documentation = file("./cis_v130/docs/cis_v130_2_15.md")
 
   tags = merge(local.cis_v130_2_common_tags, {
