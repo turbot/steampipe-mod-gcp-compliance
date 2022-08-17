@@ -30,4 +30,6 @@ select
 from
   categories
 group by
-  name, title, organization_id;
+  name,
+  title,
+  organization_id;

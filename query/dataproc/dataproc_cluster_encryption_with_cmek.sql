@@ -11,6 +11,7 @@ select
     else title || ' is encrypted using customer-managed encryption keys (CMEK).'
   end reason,
   -- Additional Dimensions
+  location,
   project
 from
   gcp_dataproc_cluster;
