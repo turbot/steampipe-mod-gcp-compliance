@@ -4,7 +4,7 @@ repository: "https://github.com/turbot/steampipe-mod-gcp-compliance"
 
 # GCP Compliance Mod
 
-Run individual configuration, compliance and security controls or full compliance benchmarks for `CIS`, `Forseti Security` and `CFT Scorecard` for all your GCP projects.
+Run individual configuration, compliance and security controls or full compliance benchmarks for `CIS v1.2.0`, `CIS v1.3.0`, `Forseti Security` and `CFT Scorecard` for all your GCP projects.
 
 <img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_compliance_dashboard.png" width="50%" type="thumbnail"/>
 <img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_compliance_cis_v120_dashboard.png" width="50%" type="thumbnail"/>
@@ -77,13 +77,13 @@ steampipe check all
 Run a single benchmark:
 
 ```sh
-steampipe check benchmark.cis_v120
+steampipe check benchmark.cis_v130
 ```
 
 Run a specific control:
 
 ```sh
-steampipe check control.cis_v120_2_1
+steampipe check control.cis_v130_2_1
 ```
 
 Different output formats are also available, for more information please see
@@ -103,7 +103,7 @@ If you have an idea for additional controls or just want to help maintain and ex
 
 - **[Join our Slack community →](https://steampipe.io/community/join)** and hang out with other Mod developers.
 
-Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-mod-aws-compliance/blob/main/LICENSE).
+Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-mod-gcp-compliance/blob/main/LICENSE).
 
 Want to help but not sure where to start? Pick up one of the `help wanted` issues:
 

@@ -2,7 +2,7 @@
 
 80+ checks covering industry defined security best practices for Google Cloud services.
 
-**Includes full support for v1.2.0 CIS, CFT Scorecard and Forseti Security benchmarks**.
+**Includes full support for v1.2.0 CIS, v1.3.0 CIS, CFT Scorecard and Forseti Security benchmarks**.
 
 Run checks in a dashboard:
 ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_compliance_cis_v120_dashboard.png)
@@ -11,13 +11,13 @@ Or in a terminal:
 ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v120_console.png)
 
 Includes support for:
-1. [Identity and Access Management](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v120_1)
-2. [Logging and Monitoring](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v120_2)
-3. [Networking](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v120_3)
-4. [Virtual Machines](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v120_4)
-5. [Storage](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v120_5)
-6. [Cloud SQL Database Services](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v120_6)
-7. [BigQuery](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v120_7)
+1. [Identity and Access Management](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_1)
+2. [Logging and Monitoring](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_2)
+3. [Networking](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_3)
+4. [Virtual Machines](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_4)
+5. [Storage](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_5)
+6. [Cloud SQL Database Services](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_6)
+7. [BigQuery](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_7)
 
 ## Getting started
 
@@ -66,13 +66,13 @@ steampipe check all
 Run a single benchmark:
 
 ```sh
-steampipe check benchmark.cis_v120
+steampipe check benchmark.cis_v130
 ```
 
 Run a specific control:
 
 ```sh
-steampipe check control.cis_v120_2_1
+steampipe check control.cis_v130_2_1
 ```
 
 Different output formats are also available, for more information please see
@@ -92,7 +92,7 @@ If you have an idea for additional compliance controls, or just want to help mai
 
 - **[Join our Slack community →](https://steampipe.io/community/join)** and hang out with other Mod developers.
 
-Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-mod-aws-compliance/blob/main/LICENSE).
+Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-mod-gcp-compliance/blob/main/LICENSE).
 
 Want to help but not sure where to start? Pick up one of the `help wanted` issues:
 

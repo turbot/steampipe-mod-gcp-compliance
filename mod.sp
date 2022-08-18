@@ -17,8 +17,14 @@ mod "gcp_compliance" {
   categories    = ["cis", "compliance", "gcp", "public cloud", "security"]
 
   opengraph {
-    title        = "Steampipe Mod for GCP Compliance"
-    description  = "Run individual configuration, compliance and security controls or full compliance benchmarks for CIS, Forseti Security and CFT Scorecard across all your GCP projects using Steampipe."
-    image        = "/images/mods/turbot/gcp-compliance-social-graphic.png"
+    title       = "Steampipe Mod for GCP Compliance"
+    description = "Run individual configuration, compliance and security controls or full compliance benchmarks for CIS, Forseti Security and CFT Scorecard across all your GCP projects using Steampipe."
+    image       = "/images/mods/turbot/gcp-compliance-social-graphic.png"
+  }
+
+  require {
+    plugin "gcp" {
+      version = "0.26.0"
+    }
   }
 }

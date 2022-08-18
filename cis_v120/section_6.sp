@@ -346,7 +346,7 @@ control "cis_v120_6_2_16" {
 }
 
 benchmark "cis_v120_6_3" {
-  title = "6.3 SQL Server"
+  title         = "6.3 SQL Server"
   documentation = file("./cis_v120/docs/cis_v120_6_3.md")
   children = [
     control.cis_v120_6_3_1,
