@@ -24,18 +24,22 @@ kms_encrypt_decrypt_users as(
     project
   from
     users_with_roles
-  where assigned_role in ('roles/cloudkms.admin', 'roles/cloudkms.cryptoKeyEncrypterDecrypter', 'roles/cloudkms.cryptoKeyEncrypter', 'roles/cloudkms.cryptoKeyDecrypter')
+  where assigned_role in ( 'roles/cloudkms.cryptoKeyEncrypterDecrypter', 'roles/cloudkms.cryptoKeyEncrypter', 'roles/cloudkms.cryptoKeyDecrypter')
 )
 select
   -- Required Columns
   distinct user_name as resource,
   case
     when user_name in (select user_name from kms_encrypt_decrypt_users) and user_name in (select user_name from kms_admin_users) then 'alarm'
+    when user_name in (select user_name from kms_encrypt_decrypt_users) then 'alarm'
+    when user_name in (select user_name from kms_admin_users) then 'alarm'
     else 'ok'
   end status,
   case
     when user_name in (select user_name from kms_encrypt_decrypt_users) and user_name in (select user_name from kms_admin_users)
       then user_name || ' assigned KMS admin and additional encrypter/decrypter roles.'
+    when user_name in (select user_name from kms_encrypt_decrypt_users) then user_name || ' assigned encrypter/decrypter roles.'
+    when user_name in (select user_name from kms_admin_users) then user_name || ' assigned KMS admin roles.'
     else user_name || ' not assigned KMS admin and additional encrypter/decrypter roles.'
   end reason,
   -- Additional Dimensions
