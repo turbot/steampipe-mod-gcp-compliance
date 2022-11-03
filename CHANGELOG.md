@@ -1,3 +1,9 @@
+## v0.12 [2022-11-03]
+
+_Bug fixes_
+
+- Fixed the `kms_key_separation_of_duties_enforced` query to correctly check if the principle of 'Separation of Duties' is enforced while assigning KMS related roles to users. ([#80](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/80))
+
 ## v0.11 [2022-08-18]
 
 _What's new?_
