@@ -22,7 +22,8 @@ benchmark "cis_v200_2" {
     control.cis_v200_2_12,
     control.cis_v200_2_13,
     control.cis_v200_2_14,
-    control.cis_v200_2_15
+    control.cis_v200_2_15,
+    control.cis_v200_2_16
   ]
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -234,6 +235,20 @@ control "cis_v200_2_15" {
 
   tags = merge(local.cis_v200_2_common_tags, {
     cis_item_id = "2.15"
+    cis_level   = "2"
+    cis_type    = "automated"
+    service     = "GCP/Project"
+  })
+}
+
+control "cis_v200_2_16" {
+  title         = "2.16 Ensure Logging is enabled for HTTP(S) Load Balancer"
+  description   = "Logging enabled on a HTTPS Load Balancer will show all network traffic and its destination."
+  sql           = query.logging_https_load_balancer_enabled.sql
+  documentation = file("./cis_v200/docs/cis_v200_2_16.md")
+
+  tags = merge(local.cis_v200_2_common_tags, {
+    cis_item_id = "2.16"
     cis_level   = "2"
     cis_type    = "automated"
     service     = "GCP/Project"
