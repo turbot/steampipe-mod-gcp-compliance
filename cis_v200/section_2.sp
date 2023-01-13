@@ -32,7 +32,7 @@ benchmark "cis_v200_2" {
 }
 
 control "cis_v200_2_1" {
-  title         = "2.1 Ensure that Cloud Audit Logging is configured properly across all services and all users from a project"
+  title         = "2.1 Ensure that Cloud Audit Logging is configured properly"
   description   = "It is recommended that Cloud Audit Logging is configured to track all admin activities and read, write access to user data."
   sql           = query.audit_logging_configured_for_all_service.sql
   documentation = file("./cis_v200/docs/cis_v200_2_1.md")
@@ -251,6 +251,6 @@ control "cis_v200_2_16" {
     cis_item_id = "2.16"
     cis_level   = "2"
     cis_type    = "automated"
-    service     = "GCP/Project"
+    service     = "GCP/Logging"
   })
 }

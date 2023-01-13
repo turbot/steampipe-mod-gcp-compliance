@@ -188,15 +188,15 @@ control "cis_v200_1_11" {
 }
 
 control "cis_v200_1_12" {
-  title         = "1.12 Ensure API keys are not created for a project"
-  description   = "Keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to use standard authentication flow instead."
+  title         = "1.12 Ensure API Keys Only Exist for Active Services"
+  description   = "API Keys should only be used for services in cases where other authentication methods are unavailable. Unused keys with their permissions in tact may still exist within a project. Keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to use standard authentication flow instead."
   sql           = query.manual_control.sql
   documentation = file("./cis_v200/docs/cis_v200_1_12.md")
 
   tags = merge(local.cis_v200_1_common_tags, {
     cis_item_id = "1.12"
     cis_level   = "2"
-    cis_type    = "manual"
+    cis_type    = "automated"
     service     = "GCP/IAM"
   })
 }

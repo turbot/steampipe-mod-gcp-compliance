@@ -176,37 +176,36 @@ control "cis_v200_6_2_4" {
 }
 
 control "cis_v200_6_2_5" {
-  title         = "6.2.5 Ensure 'log_hostname' database flag for Cloud SQL PostgreSQL instance is set appropriately"
-  description   = "PostgreSQL logs only the IP address of the connecting hosts. The log_hostname flag controls the logging of hostnames in addition to the IP addresses logged. The performance hit is dependent on the configuration of the environment and the host name resolution setup. This parameter can only be set in the postgresql.conf file or on the server command line."
-  documentation = file("./cis_v200/docs/cis_v200_6_2_5.md")
-  sql           = query.sql_instance_postgresql_log_hostname_database_flag_configured.sql
-
-  tags = merge(local.cis_v200_6_2_common_tags, {
-    cis_item_id = "6.2.5"
-    cis_level   = "1"
-    cis_type    = "automated"
-    service     = "GCP/SQL"
-  })
-}
-
-control "cis_v200_6_2_6" {
-  title         = "6.2.6 Ensure that the 'log_min_messages' database flag for Cloud SQL PostgreSQL instance is set appropriately"
+  title         = "6.2.5 Ensure that the 'Log_min_messages' Flag for a Cloud SQL PostgreSQL Instance is set at minimum to 'Warning'"
   description   = "The log_min_messages flag defines the minimum message severity level that is considered as an error statement. Messages for error statements are logged with the SQL statement. Valid values include DEBUG5, DEBUG4, DEBUG3, DEBUG2, DEBUG1, INFO, NOTICE, WARNING, ERROR, LOG, FATAL, and PANIC. Each severity level includes the subsequent levels mentioned above."
-  documentation = file("./cis_v200/docs/cis_v200_6_2_6.md")
+  documentation = file("./cis_v200/docs/cis_v200_6_2_5.md")
   sql           = query.manual_control.sql
 
   tags = merge(local.cis_v200_6_2_common_tags, {
-    cis_item_id = "6.2.6"
+    cis_item_id = "6.2.5"
     cis_level   = "1"
     cis_type    = "manual"
   })
 }
 
-control "cis_v200_6_2_7" {
-  title         = "6.2.7 Ensure 'log_min_error_statement' database flag for Cloud SQL PostgreSQL instance is set to 'Error' or stricter"
+control "cis_v200_6_2_6" {
+  title         = "6.2.6 Ensure 'log_min_error_statement' database flag for Cloud SQL PostgreSQL instance is set to 'Error' or stricter"
   description   = "The log_min_error_statement flag defines the minimum message severity level that are considered as an error statement. Messages for error statements are logged with the SQL statement. Valid values include DEBUG5, DEBUG4, DEBUG3, DEBUG2, DEBUG1, INFO, NOTICE, WARNING, ERROR, LOG, FATAL, and PANIC. Each severity level includes the subsequent levels mentioned above. Ensure a value of ERROR or stricter is set."
-  documentation = file("./cis_v200/docs/cis_v200_6_2_7.md")
+  documentation = file("./cis_v200/docs/cis_v200_6_2_6.md")
   sql           = query.sql_instance_postgresql_log_min_error_statement_database_flag_configured.sql
+
+  tags = merge(local.cis_v200_6_2_common_tags, {
+    cis_item_id = "6.2.6"
+    cis_level   = "1"
+    cis_type    = "automated"
+  })
+}
+
+control "cis_v200_6_2_7" {
+  title         = "6.2.7 Ensure that the 'log_min_duration_statement' database flag for Cloud SQL PostgreSQL instance is set to '-1' (disabled)"
+  description   = "The log_min_duration_statement flag defines the minimum amount of execution time of a statement in milliseconds where the total duration of the statement is logged. Ensure that log_min_duration_statement is disabled, i.e., a value of -1 is set."
+  documentation = file("./cis_v200/docs/cis_v200_6_2_7.md")
+  sql           = query.sql_instance_postgresql_log_min_duration_statement_database_flag_disabled.sql
 
   tags = merge(local.cis_v200_6_2_common_tags, {
     cis_item_id = "6.2.7"
@@ -216,10 +215,10 @@ control "cis_v200_6_2_7" {
 }
 
 control "cis_v200_6_2_8" {
-  title         = "6.2.8 Ensure that the 'log_min_duration_statement' database flag for Cloud SQL PostgreSQL instance is set to '-1' (disabled)"
-  description   = "The log_min_duration_statement flag defines the minimum amount of execution time of a statement in milliseconds where the total duration of the statement is logged. Ensure that log_min_duration_statement is disabled, i.e., a value of -1 is set."
+  title         = "6.2.8 Ensure That 'cloudsql.enable_pgaudit' Database Flag for each Cloud Sql Postgresql Instance Is Set to 'on' For Centralized Logging"
+  description   = "Ensure cloudsql.enable_pgaudit database flag for Cloud SQL PostgreSQL instance is set to on to allow for centralized logging."
   documentation = file("./cis_v200/docs/cis_v200_6_2_8.md")
-  sql           = query.sql_instance_postgresql_log_min_duration_statement_database_flag_disabled.sql
+  sql           = query.sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled.sql
 
   tags = merge(local.cis_v200_6_2_common_tags, {
     cis_item_id = "6.2.8"
@@ -229,10 +228,10 @@ control "cis_v200_6_2_8" {
 }
 
 control "cis_v200_6_2_9" {
-  title         = "6.2.9 Ensure That 'cloudsql.enable_pgaudit' Database Flag for each Cloud Sql Postgresql Instance Is Set to 'on' For Centralized Logging"
-  description   = "Ensure cloudsql.enable_pgaudit database flag for Cloud SQL PostgreSQL instance is set to on to allow for centralized logging."
+  title         = "6.2.9 Ensure Instance IP assignment is set to private"
+  description   = "Instance addresses can be public IP or private IP. Public IP means that the instance is accessible through the public internet. In contrast, instances using only private IP are not accessible through the public internet, but are accessible through a Virtual Private Cloud (VPC)."
   documentation = file("./cis_v200/docs/cis_v200_6_2_9.md")
-  sql           = query.sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled.sql
+  sql           = query.sql_instance_using_private_ip.sql
 
   tags = merge(local.cis_v200_6_2_common_tags, {
     cis_item_id = "6.2.9"
@@ -240,7 +239,6 @@ control "cis_v200_6_2_9" {
     cis_type    = "automated"
   })
 }
-
 
 benchmark "cis_v200_6_3" {
   title         = "6.3 SQL Server"
