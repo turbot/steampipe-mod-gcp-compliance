@@ -140,7 +140,7 @@ control "cis_v200_1_8" {
   tags = merge(local.cis_v200_1_common_tags, {
     cis_item_id = "1.8"
     cis_level   = "2"
-    cis_type    = "manual"
+    cis_type    = "automated"
     service     = "GCP/IAM"
   })
 }
