@@ -123,12 +123,12 @@ control "cis_v200_6_2_1" {
   title         = "6.2.1 Ensure 'log_error_verbosity' database flag for Cloud SQL PostgreSQL instance is set to 'DEFAULT' or stricter"
   description   = "The log_error_verbosity flag controls the verbosity/details of messages logged. Valid values are: 'TERSE', 'DEFAULT', and 'VERBOSE'."
   documentation = file("./cis_v200/docs/cis_v200_6_2_1.md")
-  sql           = query.manual_control.sql
+  sql           = query.sql_instance_postgresql_log_error_verbosity_database_flag_set_default_or_stricter.sql
 
   tags = merge(local.cis_v200_6_2_common_tags, {
     cis_item_id = "6.2.1"
     cis_level   = "2"
-    cis_type    = "manual"
+    cis_type    = "automated"
     service     = "GCP/SQL"
   })
 }
@@ -165,12 +165,11 @@ control "cis_v200_6_2_4" {
   title         = "6.2.4 Ensure 'log_statement' database flag for Cloud SQL PostgreSQL instance is set appropriately"
   description   = "The value of log_statement flag determined the SQL statements that are logged. Valid values are: 'none', 'ddl', 'mod', and 'all'."
   documentation = file("./cis_v200/docs/cis_v200_6_2_4.md")
-  sql           = query.manual_control.sql
-
+  sql           = query.sql_instance_postgresql_log_statement_database_flag_set_appropriately.sql
   tags = merge(local.cis_v200_6_2_common_tags, {
     cis_item_id = "6.2.4"
     cis_level   = "1"
-    cis_type    = "manual"
+    cis_type    = "automated"
     service     = "GCP/SQL"
   })
 }
