@@ -6,6 +6,8 @@ The CIS Google Cloud Platform Foundations Security Benchmark covers foundational
 
 ## Profiles
 
+The following configuration profiles are defined by this Benchmark:
+
 ### Level 1
 
 Items in this profile intend to:
