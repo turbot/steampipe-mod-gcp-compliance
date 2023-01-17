@@ -178,12 +178,12 @@ control "cis_v200_6_2_5" {
   title         = "6.2.5 Ensure that the 'Log_min_messages' Flag for a Cloud SQL PostgreSQL Instance is set at minimum to 'Warning'"
   description   = "The log_min_messages flag defines the minimum message severity level that is considered as an error statement. Messages for error statements are logged with the SQL statement. Valid values include DEBUG5, DEBUG4, DEBUG3, DEBUG2, DEBUG1, INFO, NOTICE, WARNING, ERROR, LOG, FATAL, and PANIC. Each severity level includes the subsequent levels mentioned above."
   documentation = file("./cis_v200/docs/cis_v200_6_2_5.md")
-  query         = query.manual_control.sql
+  query         = query.sql_instance_postgresql_log_min_messages_database_flag_set_minimum.sql
 
   tags = merge(local.cis_v200_6_2_common_tags, {
     cis_item_id = "6.2.5"
     cis_level   = "1"
-    cis_type    = "manual"
+    cis_type    = "automated"
   })
 }
 
