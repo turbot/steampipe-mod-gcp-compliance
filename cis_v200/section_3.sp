@@ -76,7 +76,7 @@ control "cis_v200_3_4" {
   tags = merge(local.cis_v200_3_common_tags, {
     cis_item_id = "3.4"
     cis_level   = "1"
-    cis_type    = "manual"
+    cis_type    = "automated"
     service     = "GCP/DNS"
   })
 }
@@ -90,7 +90,7 @@ control "cis_v200_3_5" {
   tags = merge(local.cis_v200_3_common_tags, {
     cis_item_id = "3.5"
     cis_level   = "1"
-    cis_type    = "manual"
+    cis_type    = "automated"
     service     = "GCP/DNS"
   })
 }

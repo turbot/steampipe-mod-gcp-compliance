@@ -327,7 +327,7 @@ control "cis_v200_6_3_6" {
   title         = "6.3.6 Ensure '3625 (trace flag)' database flag for Cloud SQL SQL Server instance is set to 'off'"
   description   = "It is recommended to set 3625 (trace flag) database flag for Cloud SQL SQL Server instance to off."
   documentation = file("./cis_v200/docs/cis_v200_6_3_6.md")
-  sql           = query.sql_instance_sql_3625_trace_database_flag_off.sql
+  sql           = query.sql_instance_sql_3625_trace_database_flag_on.sql
 
   tags = merge(local.cis_v200_6_3_common_tags, {
     cis_item_id = "6.3.6"
