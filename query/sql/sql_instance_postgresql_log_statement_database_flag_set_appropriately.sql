@@ -9,7 +9,9 @@ select
   case
     when database_flags is null or not (database_flags @> '[{"name":"log_statement"}]') then title || ' log_statement database flag not set.'
     when database_flags @> '[{"name": "log_statement","value":"ddl"}]' then title || ' log_statement database flag set to ddl.'
-    else title || ' log_statement database flag not set to ddl.'
+    when database_flags @> '[{"name": "log_statement","value":"mod"}]' then title || ' log_statement database flag set to mod.'
+    when database_flags @> '[{"name": "log_statement","value":"all"}]' then title || ' log_statement database flag set to all.'
+    when database_flags @> '[{"name": "log_statement","value":"none"}]' then title || ' log_statement database flag set to none.'
   end reason,
   -- Additional Dimensions
   location,
