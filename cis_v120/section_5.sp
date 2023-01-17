@@ -21,7 +21,7 @@ benchmark "cis_v120_5" {
 control "cis_v120_5_1" {
   title         = "5.1 Ensure that Cloud Storage bucket is not anonymously or publicly accessible"
   description   = "It is recommended that IAM policy on Cloud Storage bucket does not allows anonymous or public access."
-  sql           = query.storage_bucket_not_publicly_accessible.sql
+  query         = query.storage_bucket_not_publicly_accessible.sql
   documentation = file("./cis_v120/docs/cis_v120_5_1.md")
 
   tags = merge(local.cis_v120_5_common_tags, {
@@ -35,7 +35,7 @@ control "cis_v120_5_1" {
 control "cis_v120_5_2" {
   title         = "5.2 Ensure that Cloud Storage buckets have uniform bucket-level access enabled"
   description   = "It is recommended that uniform bucket-level access is enabled on Cloud Storage buckets."
-  sql           = query.storage_bucket_uniform_access_enabled.sql
+  query         = query.storage_bucket_uniform_access_enabled.sql
   documentation = file("./cis_v120/docs/cis_v120_5_2.md")
 
   tags = merge(local.cis_v120_5_common_tags, {
