@@ -123,7 +123,7 @@ control "cis_v200_6_2_1" {
   title         = "6.2.1 Ensure 'log_error_verbosity' database flag for Cloud SQL PostgreSQL instance is set to 'DEFAULT' or stricter"
   description   = "The log_error_verbosity flag controls the verbosity/details of messages logged. Valid values are: 'TERSE', 'DEFAULT', and 'VERBOSE'."
   documentation = file("./cis_v200/docs/cis_v200_6_2_1.md")
-  query         = query.sql_instance_postgresql_log_error_verbosity_database_flag_set_default_or_stricter
+  query         = query.sql_instance_postgresql_log_error_verbosity_database_flag_configured
 
   tags = merge(local.cis_v200_6_2_common_tags, {
     cis_item_id = "6.2.1"
@@ -165,7 +165,7 @@ control "cis_v200_6_2_4" {
   title         = "6.2.4 Ensure 'log_statement' database flag for Cloud SQL PostgreSQL instance is set appropriately"
   description   = "The value of log_statement flag determined the SQL statements that are logged. Valid values are: 'none', 'ddl', 'mod', and 'all'."
   documentation = file("./cis_v200/docs/cis_v200_6_2_4.md")
-  query         = query.sql_instance_postgresql_log_statement_database_flag_set_appropriately
+  query         = query.sql_instance_postgresql_log_statement_database_flag_set_ddl
   tags = merge(local.cis_v200_6_2_common_tags, {
     cis_item_id = "6.2.4"
     cis_level   = "1"
@@ -178,7 +178,7 @@ control "cis_v200_6_2_5" {
   title         = "6.2.5 Ensure that the 'Log_min_messages' Flag for a Cloud SQL PostgreSQL Instance is set at minimum to 'Warning'"
   description   = "The log_min_messages flag defines the minimum message severity level that is considered as an error statement. Messages for error statements are logged with the SQL statement. Valid values include DEBUG5, DEBUG4, DEBUG3, DEBUG2, DEBUG1, INFO, NOTICE, WARNING, ERROR, LOG, FATAL, and PANIC. Each severity level includes the subsequent levels mentioned above."
   documentation = file("./cis_v200/docs/cis_v200_6_2_5.md")
-  query         = query.sql_instance_postgresql_log_min_messages_database_flag_set_minimum
+  query         = query.sql_instance_postgresql_log_min_messages_database_flag_configured
   tags = merge(local.cis_v200_6_2_common_tags, {
     cis_item_id = "6.2.5"
     cis_level   = "1"
@@ -229,7 +229,7 @@ control "cis_v200_6_2_9" {
   title         = "6.2.9 Ensure Instance IP assignment is set to private"
   description   = "Instance addresses can be public IP or private IP. Public IP means that the instance is accessible through the public internet. In contrast, instances using only private IP are not accessible through the public internet, but are accessible through a Virtual Private Cloud (VPC)."
   documentation = file("./cis_v200/docs/cis_v200_6_2_9.md")
-  query         = query.sql_instance_using_private_ip
+  query         = query.sql_instance_not_publicly_accessible
 
   tags = merge(local.cis_v200_6_2_common_tags, {
     cis_item_id = "6.2.9"
