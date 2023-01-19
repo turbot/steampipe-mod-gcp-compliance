@@ -244,7 +244,7 @@ control "cis_v200_2_15" {
 control "cis_v200_2_16" {
   title         = "2.16 Ensure Logging is enabled for HTTP(S) Load Balancer"
   description   = "Logging enabled on a HTTPS Load Balancer will show all network traffic and its destination."
-  query         = query.logging_https_load_balancer_enabled
+  query         = query.compute_https_load_balancer_logging_enabled
   documentation = file("./cis_v200/docs/cis_v200_2_16.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
