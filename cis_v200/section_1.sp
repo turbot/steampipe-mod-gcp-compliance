@@ -209,7 +209,7 @@ control "cis_v200_1_13" {
 
   tags = merge(local.cis_v200_1_common_tags, {
     cis_item_id = "1.13"
-    cis_level   = "1"
+    cis_level   = "2"
     cis_type    = "manual"
     service     = "GCP/IAM"
   })
@@ -223,8 +223,8 @@ control "cis_v200_1_14" {
 
   tags = merge(local.cis_v200_1_common_tags, {
     cis_item_id = "1.14"
-    cis_level   = "1"
-    cis_type    = "manual"
+    cis_level   = "2"
+    cis_type    = "automated"
     service     = "GCP/IAM"
   })
 }
@@ -237,8 +237,8 @@ control "cis_v200_1_15" {
 
   tags = merge(local.cis_v200_1_common_tags, {
     cis_item_id = "1.15"
-    cis_level   = "1"
-    cis_type    = "manual"
+    cis_level   = "2"
+    cis_type    = "automated"
     service     = "GCP/IAM"
   })
 }

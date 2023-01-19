@@ -67,7 +67,7 @@ control "cis_v200_2_3" {
 
   tags = merge(local.cis_v200_2_common_tags, {
     cis_item_id = "2.3"
-    cis_level   = "1"
+    cis_level   = "2"
     cis_type    = "automated"
     service     = "GCP/Logging"
   })
@@ -123,7 +123,7 @@ control "cis_v200_2_7" {
 
   tags = merge(local.cis_v200_2_common_tags, {
     cis_item_id = "2.7"
-    cis_level   = "1"
+    cis_level   = "2"
     cis_type    = "automated"
     service     = "GCP/Logging"
   })
@@ -137,7 +137,7 @@ control "cis_v200_2_8" {
 
   tags = merge(local.cis_v200_2_common_tags, {
     cis_item_id = "2.8"
-    cis_level   = "1"
+    cis_level   = "2"
     cis_type    = "automated"
     service     = "GCP/Logging"
   })
@@ -151,7 +151,7 @@ control "cis_v200_2_9" {
 
   tags = merge(local.cis_v200_2_common_tags, {
     cis_item_id = "2.9"
-    cis_level   = "1"
+    cis_level   = "2"
     cis_type    = "automated"
     service     = "GCP/Logging"
   })
@@ -165,7 +165,7 @@ control "cis_v200_2_10" {
 
   tags = merge(local.cis_v200_2_common_tags, {
     cis_item_id = "2.10"
-    cis_level   = "1"
+    cis_level   = "2"
     cis_type    = "automated"
     service     = "GCP/Logging"
   })
@@ -179,7 +179,7 @@ control "cis_v200_2_11" {
 
   tags = merge(local.cis_v200_2_common_tags, {
     cis_item_id = "2.11"
-    cis_level   = "1"
+    cis_level   = "2"
     cis_type    = "automated"
     service     = "GCP/Logging"
   })
@@ -207,7 +207,7 @@ control "cis_v200_2_13" {
 
   tags = merge(local.cis_v200_2_common_tags, {
     cis_item_id = "2.13"
-    cis_level   = "2"
+    cis_level   = "1"
     cis_type    = "automated"
     service     = "GCP/Project"
   })
@@ -221,7 +221,7 @@ control "cis_v200_2_14" {
 
   tags = merge(local.cis_v200_2_common_tags, {
     cis_item_id = "2.14"
-    cis_level   = "1"
+    cis_level   = "2"
     cis_type    = "manual"
     service     = "GCP/Project"
   })

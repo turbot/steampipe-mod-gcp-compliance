@@ -168,7 +168,7 @@ control "cis_v200_6_2_4" {
   query         = query.sql_instance_postgresql_log_statement_database_flag_ddl
   tags = merge(local.cis_v200_6_2_common_tags, {
     cis_item_id = "6.2.4"
-    cis_level   = "1"
+    cis_level   = "2"
     cis_type    = "automated"
     service     = "GCP/SQL"
   })
