@@ -2,7 +2,7 @@
 
 80+ checks covering industry defined security best practices for Google Cloud services.
 
-**Includes full support for v1.2.0 CIS, v1.3.0 CIS, CFT Scorecard and Forseti Security benchmarks**.
+**Includes full support for v1.2.0 CIS, v1.3.0 CIS, v2.0.0 CIS, CFT Scorecard and Forseti Security benchmarks**.
 
 Run checks in a dashboard:
 ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_compliance_cis_v120_dashboard.png)
