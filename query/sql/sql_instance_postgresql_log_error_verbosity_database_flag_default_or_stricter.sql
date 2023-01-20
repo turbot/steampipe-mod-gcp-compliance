@@ -1,6 +1,6 @@
 select 
   -- Required Columns
-  self_link resource,
+  self_link as resource,
   case
     when database_version not like 'POSTGRES%' then 'skip'
     when database_flags @> '[{"name": "log_error_verbosity","value":"default"}]' or database_flags @> '[{"name": "log_error_verbosity","value":"verbose"}]' then 'ok'

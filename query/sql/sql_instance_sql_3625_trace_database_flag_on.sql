@@ -1,20 +1,17 @@
 select
   -- Required Columns
-  self_link resource,
+  self_link as resource,
   case
     when database_version not like 'SQLSERVER%' then 'skip'
     when database_flags @> '[{"name":"3625","value":"on"}]' then 'ok'
     else 'alarm'
-  end status,
+  end as status,
   case
-    when database_version not like 'SQLSERVER%'
-      then title || ' not a SQL Server database.'
-    when database_flags is null or not (database_flags @> '[{"name":"3625"}]')
-      then title || ' ''3625 (trace flag)'' not set.'
-    when database_flags @> '[{"name":"3625","value":"on"}]'
-      then title || ' ''3625 (trace flag)'' database flag set to ''on''.'
+    when database_version not like 'SQLSERVER%' then title || ' not a SQL Server database.'
+    when database_flags is null or not (database_flags @> '[{"name":"3625"}]') then title || ' ''3625 (trace flag)'' not set.'
+    when database_flags @> '[{"name":"3625","value":"on"}]' then title || ' ''3625 (trace flag)'' database flag set to ''on''.'
     else title || ' ''3625 (trace flag)'' database flag set to ''off''.'
-  end reason,
+  end as reason,
   -- Additional Dimensions
   location,
   project
