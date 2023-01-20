@@ -1,3 +1,9 @@
+## v0.13 [2023-01-20]
+
+_What's new?_
+
+- Added CIS v2.0.0 benchmark (`steampipe check benchmark.cis_v200`). ([#87](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/87))
+
 ## v0.12 [2022-11-03]
 
 _Bug fixes_
