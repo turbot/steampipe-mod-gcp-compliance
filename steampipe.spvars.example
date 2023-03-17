@@ -1,0 +1,3 @@
+# Dimensions
+common_dimensions = [ "project", "location" ]
+tag_dimensions    = ["environment", "owner"]
