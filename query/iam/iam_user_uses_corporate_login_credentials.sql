@@ -1,5 +1,5 @@
 -- Please note: The table gcp_organization requires the resourcemanager.organizations.get permission to retrieve organization details.
-with user_with_acces as (
+with user_with_access as (
   select
     distinct split_part(m, ':', 2) as member,
     project
@@ -14,15 +14,17 @@ select
   -- Required Columns
   a.member as resource,
   case
+    when (select count(*) from gcp_organization) = 0 then 'info'
     when org.display_name is null then 'alarm'
     else 'ok'
   end as status,
   case
+    when (select count(*) from gcp_organization) = 0 then 'Used service account for authentication not having organization viewer permission.'
     when org.display_name is null then a.member || ' uses non-corporate login credentials.'
     else a.member || ' uses corporate login credentials.'
   end as reason,
   -- Additional Dimensions
   a.project
 from
-  user_with_acces as a
+  user_with_access as a
   left join gcp_organization as org on split_part(a.member, '@', 2) = org.display_name;
