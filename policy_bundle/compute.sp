@@ -597,6 +597,7 @@ query "compute_ssl_policy_with_no_weak_cipher" {
     with all_proxies as (
       select
         name,
+        _ctx,
         self_link,
         split_part(kind, '#', 2) proxy_type,
         ssl_policy,
@@ -608,6 +609,7 @@ query "compute_ssl_policy_with_no_weak_cipher" {
       union
       select
         name,
+        _ctx,
         self_link,
         split_part(kind, '#', 2) proxy_type,
         ssl_policy,

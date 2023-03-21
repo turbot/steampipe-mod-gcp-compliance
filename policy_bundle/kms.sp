@@ -93,6 +93,7 @@ query "kms_key_separation_of_duties_enforced" {
       select
         distinct split_part(member_entity, ':', 2) as user_name,
         project,
+        _ctx,
         p ->> 'role' as assigned_role
       from
         gcp_iam_policy,

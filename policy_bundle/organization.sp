@@ -7,6 +7,7 @@ query "organization_essential_contacts_configured" {
       select
         name,
         title,
+        _ctx,
         organization_id,
         notificationtype
       from
@@ -36,6 +37,7 @@ query "organization_essential_contacts_configured" {
     group by
       name,
       title,
+      _ctx,
       organization_id;
   EOQ
 }

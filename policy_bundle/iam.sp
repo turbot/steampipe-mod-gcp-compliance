@@ -72,6 +72,7 @@ query "iam_user_uses_corporate_login_credentials" {
     select
       distinct split_part(m, ':', 2) as member,
       project,
+      _ctx,
       location
     from
       gcp_iam_policy,
@@ -242,6 +243,7 @@ query "iam_user_separation_of_duty_enforced" {
       select
         distinct split_part(member_entity, ':', 2) as user_name,
         project,
+        _ctx,
         p ->> 'role' as assigned_role
       from
         gcp_iam_policy,

@@ -11,12 +11,13 @@ query "audit_logging_configured_for_all_service" {
             service,
             string_agg(log ->> 'logType', ', ') log_types,
             string_agg(log ->> 'exemptedMembers', ', ') exempted_user,
+            _ctx,
             project
           from
             gcp_audit_policy,
             jsonb_array_elements(audit_log_configs) as log
           group by
-            service, project
+            service, project, _ctx
         ) logs
       where
         log_types like '%DATA_WRITE%'
