@@ -4,17 +4,6 @@ locals {
   })
 }
 
-control "restrict_firewall_rule_world_open" {
-  title = "Check for open firewall rules allowing ingress from the internet"
-  query = query.compute_firewall_rule_ssh_access_restricted
-
-  tags = merge(local.policy_bundle_compute_common_tags, {
-    cft_scorecard_v1      = "true"
-    forseti_security_v226 = "true"
-    severity              = "high"
-  })
-}
-
 control "restrict_firewall_rule_rdp_world_open" {
   title = "Check for open firewall rules allowing RDP from the internet"
   query = query.compute_firewall_rule_rdp_access_restricted
@@ -44,14 +33,15 @@ control "enable_network_private_google_access" {
     severity         = "high"
   })
 }
-// two controls using same query
+
 control "restrict_firewall_rule_ssh_world_open" {
   title = "Check for open firewall rules allowing SSH from the internet"
   query = query.compute_firewall_rule_ssh_access_restricted
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    cft_scorecard_v1 = "true"
-    severity         = "high"
+    cft_scorecard_v1      = "true"
+    forseti_security_v226 = "true"
+    severity              = "high"
   })
 }
 
