@@ -14,7 +14,7 @@ variable "common_dimensions" {
   # - connection_name (_ctx ->> 'connection_name')
   # - location
   # - project
-  default     = [ "location", "project" ]
+  default = ["location", "project"]
 }
 
 variable "tag_dimensions" {
@@ -23,27 +23,45 @@ variable "tag_dimensions" {
   # A list of tag names to include as dimensions for resources that support
   # tags (e.g. "owner", "environment"). Default to empty since tag names are
   # a personal choice
-  default     = []
+  default = []
 }
 
 locals {
 
   common_dimensions_qualifier_sql = <<-EOQ
-  %{~ if contains(var.common_dimensions, "connection_name") }, __QUALIFIER___ctx ->> 'connection_name'%{ endif ~}
-  %{~ if contains(var.common_dimensions, "location") }, __QUALIFIER__location%{ endif ~}
-  %{~ if contains(var.common_dimensions, "project") }, __QUALIFIER__project%{ endif ~}
+  %{~if contains(var.common_dimensions, "connection_name")}, __QUALIFIER___ctx ->> 'connection_name'%{endif~}
+  %{~if contains(var.common_dimensions, "location")}, __QUALIFIER__location%{endif~}
+  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__project%{endif~}
+  EOQ
+
+  common_dimensions_qualifier_global_sql = <<-EOQ
+  %{~if contains(var.common_dimensions, "connection_name")}, __QUALIFIER___ctx ->> 'connection_name' as connection_name%{endif~}
+  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__project%{endif~}
+  EOQ
+
+  common_dimensions_qualifier_organization_sql = <<-EOQ
+  %{~if contains(var.common_dimensions, "connection_name")}, __QUALIFIER___ctx ->> 'connection_name' as connection_name%{endif~}
+  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__organization_id%{endif~}
+  EOQ
+
+  common_dimensions_qualifier_project_sql = <<-EOQ
+  %{~if contains(var.common_dimensions, "connection_name")}, __QUALIFIER___ctx ->> 'connection_name' as connection_name%{endif~}
+  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__name%{endif~}
   EOQ
 
   tag_dimensions_qualifier_sql = <<-EOQ
-  %{~ for dim in var.tag_dimensions },  __QUALIFIER__tags ->> '${dim}' as "${replace(dim, "\"", "\"\"")}"%{ endfor ~} 
+  %{~for dim in var.tag_dimensions},  __QUALIFIER__tags ->> '${dim}' as "${replace(dim, "\"", "\"\"")}"%{endfor~} 
   EOQ
 
 }
 
 locals {
 
-  common_dimensions_sql = replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "")
-  tag_dimensions_sql = replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "")
+  common_dimensions_sql              = replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "")
+  common_dimensions_global_sql       = replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "")
+  common_dimensions_project_sql      = replace(local.common_dimensions_qualifier_project_sql, "__QUALIFIER__", "")
+  common_dimensions_organization_sql = replace(local.common_dimensions_qualifier_organization_sql, "__QUALIFIER__", "")
+  tag_dimensions_sql                 = replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "")
 }
 
 mod "gcp_compliance" {

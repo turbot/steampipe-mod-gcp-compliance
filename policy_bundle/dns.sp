@@ -46,7 +46,7 @@ query "dns_managed_zone_key_signing_not_using_rsasha1" {
     end reason
     -- Additional Dimensions
     ${local.tag_dimensions_sql}
-    ${local.common_dimensions_sql}
+    ${local.common_dimensions_global_sql}
   from
     gcp_dns_managed_zone;
   EOQ
@@ -74,8 +74,33 @@ query "dns_managed_zone_zone_signing_not_using_rsasha1" {
     end reason
     -- Additional Dimensions
     ${local.tag_dimensions_sql}
-    ${local.common_dimensions_sql}
+    ${local.common_dimensions_global_sql}
   from
     gcp_dns_managed_zone;
+  EOQ
+}
+
+query "dns_managed_zone_dnssec_enabled" {
+  sql = <<-EOQ
+    select 
+      -- Required Columns
+      self_link resource,
+      case
+        when visibility = 'private' then 'skip'
+        when visibility = 'public' and (dnssec_config_state is null or dnssec_config_state = 'off') then 'alarm'
+        else 'ok'
+      end status,
+      case
+        when visibility = 'private'
+          then title || ' is private.'
+        when visibility = 'public' and (dnssec_config_state is null or dnssec_config_state = 'off')
+          then title || ' DNSSEC not enabled.'
+        else title || ' DNSSEC enabled.'
+      end reason
+      -- Additional Dimensions
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_global_sql}
+    from
+      gcp_dns_managed_zone;
   EOQ
 }

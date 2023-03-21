@@ -86,6 +86,31 @@ This mod uses the credentials configured in the [Steampipe GCP plugin](https://h
 
 No extra configuration is required.
 
+### Common and Tag Dimensions
+
+The benchmark queries use common properties (like `connection_name`, `name`, `organization_id`,  `location` and ` project`) and tags that are defined in the form of a default list of strings in the `mod.sp` file. These properties can be overwritten in several ways:
+
+- Copy and rename the `steampipe.spvars.example` file to `steampipe.spvars`, and then modify the variable values inside that file
+- Pass in a value on the command line:
+
+  ```shell
+  steampipe check benchmark.cis_v200 --var 'common_dimensions=["connection_name", "name", "organization_id", "location", "project"]'
+  ```
+
+  ```shell
+  steampipe check benchmark.cis_v200 --var 'tag_dimensions=["environment", "owner"]'
+  ```
+
+- Set an environment variable:
+
+  ```shell
+  SP_VAR_common_dimensions='["connection_name", "location", "project"]' steampipe check control.cis_v120_6_2_4
+  ```
+
+  ```shell
+  SP_VAR_tag_dimensions='["environment", "owner"]' steampipe check control.cis_v120_6_2_4
+  ```
+
 ## Contributing
 
 If you have an idea for additional compliance controls, or just want to help maintain and extend this mod ([or others](https://github.com/topics/steampipe-mod)) we would love you to join the community and start contributing. (Even if you just want to help with the docs.)

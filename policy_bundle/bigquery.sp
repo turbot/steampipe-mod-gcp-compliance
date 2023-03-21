@@ -124,3 +124,49 @@ query "bigquery_dataset_restrict_googlegroups" {
       left join dataset_access as b on a.dataset_id = b.dataset_id;
   EOQ
 }
+
+# Non-Config rule query
+
+query "bigquery_dataset_encrypted_with_cmk" {
+  sql = <<-EOQ
+    select
+      -- Required Columns
+      self_link resource,
+      case
+        when kms_key_name is null then 'alarm'
+        else 'ok'
+      end status,
+      case
+        when kms_key_name is null
+          then title || ' encrypted with Google-managed cryptographic keys.'
+        else title || ' encrypted with customer-managed encryption keys.'
+      end reason
+      -- Additional Dimensions
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_bigquery_dataset;
+  EOQ
+}
+
+query "bigquery_table_encrypted_with_cmk" {
+  sql = <<-EOQ
+    select
+      -- Required Columns
+      self_link resource,
+      case
+        when kms_key_name is null then 'alarm'
+        else 'ok'
+      end status,
+      case
+        when kms_key_name is null
+          then title || ' encrypted with Google managed cryptographic keys.'
+        else title || ' encrypted with customer-managed encryption keys.'
+      end reason
+      -- Additional Dimensions
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_bigquery_table;
+  EOQ
+}
