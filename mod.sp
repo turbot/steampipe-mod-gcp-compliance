@@ -52,11 +52,9 @@ locals {
   tag_dimensions_qualifier_sql = <<-EOQ
   %{~for dim in var.tag_dimensions},  __QUALIFIER__tags ->> '${dim}' as "${replace(dim, "\"", "\"\"")}"%{endfor~} 
   EOQ
-
 }
 
 locals {
-
   common_dimensions_sql              = replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "")
   common_dimensions_global_sql       = replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "")
   common_dimensions_project_sql      = replace(local.common_dimensions_qualifier_project_sql, "__QUALIFIER__", "")
