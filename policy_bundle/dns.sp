@@ -27,14 +27,13 @@ control "dnssec_prevent_rsasha1_zsk" {
 query "dns_managed_zone_key_signing_not_using_rsasha1" {
   sql = <<-EOQ
     select
-    -- Required Columns
     self_link resource,
     case
       when visibility = 'private' then 'skip'
       when dnssec_config_state is null then 'alarm'
       when dnssec_config_default_key_specs @> '[{"keyType": "keySigning", "algorithm": "rsasha1"}]' then 'alarm'
       else 'ok'
-    end status,
+    end as status,
     case
       when visibility = 'private'
         then title || ' is private.'
@@ -43,8 +42,7 @@ query "dns_managed_zone_key_signing_not_using_rsasha1" {
       when dnssec_config_default_key_specs @> '[{"keyType": "keySigning", "algorithm": "rsasha1"}]'
         then title || ' using RSASHA1 algorithm for key-signing.'
       else title || ' not using RSASHA1 algorithm for key-signing.'
-    end reason
-    -- Additional Dimensions
+    end as reason
     ${local.tag_dimensions_sql}
     ${local.common_dimensions_global_sql}
   from
@@ -55,14 +53,13 @@ query "dns_managed_zone_key_signing_not_using_rsasha1" {
 query "dns_managed_zone_zone_signing_not_using_rsasha1" {
   sql = <<-EOQ
     select
-    -- Required Columns
     self_link resource,
     case
       when visibility = 'private' then 'skip'
       when dnssec_config_state is null then 'alarm'
       when dnssec_config_default_key_specs @> '[{"keyType": "zoneSigning", "algorithm": "rsasha1"}]' then 'alarm'
       else 'ok'
-    end status,
+    end as status,
     case
       when visibility = 'private'
         then title || ' is private.'
@@ -71,8 +68,7 @@ query "dns_managed_zone_zone_signing_not_using_rsasha1" {
       when dnssec_config_default_key_specs @> '[{"keyType": "zoneSigning", "algorithm": "rsasha1"}]'
         then title || ' using RSASHA1 algorithm for zone-signing.'
       else title || ' not using RSASHA1 algorithm for zone-signing.'
-    end reason
-    -- Additional Dimensions
+    end as reason
     ${local.tag_dimensions_sql}
     ${local.common_dimensions_global_sql}
   from
@@ -82,22 +78,20 @@ query "dns_managed_zone_zone_signing_not_using_rsasha1" {
 
 query "dns_managed_zone_dnssec_enabled" {
   sql = <<-EOQ
-    select 
-      -- Required Columns
+    select
       self_link resource,
       case
         when visibility = 'private' then 'skip'
         when visibility = 'public' and (dnssec_config_state is null or dnssec_config_state = 'off') then 'alarm'
         else 'ok'
-      end status,
+      end as status,
       case
         when visibility = 'private'
           then title || ' is private.'
         when visibility = 'public' and (dnssec_config_state is null or dnssec_config_state = 'off')
           then title || ' DNSSEC not enabled.'
         else title || ' DNSSEC enabled.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_global_sql}
     from

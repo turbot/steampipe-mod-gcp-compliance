@@ -48,7 +48,6 @@ query "iam_user_denylist_public" {
         m like 'allUsers'
     )
     select
-      -- Required Columns
       a.project as resource,
       case
         when b.project is null then 'ok'
@@ -58,7 +57,6 @@ query "iam_user_denylist_public" {
         when b.project is null then 'No public users have access to resources via IAM.'
         else 'Public users have access to resources via IAM.'
       end as reason
-      -- Additional Dimensions
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "a.")}
     from
       gcp_iam_policy as a
@@ -82,7 +80,6 @@ query "iam_user_uses_corporate_login_credentials" {
       m like 'user:%'
     )
     select
-      -- Required Columns
       a.member as resource,
       case
         when org.display_name is null then 'alarm'
@@ -92,7 +89,6 @@ query "iam_user_uses_corporate_login_credentials" {
         when org.display_name is null then a.member || ' uses non-corporate login credentials.'
         else a.member || ' uses corporate login credentials.'
       end as reason
-      -- Additional Dimensions
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "a.")}
     from
       user_with_acces as a
@@ -103,16 +99,14 @@ query "iam_user_uses_corporate_login_credentials" {
 query "iam_service_account_key_age_100" {
   sql = <<-EOQ
     select
-    -- Required Columns
       'https://iam.googleapis.com/v1/projects/' || project || '/serviceAccounts/' || service_account_name || '/keys/' || name as resource,
     case
       when valid_after_time <= (current_date - interval '100' day) then 'alarm'
       else 'ok'
-    end status,
+    end as status,
     service_account_name || ' ' || name || ' created ' || to_char(valid_after_time , 'DD-Mon-YYYY') ||
       ' (' || extract(day from current_timestamp - valid_after_time) || ' days).'
     as reason
-    -- Additional Dimensions
     ${local.common_dimensions_global_sql}
   from
     gcp_service_account_key;
@@ -132,18 +126,16 @@ query "iam_service_account_gcp_managed_key" {
         key_type = 'USER_MANAGED'
     )
     select
-      -- Required Columns
       'https://iam.googleapis.com/v1/projects/' || project || '/serviceAccounts/' || name as resource,
       case
         when name like '%iam.gserviceaccount.com' and name in (select service_account_name from service_account_key) then 'alarm'
         else 'ok'
-      end status,
+      end as status,
       case
         when name like '%iam.gserviceaccount.com' and name in (select service_account_name from service_account_key)
           then title || ' has user-managed keys.'
         else title || ' does not have user-managed keys.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.common_dimensions_global_sql}
     from
       gcp_service_account;
@@ -153,16 +145,14 @@ query "iam_service_account_gcp_managed_key" {
 query "iam_service_account_key_age_90" {
   sql = <<-EOQ
     select
-      -- Required Columns
       'https://iam.googleapis.com/v1/projects/' || project || '/serviceAccounts/' || service_account_name || '/keys/' || name as resource,
       case
         when valid_after_time <= (current_date - interval '90' day) then 'alarm'
         else 'ok'
-      end status,
+      end as status,
       service_account_name || ' ' || name || ' created ' || to_char(valid_after_time , 'DD-Mon-YYYY') ||
         ' (' || extract(day from current_timestamp - valid_after_time) || ' days).'
       as reason
-      -- Additional Dimensions
     ${local.common_dimensions_global_sql}
     from
       gcp_service_account_key
@@ -185,19 +175,17 @@ query "iam_service_account_without_admin_privilege" {
       and split_part(entity, ':', 2) like '%@' || project || '.iam.gserviceaccount.com'
     )
     select
-      -- Required Columns
       'https://iam.googleapis.com/v1/projects/' || project || '/serviceAccounts/' || name as resource,
       case
         when name not like '%@' || project || '.iam.gserviceaccount.com' then 'skip'
         when name in (select user_name from user_roles) then 'alarm'
         else 'ok'
-      end status,
+      end as status,
       case
         when name not like '%@' || project || '.iam.gserviceaccount.com' then 'Google-created service account ' || title || ' excluded.'
         when name in (select user_name from user_roles) then title || ' has admin privileges.'
         else title || ' has no admin privileges.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.common_dimensions_global_sql}
     from
       gcp_service_account;
@@ -224,12 +212,12 @@ query "iam_user_not_assigned_service_account_user_role_project_level" {
       case
         when entity is not null then 'alarm'
         else 'ok'
-      end status,
+      end as status,
       case
         when entity is not null
           then 'IAM users associated with iam.serviceAccountTokenCreator or iam.serviceAccountUser role.'
         else 'No IAM users associated with iam.serviceAccountTokenCreator or iam.serviceAccountUser role.'
-      end reason
+      end as reason
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "p.")}
     from
       gcp_iam_policy as p
@@ -269,18 +257,16 @@ query "iam_user_separation_of_duty_enforced" {
       where assigned_role = 'roles/iam.serviceAccountUser'
     )
     select
-      -- Required Columns
       distinct user_name as resource,
       case
         when user_name in (select user_name from account_users) and user_name in (select user_name from account_admin_users) then 'alarm'
         else 'ok'
-      end status,
+      end as status,
       case
         when user_name in (select user_name from account_users) and user_name in (select user_name from account_admin_users)
           then  user_name || ' assigned with both Service Account Admin and Service Account User roles.'
         else user_name || ' not assigned with both Service Account Admin and Service Account User roles.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.common_dimensions_global_sql}
     from
       users_with_roles;

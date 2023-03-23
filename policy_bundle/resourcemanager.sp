@@ -26,18 +26,16 @@ query "audit_logging_configured_for_all_service" {
         and service = 'allServices'
     )
     select
-      -- Required Columns
       default_audit_configs.service resource,
       case
         when default_audit_configs.exempted_user is null then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when default_audit_configs.exempted_user is null
           then 'Audit logging properly configured across all services and no exempted users associated.'
         else 'Audit logging not configured as per CIS requirement or default audit setting having exempted user.'
-      end reason
-      -- Additional Dimensions
+      end as reason
           ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "default_audit_configs.")}
     from
       default_audit_configs;

@@ -40,18 +40,16 @@ control "restrict_googlegroups_bigquery_dataset" {
 query "bigquery_dataset_not_publicly_accessible" {
   sql = <<-EOQ
     select
-      -- Required Columns
       self_link resource,
       case
         when access @> '[{"specialGroup": "allAuthenticatedUsers"}]' or access @> '[{"iamMember": "allUsers"}]' then 'alarm'
         else 'ok'
-      end status,
+      end as status,
       case
         when access @> '[{"specialGroup": "allAuthenticatedUsers"}]' or access @> '[{"iamMember": "allUsers"}]'
           then title || ' publicly accessible.'
         else title || ' not anonymously or publicly accessible.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
@@ -62,16 +60,15 @@ query "bigquery_dataset_not_publicly_accessible" {
 query "bigquery_dataset_restrict_gmail" {
   sql = <<-EOQ
     with dataset_access as (
-    select 
+    select
       distinct dataset_id
-      from 
+      from
       gcp_bigquery_dataset,
       jsonb_array_elements(access) as a
       where
       a ->> 'userByEmail' like '%gmail.com'
     )
     select
-      -- Required Columns
         a.dataset_id as resource,
       case
         when b.dataset_id is null then 'ok'
@@ -80,10 +77,9 @@ query "bigquery_dataset_restrict_gmail" {
       case
         when b.dataset_id is null
           then a.dataset_id || ' enforces corporate domain by banning gmail.com addresses access.'
-        else 
+        else
         a.dataset_id || ' does not enforce corporate domain by banning gmail.com addresses access.'
       end as reason
-      -- Additional Dimensions
       ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "a.")}
       ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "a.")}
     from
@@ -95,16 +91,15 @@ query "bigquery_dataset_restrict_gmail" {
 query "bigquery_dataset_restrict_googlegroups" {
   sql = <<-EOQ
     with dataset_access as (
-  select 
-    distinct dataset_id
-    from 
-    gcp_bigquery_dataset,
-    jsonb_array_elements(access) as a
-    where
-    a ->> 'userByEmail' like '%googlegroups.com'
-    )
     select
-      -- Required Columns
+      distinct dataset_id
+    from
+      gcp_bigquery_dataset,
+      jsonb_array_elements(access) as a
+      where
+      a ->> 'userByEmail' like '%googlegroups.com'
+      )
+    select
         a.dataset_id as resource,
       case
         when b.dataset_id is null then 'ok'
@@ -113,10 +108,9 @@ query "bigquery_dataset_restrict_googlegroups" {
       case
         when b.dataset_id is null
           then a.dataset_id || ' enforces corporate domain by banning googlegroups.com addresses access.'
-        else 
+        else
         a.dataset_id || ' does not enforce corporate domain by banning googlegroups.com addresses access.'
       end as reason
-      -- Additional Dimensions
       ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "a.")}
       ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "a.")}
     from
@@ -130,18 +124,16 @@ query "bigquery_dataset_restrict_googlegroups" {
 query "bigquery_dataset_encrypted_with_cmk" {
   sql = <<-EOQ
     select
-      -- Required Columns
       self_link resource,
       case
         when kms_key_name is null then 'alarm'
         else 'ok'
-      end status,
+      end as status,
       case
         when kms_key_name is null
           then title || ' encrypted with Google-managed cryptographic keys.'
         else title || ' encrypted with customer-managed encryption keys.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
@@ -152,18 +144,16 @@ query "bigquery_dataset_encrypted_with_cmk" {
 query "bigquery_table_encrypted_with_cmk" {
   sql = <<-EOQ
     select
-      -- Required Columns
       self_link resource,
       case
         when kms_key_name is null then 'alarm'
         else 'ok'
-      end status,
+      end as status,
       case
         when kms_key_name is null
           then title || ' encrypted with Google managed cryptographic keys.'
         else title || ' encrypted with customer-managed encryption keys.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from

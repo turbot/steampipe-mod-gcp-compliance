@@ -117,17 +117,15 @@ control "gke_restrict_pod_traffic" {
 query "kubernetes_cluster_private_cluster_config_enabled" {
   sql = <<-EOQ
     select
-    -- Required Columns
     self_link resource,
     case
       when private_cluster_config is null then 'alarm'
       else 'ok'
-    end status,
+    end as status,
     case
       when private_cluster_config is null then title || ' private cluster config disabled.'
       else title || ' private cluster config enabled.'
-    end reason
-    -- Additional Dimensions
+    end as reason
     ${local.tag_dimensions_sql}
     ${local.common_dimensions_sql}
   from
@@ -138,17 +136,15 @@ query "kubernetes_cluster_private_cluster_config_enabled" {
 query "kubernetes_cluster_dashboard_disabled" {
   sql = <<-EOQ
     select
-    -- Required Columns
     self_link resource,
     case
       when addons_config -> 'kubernetesDashboard' ->> 'disabled' = 'true' then 'ok'
       else 'alarm'
-    end status,
+    end as status,
     case
       when addons_config -> 'kubernetesDashboard' ->> 'disabled' = 'true' then title || ' dashboard disabled.'
       else title || ' dashboard enabled.'
-    end reason
-    -- Additional Dimensions
+    end as reason
     ${local.tag_dimensions_sql}
     ${local.common_dimensions_sql}
   from
@@ -159,17 +155,15 @@ query "kubernetes_cluster_dashboard_disabled" {
 query "kubernetes_cluster_service_account_default" {
   sql = <<-EOQ
     select
-    -- Required Columns
     self_link resource,
     case
       when node_config ->> 'serviceAccount' = 'default' then 'alarm'
       else 'ok'
-    end status,
+    end as status,
     case
       when node_config ->> 'serviceAccount' = 'default' then title || ' default service account is used for project access.'
       else title || ' default service account is not used for project access.'
-    end reason
-    -- Additional Dimensions
+    end as reason
     ${local.tag_dimensions_sql}
     ${local.common_dimensions_sql}
   from
@@ -180,17 +174,15 @@ query "kubernetes_cluster_service_account_default" {
 query "kubernetes_cluster_legacy_abac_enabled" {
   sql = <<-EOQ
     select
-    -- Required Columns
     self_link resource,
     case
       when legacy_abac_enabled then 'alarm'
       else 'ok'
-    end status,
+    end as status,
     case
       when legacy_abac_enabled then title || ' Legacy Authorization enabled.'
       else title || ' Legacy Authorization disabled.'
-    end reason
-    -- Additional Dimensions
+    end as reason
     ${local.tag_dimensions_sql}
     ${local.common_dimensions_sql}
   from
@@ -201,17 +193,15 @@ query "kubernetes_cluster_legacy_abac_enabled" {
 query "kubernetes_cluster_legacy_endpoints_disabled" {
   sql = <<-EOQ
     select
-    -- Required Columns
     self_link resource,
     case
       when node_config -> 'metadata' ->> 'disable-legacy-endpoints' = 'true' then 'ok'
       else 'alarm'
-    end status,
+    end as status,
     case
       when node_config -> 'metadata' ->> 'disable-legacy-endpoints' = 'true' then title || ' legacy endpoints disabled.'
       else title || ' legacy endpoints enabled.'
-    end reason
-    -- Additional Dimensions
+    end as reason
     ${local.tag_dimensions_sql}
     ${local.common_dimensions_sql}
   from
@@ -222,17 +212,15 @@ query "kubernetes_cluster_legacy_endpoints_disabled" {
 query "kubernetes_cluster_use_ip_aliases" {
   sql = <<-EOQ
     select
-    -- Required Columns
     self_link resource,
     case
       when ip_allocation_policy ->> 'useIpAliases' = 'true' then 'ok'
       else 'alarm'
-    end status,
+    end as status,
     case
       when ip_allocation_policy ->> 'useIpAliases' = 'true' then title || ' Alias IP ranges enabled.'
       else title || ' alias IP ranges disabled.'
-    end reason
-    -- Additional Dimensions
+    end as reason
     ${local.tag_dimensions_sql}
     ${local.common_dimensions_sql}
   from
@@ -243,17 +231,15 @@ query "kubernetes_cluster_use_ip_aliases" {
 query "kubernetes_cluster_auto_repair_enabled" {
   sql = <<-EOQ
     select
-      -- Required Columns
       self_link resource,
       case
         when np -> 'management' -> 'autoRepair' = 'true' then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when np -> 'management' -> 'autoRepair' = 'true' then title || ' Node pool auto repair enabled.'
         else title || ' Node pool auto repair disabled.'
-      end reason
-      -- Additional Dimensions
+      end as reason
     ${local.tag_dimensions_sql}
     ${local.common_dimensions_sql}
     from
@@ -265,17 +251,15 @@ query "kubernetes_cluster_auto_repair_enabled" {
 query "kubernetes_cluster_auto_upgrade_enabled" {
   sql = <<-EOQ
     select
-      -- Required Columns
       self_link resource,
       case
         when np -> 'management' -> 'autoUpgrade' = 'true' then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when np -> 'management' -> 'autoUpgrade' = 'true' then title || ' Node pool auto upgrade enabled.'
         else title || ' Node pool auto upgrade disabled.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
     ${local.common_dimensions_sql}
     from
@@ -287,17 +271,15 @@ query "kubernetes_cluster_auto_upgrade_enabled" {
 query "kubernetes_cluster_master_authorized_networks_config_enabled" {
   sql = <<-EOQ
     select
-      -- Required Columns
       self_link resource,
       case
         when master_authorized_networks_config -> 'enabled' = 'true' then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when master_authorized_networks_config -> 'enabled' = 'true' then title || ' master authorized networks is enabled.'
         else title || ' master authorized networks is disabled.'
-      end reason
-      -- Additional Dimensions
+      end as reason
     ${local.tag_dimensions_sql}
     ${local.common_dimensions_sql}
     from
@@ -308,17 +290,15 @@ query "kubernetes_cluster_master_authorized_networks_config_enabled" {
 query "kubernetes_cluster_node_config_image_cos_containerd" {
   sql = <<-EOQ
     select
-      -- Required Columns
       self_link resource,
       case
         when node_config ->> 'imageType' = 'COS_CONTAINERD' then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when node_config ->> 'imageType' = 'COS_CONTAINERD' then title || ' Container-Optimized OS(COS) is used.'
         else title || ' Container-Optimized OS(COS) not used.'
-      end reason
-      -- Additional Dimensions
+      end as reason
     ${local.tag_dimensions_sql}
     ${local.common_dimensions_sql}
     from
@@ -329,17 +309,15 @@ query "kubernetes_cluster_node_config_image_cos_containerd" {
 query "kubernetes_cluster_network_policy_installed" {
   sql = <<-EOQ
     select
-      -- Required Columns
       self_link resource,
       case
         when node_config ->> 'imageType' = 'COS_CONTAINERD' then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when node_config ->> 'imageType' = 'COS_CONTAINERD' then title || ' Container-Optimized OS(COS) is used.'
         else title || ' Container-Optimized OS(COS) not used.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from

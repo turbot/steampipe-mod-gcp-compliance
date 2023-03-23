@@ -3,18 +3,16 @@
 query "logging_bucket_retention_policy_enabled" {
   sql = <<-EOQ
     select
-      -- Required Columns
       s.self_link resource,
       case
         when b.retention_policy is not null and b.retention_policy ->> 'isLocked' = 'true' then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when b.retention_policy is not null and b.retention_policy ->> 'isLocked' = 'true'
           then s.title || '''s logging bucket ' || b.name || ' has retention policies configured.'
         else s.title || '''s logging bucket ' || b.name || ' has retention policies not configured.'
-      end reason
-      -- Additional Dimensions
+      end as reason
         ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "s.")}
     from
       gcp_storage_bucket b
@@ -40,18 +38,16 @@ query "logging_metric_alert_audit_configuration_changes" {
         enabled
     )
     select
-      -- Required Columns
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
         when (select count(metric_name) from filter_data) > 0 then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when (select count(metric_name) from filter_data) > 0
           then 'Log metric and alert exist for audit configuration changes.'
         else 'Log metric and alert do not exist for audit configuration changes.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
@@ -74,18 +70,16 @@ query "logging_metric_alert_custom_role_changes" {
         enabled
     )
     select
-      -- Required Columns
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
         when (select count(metric_name) from filter_data) > 0 then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when (select count(metric_name) from filter_data) > 0
           then 'Log metric and alert exist for custom role changes.'
         else 'Log metric and alert do not exist for custom role changes.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
@@ -108,18 +102,16 @@ query "logging_metric_alert_firewall_rule_changes" {
         enabled
     )
     select
-      -- Required Columns
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
         when (select count(metric_name) from filter_data) > 0 then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when (select count(metric_name) from filter_data) > 0
           then 'Log metric and alert exist for network firewall rule changes.'
         else 'Log metric and alert do not exist network for firewall rule changes.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
@@ -142,18 +134,16 @@ query "logging_metric_alert_network_changes" {
         enabled
     )
     select
-      -- Required Columns
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
         when (select count(metric_name) from filter_data) > 0 then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when (select count(metric_name) from filter_data) > 0
           then 'Log metric and alert exist for network changes.'
         else 'Log metric and alert do not exist for network changes.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
@@ -176,18 +166,16 @@ query "logging_metric_alert_network_route_changes" {
         enabled
     )
     select
-      -- Required Columns
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
         when (select count(metric_name) from filter_data) > 0 then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when (select count(metric_name) from filter_data) > 0
           then 'Log metric and alert exist for network route changes.'
         else 'Log metric and alert do not exist for network route changes.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
@@ -210,18 +198,16 @@ query "logging_metric_alert_project_ownership_assignment" {
         enabled
     )
     select
-      -- Required Columns
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
         when (select count(metric_name) from filter_data) > 0 then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when (select count(metric_name) from filter_data) > 0
           then 'Log metric and alert exist for project ownership assignments/changes.'
         else 'Log metric and alert do not exist exist for project ownership assignments/changes.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
@@ -244,18 +230,16 @@ query "logging_metric_alert_sql_instance_configuration_changes" {
         enabled
     )
     select
-      -- Required Columns
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
         when (select count(metric_name) from filter_data) > 0 then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when (select count(metric_name) from filter_data) > 0
           then 'Log metric and alert exist for SQL instance configuration changes.'
         else 'Log metric and alert do not exist for SQL instance configuration changes.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
@@ -278,18 +262,16 @@ query "logging_metric_alert_storage_iam_permission_changes" {
         enabled
     )
     select
-      -- Required Columns
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
         when (select count(metric_name) from filter_data) > 0 then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when (select count(metric_name) from filter_data) > 0
           then 'Log metric and alert exist for Storage IAM permission changes.'
         else 'Log metric and alert do not exist for Storage IAM permission changes.'
-      end reason
-      -- Additional Dimensions
+      end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
@@ -310,18 +292,16 @@ query "logging_sink_configured_for_all_resource" {
         and destination != ''
     )
     select
-      -- Required Columns
       'https://www.googleapis.com/logging/v2/projects/' || split_part(s.gcp_project, ',', 1) resource,
       case
         when s.no_of_sink > 0 then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when s.no_of_sink > 0
           then 'Sinks configured for all log entries.'
         else 'Sinks not configured for all log entries.'
-      end reason
-      -- Additional Dimensions
+      end as reason
         ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "p.")}
         ${replace(local.common_dimensions_qualifier_project_sql, "__QUALIFIER__", "p.")}
     from

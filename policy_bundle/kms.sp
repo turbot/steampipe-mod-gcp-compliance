@@ -17,7 +17,6 @@ control "cmek_rotation_one_hundred_days" {
 query "kms_key_rotated_within_100_day" {
   sql = <<-EOQ
     select
-      -- Required Columns
       self_link as resource,
       case
         when split_part(rotation_period, 's', 1) :: int <= 8640000 then 'ok'
@@ -27,7 +26,6 @@ query "kms_key_rotated_within_100_day" {
         when rotation_period is null then title || ' in ' || key_ring_name || ' requires manual rotation.'
         else key_ring_name || ' ' || title || ' rotation period set for ' || (split_part(rotation_period, 's', 1) :: int)/86400 || ' day(s).'
       end as reason
-      -- Additional Dimensions
     ${local.tag_dimensions_sql}
     ${local.common_dimensions_sql}
     from
@@ -69,7 +67,6 @@ query "kms_key_not_publicly_accessible" {
 query "kms_key_rotated_within_90_day" {
   sql = <<-EOQ
     select
-      -- Required Columns
       self_link as resource,
       case
         when split_part(rotation_period, 's', 1) :: int <= 7776000 then 'ok'
@@ -79,7 +76,6 @@ query "kms_key_rotated_within_90_day" {
         when rotation_period is null then title || ' in ' || key_ring_name || ' requires manual rotation.'
         else key_ring_name || ' ' || title || ' rotation period set for ' || (split_part(rotation_period, 's', 1) :: int)/86400 || ' day(s).'
       end as reason
-      -- Additional Dimensions
         ${local.tag_dimensions_sql}
         ${local.common_dimensions_sql}
     from
@@ -113,12 +109,11 @@ query "kms_key_separation_of_duties_enforced" {
         assigned_role in ('roles/cloudkms.admin', 'roles/cloudkms.cryptoKeyEncrypterDecrypter', 'roles/cloudkms.cryptoKeyEncrypter', 'roles/cloudkms.cryptoKeyDecrypter')
     )
     select
-      -- Required Columns
       distinct r.user_name as resource,
       case
         when r.user_name in (select user_name from kms_roles_users) then 'alarm'
         else 'ok'
-      end status,
+      end as status,
       case
         when r.user_name in (select user_name from kms_roles_users) then r.user_name || ' assigned ' ||
         concat_ws(', ',
@@ -128,8 +123,7 @@ query "kms_key_separation_of_duties_enforced" {
           case when 'roles/cloudkms.cryptoKeyDecrypter' in (select assigned_role from kms_roles_users where user_name = r.user_name) then 'roles/cloudkms.cryptoKeyDecrypter' end
           ) || ' KMS role(s).'
         else user_name || ' not assigned KMS admin and additional encrypter/decrypter roles.'
-      end reason
-      -- Additional Dimensions
+      end as reason
         ${local.common_dimensions_global_sql}
     from
       users_with_roles as r;

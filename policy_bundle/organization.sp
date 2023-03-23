@@ -16,21 +16,19 @@ query "organization_essential_contacts_configured" {
         jsonb_array_elements_text(ec -> 'notificationCategorySubscriptions') as notificationtype
     )
     select
-      -- Required Columns
       name resource,
       case
         when jsonb_array_length('["LEGAL", "SECURITY", "SUSPENSION", "TECHNICAL", "TECHNICAL_INCIDENTS"]'::jsonb - array_agg(notificationtype)) = 0 then 'ok'
         when to_jsonb(array_agg(notificationtype)) @> '["ALL"]'::jsonb then 'ok'
         else 'alarm'
-      end status,
+      end as status,
       case
         when jsonb_array_length('["LEGAL", "SECURITY", "SUSPENSION", "TECHNICAL", "TECHNICAL_INCIDENTS"]'::jsonb - array_agg(notificationtype)) = 0
           then title || ' essential contacts are configured.'
         when to_jsonb(array_agg(notificationtype)) @> '["ALL"]'::jsonb
           then title || ' essential contacts are configured.'
         else title || ' essential contacts are not configured.'
-      end reason
-      -- Additional Dimensions
+      end as reason
         ${local.common_dimensions_organization_sql}
     from
       categories
