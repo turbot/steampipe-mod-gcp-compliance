@@ -15,7 +15,7 @@ benchmark "forseti_security_v226" {
     control.iam_restrict_service_account_key_age_one_hundred_days,
     control.only_my_domain,
     control.require_bq_table_iam,
-    control.restrict_firewall_rule_world_open,
+    control.restrict_firewall_rule_ssh_world_open,
     control.restrict_firewall_rule_world_open_tcp_udp_all_ports,
     control.restrict_gmail_bigquery_dataset,
     control.restrict_googlegroups_bigquery_dataset,
