@@ -1,5 +1,3 @@
-# Non-Config rule query
-
 query "project_access_approval_settings_enabled" {
   sql = <<-EOQ
     select
