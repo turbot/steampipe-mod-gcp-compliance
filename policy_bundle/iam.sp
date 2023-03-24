@@ -113,8 +113,6 @@ query "iam_service_account_key_age_100" {
   EOQ
 }
 
-# Non-Config rule query
-
 query "iam_service_account_gcp_managed_key" {
   sql = <<-EOQ
     with service_account_key as (
