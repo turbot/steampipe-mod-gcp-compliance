@@ -33,8 +33,6 @@ query "kms_key_rotated_within_100_day" {
   EOQ
 }
 
-# Non-Config rule query
-
 query "kms_key_not_publicly_accessible" {
   sql = <<-EOQ
     with public_keys as (
