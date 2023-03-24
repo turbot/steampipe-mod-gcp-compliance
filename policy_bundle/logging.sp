@@ -1,5 +1,3 @@
-# Non-Config rule query
-
 query "logging_bucket_retention_policy_enabled" {
   sql = <<-EOQ
     select
