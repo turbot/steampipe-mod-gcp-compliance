@@ -1,5 +1,3 @@
-# Non-Config rule query
-
 query "dataproc_cluster_encryption_with_cmek" {
   sql = <<-EOQ
     select
