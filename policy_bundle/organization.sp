@@ -1,5 +1,3 @@
-# Non-Config rule query
-
 query "organization_essential_contacts_configured" {
   sql = <<-EOQ
     -- "Essential Contacts API" should be Enabled and requires "Essential Contacts Viewer" at Organization level.
