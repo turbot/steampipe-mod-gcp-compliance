@@ -153,7 +153,7 @@ query "iam_service_account_key_age_90" {
       service_account_name || ' ' || name || ' created ' || to_char(valid_after_time , 'DD-Mon-YYYY') ||
         ' (' || extract(day from current_timestamp - valid_after_time) || ' days).'
       as reason
-    ${local.common_dimensions_global_sql}
+      ${local.common_dimensions_global_sql}
     from
       gcp_service_account_key
     where

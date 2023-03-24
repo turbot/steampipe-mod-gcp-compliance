@@ -88,13 +88,13 @@ No extra configuration is required.
 
 ### Common and Tag Dimensions
 
-The benchmark queries use common properties (like `connection_name`, `name`, `organization_id`,  `location` and ` project`) and tags that are defined in the form of a default list of strings in the `mod.sp` file. These properties can be overwritten in several ways:
+The benchmark queries use common properties (like `connection_name`, `location` and `project`) and tags that are defined in the form of a default list of strings in the `mod.sp` file. These properties can be overwritten in several ways:
 
 - Copy and rename the `steampipe.spvars.example` file to `steampipe.spvars`, and then modify the variable values inside that file
 - Pass in a value on the command line:
 
   ```shell
-  steampipe check benchmark.cis_v200 --var 'common_dimensions=["connection_name", "name", "organization_id", "location", "project"]'
+  steampipe check benchmark.cis_v200 --var 'common_dimensions=["connection_name", "location", "project"]'
   ```
 
   ```shell

@@ -28,8 +28,8 @@ query "organization_essential_contacts_configured" {
         when to_jsonb(array_agg(notificationtype)) @> '["ALL"]'::jsonb
           then title || ' essential contacts are configured.'
         else title || ' essential contacts are not configured.'
-      end as reason
-        ${local.common_dimensions_organization_sql}
+      end as reason,
+      organization_id
     from
       categories
     group by

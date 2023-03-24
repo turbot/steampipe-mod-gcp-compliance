@@ -13,7 +13,7 @@ query "logging_bucket_retention_policy_enabled" {
           then s.title || '''s logging bucket ' || b.name || ' has retention policies configured.'
         else s.title || '''s logging bucket ' || b.name || ' has retention policies not configured.'
       end as reason
-        ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "s.")}
+      ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "s.")}
     from
       gcp_storage_bucket b
     join gcp_logging_sink s on (
@@ -302,8 +302,8 @@ query "logging_sink_configured_for_all_resource" {
           then 'Sinks configured for all log entries.'
         else 'Sinks not configured for all log entries.'
       end as reason
-        ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "p.")}
-        ${replace(local.common_dimensions_qualifier_project_sql, "__QUALIFIER__", "p.")}
+      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "p.")}
+      ${replace(local.common_dimensions_qualifier_project_sql, "__QUALIFIER__", "p.")}
     from
       gcp_project p
       left join project_sink_count s on split_part(s.gcp_project, ',', 1) = p.project_id;

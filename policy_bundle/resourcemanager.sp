@@ -36,7 +36,7 @@ query "audit_logging_configured_for_all_service" {
           then 'Audit logging properly configured across all services and no exempted users associated.'
         else 'Audit logging not configured as per CIS requirement or default audit setting having exempted user.'
       end as reason
-          ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "default_audit_configs.")}
+      ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "default_audit_configs.")}
     from
       default_audit_configs;
   EOQ

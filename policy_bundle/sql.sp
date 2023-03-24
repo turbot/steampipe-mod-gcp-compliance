@@ -524,8 +524,8 @@ query "sql_instance_postgresql_log_planner_stats_database_flag_off" {
           then title || ' ''log_planner_stats'' database flag set to ''off''.'
         else title || ' ''log_planner_stats'' database flag set to ''on''.'
       end as reason
-        ${local.tag_dimensions_sql}
-        ${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_sql_database_instance;
   EOQ
@@ -549,8 +549,8 @@ query "sql_instance_postgresql_log_statement_database_flag_ddl" {
         when database_flags @> '[{"name": "log_statement","value":"all"}]' then title || ' log_statement database flag set to all.'
         when database_flags @> '[{"name": "log_statement","value":"none"}]' then title || ' log_statement database flag set to none.'
       end as reason
-        ${local.tag_dimensions_sql}
-        ${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_sql_database_instance;
   EOQ
@@ -574,8 +574,8 @@ query "sql_instance_postgresql_log_statement_stats_database_flag_off" {
           then title || ' ''log_statement_stats'' database flag set to ''off''.'
         else title || ' ''log_statement_stats'' database flag set to ''on''.'
       end as reason
-        ${local.tag_dimensions_sql}
-        ${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_sql_database_instance;
   EOQ
@@ -599,8 +599,8 @@ query "sql_instance_postgresql_log_temp_files_database_flag_0" {
           then title || ' ''log_temp_files'' database flag set to ''0''.'
         else title || ' ''log_temp_files'' database flag not set to ''0''.'
       end as reason
-        ${local.tag_dimensions_sql}
-        ${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_sql_database_instance;
   EOQ

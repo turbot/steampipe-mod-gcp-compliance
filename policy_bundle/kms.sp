@@ -26,8 +26,8 @@ query "kms_key_rotated_within_100_day" {
         when rotation_period is null then title || ' in ' || key_ring_name || ' requires manual rotation.'
         else key_ring_name || ' ' || title || ' rotation period set for ' || (split_part(rotation_period, 's', 1) :: int)/86400 || ' day(s).'
       end as reason
-    ${local.tag_dimensions_sql}
-    ${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kms_key;
   EOQ
@@ -56,8 +56,8 @@ query "kms_key_not_publicly_accessible" {
         when p.self_link is null then title || ' in ' || k.key_ring_name || ' key ring not publicly accessible.'
         else title || ' in ' || k.key_ring_name || ' key ring publicly accessible.'
       end as reason
-        ${local.tag_dimensions_sql}
-        ${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kms_key k
     left join public_keys p on k.self_link = p.self_link;
@@ -76,8 +76,8 @@ query "kms_key_rotated_within_90_day" {
         when rotation_period is null then title || ' in ' || key_ring_name || ' requires manual rotation.'
         else key_ring_name || ' ' || title || ' rotation period set for ' || (split_part(rotation_period, 's', 1) :: int)/86400 || ' day(s).'
       end as reason
-        ${local.tag_dimensions_sql}
-        ${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kms_key;
   EOQ
@@ -124,7 +124,7 @@ query "kms_key_separation_of_duties_enforced" {
           ) || ' KMS role(s).'
         else user_name || ' not assigned KMS admin and additional encrypter/decrypter roles.'
       end as reason
-        ${local.common_dimensions_global_sql}
+      ${local.common_dimensions_global_sql}
     from
       users_with_roles as r;
   EOQ

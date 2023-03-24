@@ -30,24 +30,19 @@ locals {
   # Local internal variable to build the SQL select clause for common
   # dimensions using a table name qualifier if required. Do not edit directly.
   common_dimensions_qualifier_sql = <<-EOQ
-  %{~if contains(var.common_dimensions, "connection_name")}, __QUALIFIER___ctx ->> 'connection_name'%{endif~}
-  %{~if contains(var.common_dimensions, "location")}, __QUALIFIER__location%{endif~}
-  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__project%{endif~}
+  %{~if contains(var.common_dimensions, "connection_name")}, __QUALIFIER___ctx ->> 'connection_name' as connection_name%{endif~}
+  %{~if contains(var.common_dimensions, "location")}, __QUALIFIER__location as location%{endif~}
+  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__project as project%{endif~}
   EOQ
 
   common_dimensions_qualifier_global_sql = <<-EOQ
   %{~if contains(var.common_dimensions, "connection_name")}, __QUALIFIER___ctx ->> 'connection_name' as connection_name%{endif~}
-  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__project%{endif~}
-  EOQ
-
-  common_dimensions_qualifier_organization_sql = <<-EOQ
-  %{~if contains(var.common_dimensions, "connection_name")}, __QUALIFIER___ctx ->> 'connection_name' as connection_name%{endif~}
-  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__organization_id%{endif~}
+  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__project as project%{endif~}
   EOQ
 
   common_dimensions_qualifier_project_sql = <<-EOQ
   %{~if contains(var.common_dimensions, "connection_name")}, __QUALIFIER___ctx ->> 'connection_name' as connection_name%{endif~}
-  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__name%{endif~}
+  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__name as project%{endif~}
   EOQ
 
   # Local internal variable to build the SQL select clause for tag
@@ -63,7 +58,6 @@ locals {
   common_dimensions_sql              = replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "")
   common_dimensions_global_sql       = replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "")
   common_dimensions_project_sql      = replace(local.common_dimensions_qualifier_project_sql, "__QUALIFIER__", "")
-  common_dimensions_organization_sql = replace(local.common_dimensions_qualifier_organization_sql, "__QUALIFIER__", "")
   tag_dimensions_sql                 = replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "")
 }
 

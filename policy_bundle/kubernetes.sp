@@ -240,8 +240,8 @@ query "kubernetes_cluster_auto_repair_enabled" {
         when np -> 'management' -> 'autoRepair' = 'true' then title || ' Node pool auto repair enabled.'
         else title || ' Node pool auto repair disabled.'
       end as reason
-    ${local.tag_dimensions_sql}
-    ${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster,
       jsonb_array_elements(node_pools) as np;
@@ -261,7 +261,7 @@ query "kubernetes_cluster_auto_upgrade_enabled" {
         else title || ' Node pool auto upgrade disabled.'
       end as reason
       ${local.tag_dimensions_sql}
-    ${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster,
       jsonb_array_elements(node_pools) as np;
@@ -280,8 +280,8 @@ query "kubernetes_cluster_master_authorized_networks_config_enabled" {
         when master_authorized_networks_config -> 'enabled' = 'true' then title || ' master authorized networks is enabled.'
         else title || ' master authorized networks is disabled.'
       end as reason
-    ${local.tag_dimensions_sql}
-    ${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -299,8 +299,8 @@ query "kubernetes_cluster_node_config_image_cos_containerd" {
         when node_config ->> 'imageType' = 'COS_CONTAINERD' then title || ' Container-Optimized OS(COS) is used.'
         else title || ' Container-Optimized OS(COS) not used.'
       end as reason
-    ${local.tag_dimensions_sql}
-    ${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ

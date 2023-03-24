@@ -547,7 +547,7 @@ query "compute_network_dns_logging_enabled" {
         when not p.enable_logging then net.title || ' associated with DNS policy with logging disabled.'
         else net.title || ' associated with DNS policy with logging enabled.'
       end as reason
-        ${local.common_dimensions_global_sql}
+      ${local.common_dimensions_global_sql}
     from
       gcp_compute_network net
     left join associated_networks p on net.name = p.network_name;
@@ -604,7 +604,7 @@ query "compute_ssl_policy_with_no_weak_cipher" {
           then proxy_type || ' ' || title || ' SSL policy contains CIS compliant cipher.'
         else proxy_type || ' ' || title || ' SSL policy contains weak cipher.'
       end as reason
-        ${local.common_dimensions_global_sql}
+      ${local.common_dimensions_global_sql}
     from all_proxies;
   EOQ
 }
