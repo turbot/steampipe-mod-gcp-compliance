@@ -119,8 +119,6 @@ query "bigquery_dataset_restrict_googlegroups" {
   EOQ
 }
 
-# Non-Config rule query
-
 query "bigquery_dataset_encrypted_with_cmk" {
   sql = <<-EOQ
     select
