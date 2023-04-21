@@ -1,3 +1,9 @@
+## v0.15 [2023-04-21]
+
+_Bug fixes_
+
+- Fix queries that query gcp_project table to use project_id instead of name column as common dimensions. ([#96](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/96))
+
 ## v0.14 [2023-03-24]
 
 _What's new?_
