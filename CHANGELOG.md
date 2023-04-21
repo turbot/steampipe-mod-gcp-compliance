@@ -4,7 +4,16 @@ _Bug fixes_
 
 - Fixed the following queries to use the `project_id` column instead of the `name` column for the `project` common dimension: ([#96](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/96))
   - `logging_metric_alert_audit_configuration_changes`
-  - `logging_metric_alert_custom_role_changes `
+  - `logging_metric_alert_custom_role_changes`
+  - `logging_metric_alert_firewall_rule_changes`
+  - `logging_metric_alert_network_changes`
+  - `logging_metric_alert_network_route_changes`
+  - `logging_metric_alert_project_ownership_assignment`
+  - `logging_metric_alert_sql_instance_configuration_changes`
+  - `logging_metric_alert_storage_iam_permission_changes`
+  - `logging_sink_configured_for_all_resource`
+  - `manual_control`
+  - `project_access_approval_settings_enabled`
 
 ## v0.14 [2023-03-24]
 
