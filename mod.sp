@@ -42,7 +42,7 @@ locals {
 
   common_dimensions_qualifier_project_sql = <<-EOQ
   %{~if contains(var.common_dimensions, "connection_name")}, __QUALIFIER___ctx ->> 'connection_name' as connection_name%{endif~}
-  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__name as project%{endif~}
+  %{~if contains(var.common_dimensions, "project")}, __QUALIFIER__project_id as project%{endif~}
   EOQ
 
   # Local internal variable to build the SQL select clause for tag
