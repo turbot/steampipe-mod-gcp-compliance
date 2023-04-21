@@ -70,7 +70,9 @@ query "iam_user_uses_corporate_login_credentials" {
     with user_with_access as (
       select
         distinct split_part(m, ':', 2) as member,
-        project
+        project,
+        _ctx,
+        location
       from
         gcp_iam_policy,
         jsonb_array_elements(bindings) as b,
