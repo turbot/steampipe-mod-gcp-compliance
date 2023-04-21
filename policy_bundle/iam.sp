@@ -90,9 +90,8 @@ query "iam_user_uses_corporate_login_credentials" {
         when (select count(*) from gcp_organization) = 0 then 'Used service account for authentication not having organization viewer permission.'
         when org.display_name is null then a.member || ' uses non-corporate login credentials.'
         else a.member || ' uses corporate login credentials.'
-      end as reason,
-      -- Additional Dimensions
-      a.project
+      end as reason
+      ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "a.")}
     from
       user_with_access as a
       left join gcp_organization as org on split_part(a.member, '@', 2) = org.display_name;
