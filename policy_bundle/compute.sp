@@ -259,8 +259,8 @@ query "compute_firewall_allow_tcp_connections_proxied_by_iap" {
             or allowed @> '[{"IPProtocol":"tcp","ports":["443"]}]'
           )
           and source_ranges ?& array['130.211.0.0/22', '35.235.240.0/20', '35.191.0.0/16']
-          then title || ' only allows traffic proxied by IAP.'
-        else title || ' not configured to only allow connections proxied by IAP.'
+          then title || ' IAP configured to allow traffic from Google IP addresses.'
+        else title || ' IAP not configured to allow traffic from Google IP addresses.'
       end as reason
       ${local.common_dimensions_sql}
     from
