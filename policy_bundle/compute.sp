@@ -239,6 +239,35 @@ query "compute_firewall_allow_connections_proxied_by_iap" {
   EOQ
 }
 
+query "compute_firewall_allow_tcp_connections_proxied_by_iap" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when
+          ( allowed @> '[{"IPProtocol":"tcp","ports":["80","443"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["443"]}]'
+          )
+          and source_ranges ?& array['130.211.0.0/22', '35.235.240.0/20', '35.191.0.0/16'] then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when
+          ( allowed @> '[{"IPProtocol":"tcp","ports":["80","443"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["443"]}]'
+          )
+          and source_ranges ?& array['130.211.0.0/22', '35.235.240.0/20', '35.191.0.0/16']
+          then title || ' only allows traffic proxied by IAP.'
+        else title || ' not configured to only allow connections proxied by IAP.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
 query "compute_https_load_balancer_logging_enabled" {
   sql = <<-EOQ
     select
