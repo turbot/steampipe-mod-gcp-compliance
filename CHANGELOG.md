@@ -1,3 +1,9 @@
+## v0.16 [2023-05-15]
+
+_Bug fixes_
+
+- Fixed `cis_v130_3_10` and `cis_v200_3_10` controls to also include IP `35.235.240.0/20` and port `443` in the list of allowed IPs and ports per CIS documentation. ([#101](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/101))
+
 ## v0.15 [2023-04-21]
 
 _Bug fixes_
