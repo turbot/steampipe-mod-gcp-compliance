@@ -154,7 +154,7 @@ control "cis_v130_3_9" {
 control "cis_v130_3_10" {
   title         = "3.10 Use Identity Aware Proxy (IAP) to Ensure Only Traffic From Google IP Addresses are 'Allowed'"
   description   = "IAP authenticates the user requests to your apps via a Google single sign in. You can then manage these users with permissions to control access. It is recommended to use both IAP permissions and firewalls to restrict this access to your apps with sensitive information."
-  query         = query.compute_firewall_allow_connections_proxied_by_iap
+  query         = query.compute_firewall_allow_tcp_connections_proxied_by_iap
   documentation = file("./cis_v130/docs/cis_v130_3_10.md")
 
   tags = merge(local.cis_v130_3_common_tags, {
