@@ -81,7 +81,6 @@ query "iam_user_uses_corporate_login_credentials" {
         m like 'user:%'
     )
     select
-      -- Required Columns
       a.member as resource,
       case
         when (select count(*) from gcp_organization) = 0 then 'info'
@@ -89,7 +88,7 @@ query "iam_user_uses_corporate_login_credentials" {
         else 'ok'
       end as status,
       case
-        when (select count(*) from gcp_organization) = 0 then a.member || ' Used authentication not having organization viewer permission.'
+        when (select count(*) from gcp_organization) = 0 then a.member || ' used authentication not having organization viewer permission.'
         when org.display_name is null then a.member || ' uses non-corporate login credentials.'
         else a.member || ' uses corporate login credentials.'
       end as reason
