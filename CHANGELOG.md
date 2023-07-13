@@ -1,3 +1,10 @@
+## v0.17 [2023-07-13]
+
+_Bug fixes_
+
+- Fixed the `iam_user_uses_corporate_login_credentials` query to ensure the use of corporate login credentials instead of personal accounts. ([#97](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/97))
+- Fixed dashboard localhost URLs in README and index doc. ([#104](https://github.com/turbot/steampipe-mod-aws-thrifty/pull/104))
+
 ## v0.16 [2023-05-15]
 
 _Bug fixes_
