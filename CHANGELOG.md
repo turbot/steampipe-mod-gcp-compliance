@@ -2,7 +2,7 @@
 
 _Bug fixes_
 
-- Fixed the `iam_user_uses_corporate_login_credentials` query to ensure the use of corporate login credentials instead of personal accounts. ([#97](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/97))
+- Fixed the `iam_user_uses_corporate_login_credentials` query to return `info` status, when plugin authentication mechanism does not include organization viewer permission, instead of false positives. ([#97](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/97))
 - Fixed dashboard localhost URLs in README and index doc. ([#104](https://github.com/turbot/steampipe-mod-aws-thrifty/pull/104))
 
 ## v0.16 [2023-05-15]
