@@ -66,33 +66,37 @@ query "iam_user_denylist_public" {
 
 query "iam_user_uses_corporate_login_credentials" {
   sql = <<-EOQ
-    with user_with_acces as (
-    select
-      distinct split_part(m, ':', 2) as member,
-      project,
-      _ctx,
-      location
-    from
-      gcp_iam_policy,
-      jsonb_array_elements(bindings) as b,
-      jsonb_array_elements_text(b -> 'members') as m
-    where
-      m like 'user:%'
+    -- Please note: The table gcp_organization requires the resourcemanager.organizations.get permission to retrieve organization details.
+    with user_with_access as (
+      select
+        distinct split_part(m, ':', 2) as member,
+        project,
+        _ctx,
+        location
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as b,
+        jsonb_array_elements_text(b -> 'members') as m
+      where
+        m like 'user:%'
     )
     select
-      a.member as resource,
+      case when (select count(*) from gcp_organization) = 0 then a.project else a.member end as resource,
       case
+        when (select count(*) from gcp_organization) = 0 then 'info'
         when org.display_name is null then 'alarm'
         else 'ok'
       end as status,
       case
+        when (select count(*) from gcp_organization) = 0 then 'Plugin authentication mechanism does not have organization viewer permission.'
         when org.display_name is null then a.member || ' uses non-corporate login credentials.'
         else a.member || ' uses corporate login credentials.'
       end as reason
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "a.")}
     from
-      user_with_acces as a
-      left join gcp_organization as org on split_part(a.member, '@', 2) = org.display_name;
+      user_with_access as a
+      left join gcp_organization as org on split_part(a.member, '@', 2) = org.display_name
+      limit case when (select count(*) from gcp_organization) = 0 then 1 end;
   EOQ
 }
 
