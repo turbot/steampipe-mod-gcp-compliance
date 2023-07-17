@@ -144,20 +144,22 @@ query "iam_service_account_gcp_managed_key" {
   EOQ
 }
 
-query "iam_api_key_age_90" {
+query "iam_service_account_key_age_90" {
   sql = <<-EOQ
     select
-      'https://iam.googleapis.com/v1/projects/' || project || '/apikeys/' || name as resource,
+      'https://iam.googleapis.com/v1/projects/' || project || '/serviceAccounts/' || service_account_name || '/keys/' || name as resource,
       case
-        when create_time <= (current_date - interval '90' day) then 'alarm'
+        when valid_after_time <= (current_date - interval '90' day) then 'alarm'
         else 'ok'
       end as status,
-      display_name || ' ' || uid || ' created ' || to_char(create_time , 'DD-Mon-YYYY') ||
-        ' (' || extract(day from current_timestamp - create_time) || ' days).'
+      service_account_name || ' ' || name || ' created ' || to_char(valid_after_time , 'DD-Mon-YYYY') ||
+        ' (' || extract(day from current_timestamp - valid_after_time) || ' days).'
       as reason
       ${local.common_dimensions_global_sql}
     from
-      gcp_apikeys_key
+      gcp_service_account_key
+    where
+      key_type = 'USER_MANAGED';
   EOQ
 }
 
