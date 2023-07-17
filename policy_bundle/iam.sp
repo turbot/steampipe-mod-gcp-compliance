@@ -180,6 +180,23 @@ query "iam_api_key_age_90" {
   EOQ
 }
 
+query "iam_api_key_age_90" {
+  sql = <<-EOQ
+    select
+      'https://iam.googleapis.com/v1/projects/' || project || '/apikeys/' || name as resource,
+      case
+        when create_time <= (current_date - interval '90' day) then 'alarm'
+        else 'ok'
+      end as status,
+      display_name || ' ' || uid || ' created ' || to_char(create_time , 'DD-Mon-YYYY') ||
+        ' (' || extract(day from current_timestamp - create_time) || ' days).'
+      as reason
+      ${local.common_dimensions_global_sql}
+    from
+      gcp_apikeys_key
+  EOQ
+}
+
 query "iam_service_account_without_admin_privilege" {
   sql = <<-EOQ
     with user_roles as (
