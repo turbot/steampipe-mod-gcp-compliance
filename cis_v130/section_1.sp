@@ -232,7 +232,7 @@ control "cis_v130_1_14" {
 control "cis_v130_1_15" {
   title         = "1.15 Ensure API keys are rotated every 90 days"
   description   = "It is recommended to rotate API keys every 90 days."
-  query         = query.manual_control
+  query         = query.iam_api_key_age_90
   documentation = file("./cis_v130/docs/cis_v130_1_15.md")
 
   tags = merge(local.cis_v130_1_common_tags, {
