@@ -176,7 +176,7 @@ query "iam_api_key_age_90" {
       as reason
       ${local.common_dimensions_global_sql}
     from
-      gcp_apikeys_key
+      gcp_apikeys_key;
   EOQ
 }
 
