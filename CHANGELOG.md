@@ -1,3 +1,9 @@
+## v0.18 [2023-07-19]
+
+_Enhancements_
+
+- Added the `iam_api_key_age_90` query for the `cis_v120_1_15`, `cis_v130_1_15`, and `cis_v200_1_14` controls. ([#107](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/107))
+
 ## v0.17 [2023-07-13]
 
 _Bug fixes_
