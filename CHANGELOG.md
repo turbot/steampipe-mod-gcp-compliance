@@ -2,7 +2,7 @@
 
 _Bug fixes_
 
-- Fixed the `logging_metric_alert_storage_iam_permission_changes` query to correctly return the configured log sinks for all the projects instead of only the last one. ([#111](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/111)) (Thanks [@M0nsieurChat](https://github.com/M0nsieurChat) for the contribution!)
+- Fixed the `logging_metric_alert_storage_iam_permission_changes` query to correctly check if sinks have been configured for all the log entries across all the projects instead of only the last project in an aggregator connection. ([#111](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/111)) (Thanks [@M0nsieurChat](https://github.com/M0nsieurChat) for the contribution!)
 
 ## v0.18 [2023-07-19]
 
