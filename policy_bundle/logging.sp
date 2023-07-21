@@ -280,30 +280,31 @@ query "logging_metric_alert_storage_iam_permission_changes" {
 query "logging_sink_configured_for_all_resource" {
   sql = <<-EOQ
     with project_sink_count as (
-      select
-        count(*) no_of_sink,
-        string_agg(project, ',') gcp_project
-      from
-        gcp_logging_sink
-      where
-        filter = ''
-        and destination != ''
-    )
-    select
-      'https://www.googleapis.com/logging/v2/projects/' || split_part(s.gcp_project, ',', 1) resource,
-      case
-        when s.no_of_sink > 0 then 'ok'
-        else 'alarm'
-      end as status,
-      case
-        when s.no_of_sink > 0
-          then 'Sinks configured for all log entries.'
-        else 'Sinks not configured for all log entries.'
-      end as reason
-      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "p.")}
-      ${replace(local.common_dimensions_qualifier_project_sql, "__QUALIFIER__", "p.")}
-    from
-      gcp_project p
-      left join project_sink_count s on split_part(s.gcp_project, ',', 1) = p.project_id;
+  select
+    project,
+    count(*) no_of_sink
+  from
+    gcp_logging_sink
+  where
+    filter = ''
+    and destination != ''
+  group by project
+)
+select
+  'https://www.googleapis.com/logging/v2/projects/' || s.project resource,
+  case
+    when s.no_of_sink > 0 then 'ok'
+    else 'alarm'
+  end as status,
+  case
+    when s.no_of_sink > 0
+      then 'Sinks configured for all log entries.'
+    else 'Sinks not configured for all log entries.'
+  end as reason
+  ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "p.")}
+  ${replace(local.common_dimensions_qualifier_project_sql, "__QUALIFIER__", "p.")}
+from
+  gcp_project p
+  left join project_sink_count s on s.project = p.project_id;
   EOQ
 }
