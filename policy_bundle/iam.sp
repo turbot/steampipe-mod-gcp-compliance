@@ -180,6 +180,22 @@ query "iam_api_key_age_90" {
   EOQ
 }
 
+query "iam_api_key_unrestriced" {
+  sql = <<-EOQ
+    select
+      'https://iam.googleapis.com/v1/projects/' || project || '/apikeys/' || name as resource,  display_name,
+      case
+        when restrictions is null then 'alarm'
+        else 'ok'
+      end as status,
+      display_name || ' ' || uid || ' has either host, apps or API restriction.'
+      as reason
+      ${local.common_dimensions_global_sql}
+    from
+      gcp_apikeys_key;
+  EOQ
+}
+
 query "iam_service_account_without_admin_privilege" {
   sql = <<-EOQ
     with user_roles as (
