@@ -196,6 +196,42 @@ query "iam_api_key_unrestriced" {
   EOQ
 }
 
+query "iam_api_key_restricted_to_apis" {
+  sql = <<-EOQ
+    select
+     'https://iam.googleapis.com/v1/projects/' || project || '/apikeys/' || name as resource,
+    case
+      when restrictions -> 'apiTargets' is null then 'alarm'
+      else 'ok'
+    end as status,
+    case
+      when restrictions -> 'apiTargets' is null then title || ' API key is not restricted to required APIs.'
+      else title || ' API key is restricted to only required APIs.'
+    end as reason
+    ${local.common_dimensions_sql}
+  from
+    gcp_apikeys_key;
+  EOQ
+}
+
+query "iam_api_key_restricted_to_hosts_apps" {
+  sql = <<-EOQ
+    select
+     'https://iam.googleapis.com/v1/projects/' || project || '/apikeys/' || name as resource,
+    case
+      when restrictions -> 'serverKeyRestrictions' is null then 'alarm'
+      else 'ok'
+    end as status,
+    case
+      when restrictions -> 'serverKeyRestrictions' is null then title || ' API key is not restricted to use by only specified Hosts and Apps.'
+      else title || ' API key is restricted to use by only specified Hosts and Apps.'
+    end as reason
+    ${local.common_dimensions_sql}
+  from
+    gcp_apikeys_key;
+  EOQ
+}
+
 query "iam_service_account_without_admin_privilege" {
   sql = <<-EOQ
     with user_roles as (
