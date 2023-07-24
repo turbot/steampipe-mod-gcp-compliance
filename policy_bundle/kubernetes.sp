@@ -133,6 +133,158 @@ query "kubernetes_cluster_private_cluster_config_enabled" {
   EOQ
 }
 
+query "kubernetes_cluster_etcd_encryption"{
+  sql = <<-EOQ
+    select
+    self_link resource,
+    case
+      when database_encryption_state = 'ENCRYPTED' then 'ok'
+      else 'alarm'
+    end as status,
+    case
+      when database_encryption_state = 'ENCRYPTED' then title || ' Kubernetes secrets, stored in etcd encrypted with CMEK.'
+      else title || ' Kubernetes secrets, stored in etcd not encrypted with CMEK.'
+    end as reason
+    ${local.tag_dimensions_sql}
+    ${local.common_dimensions_sql}
+  from
+    gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_version_management_release_channels"{
+  sql = <<-EOQ
+    select
+    self_link resource,
+    case
+      when release_channel is null then 'alarm'
+      else 'ok'
+    end as status,
+    case
+      when release_channel is null then title || ' GKE version management using Release Channels is not configured.'
+      else title || ' GKE version management using Release Channels is configured.'
+    end as reason
+    ${local.tag_dimensions_sql}
+    ${local.common_dimensions_sql}
+  from
+    gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_shielded_nodes_enabled"{
+  sql = <<-EOQ
+    select
+    self_link resource,
+    case
+      when shielded_nodes_enabled = 'true' then 'ok'
+      else 'alarm'
+    end as status,
+    case
+      when shielded_nodes_enabled = 'true' then title || ' Shielded GKE Nodes are enabled.'
+      else title || ' Shielded GKE Nodes are not enabled.'
+    end as reason
+    ${local.tag_dimensions_sql}
+    ${local.common_dimensions_sql}
+  from
+    gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_alpha_clusters_disabled"{
+  sql = <<-EOQ
+    select
+    self_link resource,
+    case
+      when enable_kubernetes_alpha = 'false' then 'ok'
+      else 'ok'
+    end as status,
+    case
+      when enable_kubernetes_alpha = 'false' then title || ' Alpha clusters disabled.'
+      else title || ' Alpha clusters not disabled.'
+    end as reason
+    ${local.tag_dimensions_sql}
+    ${local.common_dimensions_sql}
+  from
+    gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_private_endpoint_enabled" {
+  sql = <<-EOQ
+    select
+    self_link resource,
+    case
+      when private_cluster_config -> 'enablePrivateEndpoint' = 'true' then 'ok'
+      else 'alarm'
+    end as status,
+    case
+      when private_cluster_config -> 'enablePrivateEndpoint' = 'true' then title || ' private nodes enabled.'
+      else title || ' private nodes disabled.'
+    end as reason
+    ${local.tag_dimensions_sql}
+    ${local.common_dimensions_sql}
+  from
+    gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_private_nodes_enabled" {
+  sql = <<-EOQ
+    select
+    self_link resource,
+    case
+      when private_cluster_config -> 'enablePrivateNodes' = 'true' then 'ok'
+      else 'alarm'
+    end as status,
+    case
+      when private_cluster_config -> 'enablePrivateNodes' = 'true' then title || ' private nodes enabled.'
+      else title || ' private nodes disabled.'
+    end as reason
+    ${local.tag_dimensions_sql}
+    ${local.common_dimensions_sql}
+  from
+    gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_logging_enabled" {
+  sql = <<-EOQ
+    select
+    self_link resource,
+    case
+      when logging_service is null then 'alarm'
+      else 'ok'
+    end as status,
+    case
+      when logging_service is null then title || ' kubernetes logging is not enabled.'
+      else title || ' kubernetes logging is enabled.'
+    end as reason
+    ${local.tag_dimensions_sql}
+    ${local.common_dimensions_sql}
+  from
+    gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_workload_identity_enabled" {
+  sql = <<-EOQ
+    select
+    self_link resource,
+    case
+      when workload_identity_config -> 'workloadPool' = 'null' then 'alarm'
+      else 'ok'
+    end as status,
+    case
+      when workload_identity_config -> 'workloadPool' = 'null' then title || ' workload identity is not configured.'
+      else title || ' workload identity is configured.'
+    end as reason
+    ${local.tag_dimensions_sql}
+    ${local.common_dimensions_sql}
+  from
+    gcp_kubernetes_cluster;
+  EOQ
+}
+
 query "kubernetes_cluster_dashboard_disabled" {
   sql = <<-EOQ
     select
@@ -206,6 +358,63 @@ query "kubernetes_cluster_legacy_endpoints_disabled" {
     ${local.common_dimensions_sql}
   from
     gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_intranode_visibility_enabled" {
+  sql = <<-EOQ
+    select
+    self_link resource,
+    case
+      when network_config -> 'enableIntraNodeVisibility' = 'true' then 'ok'
+      else 'alarm'
+    end as status,
+    case
+      when network_config -> 'enableIntraNodeVisibility' = 'true' then title || ' intra-node visibility is enabled.'
+      else title || ' intra-node visibility is enabled.'
+    end as reason
+    ${local.tag_dimensions_sql}
+    ${local.common_dimensions_sql}
+  from
+    gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_integrity_monitoring_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when node_config -> 'shieldedInstanceConfig' ->> 'enableIntegrityMonitoring' = 'true' then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when node_config -> 'shieldedInstanceConfig' ->> 'enableIntegrityMonitoring' = 'true' then title || ' Integrity Monitoring for Shielded GKE Nodes is Enabled.'
+        else title || ' Integrity Monitoring for Shielded GKE Nodes is not Enabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_secure_boot_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when node_config -> 'shieldedInstanceConfig' ->> 'enableSecureBoot' = 'true' then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when node_config -> 'shieldedInstanceConfig' ->> 'enableSecureBoot' = 'true' then title || ' Secure Boot for Shielded GKE Nodes is Enabled.'
+        else title || ' Secure Boot for Shielded GKE Nodes is not Enabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
   EOQ
 }
 
