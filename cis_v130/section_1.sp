@@ -204,7 +204,7 @@ control "cis_v130_1_12" {
 control "cis_v130_1_13" {
   title         = "1.13 Ensure API keys are restricted to use by only specified Hosts and Apps"
   description   = "Unrestricted keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to restrict API key usage to trusted hosts, HTTP referrers and apps."
-  query         = query.iam_api_key_restricted_to_hosts_apps
+  query         = query.iam_api_key_restricts_websites_hosts_apps
   documentation = file("./cis_v130/docs/cis_v130_1_13.md")
 
   tags = merge(local.cis_v130_1_common_tags, {
@@ -218,7 +218,7 @@ control "cis_v130_1_13" {
 control "cis_v130_1_14" {
   title         = "1.14 Ensure API keys are restricted to only APIs that application needs access"
   description   = "API keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to restrict API keys to use (call) only APIs required by an application."
-  query         = query.iam_api_key_restricted_to_apis
+  query         = query.iam_api_key_restricts_apis
   documentation = file("./cis_v130/docs/cis_v130_1_14.md")
 
   tags = merge(local.cis_v130_1_common_tags, {
