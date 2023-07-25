@@ -196,7 +196,7 @@ query "iam_api_key_unrestriced" {
   EOQ
 }
 
-query "iam_api_key_restricted_to_apis" {
+query "iam_api_key_restricts_apis" {
   sql = <<-EOQ
     select
      'https://iam.googleapis.com/v1/projects/' || project || '/apikeys/' || name as resource,
