@@ -180,6 +180,57 @@ query "iam_api_key_age_90" {
   EOQ
 }
 
+query "iam_api_key_restricts_apis" {
+  sql = <<-EOQ
+    select
+     'https://iam.googleapis.com/v1/projects/' || project || '/apikeys/' || name as resource,
+    case
+      when restrictions -> 'apiTargets' is null then 'alarm'
+      else 'ok'
+    end as status,
+    case
+      when restrictions -> 'apiTargets' is null then title || ' API key is not restricted to required APIs.'
+      else title || ' API key is restricted to only required APIs.'
+    end as reason
+    ${local.common_dimensions_sql}
+  from
+    gcp_apikeys_key;
+  EOQ
+}
+
+query "iam_api_key_restricts_websites_hosts_apps" {
+  sql = <<-EOQ
+    select
+      'https://iam.googleapis.com/v1/projects/' || project || '/apikeys/' || name as resource,
+      case
+        when restrictions -> 'serverKeyRestrictions' is null
+          and restrictions -> 'browserKeyRestrictions' is null
+          and restrictions -> 'androidKeyRestrictions' is null
+          and restrictions -> 'iosKeyRestrictions' is null then 'alarm'
+        when restrictions -> 'serverKeyRestrictions' @> any( array[
+        '{"allowedIps": ["0.0.0.0"]}', '{"allowedIps": ["0.0.0.0/0"]}', '{"allowedIps": ["::0"]}']::jsonb[]) then 'alarm'
+        when restrictions -> 'browserKeyRestrictions' @> any( array[
+        '{"allowedReferrers": ["*"]}','{"allowedReferrers": ["*.[TLD]/*"]}','{"allowedReferrers": ["*.[TLD]"]}' ]::jsonb[] ) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when restrictions -> 'serverKeyRestrictions' is null
+          and restrictions -> 'browserKeyRestrictions' is null
+          and restrictions -> 'androidKeyRestrictions' is null
+          and restrictions -> 'iosKeyRestrictions' is null
+          then title || ' API key not restricted to use any specified Websites, Hosts and Apps.'
+        when restrictions -> 'serverKeyRestrictions' @> any( array[
+        '{"allowedIps": ["0.0.0.0"]}', '{"allowedIps": ["0.0.0.0/0"]}', '{"allowedIps": ["::0"]}']::jsonb[]) then title || ' API key open to any hosts.'
+        when restrictions -> 'browserKeyRestrictions' @> any( array[
+        '{"allowedReferrers": ["*"]}','{"allowedReferrers": ["*.[TLD]/*"]}','{"allowedReferrers": ["*.[TLD]"]}' ]::jsonb[] ) then  title || ' API key open to any or wide range of HTTP referrer(s).'
+        else title || ' API key is restricted with specific Website(s), Host(s) and App(s).'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_apikeys_key;
+  EOQ
+}
+
 query "iam_service_account_without_admin_privilege" {
   sql = <<-EOQ
     with user_roles as (
