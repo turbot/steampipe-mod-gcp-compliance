@@ -1,3 +1,11 @@
+## v0.20 [2023-07-28]
+
+_Bug fixes_
+
+- Added the missing `iam_api_key_restricts_apis` query for `cis_v120_1_14`, `cis_v130_1_14`, and `cis_v200_1_14` controls. ([#115](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/115)) (Thanks [@saisirishreddy](https://github.com/saisirishreddy) for the contribution!)
+- Added the missing `iam_api_key_restricts_websites_hosts_apps` query for `cis_v120_1_13`, `cis_v130_1_13`, and `cis_v200_1_13` controls. ([#115](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/115)) (Thanks [@saisirishreddy](https://github.com/saisirishreddy) for the contribution!)
+- Fixed the `kubernetes_cluster_network_policy_installed` query to correctly check if the GKE clusters have a network policy installed. ([#116](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/116)) (Thanks [@saisirishreddy](https://github.com/saisirishreddy) for the contribution!)
+
 ## v0.19 [2023-07-21]
 
 _Bug fixes_

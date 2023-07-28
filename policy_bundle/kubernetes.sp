@@ -311,12 +311,12 @@ query "kubernetes_cluster_network_policy_installed" {
     select
       self_link resource,
       case
-        when node_config ->> 'imageType' = 'COS_CONTAINERD' then 'ok'
+        when network_policy ->> 'enabled' = 'true' then 'ok'
         else 'alarm'
       end as status,
       case
-        when node_config ->> 'imageType' = 'COS_CONTAINERD' then title || ' Container-Optimized OS(COS) is used.'
-        else title || ' Container-Optimized OS(COS) not used.'
+        when network_policy ->> 'enabled' = 'true' then title || ' Network policy is enabled.'
+        else title || ' Network policy is not enabled.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
