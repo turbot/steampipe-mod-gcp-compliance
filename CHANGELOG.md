@@ -1,3 +1,9 @@
+## v0.21 [2023-08-02]
+
+_Bug fixes_
+
+- Fixed the `kms_key_rotated_within_90_day` and `kms_key_rotated_within_100_day` queries to skip KMS keys which are either in `DESTROYED` or `DESTROY_SCHEDULED` or `DISABLED` state since we cannot set rotation for such keys. ([#124](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/124))
+
 ## v0.20 [2023-07-28]
 
 _Bug fixes_
