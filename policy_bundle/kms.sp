@@ -19,10 +19,16 @@ query "kms_key_rotated_within_100_day" {
     select
       self_link as resource,
       case
+        when "primary" ->> 'state' = 'DESTROYED' then 'skip'
+        when "primary" ->> 'state' = 'DESTROY_SCHEDULED' then 'skip'
+        when "primary" ->> 'state' = 'DISABLED' then 'skip'
         when split_part(rotation_period, 's', 1) :: int <= 8640000 then 'ok'
         else 'alarm'
       end as status,
       case
+        when "primary" ->> 'state' = 'DESTROYED' then title || ' is destroyed.'
+        when "primary" ->> 'state' = 'DESTROY_SCHEDULED' then title || ' is scheduled for deletion.'
+        when "primary" ->> 'state' = 'DISABLED' then title || ' is disabled.'
         when rotation_period is null then title || ' in ' || key_ring_name || ' requires manual rotation.'
         else key_ring_name || ' ' || title || ' rotation period set for ' || (split_part(rotation_period, 's', 1) :: int)/86400 || ' day(s).'
       end as reason
@@ -67,10 +73,16 @@ query "kms_key_rotated_within_90_day" {
     select
       self_link as resource,
       case
+        when "primary" ->> 'state' = 'DESTROYED' then 'skip'
+        when "primary" ->> 'state' = 'DESTROY_SCHEDULED' then 'skip'
+        when "primary" ->> 'state' = 'DISABLED' then 'skip'
         when split_part(rotation_period, 's', 1) :: int <= 7776000 then 'ok'
         else 'alarm'
       end as status,
       case
+        when "primary" ->> 'state' = 'DESTROYED' then title || ' is destroyed.'
+        when "primary" ->> 'state' = 'DESTROY_SCHEDULED' then title || ' is scheduled for deletion.'
+        when "primary" ->> 'state' = 'DISABLED' then title || ' is disabled.'
         when rotation_period is null then title || ' in ' || key_ring_name || ' requires manual rotation.'
         else key_ring_name || ' ' || title || ' rotation period set for ' || (split_part(rotation_period, 's', 1) :: int)/86400 || ' day(s).'
       end as reason
