@@ -20,6 +20,14 @@ control "project_service_cloudasset_api_enabled" {
   tags = local.policy_bundle_project_common_tags
 }
 
+control "project_no_api_key" {
+  title         = "Project should not have use api keys"
+  description   = "API keys are best reserved for situations where no alternative authentication methods are available. Within a project, there may be lingering, unused keys that still retain their permissions. The inherent insecurity of keys arises from their susceptibility to public exposure, either through web browsers or when residing on a device. It is advisable to prioritize the adoption of conventional authentication mechanisms over the reliance on API keys."
+  query = query.project_no_api_key
+
+  tags = local.policy_bundle_project_common_tags
+}
+
 query "project_access_approval_settings_enabled" {
   sql = <<-EOQ
     select
@@ -57,5 +65,33 @@ query "project_service_cloudasset_api_enabled" {
       gcp_project_service
     where
       name = 'cloudasset.googleapis.com';
+  EOQ
+}
+
+query "project_no_api_key" {
+  sql = <<-EOQ
+    with project_api_key as (
+      select
+        project,
+        count(*) as api_key_count
+      from
+        gcp_apikeys_key
+      group by
+        project
+    )
+    select
+      p.self_link as resource,
+      case
+        when k.api_key_count > 0  then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when k.api_key_count > 0 then p.name || ' has ' ||  k.api_key_count || ' api key(s).'
+        else p.name || ' has no api key(s).'
+      end as reason
+      ${local.common_dimensions_project_sql}
+    from
+      gcp_project as p
+      left join project_api_key as k on k.project = p.project_id;
   EOQ
 }

@@ -16,6 +16,7 @@ benchmark "all_controls_iam" {
     control.iam_service_account_gcp_managed_key,
     control.iam_service_account_key_age_90,
     control.iam_service_account_without_admin_privilege,
+    control.iam_user_kms_separation_of_duty_enforced,
     control.iam_user_not_assigned_service_account_user_role_project_level,
     control.iam_user_separation_of_duty_enforced,
     control.only_my_domain

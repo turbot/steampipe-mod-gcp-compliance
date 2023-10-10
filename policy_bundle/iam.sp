@@ -99,6 +99,14 @@ control "iam_user_separation_of_duty_enforced" {
   tags = local.policy_bundle_iam_common_tags
 }
 
+control "iam_user_kms_separation_of_duty_enforced" {
+  title         = "Ensure that Separation of duties is enforced while assigning KMS related roles to users"
+  description   = "It is recommended that the principle of 'Separation of Duties' is enforced while assigning KMS related roles to users."
+  query = query.iam_user_kms_separation_of_duty_enforced
+
+  tags = local.policy_bundle_iam_common_tags
+}
+
 query "iam_user_denylist_public" {
   sql = <<-EOQ
     with user_with_acces as (
@@ -359,7 +367,7 @@ query "iam_user_not_assigned_service_account_user_role_project_level" {
   EOQ
 }
 
-query "iam_user_separation_of_duty_enforced" {
+query "iam_user_kms_separation_of_duty_enforced" {
   sql = <<-EOQ
     with users_with_roles as (
       select
@@ -374,35 +382,27 @@ query "iam_user_separation_of_duty_enforced" {
       where
         split_part(member_entity, ':', 1) = 'user'
     ),
-    account_admin_users as(
+    kms_admin_users as(
       select
         user_name,
         project
       from
         users_with_roles
-      where assigned_role = 'roles/iam.serviceAccountAdmin'
-    ),
-    account_users as(
-      select
-        user_name,
-        project
-      from
-        users_with_roles
-      where assigned_role = 'roles/iam.serviceAccountUser'
+      where assigned_role = 'roles/cloudkms.admin'
     )
     select
       distinct user_name as resource,
       case
-        when user_name in (select user_name from account_users) and user_name in (select user_name from account_admin_users) then 'alarm'
+        when user_name in (select user_name from kms_admin_users) then 'alarm'
         else 'ok'
       end as status,
       case
-        when user_name in (select user_name from account_users) and user_name in (select user_name from account_admin_users)
-          then  user_name || ' assigned with both Service Account Admin and Service Account User roles.'
-        else user_name || ' not assigned with both Service Account Admin and Service Account User roles.'
+        when user_name in (select user_name from kms_admin_users) then  user_name || ' assigned with KMS Admin role.'
+        else user_name || ' not assigned KMS Admin role.'
       end as reason
       ${local.common_dimensions_global_sql}
     from
       users_with_roles;
   EOQ
 }
+

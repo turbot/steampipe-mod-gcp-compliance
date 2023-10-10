@@ -9,6 +9,7 @@ benchmark "all_controls_project" {
   description = "This section contains recommendations for configuring Project resources."
   children = [
     control.project_access_approval_settings_enabled,
+    control.project_no_api_key,
     control.project_service_cloudasset_api_enabled
   ]
 
