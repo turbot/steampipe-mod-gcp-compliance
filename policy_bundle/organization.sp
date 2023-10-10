@@ -12,7 +12,6 @@ control "organization_essential_contacts_configured" {
   tags = local.policy_bundle_organization_common_tags
 }
 
-
 query "organization_essential_contacts_configured" {
   sql = <<-EOQ
     -- "Essential Contacts API" should be Enabled and requires "Essential Contacts Viewer" at Organization level.
