@@ -1,3 +1,18 @@
+locals {
+  policy_bundle_organization_common_tags = merge(local.gcp_compliance_common_tags, {
+    service = "GCP/Organization"
+  })
+}
+
+control "organization_essential_contacts_configured" {
+  title         = "Ensure essential contacts is configured for Organization"
+  description   = "It is recommended that Essential Contacts is configured to designate email addresses for Google Cloud services to notify of important technical or security information."
+  query = query.organization_essential_contacts_configured
+
+  tags = local.policy_bundle_organization_common_tags
+}
+
+
 query "organization_essential_contacts_configured" {
   sql = <<-EOQ
     -- "Essential Contacts API" should be Enabled and requires "Essential Contacts Viewer" at Organization level.

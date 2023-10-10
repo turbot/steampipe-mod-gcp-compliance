@@ -35,6 +35,70 @@ control "iam_restrict_service_account_key_age_one_hundred_days" {
   })
 }
 
+control "iam_service_account_gcp_managed_key" {
+  title         = "Ensure that there are only GCP-managed service account keys for each service account"
+  description   = "User managed service accounts should not have user-managed keys."
+  query = query.iam_service_account_gcp_managed_key
+
+  tags = local.policy_bundle_iam_common_tags
+}
+
+control "iam_service_account_key_age_90" {
+  title         = "Ensure user-managed/external keys for service accounts are rotated every 90 days or less"
+  description   = "Service Account keys consist of a key ID (Private_key_Id) and Private key, which are used to sign programmatic requests users make to Google cloud services accessible to that particular service account. It is recommended that all Service Account keys are regularly rotated."
+  query = query.iam_service_account_key_age_90
+
+  tags = local.policy_bundle_iam_common_tags
+}
+
+control "iam_api_key_age_90" {
+  title         = "Ensure API keys are rotated every 90 days"
+  description   = "It is recommended to rotate API keys every 90 days."
+  query = query.iam_api_key_age_90
+
+  tags = local.policy_bundle_iam_common_tags
+}
+
+control "iam_api_key_restricts_apis" {
+  title         = "Ensure API keys are restricted to only APIs that application needs access"
+  description   = "API keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to restrict API keys to use (call) only APIs required by an application."
+  query = query.iam_api_key_restricts_apis
+
+  tags = local.policy_bundle_iam_common_tags
+}
+
+control "iam_api_key_restricts_websites_hosts_apps" {
+  title         = "Ensure API keys are restricted to use by only specified Hosts and Apps"
+  description   = "Unrestricted keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to restrict API key usage to trusted hosts, HTTP referrers and apps."
+  query = query.iam_api_key_restricts_websites_hosts_apps
+
+  tags = local.policy_bundle_iam_common_tags
+}
+
+control "iam_service_account_without_admin_privilege" {
+  title         = "Ensure that Service Account has no Admin privileges"
+  description   = "A service account is a special Google account that belongs to an application or a VM, instead of to an individual end-user. The application uses the service account to call the service's Google API so that users aren't directly involved. It's recommended not to use admin access for ServiceAccount."
+  query = query.iam_service_account_without_admin_privilege
+
+  tags = local.policy_bundle_iam_common_tags
+}
+
+control "iam_user_not_assigned_service_account_user_role_project_level" {
+  title         = "Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level"
+  description   = "It is recommended to assign the Service Account User (iam.serviceAccountUser) and Service Account Token Creator (iam.serviceAccountTokenCreator) roles to a user for a specific service account rather than assigning the role to a user at project level."
+  query = query.iam_user_not_assigned_service_account_user_role_project_level
+
+  tags = local.policy_bundle_iam_common_tags
+}
+
+control "iam_user_separation_of_duty_enforced" {
+  title         = "Ensure that Separation of duties is enforced while assigning service account related roles to users"
+  description   = "It is recommended that the principle of 'Separation of Duties' is enforced while assigning service-account related roles to users."
+  query = query.iam_user_separation_of_duty_enforced
+
+  tags = local.policy_bundle_iam_common_tags
+}
+
 query "iam_user_denylist_public" {
   sql = <<-EOQ
     with user_with_acces as (
