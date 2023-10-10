@@ -10,7 +10,7 @@ benchmark "all_controls_storage" {
   children = [
     control.require_bucket_policy_only,
     control.storage_bucket_not_publicly_accessible,
-    control.storage_bucket_uniform_access_enabled,
+    control.storage_bucket_uniform_access_enabled
   ]
 
   tags = merge(local.all_controls_storage_common_tags, {
