@@ -286,7 +286,7 @@ query "logging_sink_configured_for_all_resource" {
   from
     gcp_logging_sink
   where
-    filter = ''
+    filter = 'NOT LOG_ID("cloudaudit.googleapis.com/activity") AND NOT LOG_ID("externalaudit.googleapis.com/activity") AND NOT LOG_ID("cloudaudit.googleapis.com/system_event") AND NOT LOG_ID("externalaudit.googleapis.com/system_event") AND NOT LOG_ID("cloudaudit.googleapis.com/access_transparency") AND NOT LOG_ID("externalaudit.googleapis.com/access_transparency")'
     and destination != ''
   group by project
 )
