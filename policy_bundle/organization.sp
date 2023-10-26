@@ -5,9 +5,9 @@ locals {
 }
 
 control "organization_essential_contacts_configured" {
-  title         = "Ensure essential contacts is configured for Organization"
-  description   = "It is recommended that Essential Contacts is configured to designate email addresses for Google Cloud services to notify of important technical or security information."
-  query = query.organization_essential_contacts_configured
+  title       = "Ensure essential contacts is configured for Organization"
+  description = "It is recommended that Essential Contacts is configured to designate email addresses for Google Cloud services to notify of important technical or security information."
+  query       = query.organization_essential_contacts_configured
 
   tags = local.policy_bundle_organization_common_tags
 }

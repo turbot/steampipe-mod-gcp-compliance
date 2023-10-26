@@ -56,137 +56,137 @@ control "restrict_firewall_rule_world_open_tcp_udp_all_ports" {
 }
 
 control "compute_disk_encrypted_with_csk" {
-  title         = "Ensure VM disks for critical VMs are encrypted with Customer-Supplied Encryption Keys (CSEK)"
-  description   = "Customer-Supplied Encryption Keys (CSEK) are a feature in Google Cloud Storage and Google Compute Engine. If you supply your own encryption keys, Google uses your key to protect the Google-generated keys used to encrypt and decrypt your data. By default, Google Compute Engine encrypts all data at rest. Compute Engine handles and manages this encryption for you without any additional actions on your part. However, if you wanted to control and manage this encryption yourself, you can provide your own encryption keys."
-  query = query.compute_disk_encrypted_with_csk
+  title       = "Ensure VM disks for critical VMs are encrypted with Customer-Supplied Encryption Keys (CSEK)"
+  description = "Customer-Supplied Encryption Keys (CSEK) are a feature in Google Cloud Storage and Google Compute Engine. If you supply your own encryption keys, Google uses your key to protect the Google-generated keys used to encrypt and decrypt your data. By default, Google Compute Engine encrypts all data at rest. Compute Engine handles and manages this encryption for you without any additional actions on your part. However, if you wanted to control and manage this encryption yourself, you can provide your own encryption keys."
+  query       = query.compute_disk_encrypted_with_csk
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_firewall_allow_connections_proxied_by_iap" {
-  title         = "Ensure Firewall Rules for instances behind Identity Aware Proxy (IAP) only allow the traffic from Google Cloud Loadbalancer (GCLB) Health Check and Proxy Addresses"
-  description   = "Access to VMs should be restricted by firewall rules that allow only IAP traffic by ensuring only connections proxied by the IAP are allowed. To ensure that load balancing works correctly health checks should also be allowed."
-  query = query.compute_firewall_allow_connections_proxied_by_iap
+  title       = "Ensure Firewall Rules for instances behind Identity Aware Proxy (IAP) only allow the traffic from Google Cloud Loadbalancer (GCLB) Health Check and Proxy Addresses"
+  description = "Access to VMs should be restricted by firewall rules that allow only IAP traffic by ensuring only connections proxied by the IAP are allowed. To ensure that load balancing works correctly health checks should also be allowed."
+  query       = query.compute_firewall_allow_connections_proxied_by_iap
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_firewall_allow_tcp_connections_proxied_by_iap" {
-  title         = "Use Identity Aware Proxy (IAP) to Ensure Only Traffic From Google IP Addresses are 'Allowed'"
-  description   = "IAP authenticates the user requests to your apps via a Google single sign in. You can then manage these users with permissions to control access. It is recommended to use both IAP permissions and firewalls to restrict this access to your apps with sensitive information."
-  query = query.compute_firewall_allow_tcp_connections_proxied_by_iap
+  title       = "Use Identity Aware Proxy (IAP) to Ensure Only Traffic From Google IP Addresses are 'Allowed'"
+  description = "IAP authenticates the user requests to your apps via a Google single sign in. You can then manage these users with permissions to control access. It is recommended to use both IAP permissions and firewalls to restrict this access to your apps with sensitive information."
+  query       = query.compute_firewall_allow_tcp_connections_proxied_by_iap
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_https_load_balancer_logging_enabled" {
-  title         = "Ensure Logging is enabled for HTTP(S) Load Balancer"
-  description   = "Logging enabled on a HTTPS Load Balancer will show all network traffic and its destination."
-  query = query.compute_https_load_balancer_logging_enabled
+  title       = "Ensure Logging is enabled for HTTP(S) Load Balancer"
+  description = "Logging enabled on a HTTPS Load Balancer will show all network traffic and its destination."
+  query       = query.compute_https_load_balancer_logging_enabled
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_block_project_wide_ssh_enabled" {
-  title         = "Ensure 'Block Project-wide SSH keys' is enabled for VM instances"
-  description   = "It is recommended to use Instance specific SSH key(s) instead of using common/shared project-wide SSH key(s) to access Instances."
-  query = query.compute_instance_block_project_wide_ssh_enabled
+  title       = "Ensure 'Block Project-wide SSH keys' is enabled for VM instances"
+  description = "It is recommended to use Instance specific SSH key(s) instead of using common/shared project-wide SSH key(s) to access Instances."
+  query       = query.compute_instance_block_project_wide_ssh_enabled
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_confidential_computing_enabled" {
-  title         = "Ensure that Compute instances have Confidential Computing enabled"
-  description   = "Google Cloud encrypts data at-rest and in-transit, but customer data must be decrypted for processing. Confidential Computing is a breakthrough technology which encrypts data in-use—while it is being processed. Confidential Computing environments keep data encrypted in memory and elsewhere outside the central processing unit (CPU)."
-  query = query.compute_instance_confidential_computing_enabled
+  title       = "Ensure that Compute instances have Confidential Computing enabled"
+  description = "Google Cloud encrypts data at-rest and in-transit, but customer data must be decrypted for processing. Confidential Computing is a breakthrough technology which encrypts data in-use—while it is being processed. Confidential Computing environments keep data encrypted in memory and elsewhere outside the central processing unit (CPU)."
+  query       = query.compute_instance_confidential_computing_enabled
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_ip_forwarding_disabled" {
-  title         = "Ensure that IP forwarding is not enabled on Instances"
-  description   = "Compute Engine instance cannot forward a packet unless the source IP address of the packet matches the IP address of the instance. Similarly, GCP won't deliver a packet whose destination IP address is different than the IP address of the instance receiving the packet. However, both capabilities are required if you want to use instances to help route packets."
-  query = query.compute_instance_ip_forwarding_disabled
+  title       = "Ensure that IP forwarding is not enabled on Instances"
+  description = "Compute Engine instance cannot forward a packet unless the source IP address of the packet matches the IP address of the instance. Similarly, GCP won't deliver a packet whose destination IP address is different than the IP address of the instance receiving the packet. However, both capabilities are required if you want to use instances to help route packets."
+  query       = query.compute_instance_ip_forwarding_disabled
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_oslogin_enabled" {
-  title         = "Ensure oslogin is enabled for a Project"
-  description   = "Enabling OS login binds SSH certificates to IAM users and facilitates effective SSH certificate management."
-  query = query.compute_instance_oslogin_enabled
+  title       = "Ensure OS login is enabled for a Project"
+  description = "Enabling OS login binds SSH certificates to IAM users and facilitates effective SSH certificate management."
+  query       = query.compute_instance_oslogin_enabled
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_serial_port_connection_disabled" {
-  title         = "Ensure 'Enable connecting to serial ports' is not enabled for VM Instance"
-  description   = "Interacting with a serial port is often referred to as the serial console, which is similar to using a terminal window, in that input and output is entirely in text mode and there is no graphical interface or mouse support."
-  query = query.compute_instance_serial_port_connection_disabled
+  title       = "Ensure 'Enable connecting to serial ports' is not enabled for VM Instance"
+  description = "Interacting with a serial port is often referred to as the serial console, which is similar to using a terminal window, in that input and output is entirely in text mode and there is no graphical interface or mouse support."
+  query       = query.compute_instance_serial_port_connection_disabled
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_shielded_vm_enabled" {
-  title         = "Ensure Compute instances are launched with Shielded VM enabled"
-  description   = "To defend against against advanced threats and ensure that the boot loader and firmware on your VMs are signed and untampered, it is recommended that Compute instances are launched with Shielded VM enabled."
-  query = query.compute_instance_shielded_vm_enabled
+  title       = "Ensure Compute instances are launched with Shielded VM enabled"
+  description = "To defend against advanced threats and ensure that the boot loader and firmware on your VMs are signed and untampered, it is recommended that Compute instances are launched with Shielded VM enabled."
+  query       = query.compute_instance_shielded_vm_enabled
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_with_no_default_service_account_with_full_access" {
-  title         = "Ensure that instances are not configured to use the default service account with full access to all Cloud APIs"
-  description   = "To support principle of least privileges and prevent potential privilege escalation it is recommended that instances are not assigned to default service account Compute Engine default service account with Scope Allow full access to all Cloud APIs."
-  query = query.compute_instance_with_no_default_service_account_with_full_access
+  title       = "Ensure that instances are not configured to use the default service account with full access to all Cloud APIs"
+  description = "To support principle of least privileges and prevent potential privilege escalation it is recommended that instances are not assigned to default service account Compute Engine default service account with Scope Allow full access to all Cloud APIs."
+  query       = query.compute_instance_with_no_default_service_account_with_full_access
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_with_no_default_service_account" {
-  title         = "Ensure that instances are not configured to use the default service account"
-  description   = "It is recommended to configure your instance to not use the default Compute Engine service account because it has the Editor role on the project."
-  query = query.compute_instance_with_no_default_service_account
+  title       = "Ensure that instances are not configured to use the default service account"
+  description = "It is recommended to configure your instance to not use the default Compute Engine service account because it has the Editor role on the project."
+  query       = query.compute_instance_with_no_default_service_account
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_with_no_public_ip_addresses" {
-  title         = "Ensure that Compute instances do not have public IP addresses"
-  description   = "Compute instances should not be configured to have external IP addresses."
-  query = query.compute_instance_with_no_public_ip_addresses
+  title       = "Ensure that Compute instances do not have public IP addresses"
+  description = "Compute instances should not be configured to have external IP addresses."
+  query       = query.compute_instance_with_no_public_ip_addresses
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_network_contains_no_default_network" {
-  title         = "Ensure that the default network does not exist in a project"
-  description   = "To prevent use of default network, a project should not have a default network."
-  query = query.compute_network_contains_no_default_network
+  title       = "Ensure that the default network does not exist in a project"
+  description = "To prevent the use of default network, a project should not have a default network."
+  query       = query.compute_network_contains_no_default_network
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_network_contains_no_legacy_network" {
-  title         = "Ensure legacy networks do not exist for a project"
-  description   = "In order to prevent use of legacy networks, a project should not have a legacy network configured."
-  query = query.compute_network_contains_no_legacy_network
+  title       = "Ensure legacy networks do not exist for a project"
+  description = "In order to prevent use of legacy networks, a project should not have a legacy network configured."
+  query       = query.compute_network_contains_no_legacy_network
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_network_dns_logging_enabled" {
-  title         = "Ensure that Cloud DNS logging is enabled for all VPC networks"
-  description   = "Cloud DNS logging records the queries from the name servers within your VPC to Stackdriver. Logged queries can come from Compute Engine VMs, GKE containers, or other GCP resources provisioned within the VPC."
-  query = query.compute_network_dns_logging_enabled
+  title       = "Ensure that Cloud DNS logging is enabled for all VPC networks"
+  description = "Cloud DNS logging records the queries from the name servers within your VPC to Stackdriver. Logged queries can come from Compute Engine VMs, GKE containers, or other GCP resources provisioned within the VPC."
+  query       = query.compute_network_dns_logging_enabled
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_ssl_policy_with_no_weak_cipher" {
-  title         = "Ensure no HTTPS or SSL proxy load balancers permit SSL policies with weak cipher suites"
-  description   = "Secure Sockets Layer (SSL) policies determine what port Transport Layer Security (TLS) features clients are permitted to use when connecting to load balancers."
-  query = query.compute_ssl_policy_with_no_weak_cipher
+  title       = "Ensure no HTTPS or SSL proxy load balancers permit SSL policies with weak cipher suites"
+  description = "Secure Sockets Layer (SSL) policies determine what port Transport Layer Security (TLS) features clients are permitted to use when connecting to load balancers."
+  query       = query.compute_ssl_policy_with_no_weak_cipher
 
   tags = local.policy_bundle_compute_common_tags
 }

@@ -5,9 +5,9 @@ locals {
 }
 
 control "audit_logging_configured_for_all_service" {
-  title         = "Ensure that Cloud Audit Logging is configured properly across all services and all users from a project"
-  description   = "It is recommended that Cloud Audit Logging is configured to track all admin activities and read, write access to user data."
-  query = query.audit_logging_configured_for_all_service
+  title       = "Ensure that Cloud Audit Logging is configured properly across all services and all users from a project"
+  description = "It is recommended that Cloud Audit Logging is configured to track all admin activities and read, write access to user data."
+  query       = query.audit_logging_configured_for_all_service
 
   tags = local.policy_bundle_resourcemanager_common_tags
 }

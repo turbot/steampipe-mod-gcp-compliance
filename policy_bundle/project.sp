@@ -5,25 +5,25 @@ locals {
 }
 
 control "project_access_approval_settings_enabled" {
-  title         = "Ensure 'Access Approval' is 'Enabled'"
-  description   = "GCP Access Approval enables you to require your organizations' explicit approval whenever Google support try to access your projects. You can then select users within your organization who can approve these requests through giving them a security role in IAM. All access requests display which Google Employee requested them in an email or Pub/Sub message that you can choose to Approve. This adds an additional control and logging of who in your organization approved/denied these requests."
-  query = query.project_access_approval_settings_enabled
+  title       = "Ensure 'Access Approval' is 'Enabled'"
+  description = "GCP Access Approval enables you to require your organizations' explicit approval whenever Google support try to access your projects. You can then select users within your organization who can approve these requests through giving them a security role in IAM. All access requests display which Google Employee requested them in an email or Pub/Sub message that you can choose to Approve. This adds an additional control and logging of who in your organization approved/denied these requests."
+  query       = query.project_access_approval_settings_enabled
 
   tags = local.policy_bundle_project_common_tags
 }
 
 control "project_service_cloudasset_api_enabled" {
-  title         = "Ensure Cloud Asset Inventory Is Enabled"
-  description   = "GCP Cloud Asset Inventory is services that provides a historical view of GCP resources and IAM policies through a time-series database. The information recorded includes metadata on Google Cloud resources, metadata on policies set on Google Cloud projects or resources, and runtime information gathered within a Google Cloud resource."
-  query = query.project_service_cloudasset_api_enabled
+  title       = "Ensure Cloud Asset Inventory is Enabled"
+  description = "GCP Cloud Asset Inventory is services that provides a historical view of GCP resources and IAM policies through a time-series database. The information recorded includes metadata on Google Cloud resources, metadata on policies set on Google Cloud projects or resources, and runtime information gathered within a Google Cloud resource."
+  query       = query.project_service_cloudasset_api_enabled
 
   tags = local.policy_bundle_project_common_tags
 }
 
 control "project_no_api_key" {
-  title         = "Project should not have use api keys"
-  description   = "API keys are best reserved for situations where no alternative authentication methods are available. Within a project, there may be lingering, unused keys that still retain their permissions. The inherent insecurity of keys arises from their susceptibility to public exposure, either through web browsers or when residing on a device. It is advisable to prioritize the adoption of conventional authentication mechanisms over the reliance on API keys."
-  query = query.project_no_api_key
+  title       = "Project should not have use api keys"
+  description = "API keys are best reserved for situations where no alternative authentication methods are available. Within a project, there may be lingering, unused keys that still retain their permissions. The inherent insecurity of keys arises from their susceptibility to public exposure, either through web browsers or when residing on a device. It is advisable to prioritize the adoption of conventional authentication mechanisms over the reliance on API keys."
+  query       = query.project_no_api_key
 
   tags = local.policy_bundle_project_common_tags
 }

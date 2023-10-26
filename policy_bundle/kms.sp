@@ -15,25 +15,25 @@ control "cmek_rotation_one_hundred_days" {
 }
 
 control "kms_key_not_publicly_accessible" {
-  title         = "Ensure that Cloud KMS cryptokeys are not anonymously or publicly accessible"
-  description   = "It is recommended that the IAM policy on Cloud KMS cryptokeys should restrict anonymous and/or public access."
-  query = query.kms_key_not_publicly_accessible
+  title       = "Ensure that Cloud KMS cryptokeys are not anonymously or publicly accessible"
+  description = "It is recommended that the IAM policy on Cloud KMS cryptokeys should restrict anonymous and/or public access."
+  query       = query.kms_key_not_publicly_accessible
 
   tags = local.policy_bundle_kms_common_tags
 }
 
 control "kms_key_rotated_within_90_day" {
-  title         = "Ensure KMS encryption keys are rotated within a period of 90 days"
-  description   = "Google Cloud Key Management Service stores cryptographic keys in a hierarchical structure designed for useful and elegant access control management. The format for the rotation schedule depends on the client library that is used. For the gcloud command-line tool, the next rotation time must be in ISO or RFC3339 format, and the rotation period must be in the form INTEGER[UNIT], where units can be one of seconds (s), minutes (m), hours (h) or days (d)."
-  query = query.kms_key_rotated_within_90_day
+  title       = "Ensure KMS encryption keys are rotated within a period of 90 days"
+  description = "Google Cloud Key Management Service stores cryptographic keys in a hierarchical structure designed for useful and elegant access control management. The format for the rotation schedule depends on the client library that is used. For the gcloud command-line tool, the next rotation time must be in ISO or RFC3339 format, and the rotation period must be in the form INTEGER[UNIT], where units can be one of seconds (s), minutes (m), hours (h) or days (d)."
+  query       = query.kms_key_rotated_within_90_day
 
   tags = local.policy_bundle_kms_common_tags
 }
 
 control "kms_key_separation_of_duties_enforced" {
-  title         = "Ensure that Separation of duties is enforced while assigning KMS related roles to users"
-  description   = "It is recommended that the principle of 'Separation of Duties' is enforced while assigning KMS related roles to users."
-  query = query.kms_key_separation_of_duties_enforced
+  title       = "Ensure that Separation of duties is enforced while assigning KMS related roles to users"
+  description = "It is recommended that the principle of 'Separation of Duties' is enforced while assigning KMS related roles to users."
+  query       = query.kms_key_separation_of_duties_enforced
 
   tags = local.policy_bundle_kms_common_tags
 }

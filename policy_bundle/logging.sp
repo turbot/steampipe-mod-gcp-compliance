@@ -5,81 +5,81 @@ locals {
 }
 
 control "logging_bucket_retention_policy_enabled" {
-  title         = "Ensure that retention policies on log buckets are configured using Bucket Lock"
-  description   = "Enabling retention policies on log buckets will protect logs stored in cloud storage buckets from being overwritten or accidentally deleted. It is recommended to set up retention policies and configure Bucket Lock on all storage buckets that are used as log sinks."
-  query = query.logging_bucket_retention_policy_enabled
+  title       = "Ensure that retention policies on log buckets are configured using Bucket Lock"
+  description = "Enabling retention policies on log buckets will protect logs stored in cloud storage buckets from being overwritten or accidentally deleted. It is recommended to set up retention policies and configure Bucket Lock on all storage buckets that are used as log sinks."
+  query       = query.logging_bucket_retention_policy_enabled
 
   tags = local.policy_bundle_logging_common_tags
 }
 
 control "logging_metric_alert_audit_configuration_changes" {
-  title         = "Ensure that the log metric filter and alerts exist for Audit Configuration changes"
-  description   = "Cloud audit logging records information includes the identity of the API caller, the time of the API call, the source IP address of the API caller, the request parameters, and the response elements returned by GCP services. Cloud audit logging provides a history of GCP API calls for an account, including API calls made via the console, SDKs, command-line tools, and other GCP services."
-  query = query.logging_metric_alert_audit_configuration_changes
+  title       = "Ensure that the log metric filter and alerts exist for Audit Configuration changes"
+  description = "Cloud audit logging records information includes the identity of the API caller, the time of the API call, the source IP address of the API caller, the request parameters, and the response elements returned by GCP services. Cloud audit logging provides a history of GCP API calls for an account, including API calls made via the console, SDKs, command-line tools, and other GCP services."
+  query       = query.logging_metric_alert_audit_configuration_changes
 
   tags = local.policy_bundle_logging_common_tags
 }
 
 control "logging_metric_alert_custom_role_changes" {
-  title         = "Ensure that the log metric filter and alerts exist for Custom Role changes"
-  description   = "It is recommended that a metric filter and alarm be established for changes to Identity and Access Management (IAM) role creation, deletion and updating activities."
-  query = query.logging_metric_alert_custom_role_changes
+  title       = "Ensure that the log metric filter and alerts exist for Custom Role changes"
+  description = "It is recommended that a metric filter and alarm be established for changes to Identity and Access Management (IAM) role creation, deletion and updating activities."
+  query       = query.logging_metric_alert_custom_role_changes
 
   tags = local.policy_bundle_logging_common_tags
 }
 
 control "logging_metric_alert_firewall_rule_changes" {
-  title         = "Ensure that the log metric filter and alerts exist for VPC Network Firewall rule changes"
-  description   = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) Network Firewall rule changes."
-  query = query.logging_metric_alert_firewall_rule_changes
+  title       = "Ensure that the log metric filter and alerts exist for VPC Network Firewall rule changes"
+  description = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) Network Firewall rule changes."
+  query       = query.logging_metric_alert_firewall_rule_changes
 
   tags = local.policy_bundle_logging_common_tags
 }
 
 control "logging_metric_alert_network_changes" {
-  title         = "Ensure that the log metric filter and alerts exist for VPC network changes"
-  description   = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) network changes."
-  query = query.logging_metric_alert_network_changes
+  title       = "Ensure that the log metric filter and alerts exist for VPC network changes"
+  description = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) network changes."
+  query       = query.logging_metric_alert_network_changes
 
   tags = local.policy_bundle_logging_common_tags
 }
 
 control "logging_metric_alert_network_route_changes" {
-  title         = "Ensure that the log metric filter and alerts exist for VPC network route changes"
-  description   = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) network route changes."
-  query = query.logging_metric_alert_network_route_changes
+  title       = "Ensure that the log metric filter and alerts exist for VPC network route changes"
+  description = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) network route changes."
+  query       = query.logging_metric_alert_network_route_changes
 
   tags = local.policy_bundle_logging_common_tags
 }
 
 control "logging_metric_alert_project_ownership_assignment" {
-  title         = "Ensure log metric filter and alerts exist for project ownership assignments/changes"
-  description   = "In order to prevent unnecessary project ownership assignments to users/service-accounts and further misuses of projects and resources, all roles/Owner assignments should be monitored. Members (users/Service-Accounts) with a role assignment to primitive role roles/Owner are project owners."
-  query = query.logging_metric_alert_project_ownership_assignment
+  title       = "Ensure log metric filter and alerts exist for project ownership assignments/changes"
+  description = "In order to prevent unnecessary project ownership assignments to users/service-accounts and further misuses of projects and resources, all roles/Owner assignments should be monitored. Members (users/Service-Accounts) with a role assignment to primitive role roles/Owner are project owners."
+  query       = query.logging_metric_alert_project_ownership_assignment
 
   tags = local.policy_bundle_logging_common_tags
 }
 
 control "logging_metric_alert_sql_instance_configuration_changes" {
-  title         = "Ensure that the log metric filter and alerts exist for SQL instance configuration changes"
-  description   = "It is recommended that a metric filter and alarm be established for SQL instance configuration changes."
-  query = query.logging_metric_alert_sql_instance_configuration_changes
+  title       = "Ensure that the log metric filter and alerts exist for SQL instance configuration changes"
+  description = "It is recommended that a metric filter and alarm be established for SQL instance configuration changes."
+  query       = query.logging_metric_alert_sql_instance_configuration_changes
 
   tags = local.policy_bundle_logging_common_tags
 }
 
 control "logging_metric_alert_storage_iam_permission_changes" {
-  title         = "Ensure that the log metric filter and alerts exist for Cloud Storage IAM permission changes"
-  description   = "It is recommended that a metric filter and alarm be established for Cloud Storage Bucket IAM changes."
-  query = query.logging_metric_alert_storage_iam_permission_changes
+  title       = "Ensure that the log metric filter and alerts exist for Cloud Storage IAM permission changes"
+  description = "It is recommended that a metric filter and alarm be established for Cloud Storage Bucket IAM changes."
+  query       = query.logging_metric_alert_storage_iam_permission_changes
 
   tags = local.policy_bundle_logging_common_tags
 }
 
 control "logging_sink_configured_for_all_resource" {
-  title         = "Ensure that sinks are configured for all log entries"
-  description   = "It is recommended to create a sink that will export copies of all the log entries. This can help aggregate logs from multiple projects and export them to a Security Information and Event Management (SIEM)."
-  query = query.logging_sink_configured_for_all_resource
+  title       = "Ensure that sinks are configured for all log entries"
+  description = "It is recommended to create a sink that will export copies of all the log entries. This can help aggregate logs from multiple projects and export them to a Security Information and Event Management (SIEM)."
+  query       = query.logging_sink_configured_for_all_resource
 
   tags = local.policy_bundle_logging_common_tags
 }
