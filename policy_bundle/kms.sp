@@ -95,7 +95,7 @@ query "kms_key_rotated_within_90_day" {
 
 query "kms_key_separation_of_duties_enforced" {
   sql = <<-EOQ
-    with users_with_roles AS (
+    with users_with_roles as (
       select
         distinct split_part(member_entity, ':', 2) as user_name,
         project,
