@@ -78,7 +78,7 @@ mod "gcp_compliance" {
 
   require {
     plugin "gcp" {
-      version = "0.26.0"
+      min_version = "0.26.0"
     }
   }
 }
