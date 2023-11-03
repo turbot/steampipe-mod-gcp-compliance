@@ -100,42 +100,49 @@ query "kms_key_separation_of_duties_enforced" {
         distinct split_part(member_entity, ':', 2) as user_name,
         project,
         _ctx,
-        p ->> 'role' as assigned_role
+        array_agg(distinct p ->> 'role') as assigned_roles
       from
         gcp_iam_policy,
         jsonb_array_elements(bindings) as p,
         jsonb_array_elements_text(p -> 'members') as member_entity
       where
         split_part(member_entity, ':', 1) = 'user'
+      group by
+        user_name,
+        project,
+        _ctx
     ),
-    kms_roles_users as(
+    kms_roles_users as (
       select
         user_name,
         project,
-        assigned_role
+        assigned_roles
       from
         users_with_roles
       where
-        assigned_role in ('roles/cloudkms.admin', 'roles/cloudkms.cryptoKeyEncrypterDecrypter', 'roles/cloudkms.cryptoKeyEncrypter', 'roles/cloudkms.cryptoKeyDecrypter')
+        'roles/cloudkms.admin' = any(assigned_roles)
+        and assigned_roles && array['roles/cloudkms.cryptoKeyEncrypterDecrypter', 'roles/cloudkms.cryptoKeyEncrypter', 'roles/cloudkms.cryptoKeyDecrypter']
     )
     select
       distinct r.user_name as resource,
       case
-        when r.user_name in (select user_name from kms_roles_users) then 'alarm'
+        when 'roles/cloudkms.admin' = any(r.assigned_roles) and k.user_name is null then 'ok'
+        when k.user_name is not null then 'alarm'
         else 'ok'
       end as status,
       case
-        when r.user_name in (select user_name from kms_roles_users) then r.user_name || ' assigned ' ||
-        concat_ws(', ',
-          case when 'roles/cloudkms.admin' in (select assigned_role from kms_roles_users where user_name = r.user_name) then 'roles/cloudkms.admin' end,
-          case when 'roles/cloudkms.cryptoKeyEncrypterDecrypter' in (select assigned_role from kms_roles_users where user_name = r.user_name) then 'roles/cloudkms.cryptoKeyEncrypterDecrypter' end,
-          case when 'roles/cloudkms.cryptoKeyEncrypter' in (select assigned_role from kms_roles_users where user_name = r.user_name) then 'roles/cloudkms.cryptoKeyEncrypter' end,
-          case when 'roles/cloudkms.cryptoKeyDecrypter' in (select assigned_role from kms_roles_users where user_name = r.user_name) then 'roles/cloudkms.cryptoKeyDecrypter' end
-          ) || ' KMS role(s).'
-        else user_name || ' not assigned KMS admin and additional encrypter/decrypter roles.'
+        when 'roles/cloudkms.admin' = any(r.assigned_roles) and k.user_name is null then r.user_name || ' assigned only with KMS admin role.'
+        when k.user_name is not null then r.user_name || ' assigned with roles/cloudkms.admin, ' ||
+          concat_ws(', ',
+            case when 'roles/cloudkms.cryptoKeyEncrypterDecrypter' = any(r.assigned_roles) then 'roles/cloudkms.cryptoKeyEncrypterDecrypter' end,
+            case when 'roles/cloudkms.cryptoKeyEncrypter' = any(r.assigned_roles) then 'roles/cloudkms.cryptoKeyEncrypter' end,
+            case when 'roles/cloudkms.cryptoKeyDecrypter' = any(r.assigned_roles) then 'roles/cloudkms.cryptoKeyDecrypter' end
+            ) || ' KMS role(s).'
+        else r.user_name || ' not assigned with KMS admin and additional encrypter/decrypter roles.'
       end as reason
-      ${local.common_dimensions_global_sql}
+      ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "r.")}
     from
-      users_with_roles as r;
+      users_with_roles as r
+      left join kms_roles_users as k on k.user_name = r.user_name and k.project = r.project
   EOQ
 }

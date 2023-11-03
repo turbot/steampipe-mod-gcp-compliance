@@ -1,3 +1,13 @@
+## v0.22 [2023-11-03]
+
+_Breaking changes_
+
+- Updated the plugin dependency section of the mod to use `min_version` instead of `version`. ([#130](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/130))
+
+_Bug fixes_
+
+- Fixed the `kms_key_separation_of_duties_enforced` query to ensure that separation of duties is enforced while assigning KMS-related roles to users. ([#132](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/132))
+
 ## v0.21 [2023-08-02]
 
 _Bug fixes_
