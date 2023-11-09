@@ -24,6 +24,14 @@ control "dnssec_prevent_rsasha1_zsk" {
   })
 }
 
+control "dns_managed_zone_dnssec_enabled" {
+  title       = "Ensure that DNSSEC is enabled for Cloud DNS"
+  description = "Cloud Domain Name System (DNS) is a fast, reliable, and cost-effective domain name system that powers millions of domains on the internet. Domain Name System Security Extensions (DNSSEC) in Cloud DNS enables domain owners to take easy steps to protect their domains against DNS hijacking and man-in-the-middle and other attacks."
+  query       = query.dns_managed_zone_dnssec_enabled
+
+  tags = local.policy_bundle_dns_common_tags
+}
+
 query "dns_managed_zone_key_signing_not_using_rsasha1" {
   sql = <<-EOQ
     select
