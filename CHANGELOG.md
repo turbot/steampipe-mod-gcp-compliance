@@ -1,3 +1,9 @@
+## v0.23 [2023-11-09]
+
+_What's new?_
+
+- Added the new `All Controls` benchmark (steampipe check benchmark.all_controls). This new benchmark includes 109 service-specific controls. ([#127](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/127))
+
 ## v0.22 [2023-11-03]
 
 _Breaking changes_
