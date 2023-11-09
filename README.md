@@ -13,7 +13,7 @@ Or in a terminal:
 Includes support for:
 1. [All Controls](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.all_controls)
 2. [Identity and Access Management](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_1)
-2. [Logging and Monitoring](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_2)
+3. [Logging and Monitoring](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_2)
 4. [Networking](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_3)
 5. [Virtual Machines](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_4)
 6. [Storage](https://hub.steampipe.io/mods/turbot/gcp_compliance/controls/benchmark.cis_v130_5)
@@ -51,12 +51,9 @@ Start your dashboard server to get started:
 steampipe dashboard
 ```
 
-By default, the dashboard interface will then be launched in a new browser
-window at http://localhost:9194. From here, you can run benchmarks by
-selecting one or searching for a specific one.
+By default, the dashboard interface will then be launched in a new browser window at http://localhost:9194. From here, you can run benchmarks by selecting one or searching for a specific one.
 
-Instead of running benchmarks in a dashboard, you can also run them within your
-terminal with the `steampipe check` command:
+Instead of running benchmarks in a dashboard, you can also run them within your terminal with the `steampipe check` command:
 
 Run all controls:
 
@@ -76,8 +73,7 @@ Run a specific control:
 steampipe check control.cis_v130_2_1
 ```
 
-Different output formats are also available, for more information please see
-[Output Formats](https://steampipe.io/docs/reference/cli/check#output-formats).
+Different output formats are also available, for more information please see [Output Formats](https://steampipe.io/docs/reference/cli/check#output-formats).
 
 ### Credentials
 
