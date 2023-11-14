@@ -381,20 +381,57 @@ query "compute_firewall_allow_tcp_connections_proxied_by_iap" {
       self_link resource,
       case
         when
-          ( allowed @> '[{"IPProtocol":"tcp","ports":["80","443"]}]'
-            or allowed @> '[{"IPProtocol":"tcp","ports":["80"]}]'
+          ( allowed @> '[{"IPProtocol":"tcp","ports":["80","443","22","3389"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80","443","22"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80","443","3389"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80","22","3389"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["3389","443","22"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80","443"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80","22"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80","3389"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["22","443"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["3389","443"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["22","3389"]}]'
             or allowed @> '[{"IPProtocol":"tcp","ports":["443"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["22"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["3389"]}]'
           )
-          and source_ranges ?& array['130.211.0.0/22', '35.235.240.0/20', '35.191.0.0/16'] then 'ok'
+          and (source_ranges ?& array['130.211.0.0/22']
+            or source_ranges ?& array['35.235.240.0/20']
+            or source_ranges ?& array['35.191.0.0/16']
+            or source_ranges ?& array['35.191.0.0/16', '130.211.0.0/22']
+            or source_ranges ?& array['35.191.0.0/16', '35.235.240.0/20']
+            or source_ranges ?& array['130.211.0.0/22', '35.235.240.0/20']
+            or source_ranges ?& array['130.211.0.0/22', '35.235.240.0/20', '35.191.0.0/16'])
+          then 'ok'
         else 'alarm'
       end as status,
       case
         when
-          ( allowed @> '[{"IPProtocol":"tcp","ports":["80","443"]}]'
-            or allowed @> '[{"IPProtocol":"tcp","ports":["80"]}]'
+          ( allowed @> '[{"IPProtocol":"tcp","ports":["80","443","22","3389"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80","443","22"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80","443","3389"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80","22","3389"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["3389","443","22"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80","443"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80","22"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80","3389"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["22","443"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["3389","443"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["22","3389"]}]'
             or allowed @> '[{"IPProtocol":"tcp","ports":["443"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["22"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["80"]}]'
+            or allowed @> '[{"IPProtocol":"tcp","ports":["3389"]}]'
           )
-          and source_ranges ?& array['130.211.0.0/22', '35.235.240.0/20', '35.191.0.0/16']
+          and (source_ranges ?& array['130.211.0.0/22']
+            or source_ranges ?& array['35.235.240.0/20']
+            or source_ranges ?& array['35.191.0.0/16']
+            or source_ranges ?& array['35.191.0.0/16', '130.211.0.0/22']
+            or source_ranges ?& array['35.191.0.0/16', '35.235.240.0/20']
+            or source_ranges ?& array['130.211.0.0/22', '35.235.240.0/20']
+            or source_ranges ?& array['130.211.0.0/22', '35.235.240.0/20', '35.191.0.0/16'])
           then title || ' IAP configured to allow traffic from Google IP addresses.'
         else title || ' IAP not configured to allow traffic from Google IP addresses.'
       end as reason
