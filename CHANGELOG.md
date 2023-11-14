@@ -1,3 +1,9 @@
+## v0.24 [2023-11-14]
+
+_Bug fixes_
+
+- Fixed the `compute_firewall_allow_tcp_connections_proxied_by_iap` query to correctly include all the ports and source IP ranges. ([#128](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/128)) (Thanks [@saisirishreddy](https://github.com/saisirishreddy) for the contribution!)
+
 ## v0.23 [2023-11-09]
 
 _What's new?_
