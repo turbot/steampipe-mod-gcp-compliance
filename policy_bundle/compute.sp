@@ -191,6 +191,102 @@ control "compute_ssl_policy_with_no_weak_cipher" {
   tags = local.policy_bundle_compute_common_tags
 }
 
+control "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to DNS port 53"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to DNS port 53."
+  query = query.compute_firewall_rule_access_restricted_to_dns_port_53
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_access_restricted_to_ftp_port_21" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to FTP port 21"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to FTP port 21."
+  query = query.compute_firewall_rule_access_restricted_to_ftp_port_21
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_access_restricted_to_http_port_80" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to HTTP port 80"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to HTTP port 80."
+  query = query.compute_firewall_rule_access_restricted_to_http_port_80
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_access_restricted_to_smtp_port_25" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to SMTP port 25"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to SMTP port 25."
+  query = query.compute_firewall_rule_access_restricted_to_smtp_port_25
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_access_restricted_to_microsoft_ds_port_445" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to Microsoft DS port 445"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Microsoft DS port 445."
+  query = query.compute_firewall_rule_access_restricted_to_microsoft_ds_port_445
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_access_restricted_to_mongo_db_port_27017" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to MongoDB port 27017"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MongoDB port 27017."
+  query = query.compute_firewall_rule_access_restricted_to_mongo_db_port_27017
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_access_restricted_to_mysql_db_port_3306" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to MySQL DB port 3306"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MySQL DB port 3306."
+  query = query.compute_firewall_rule_access_restricted_to_mysql_db_port_3306
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_access_restricted_to_netbios_snn_port_139" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to NetBIOS SSN port 139"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to NetBIOS SSN port 139."
+  query = query.compute_firewall_rule_access_restricted_to_netbios_snn_port_139
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_access_restricted_to_oracle_db_port_1521" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to Oracle DB port 1521"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Oracle DB port 1521."
+  query = query.compute_firewall_rule_access_restricted_to_oracle_db_port_1521
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_access_restricted_to_pop3_port_110" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to POP3 port 110"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to POP3 port 110."
+  query = query.compute_firewall_rule_access_restricted_to_pop3_port_110
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_access_restricted_to_postgresql_port_5432" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to PostgreSQL port 5432"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to PostgreSQL port 5432."
+  query = query.compute_firewall_rule_access_restricted_to_postgresql_port_5432
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_access_restricted_to_telnet_port_23" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to Telnet port 23"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Telnet port 23."
+  query = query.compute_firewall_rule_access_restricted_to_telnet_port_23
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
 query "compute_firewall_rule_ssh_access_restricted" {
   sql = <<-EOQ
     with ip_protocol_all as (
@@ -808,5 +904,821 @@ query "compute_ssl_policy_with_no_weak_cipher" {
       end as reason
       ${local.common_dimensions_global_sql}
     from all_proxies;
+  EOQ
+}
+
+query "compute_firewall_rule_access_restricted_to_dns_port_53" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '53'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 53
+            and split_part(port, '-', 2) :: integer >= 53
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to DNS port 53.'
+        else title || ' restricts access from internet to DNS port 53.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_access_restricted_to_ftp_port_21" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '21'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 21
+            and split_part(port, '-', 2) :: integer >= 21
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to port 21.'
+        else title || ' restricts access from internet to port 21.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_access_restricted_to_http_port_80" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '80'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 80
+            and split_part(port, '-', 2) :: integer >= 80
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to HTTP port 80.'
+        else title || ' restricts access from internet to HTTP port 80.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_access_restricted_to_smtp_port_25" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '25'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 25
+            and split_part(port, '-', 2) :: integer >= 25
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to SMTP port 25.'
+        else title || ' restricts access from internet to SMTP port 25.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_access_restricted_to_microsoft_ds_port_445" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '445'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 445
+            and split_part(port, '-', 2) :: integer >= 445
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to Microsoft DS port 445.'
+        else title || ' restricts access from internet to Microsof DS port 445.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_access_restricted_to_mongo_db_port_27017" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '27017'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 27017
+            and split_part(port, '-', 2) :: integer >= 27017
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to MongoDB port 445.'
+        else title || ' restricts access from internet to MongoDB port 445.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_access_restricted_to_mysql_db_port_3306" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '3306'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 3306
+            and split_part(port, '-', 2) :: integer >= 3306
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to MySQL port 3306.'
+        else title || ' restricts access from internet to MySQL port 3306.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_access_restricted_to_netbios_snn_port_139" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '139'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 139
+            and split_part(port, '-', 2) :: integer >= 139
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to NetBIOS SSN port 139.'
+        else title || ' restricts access from internet to NetBIOS SSN port 139.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_access_restricted_to_oracle_db_port_1521" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '1521'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 1521
+            and split_part(port, '-', 2) :: integer >= 1521
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to Oracle DB port 1521.'
+        else title || ' restricts access from internet to Oracle DB port 1521.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_access_restricted_to_pop3_port_110" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '110'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 110
+            and split_part(port, '-', 2) :: integer >= 110
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to POP3 port 110.'
+        else title || ' restricts access from internet to POP3 port 110.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_access_restricted_to_postgresql_port_5432" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '5432'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 5432
+            and split_part(port, '-', 2) :: integer >= 5432
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to PostgreSQL port 5432.'
+        else title || ' restricts access from internet to PostgreSQL port 5432.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_access_restricted_to_telnet_port_23" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '23'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 23
+            and split_part(port, '-', 2) :: integer >= 23
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to Telnet port 23.'
+        else title || ' restricts access from internet to Telnet port 23.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
   EOQ
 }

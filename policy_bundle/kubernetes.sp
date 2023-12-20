@@ -114,6 +114,70 @@ control "gke_restrict_pod_traffic" {
   })
 }
 
+control "kubernetes_cluster_kubernetes_alpha_enabled" {
+  title = "GKE clusters kubernetes alpha should be enabled"
+  description = "This control ensures that GKE clusters kubernetes alpha is enabled."
+  query = query.kubernetes_cluster_kubernetes_alpha_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_logging_enabled" {
+  title = "GKE clusters logging should be enabled"
+  description = "This control ensures that GKE clusters logging is enabled."
+  query = query.kubernetes_cluster_kubernetes_alpha_enabled
+
+  tags = local.kubernetes_cluster_logging_enabled
+}
+
+control "kubernetes_cluster_monitoring_enabled" {
+  title = "GKE clusters monitoring should be enabled"
+  description = "This control ensures that GKE clusters monitoring is enabled."
+  query = query.kubernetes_cluster_kubernetes_alpha_enabled
+
+  tags = local.kubernetes_cluster_monitoring_enabled
+}
+
+control "kubernetes_cluster_no_default_network" {
+  title = "GKE clusters should not use default network"
+  description = "This control ensures that GKE clusters does not use default network."
+  query = query.kubernetes_cluster_kubernetes_alpha_enabled
+
+  tags = local.kubernetes_cluster_no_default_network
+}
+
+control "kubernetes_cluster_with_resource_labels" {
+  title = "GKE clusters should have resource labels"
+  description = "This control ensures that GKE clusters have resource labels."
+  query = query.kubernetes_cluster_kubernetes_alpha_enabled
+
+  tags = local.kubernetes_cluster_with_resource_labels
+}
+
+control "kubernetes_cluster_database_encryption_enabled" {
+  title = "GKE clusters should have database encryption enabled"
+  description = "This control ensures that GKE clusters have database encryption enabled."
+  query = query.kubernetes_cluster_kubernetes_alpha_enabled
+
+  tags = local.kubernetes_cluster_database_encryption_enabled
+}
+
+control "kubernetes_cluster_shielded_nodes_enabled" {
+  title = "GKE clusters should have shielded nodes enabled"
+  description = "This control ensures that GKE clusters have shielded nodes enabled."
+  query = query.kubernetes_cluster_kubernetes_alpha_enabled
+
+  tags = local.kubernetes_cluster_shielded_nodes_enabled
+}
+
+control "kubernetes_cluster_shielded_instance_integrity_monitoring_enabled" {
+  title = "GKE clusters shielded nodes integrity monitoring should be enabled"
+  description = "This control ensures that GKE clusters shielded nodes integrity monitoring is enabled."
+  query = query.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled
+
+  tags = local.kubernetes_cluster_shielded_nodes_enabled
+}
+
 query "kubernetes_cluster_private_cluster_config_enabled" {
   sql = <<-EOQ
     select
@@ -324,3 +388,174 @@ query "kubernetes_cluster_network_policy_installed" {
       gcp_kubernetes_cluster;
   EOQ
 }
+
+query "kubernetes_cluster_kubernetes_alpha_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when enable_kubernetes_alpha then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when enable_kubernetes_alpha then title || ' kubernetes alpha enabled.'
+        else title || ' kubernetes alpha disabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_logging_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when logging_service is null or logging_service = 'none' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+       when logging_service is null or logging_service = 'none' then title || ' logging disabled.'
+        else title || ' logging enabled.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_monitoring_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when monitoring_service is null or monitoring_service = 'none' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+       when monitoring_service is null or monitoring_service = 'none' then title || ' monitoring disabled.'
+        else title || ' monitoring enabled.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_no_default_network" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when network = 'default' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+       when network = 'default' then title || ' using default network.'
+        else title || ' not using default network.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_with_resource_labels" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when resource_labels is null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+       when resource_labels is null then title || ' not having resource labels.'
+        else title || ' have resource labels.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_database_encryption_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when database_encryption_state <> 'ENCRYPTED' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+       when database_encryption_state <> 'ENCRYPTED' then title || ' database encryption disabled.'
+        else title || ' database encryption enabled.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_shielded_nodes_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when shielded_nodes_enabled then 'ok'
+        else 'alarm'
+      end as status,
+      case
+       when shielded_nodes_enabled then title || ' shielded nodes enabled.'
+        else title || ' shielded nodes disabled.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_shielded_instance_integrity_monitoring_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when (node_config -> 'shieldedInstanceConfig' ->> 'enableIntegrityMonitoring')::bool then 'ok'
+        else 'alarm'
+      end as status,
+      case
+       when (node_config -> 'shieldedInstanceConfig' ->> 'enableIntegrityMonitoring')::bool then title || ' shielded instance integrity monitoring enabled.'
+        else title || ' shielded instance integrity monitoring disabled.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+# query "kubernetes_cluster_http_load_balancing_enabled" {
+#   sql = <<-EOQ
+#     select
+#     self_link resource,
+#     case
+#       when addons_config -> 'httpLoadBalancing' ->> 'disabled' = 'true' then 'ok'
+#       else 'alarm'
+#     end as status,
+#     case
+#       when addons_config -> 'httpLoadBalancing' ->> 'disabled' = 'true' then title || ' dashboard disabled.'
+#       else title || ' dashboard enabled.'
+#     end as reason
+#     ${local.tag_dimensions_sql}
+#     ${local.common_dimensions_sql}
+#   from
+#     gcp_kubernetes_cluster;
+#   EOQ
+# }

@@ -29,7 +29,19 @@ benchmark "all_controls_compute" {
     control.enable_network_private_google_access,
     control.restrict_firewall_rule_rdp_world_open,
     control.restrict_firewall_rule_ssh_world_open,
-    control.restrict_firewall_rule_world_open_tcp_udp_all_ports
+    control.restrict_firewall_rule_world_open_tcp_udp_all_ports,
+    control.compute_firewall_rule_ingress_access_restricted_to_dns_port_53,
+    control.compute_firewall_rule_access_restricted_to_ftp_port_21,
+    control.compute_firewall_rule_access_restricted_to_http_port_80,
+    control.compute_firewall_rule_access_restricted_to_smtp_port_25,
+    control.compute_firewall_rule_access_restricted_to_microsoft_ds_port_445,
+    control.compute_firewall_rule_access_restricted_to_mongo_db_port_27017,
+    control.compute_firewall_rule_access_restricted_to_mysql_db_port_3306,
+    control.compute_firewall_rule_access_restricted_to_netbios_snn_port_139,
+    control.compute_firewall_rule_access_restricted_to_oracle_db_port_1521,
+    control.compute_firewall_rule_access_restricted_to_pop3_port_110,
+    control.compute_firewall_rule_access_restricted_to_postgresql_port_5432,
+    control.compute_firewall_rule_access_restricted_to_telnet_port_23,
   ]
 
   tags = merge(local.all_controls_compute_common_tags, {
