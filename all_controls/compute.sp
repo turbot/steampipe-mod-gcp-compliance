@@ -42,6 +42,7 @@ benchmark "all_controls_compute" {
     control.compute_firewall_rule_access_restricted_to_pop3_port_110,
     control.compute_firewall_rule_access_restricted_to_postgresql_port_5432,
     control.compute_firewall_rule_access_restricted_to_telnet_port_23,
+    control.compute_network_auto_create_subnetwork_enabled,
   ]
 
   tags = merge(local.all_controls_compute_common_tags, {

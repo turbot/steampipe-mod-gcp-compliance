@@ -27,6 +27,8 @@ benchmark "all_controls_kubernetes" {
     control.kubernetes_cluster_database_encryption_enabled,
     control.kubernetes_cluster_shielded_nodes_enabled,
     control.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled,
+    control.kubernetes_cluster_binary_authorization_enabled,
+    control.kubernetes_cluster_client_certificate_authentication_enabled
   ]
 
   tags = merge(local.all_controls_kubernetes_common_tags, {

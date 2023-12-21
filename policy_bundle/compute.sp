@@ -287,6 +287,14 @@ control "compute_firewall_rule_access_restricted_to_telnet_port_23" {
   tags = local.policy_bundle_compute_common_tags
 }
 
+control "compute_network_auto_create_subnetwork_enabled" {
+  title       = "Compute Networks should have auto create subnetwork enabled"
+  description = "This control ensures that auto create subnetwork is enabled for Compute Network. Legacy network is not recommended, subnetworks cannot be created in a legacy network."
+  query = query.compute_network_auto_create_subnetwork_enabled
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
 query "compute_firewall_rule_ssh_access_restricted" {
   sql = <<-EOQ
     with ip_protocol_all as (
@@ -1720,5 +1728,23 @@ query "compute_firewall_rule_access_restricted_to_telnet_port_23" {
       --${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_network_auto_create_subnetwork_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when auto_create_subnetworks then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when auto_create_subnetworks then title || ' auto create subnetwork enabled.'
+        else title || ' auto create subnetwork disabled.'
+      end as reason
+      --${local.common_dimensions_global_sql}
+    from
+      gcp_compute_network;
   EOQ
 }
