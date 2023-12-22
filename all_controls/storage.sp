@@ -11,7 +11,8 @@ benchmark "all_controls_storage" {
     control.require_bucket_policy_only,
     control.storage_bucket_log_retention_policy_lock_enabled,
     control.storage_bucket_not_publicly_accessible,
-    control.storage_bucket_uniform_access_enabled
+    control.storage_bucket_uniform_access_enabled,
+    control.storage_bucket_log_retention_policy_enabled,
   ]
 
   tags = merge(local.all_controls_storage_common_tags, {

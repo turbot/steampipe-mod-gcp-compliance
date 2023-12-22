@@ -295,6 +295,54 @@ control "compute_network_auto_create_subnetwork_enabled" {
   tags = local.policy_bundle_compute_common_tags
 }
 
+control "compute_backend_bucket_no_dangling_storage_bucket" {
+  title       = "Compute Backend Bucket should not have dangling storage bucket"
+  description = "This control ensures that Compute Backend Bucket does not have dangling storage bucket."
+  query = query.compute_backend_bucket_no_dangling_storage_bucket
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_preemptible_termination_disabled" {
+  title       = "Compute Instance preemptible termination should be disabled"
+  description = "This control ensures that Compute Instance preemptible termination is be disabled. Compute Instance preemptible termination can lead to unexpected loss of service when the VM instance is terminated."
+  query = query.compute_instance_preemptible_termination_disabled
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_with_custom_metadata" {
+  title       = "Compute Instances should have custom metadata"
+  description = "This control ensures that Compute Instance have custom metadata. Custom metadata facilitates simple identification and enhances searchability."
+  query = query.compute_instance_with_custom_metadata
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_template_ip_forwarding_disabled" {
+  title       = "Compute Instance template IP forwarding should be disabled"
+  description = "Compute Engine instance template cannot forward a packet unless the source IP address of the packet matches the IP address of the instance. Similarly, GCP won't deliver a packet whose destination IP address is different than the IP address of the instance receiving the packet. However, both capabilities are required if you want to use instances to help route packets."
+  query = query.compute_instance_template_ip_forwarding_disabled
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_target_https_proxy_quic_protocol_enabled" {
+  title       = "Compute Target HTTPS proxy QUIC protocol should be enabled"
+  description = "This control ensures that Compute Target HTTPS proxy QUIC protocol is enabled. Activating the QUIC protocol in load balancer target HTTPS proxies offers the benefit of quicker connection establishment."
+  query = query.compute_target_https_proxy_quic_protocol_enabled
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_target_https_proxy_quic_protocol_no_default_ssl_policy" {
+  title       = "Compute Target HTTPS proxy should use custom SSL policy"
+  description = "This control ensures that Compute Target HTTPS proxy should use custom SSL policy."
+  query = query.compute_target_https_proxy_quic_protocol_no_default_ssl_policy
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
 query "compute_firewall_rule_ssh_access_restricted" {
   sql = <<-EOQ
     with ip_protocol_all as (
@@ -1746,5 +1794,126 @@ query "compute_network_auto_create_subnetwork_enabled" {
       --${local.common_dimensions_global_sql}
     from
       gcp_compute_network;
+  EOQ
+}
+
+query "compute_backend_bucket_no_dangling_storage_bucket" {
+  sql = <<-EOQ
+    select
+      b.self_link resource,
+      case
+        when s.name is not null then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when s.name is not null then b.title || ' no dangling storage bucket.'
+        else b.title || ' has dangling storage bucket.'
+      end as reason
+      --${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
+      --${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
+    from
+      gcp_compute_backend_bucket as b
+      left join gcp_storage_bucket as s on s.name = b.name and s.project = b.project;
+  EOQ
+}
+
+query "compute_instance_preemptible_termination_disabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when name like 'gke-%' then 'skip'
+        when scheduling ->> 'preemptible' = 'true' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name like 'gke-%' and labels ? 'goog-gke-node'
+          then title || ' created by GKE.'
+        when scheduling ->> 'preemptible' = 'true' then title || ' preemptible termination enabled.'
+        else title || ' preemptible termination disabled.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_instance;
+  EOQ
+}
+
+query "compute_instance_with_custom_metadata" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when name like 'gke-%' then 'skip'
+        when metadata is not null then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when name like 'gke-%' and labels ? 'goog-gke-node'
+          then title || ' created by GKE.'
+        when metadata is not null then title || ' has custom metadata.'
+        else title || ' has no custom metadata.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_instance;
+  EOQ
+}
+
+query "compute_instance_template_ip_forwarding_disabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when instance_can_ip_forward then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when instance_can_ip_forward then title || ' IP forwarding enabled.'
+        else title || ' IP forwarding disabled.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_instance_template;
+  EOQ
+}
+
+query "compute_target_https_proxy_quic_protocol_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when quic_override = 'ENABLE' then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when quic_override = 'ENABLE' then title || ' QUIC override protocol enabled.'
+        else title || ' QUIC override protocol disabled.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_target_https_proxy;
+  EOQ
+}
+
+query "compute_target_https_proxy_quic_protocol_no_default_ssl_policy" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when ssl_policy = '' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when ssl_policy = '' then title || ' using default SSL policy.'
+        else title || ' using custom SSL policy.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_target_https_proxy;
   EOQ
 }

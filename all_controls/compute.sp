@@ -43,6 +43,12 @@ benchmark "all_controls_compute" {
     control.compute_firewall_rule_access_restricted_to_postgresql_port_5432,
     control.compute_firewall_rule_access_restricted_to_telnet_port_23,
     control.compute_network_auto_create_subnetwork_enabled,
+    control.compute_backend_bucket_no_dangling_storage_bucket,
+    control.compute_instance_preemptible_termination_disabled,
+    control.compute_instance_with_custom_metadata,
+    control.compute_instance_template_ip_forwarding_disabled,
+    control.compute_target_https_proxy_quic_protocol_enabled,
+    control.compute_target_https_proxy_quic_protocol_no_default_ssl_policy
   ]
 
   tags = merge(local.all_controls_compute_common_tags, {
