@@ -48,7 +48,14 @@ benchmark "all_controls_compute" {
     control.compute_instance_with_custom_metadata,
     control.compute_instance_template_ip_forwarding_disabled,
     control.compute_target_https_proxy_quic_protocol_enabled,
-    control.compute_target_https_proxy_quic_protocol_no_default_ssl_policy
+    control.compute_target_https_proxy_quic_protocol_no_default_ssl_policy,
+    control.compute_instance_no_disrupt_logging_permission,
+    control.compute_instance_no_deployments_manager_permission,
+    control.compute_instance_no_database_write_permission,
+    control.compute_instance_no_data_destruction_permission,
+    control.compute_instance_no_service_account_impersonate_permission,
+    control.compute_instance_no_write_permission_on_deny_policy,
+    control.compute_instance_wth_no_high_level_basic_role
   ]
 
   tags = merge(local.all_controls_compute_common_tags, {

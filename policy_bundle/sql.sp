@@ -267,6 +267,22 @@ control "sql_instance_sql_user_options_database_flag_not_configured" {
   tags = local.policy_bundle_sql_common_tags
 }
 
+control "sql_instance_with_labels" {
+  title       = "SQL Instances should have labels configured"
+  description = "It is recommended that SQL Instance is configured with proper labels."
+  query       = query.sql_instance_with_labels
+
+  tags = local.policy_bundle_sql_common_tags
+}
+
+control "sql_instance_mysql_binary_log_enabled" {
+  title       = "MySql Instances should have binary log enabled"
+  description = "This controls ensures that MySql instance have binary log enabled."
+  query       = query.sql_instance_mysql_binary_log_enabled
+
+  tags = local.policy_bundle_sql_common_tags
+}
+
 query "sql_instance_not_open_to_internet" {
   sql = <<-EOQ
     select

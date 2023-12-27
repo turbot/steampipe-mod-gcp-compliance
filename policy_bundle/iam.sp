@@ -184,7 +184,7 @@ query "iam_service_account_key_age_100" {
       ' (' || extract(day from current_timestamp - valid_after_time) || ' days).'
     as reason
     ${local.common_dimensions_global_sql}
-  from;
+  from
     gcp_service_account_key;
   EOQ
 }
@@ -202,7 +202,7 @@ query "iam_service_account_gcp_managed_key" {
     select
       'https://iam.googleapis.com/v1/projects/' || project || '/serviceAccounts/' || name as resource,
       case
-        when s like '%iam.gserviceaccount.com' and name in (select service_account_name from service_account_key) then 'alarm'
+        when name like '%iam.gserviceaccount.com' and name in (select service_account_name from service_account_key) then 'alarm'
         else 'ok'
       end as status,
       case

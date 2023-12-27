@@ -343,6 +343,62 @@ control "compute_target_https_proxy_quic_protocol_no_default_ssl_policy" {
   tags = local.policy_bundle_compute_common_tags
 }
 
+control "compute_instance_no_disrupt_logging_permission" {
+  title       = "Compute Instances should restrict disrupt logging permission"
+  description = "This is control ensures that Compute Instance does not disrupt logging permissions."
+  query = query.compute_instance_no_disrupt_logging_permission
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_no_deployments_manager_permission" {
+  title       = "Compute Instances should restrict deployments manager permission"
+  description = "This is control ensures that Compute Instance does not allow deployments manager permissions."
+  query       = query.compute_instance_no_deployments_manager_permission
+
+  tags = local.policy_bundle_cloudfunction_common_tags
+}
+
+control "compute_instance_no_database_write_permission" {
+  title       = "Compute Instances should restrict database write permission"
+  description = "This is control ensures that Compute Instance does not allow database write permissions."
+  query       = query.compute_instance_no_database_write_permission
+
+  tags = local.policy_bundle_cloudfunction_common_tags
+}
+
+control "compute_instance_no_data_destruction_permission" {
+  title       = "Compute Instances should restrict data destruction permission"
+  description = "This is control ensures that Compute Instance does not allow data destruction permissions."
+  query       = query.compute_instance_no_data_destruction_permission
+
+  tags = local.policy_bundle_cloudfunction_common_tags
+}
+
+control "compute_instance_no_service_account_impersonate_permission" {
+  title       = "Compute Instances should restrict service account impersonate permission"
+  description = "This is control ensures that Compute Instance does not allow service account impersonate permissions."
+  query       = query.compute_instance_no_service_account_impersonate_permission
+
+  tags = local.policy_bundle_cloudfunction_common_tags
+}
+
+control "compute_instance_no_write_permission_on_deny_policy" {
+  title       = "Compute Instances should restrict write permission on deny policy"
+  description = "This is control ensures that Compute Instance does not allow write permission on deny policies."
+  query       = query.compute_instance_no_write_permission_on_deny_policy
+
+  tags = local.policy_bundle_cloudfunction_common_tags
+}
+
+control "compute_instance_wth_no_high_level_basic_role" {
+  title       = "Compute Instances should restrict high level basic role"
+  description = "This is control ensures that Compute Instance does not allow high level basic role."
+  query       = query.compute_instance_wth_no_high_level_basic_role
+
+  tags = local.policy_bundle_cloudfunction_common_tags
+}
+
 query "compute_firewall_rule_ssh_access_restricted" {
   sql = <<-EOQ
     with ip_protocol_all as (
@@ -2262,5 +2318,64 @@ query "compute_instance_wth_no_high_level_basic_role" {
     from
       gcp_compute_instance as i
       left join compute_instance_with_high_level_basic_role as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_target_https_uses_latest_tls_version" {
+  sql = <<-EOQ
+    with all_proxies as (
+      select
+        name,
+        _ctx,
+        self_link,
+        split_part(kind, '#', 2) proxy_type,
+        ssl_policy,
+        title,
+        location,
+        project
+      from
+        gcp_compute_target_https_proxy
+    ),ssl_policy_with_no_latest_tls as (
+      select
+        self_link
+      from
+        gcp_compute_ssl_policy
+      where
+        (profile = 'MODERN' or profile = 'CUSTOM')
+        and min_tls_version = 'TLS_1_2'
+    )
+    select
+      self_link resource,
+      case
+        when ssl_policy = ''  or ssl_policy in (select self_link from ssl_policy_with_no_latest_tls) then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when  ssl_policy = ''  then  title || ' has no SSL policy.'
+        when ssl_policy in (select self_link from ssl_policy_with_no_latest_tls) then title || ' uses latest TLS version.'
+        else title ||  ' not uses letest TLS version.'
+      end as reason
+      --${local.common_dimensions_global_sql}
+    from gcp_compute_target_https_proxy;
+  EOQ
+}
+
+query "compute_external_backend_service_iap_enabled" {
+  sql = <<-EOQ
+    select
+      self_link as resource,
+      case
+        when not load_balancing_scheme like 'EXTERNAL%' then 'skip'
+        when (iap -> 'enabled')::bool then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when not load_balancing_scheme like 'EXTERNAL%' then name || ' is external backend service.'
+        when (iap -> 'enabled')::bool then name || ' IAP enabled.'
+        else name || ' IAP disabled.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_backend_service;
   EOQ
 }

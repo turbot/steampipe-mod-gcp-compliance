@@ -39,7 +39,9 @@ benchmark "all_controls_sql" {
     control.sql_instance_sql_remote_access_database_flag_off,
     control.sql_instance_sql_user_connections_database_flag_configured,
     control.sql_instance_sql_user_options_database_flag_not_configured,
-    control.sql_world_readable
+    control.sql_world_readable,
+    control.sql_instance_with_labels,
+    control.sql_instance_mysql_binary_log_enabled
   ]
 
   tags = merge(local.all_controls_sql_common_tags, {

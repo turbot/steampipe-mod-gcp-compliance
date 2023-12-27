@@ -757,6 +757,54 @@ query "kubernetes_cluster_node_no_default_service_account" {
   EOQ
 }
 
+query "kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when np -> 'management' -> 'autoUpgrade' = 'true' and current_node_count < 3 then 'alarm'
+        else 'ok'
+      end as status,
+      title || ' has ' || current_node_count || ' node with auto upgrade enabled.' as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster,
+      jsonb_array_elements(node_pools) as np;
+  EOQ
+}
+
+query "kubernetes_cluster_incoming_traffic_open_to_all" {
+  sql = <<-EOQ
+    with network_open_to_all as (
+      select
+        distinct network
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and source_ranges ?& array['0.0.0.0/0']
+    )
+    select
+      distinct self_link resource,
+      case
+        when a.network is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when a.network is not null then title || ' allows incoming traffic from any source on the internet across all protocols.'
+        else title || ' restrict incoming traffic from any source on the internet across all protocols.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster as c
+      left join network_open_to_all as a on c.network_config ->> 'network' = concat('projects/' || split_part(a.network, 'projects/', 2));
+  EOQ
+}
+
+
 # query "kubernetes_cluster_http_load_balancing_enabled" {
 #   sql = <<-EOQ
 #     select
