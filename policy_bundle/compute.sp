@@ -1917,3 +1917,350 @@ query "compute_target_https_proxy_quic_protocol_no_default_ssl_policy" {
       gcp_compute_target_https_proxy;
   EOQ
 }
+
+query "compute_instance_no_disrupt_logging_permission" {
+  sql = <<-EOQ
+    with role_with_disrupt_logging_permission as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p  in ('logging.buckets.delete', 'logging.buckets.update', 'logging.logMetrics.delete', 'logging.logMetrics.update', 'logging.logs.delete', 'logging.sinks.delete', 'logging.sinks.update' )
+      ), policy_with_disrupt_logging_permission as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in ('roles/logging.bucketWriter', 'roles/logging.configWriter', 'roles/logging.admin' )
+        or p ->> 'role' in (select name from role_with_disrupt_logging_permission )
+    ), compute_instance_with_disrupt_logging_service_permission as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_disrupt_logging_permission as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow disrupt logging permission.'
+        else i.title || ' restrict disrupt logging permission'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_disrupt_logging_service_permission as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_instance_no_deployments_manager_permission" {
+  sql = <<-EOQ
+    with role_with_deployments_manager_permission as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p  in ('deploymentmanager.deployments.create', 'deploymentmanager.deployments.update' )
+      ), policy_with_deployments_manager_permission as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in ('roles/deploymentmanager.editor' )
+        or p ->> 'role' in (select name from role_with_deployments_manager_permission )
+    ), compute_instance_with_deployments_manage_permission as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_deployments_manager_permission as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow deployment managers permission.'
+        else i.title || ' restrict deployment managers permission'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_deployments_manage_permission as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_instance_no_database_write_permission" {
+  sql = <<-EOQ
+    with role_with_deployments_manager_permission as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p  in ('cloudsql.databases.update', 'cloudsql.instances.update', 'datastore.databases.update', 'datastore.entities.update', 'datastore.indexes.update', 'spanner.databases.update','spanner.databases.write','spanner.instances.update', 'bigtable.clusters.update', 'bigtable.instances.update', 'bigtable.tables.update', 'redis.instances.update', 'memcache.instances.update', 'datamigration.migrationjobs.update', 'datamigration.connectionprofiles.update', 'datamigration.conversionworkspaces.update', 'alloydb.clusters.update', 'alloydb.instances.update', 'gcp.redisenterprise.com-databases.update', 'gcp.redisenterprise.com-subscriptions.update' )
+      ), policy_with_deployments_manager_permission as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in ('roles/cloudsql.admin', 'roles/cloudsql.instanceUser', 'roles/datastore.indexAdmin', 'roles/datastore.owner', 'roles/datastore.user', 'roles/alloydb.admin', 'roles/bigtable.admin', 'roles/datamigration.admin', 'roles/datamigration.serviceAgent', 'roles/memcache.admin', 'roles/redis.admin', 'roles/redisenterprisecloud.admin', 'roles/spanner.admin' , 'roles/spanner.databaseAdmin')
+        or p ->> 'role' in (select name from role_with_deployments_manager_permission )
+    ), compute_instance_with_deployments_manage_permission as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_deployments_manager_permission as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow database write permission.'
+        else i.title || ' restrict database write permission.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_deployments_manage_permission as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_instance_no_data_destruction_permission" {
+  sql = <<-EOQ
+    with role_with_data_destruction_permission as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p  in ( 'compute.instances.delete', 'compute.disks.delete', 'compute.snapshots.delete', 'compute.images.delete', 'storage.buckets.delete', 'cloudsql.databases.delete', 'cloudsql.instances.delete', 'file.instances.delete' )
+      ), policy_with_data_destruction_permission as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in ('roles/cloudsql.admin', 'roles/cloudsql.instanceUser', 'roles/compute.admin' , 'roles/compute.instanceAdmin.v1' )
+        or p ->> 'role' in (select name from role_with_data_destruction_permission )
+    ), compute_instance_with_data_destruction_permission as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_data_destruction_permission as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow data destruction permission.'
+        else i.title || ' restrict data destruction permission.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_data_destruction_permission as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_instance_no_service_account_impersonate_permission" {
+  sql = <<-EOQ
+    with role_with_service_account_impersonate_permission as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p  in ( 'iam.serviceAccounts.getAccessToken', 'iam.serviceAccounts.signBlob', 'iam.serviceAccounts.signJwt', 'iam.serviceAccounts.implicitDelegation', 'iam.serviceAccounts.getOpenIdToken', 'iam.serviceAccounts.actAs' )
+      ), policy_with_service_account_impersonate_permission as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in ('roles/iam.securityAdmin' )
+        or p ->> 'role' in (select name from role_with_service_account_impersonate_permission )
+    ), compute_instance_with_service_account_impersonate_permission as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_service_account_impersonate_permission as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow service account impersonate permission.'
+        else i.title || ' restrict service account impersonate permission.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_service_account_impersonate_permission as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_instance_no_write_permission_on_deny_policy" {
+  sql = <<-EOQ
+    with role_with_write_permission_on_deny_policy as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p  in ( 'iam.denypolicies.delete', 'iam.denypolicies.update' )
+      ), policy_with_write_permission_on_deny_policy as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in (select name from role_with_write_permission_on_deny_policy )
+    ), compute_instance_with_write_permission_on_deny_policy as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_write_permission_on_deny_policy as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow write permission on_deny policies.'
+        else i.title || ' restrict swrite permission on_deny policies.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_write_permission_on_deny_policy as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_instance_wth_no_high_level_basic_role" {
+  sql = <<-EOQ
+    with policy_with_high_level_basic_role as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in ( 'roles/owner' , 'roles/editor' )
+    ), compute_instance_with_high_level_basic_role as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_high_level_basic_role as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when i.name like 'gke-%' and labels ? 'goog-gke-node' then 'skip'
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when i.name like 'gke-%' and labels ? 'goog-gke-node' then title || ' created by GKE.'
+        when p.self_link is not null then i.title || ' allow high level basic role.'
+        else i.title || ' restrict high level basic role.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_high_level_basic_role as p on p.self_link = i.self_link;
+  EOQ
+}

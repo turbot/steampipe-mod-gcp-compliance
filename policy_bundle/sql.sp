@@ -272,16 +272,23 @@ query "sql_instance_not_open_to_internet" {
     select
       self_link as resource,
       case
-        when ip_configuration -> 'authorizedNetworks' @> '[{"name": "internet", "value": "0.0.0.0/0"}]' then 'alarm'
+        when exists (
+          select 1
+          from jsonb_array_elements(ip_configuration -> 'authorizedNetworks') as authNet
+          where authNet ->> 'value' = '0.0.0.0/0' or authNet ->> 'value' = '::/0'
+        ) then 'alarm'
         else 'ok'
       end as status,
       case
-        when ip_configuration -> 'authorizedNetworks' @> '[{"name": "internet", "value": "0.0.0.0/0"}]'
-          then title || ' is open to internet.'
-        else title || ' is not open to internet.'
+        when exists (
+          select 1
+          from jsonb_array_elements(ip_configuration -> 'authorizedNetworks') as authNet
+          where authNet ->> 'value' = '0.0.0.0/0' or  authNet ->> 'value' = '::/0'
+        ) then title || ' is open to the internet.'
+        else title || ' is not open to the internet.'
       end as reason
-    ${local.tag_dimensions_sql}
-    ${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_sql_database_instance;
   EOQ
@@ -1026,6 +1033,46 @@ query "sql_instance_sql_user_options_database_flag_not_configured" {
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
+    from
+      gcp_sql_database_instance;
+  EOQ
+}
+
+query "sql_instance_with_labels" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when labels is not null then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when labels is not null then title || ' has labels attached.'
+        else title || ' has not labels attached.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_sql_database_instance;
+  EOQ
+}
+
+query "sql_instance_mysql_binary_log_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when database_version not like 'MYSQL%' then 'skip'
+        when binary_log_enabled then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when database_version not like 'MYSQL%' then title || ' not a MySQL database.'
+        when binary_log_enabled then title || ' binary log enabled.'
+        else title || ' binary log disabled.'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
     from
       gcp_sql_database_instance;
   EOQ
