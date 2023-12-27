@@ -64,8 +64,8 @@ query "cloudfunction_function_vpc_connector_enabled" {
         when vpc_connector is null or vpc_connector = '' then name || ' VPC connector disabled.'
         else name || ' VPC connector enabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_cloudfunctions_function;
   EOQ
@@ -83,8 +83,8 @@ query "cloudfunction_function_no_ingress_settings_allow_all" {
         when ingress_settings = 'ALLOW_ALL' then name || ' ingress settings is set to allow all.'
         else name || ' ingress settings is not set to allow all.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_cloudfunctions_function;
   EOQ
@@ -114,8 +114,8 @@ query "cloudfunction_function_restricted_permission" {
         when f.service_account_email is not null then f.title || ' allow roles/editor or roles/owner permission.'
         else f.title || ' restrict roles/editor and roles/owner permision permission.'
       end as reason
-      --${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
-      --${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
+      ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
+      ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
     from
       gcp_cloudfunctions_function as f
       left join unapproved_bindings as b on f.project = b.project and b.entity = concat('serviceAccount:' || f.service_account_email)
@@ -144,8 +144,8 @@ query "cloudfunction_function_restrict_public_access" {
         when b.self_link is not null then f.title || ' publicly accessible.'
         else f.title || ' not publicly accessible.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_cloudfunctions_function as f
       left join publicly_accessible_functions as b on f.self_link = b.self_link;
@@ -186,8 +186,8 @@ query "cloudfunction_function_no_deployments_manager_permission" {
         when f.service_account_email is not null then f.title || ' allow deployment managers permission.'
         else f.title || ' restrict deployment managers permission'
       end as reason
-      --${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
-      --${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
+      ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
+      ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
     from
       gcp_cloudfunctions_function as f
       left join policy_with_deployments_manager_permission as b on f.project = b.project and b.entity = concat('serviceAccount:' || f.service_account_email);
@@ -228,8 +228,8 @@ query "cloudfunction_function_no_disrupt_logging_permission" {
         when f.service_account_email is not null then f.title || ' allow disrupt logging permission.'
         else f.title || ' restrict disrupt logging permission'
       end as reason
-      --${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
-      --${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
+      ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
+      ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
     from
       gcp_cloudfunctions_function as f
       left join policy_with_disrupt_logging_permission as b on f.project = b.project and b.entity = concat('serviceAccount:' || f.service_account_email);

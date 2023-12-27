@@ -1081,7 +1081,7 @@ query "compute_firewall_rule_access_restricted_to_dns_port_53" {
           then title || ' allows access from internet to DNS port 53.'
         else title || ' restricts access from internet to DNS port 53.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -1149,7 +1149,7 @@ query "compute_firewall_rule_access_restricted_to_ftp_port_21" {
           then title || ' allows access from internet to port 21.'
         else title || ' restricts access from internet to port 21.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -1217,7 +1217,7 @@ query "compute_firewall_rule_access_restricted_to_http_port_80" {
           then title || ' allows access from internet to HTTP port 80.'
         else title || ' restricts access from internet to HTTP port 80.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -1285,7 +1285,7 @@ query "compute_firewall_rule_access_restricted_to_smtp_port_25" {
           then title || ' allows access from internet to SMTP port 25.'
         else title || ' restricts access from internet to SMTP port 25.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -1353,7 +1353,7 @@ query "compute_firewall_rule_access_restricted_to_microsoft_ds_port_445" {
           then title || ' allows access from internet to Microsoft DS port 445.'
         else title || ' restricts access from internet to Microsof DS port 445.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -1421,7 +1421,7 @@ query "compute_firewall_rule_access_restricted_to_mongo_db_port_27017" {
           then title || ' allows access from internet to MongoDB port 445.'
         else title || ' restricts access from internet to MongoDB port 445.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -1489,7 +1489,7 @@ query "compute_firewall_rule_access_restricted_to_mysql_db_port_3306" {
           then title || ' allows access from internet to MySQL port 3306.'
         else title || ' restricts access from internet to MySQL port 3306.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -1557,7 +1557,7 @@ query "compute_firewall_rule_access_restricted_to_netbios_snn_port_139" {
           then title || ' allows access from internet to NetBIOS SSN port 139.'
         else title || ' restricts access from internet to NetBIOS SSN port 139.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -1625,7 +1625,7 @@ query "compute_firewall_rule_access_restricted_to_oracle_db_port_1521" {
           then title || ' allows access from internet to Oracle DB port 1521.'
         else title || ' restricts access from internet to Oracle DB port 1521.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -1693,7 +1693,7 @@ query "compute_firewall_rule_access_restricted_to_pop3_port_110" {
           then title || ' allows access from internet to POP3 port 110.'
         else title || ' restricts access from internet to POP3 port 110.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -1761,7 +1761,7 @@ query "compute_firewall_rule_access_restricted_to_postgresql_port_5432" {
           then title || ' allows access from internet to PostgreSQL port 5432.'
         else title || ' restricts access from internet to PostgreSQL port 5432.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -1829,7 +1829,7 @@ query "compute_firewall_rule_access_restricted_to_telnet_port_23" {
           then title || ' allows access from internet to Telnet port 23.'
         else title || ' restricts access from internet to Telnet port 23.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -1847,7 +1847,7 @@ query "compute_network_auto_create_subnetwork_enabled" {
         when auto_create_subnetworks then title || ' auto create subnetwork enabled.'
         else title || ' auto create subnetwork disabled.'
       end as reason
-      --${local.common_dimensions_global_sql}
+      ${local.common_dimensions_global_sql}
     from
       gcp_compute_network;
   EOQ
@@ -1865,8 +1865,8 @@ query "compute_backend_bucket_no_dangling_storage_bucket" {
         when s.name is not null then b.title || ' no dangling storage bucket.'
         else b.title || ' has dangling storage bucket.'
       end as reason
-      --${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
-      --${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
+      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
+      ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
     from
       gcp_compute_backend_bucket as b
       left join gcp_storage_bucket as s on s.name = b.name and s.project = b.project;
@@ -1888,8 +1888,8 @@ query "compute_instance_preemptible_termination_disabled" {
         when scheduling ->> 'preemptible' = 'true' then title || ' preemptible termination enabled.'
         else title || ' preemptible termination disabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_instance;
   EOQ
@@ -1910,8 +1910,8 @@ query "compute_instance_with_custom_metadata" {
         when metadata is not null then title || ' has custom metadata.'
         else title || ' has no custom metadata.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_instance;
   EOQ
@@ -1929,8 +1929,8 @@ query "compute_instance_template_ip_forwarding_disabled" {
         when instance_can_ip_forward then title || ' IP forwarding enabled.'
         else title || ' IP forwarding disabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_instance_template;
   EOQ
@@ -1948,8 +1948,8 @@ query "compute_target_https_proxy_quic_protocol_enabled" {
         when quic_override = 'ENABLE' then title || ' QUIC override protocol enabled.'
         else title || ' QUIC override protocol disabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_target_https_proxy;
   EOQ
@@ -1967,8 +1967,8 @@ query "compute_target_https_proxy_quic_protocol_no_default_ssl_policy" {
         when ssl_policy = '' then title || ' using default SSL policy.'
         else title || ' using custom SSL policy.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_target_https_proxy;
   EOQ
@@ -2017,8 +2017,8 @@ query "compute_instance_no_disrupt_logging_permission" {
         when p.self_link is not null then i.title || ' allow disrupt logging permission.'
         else i.title || ' restrict disrupt logging permission'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_instance as i
       left join compute_instance_with_disrupt_logging_service_permission as p on p.self_link = i.self_link;
@@ -2068,8 +2068,8 @@ query "compute_instance_no_deployments_manager_permission" {
         when p.self_link is not null then i.title || ' allow deployment managers permission.'
         else i.title || ' restrict deployment managers permission'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_instance as i
       left join compute_instance_with_deployments_manage_permission as p on p.self_link = i.self_link;
@@ -2119,8 +2119,8 @@ query "compute_instance_no_database_write_permission" {
         when p.self_link is not null then i.title || ' allow database write permission.'
         else i.title || ' restrict database write permission.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_instance as i
       left join compute_instance_with_deployments_manage_permission as p on p.self_link = i.self_link;
@@ -2170,8 +2170,8 @@ query "compute_instance_no_data_destruction_permission" {
         when p.self_link is not null then i.title || ' allow data destruction permission.'
         else i.title || ' restrict data destruction permission.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_instance as i
       left join compute_instance_with_data_destruction_permission as p on p.self_link = i.self_link;
@@ -2221,8 +2221,8 @@ query "compute_instance_no_service_account_impersonate_permission" {
         when p.self_link is not null then i.title || ' allow service account impersonate permission.'
         else i.title || ' restrict service account impersonate permission.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_instance as i
       left join compute_instance_with_service_account_impersonate_permission as p on p.self_link = i.self_link;
@@ -2271,8 +2271,8 @@ query "compute_instance_no_write_permission_on_deny_policy" {
         when p.self_link is not null then i.title || ' allow write permission on_deny policies.'
         else i.title || ' restrict swrite permission on_deny policies.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_instance as i
       left join compute_instance_with_write_permission_on_deny_policy as p on p.self_link = i.self_link;
@@ -2313,8 +2313,8 @@ query "compute_instance_wth_no_high_level_basic_role" {
         when p.self_link is not null then i.title || ' allow high level basic role.'
         else i.title || ' restrict high level basic role.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_instance as i
       left join compute_instance_with_high_level_basic_role as p on p.self_link = i.self_link;
@@ -2355,7 +2355,7 @@ query "compute_target_https_uses_latest_tls_version" {
         when ssl_policy in (select self_link from ssl_policy_with_no_latest_tls) then title || ' uses latest TLS version.'
         else title ||  ' not uses letest TLS version.'
       end as reason
-      --${local.common_dimensions_global_sql}
+      ${local.common_dimensions_global_sql}
     from gcp_compute_target_https_proxy;
   EOQ
 }
@@ -2374,7 +2374,7 @@ query "compute_external_backend_service_iap_enabled" {
         when (iap -> 'enabled')::bool then name || ' IAP enabled.'
         else name || ' IAP disabled.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_backend_service;
   EOQ

@@ -81,8 +81,8 @@ query "storage_bucket_not_publicly_accessible" {
           then title || ' publicly accessible.'
         else title || ' not publicly accessible.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_storage_bucket;
   EOQ
@@ -165,8 +165,8 @@ query "storage_bucket_log_retention_policy_enabled" {
         when b.retention_policy is not null then title || ' retention policy defined.'
         else title || '  retention policy not defined.'
       end as reason
-      --${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
-      --${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
+      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
+      ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
     from
       gcp_storage_bucket as b
       left join log_sink_buckets as s on s.bucket_name = b.name and b.project = s.project;

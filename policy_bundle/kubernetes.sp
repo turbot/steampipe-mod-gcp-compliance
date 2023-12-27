@@ -484,8 +484,8 @@ query "kubernetes_cluster_logging_enabled" {
        when logging_service is null or logging_service = 'none' then title || ' logging disabled.'
         else title || ' logging enabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -503,8 +503,8 @@ query "kubernetes_cluster_monitoring_enabled" {
        when monitoring_service is null or monitoring_service = 'none' then title || ' monitoring disabled.'
         else title || ' monitoring enabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -522,8 +522,8 @@ query "kubernetes_cluster_no_default_network" {
        when network = 'default' then title || ' using default network.'
         else title || ' not using default network.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -541,8 +541,8 @@ query "kubernetes_cluster_with_resource_labels" {
        when resource_labels is null then title || ' not having resource labels.'
         else title || ' have resource labels.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -560,8 +560,8 @@ query "kubernetes_cluster_database_encryption_enabled" {
        when database_encryption_state <> 'ENCRYPTED' then title || ' database encryption disabled.'
         else title || ' database encryption enabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -579,8 +579,8 @@ query "kubernetes_cluster_shielded_nodes_enabled" {
        when shielded_nodes_enabled then title || ' shielded nodes enabled.'
         else title || ' shielded nodes disabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -598,8 +598,8 @@ query "kubernetes_cluster_shielded_instance_integrity_monitoring_enabled" {
        when (node_config -> 'shieldedInstanceConfig' ->> 'enableIntegrityMonitoring')::bool then title || ' shielded instance integrity monitoring enabled.'
         else title || ' shielded instance integrity monitoring disabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -621,8 +621,8 @@ query "kubernetes_cluster_binary_authorization_enabled" {
         or (binary_authorization ->> 'evaluationMode') ilike 'EVALUATION_MODE_UNSPECIFIED' then title || ' binary authorization disabled .'
         else title || ' binary authorization enabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -640,8 +640,8 @@ query "kubernetes_cluster_release_channel_configured" {
        when (release_channel -> 'channel') is not null then title || ' release channel configured .'
         else title || ' release channel not configured .'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -659,8 +659,8 @@ query "kubernetes_cluster_zone_redundant" {
         when zone is not null and jsonb_array_length(locations) >= 3 then title || ' zone redundant.'
         else title || ' not zone redundant.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -680,8 +680,8 @@ query "kubernetes_cluster_private_nodes_configured" {
           or private_cluster_config -> 'enablePrivateNodes' is null then title || ' private nodes not configured.'
         else title || ' private nodes configured.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -711,8 +711,8 @@ query "kubernetes_cluster_network_policy_enabled" {
           then title || ' network policy disabled.'
         else title || ' network policy enabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -730,8 +730,8 @@ query "kubernetes_cluster_client_certificate_authentication_enabled" {
         when master_auth -> 'clusterCaCertificate' is not null or  master_auth -> 'clientKey' is not null then title || ' client certificate authentication enabled.'
         else title || ' client certificate authentication disabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
   EOQ
@@ -749,8 +749,8 @@ query "kubernetes_cluster_node_no_default_service_account" {
         when np -> 'config' ->> 'serviceAccount' = 'default' then title || ' cluster ' || ( np ->> 'name' ) || ' uses default service account.'
         else title || ' cluster ' || ( np ->> 'name' ) || ' does not uses default service account.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster,
       jsonb_array_elements(node_pools) as np;
@@ -766,8 +766,8 @@ query "kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled" {
         else 'ok'
       end as status,
       title || ' has ' || current_node_count || ' node with auto upgrade enabled.' as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster,
       jsonb_array_elements(node_pools) as np;
@@ -796,30 +796,10 @@ query "kubernetes_cluster_incoming_traffic_open_to_all" {
         when a.network is not null then title || ' allows incoming traffic from any source on the internet across all protocols.'
         else title || ' restrict incoming traffic from any source on the internet across all protocols.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster as c
       left join network_open_to_all as a on c.network_config ->> 'network' = concat('projects/' || split_part(a.network, 'projects/', 2));
   EOQ
 }
-
-
-# query "kubernetes_cluster_http_load_balancing_enabled" {
-#   sql = <<-EOQ
-#     select
-#       self_link resource,
-#     case
-#       when addons_config -> 'httpLoadBalancing' ->> 'disabled' = 'true' then 'ok'
-#       else 'alarm'
-#     end as status,
-#     case
-#       when addons_config -> 'httpLoadBalancing' ->> 'disabled' = 'true' then title || ' dashboard disabled.'
-#       else title || ' dashboard enabled.'
-#     end as reason
-#     --${local.tag_dimensions_sql}
-#     --${local.common_dimensions_sql}
-#   from
-#     gcp_kubernetes_cluster;
-#   EOQ
-# }

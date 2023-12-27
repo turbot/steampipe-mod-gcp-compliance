@@ -1066,8 +1066,8 @@ query "sql_instance_with_labels" {
         when labels is not null then title || ' has labels attached.'
         else title || ' has not labels attached.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_sql_database_instance;
   EOQ
@@ -1087,8 +1087,8 @@ query "sql_instance_mysql_binary_log_enabled" {
         when binary_log_enabled then title || ' binary log enabled.'
         else title || ' binary log disabled.'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_sql_database_instance;
   EOQ
