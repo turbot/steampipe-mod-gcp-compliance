@@ -55,7 +55,13 @@ benchmark "all_controls_compute" {
     control.compute_instance_no_data_destruction_permission,
     control.compute_instance_no_service_account_impersonate_permission,
     control.compute_instance_no_write_permission_on_deny_policy,
-    control.compute_instance_wth_no_high_level_basic_role
+    control.compute_instance_wth_no_high_level_basic_role,
+    control.compute_firewall_rule_restrict_ingress_all_with_no_specific_target,
+    control.compute_firewall_rule_access_restricted_to_postgresql_port_10250,
+    control.compute_firewall_rule_access_restricted_to_postgresql_port_10255,
+    control.compute_firewall_rule_restrict_ingress_all,
+    control.compute_instance_no_iam_write_permission,
+    control.compute_firewall_rule_restrict_access_except_http_and_https
   ]
 
   tags = merge(local.all_controls_compute_common_tags, {
