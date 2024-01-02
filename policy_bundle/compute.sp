@@ -194,95 +194,95 @@ control "compute_ssl_policy_with_no_weak_cipher" {
 control "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to DNS port 53"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to DNS port 53."
-  query = query.compute_firewall_rule_access_restricted_to_dns_port_53
+  query = query.compute_firewall_rule_ingress_access_restricted_to_dns_port_53
 
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_ftp_port_21" {
+control "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to FTP port 21"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to FTP port 21."
-  query = query.compute_firewall_rule_access_restricted_to_ftp_port_21
+  query = query.compute_firewall_rule_ingress_access_restricted_to_ftp_port_21
 
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_http_port_80" {
+control "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to HTTP port 80"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to HTTP port 80."
-  query = query.compute_firewall_rule_access_restricted_to_http_port_80
+  query = query.compute_firewall_rule_ingress_access_restricted_to_http_port_80
 
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_smtp_port_25" {
+control "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to SMTP port 25"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to SMTP port 25."
-  query = query.compute_firewall_rule_access_restricted_to_smtp_port_25
+  query = query.compute_firewall_rule_ingress_access_restricted_to_smtp_port_25
 
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_microsoft_ds_port_445" {
+control "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to Microsoft DS port 445"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Microsoft DS port 445."
-  query = query.compute_firewall_rule_access_restricted_to_microsoft_ds_port_445
+  query = query.compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445
 
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_mongo_db_port_27017" {
+control "compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to MongoDB port 27017"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MongoDB port 27017."
-  query = query.compute_firewall_rule_access_restricted_to_mongo_db_port_27017
+  query = query.compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017
 
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_mysql_db_port_3306" {
+control "compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to MySQL DB port 3306"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MySQL DB port 3306."
-  query = query.compute_firewall_rule_access_restricted_to_mysql_db_port_3306
+  query = query.compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306
 
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_netbios_snn_port_139" {
+control "compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to NetBIOS SSN port 139"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to NetBIOS SSN port 139."
-  query = query.compute_firewall_rule_access_restricted_to_netbios_snn_port_139
+  query = query.compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139
 
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_oracle_db_port_1521" {
+control "compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to Oracle DB port 1521"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Oracle DB port 1521."
-  query = query.compute_firewall_rule_access_restricted_to_oracle_db_port_1521
+  query = query.compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521
 
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_pop3_port_110" {
+control "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to POP3 port 110"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to POP3 port 110."
-  query = query.compute_firewall_rule_access_restricted_to_pop3_port_110
+  query = query.compute_firewall_rule_ingress_access_restricted_to_pop3_port_110
 
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_postgresql_port_5432" {
+control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to PostgreSQL port 5432"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to PostgreSQL port 5432."
-  query = query.compute_firewall_rule_access_restricted_to_postgresql_port_5432
+  query = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
 
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_telnet_port_23" {
+control "compute_firewall_rule_ingress_access_restricted_to_telnet_port_23" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to Telnet port 23"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Telnet port 23."
-  query = query.compute_firewall_rule_access_restricted_to_telnet_port_23
+  query = query.compute_firewall_rule_ingress_access_restricted_to_telnet_port_23
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -305,7 +305,7 @@ control "compute_backend_bucket_no_dangling_storage_bucket" {
 
 control "compute_instance_preemptible_termination_disabled" {
   title       = "Compute Instance preemptible termination should be disabled"
-  description = "This control ensures that Compute Instance preemptible termination is be disabled. Compute Instance preemptible termination can lead to unexpected loss of service when the VM instance is terminated."
+  description = "This control ensures that Compute Instance preemptible termination is disabled. Compute Instance preemptible termination can lead to unexpected loss of service when the VM instance is terminated."
   query = query.compute_instance_preemptible_termination_disabled
 
   tags = local.policy_bundle_compute_common_tags
@@ -407,18 +407,18 @@ control "compute_firewall_rule_restrict_ingress_all_with_no_specific_target" {
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_postgresql_port_10250" {
+control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port 10250"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to port 10250."
-  query = query.compute_firewall_rule_access_restricted_to_postgresql_port_10250
+  query = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250
 
   tags = local.policy_bundle_compute_common_tags
 }
 
-control "compute_firewall_rule_access_restricted_to_postgresql_port_10255" {
+control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port 10255"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to port 10255."
-  query = query.compute_firewall_rule_access_restricted_to_postgresql_port_10255
+  query = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -439,10 +439,10 @@ control "compute_instance_no_iam_write_permission" {
   tags = local.policy_bundle_cloudfunction_common_tags
 }
 
-control "compute_firewall_rule_restrict_access_except_http_and_https" {
+control "compute_firewall_default_rule_restrict_ingress_access_except_http_and_https" {
   title       = "Ensure no open default firewall rules allow ingress from 0.0.00/0 to any port"
   description = "This control ensures that default firewall rules does not allow ingress from 0.0.00/0 to any port. This is not applicable to default HTTP and HTTPS firewall rule."
-  query       = query.compute_firewall_rule_restrict_access_except_http_and_https
+  query       = query.compute_firewall_default_rule_restrict_ingress_access_except_http_and_https
 
   tags = local.policy_bundle_cloudfunction_common_tags
 }
@@ -1067,7 +1067,7 @@ query "compute_ssl_policy_with_no_weak_cipher" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_dns_port_53" {
+query "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -1135,7 +1135,7 @@ query "compute_firewall_rule_access_restricted_to_dns_port_53" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_ftp_port_21" {
+query "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -1203,7 +1203,7 @@ query "compute_firewall_rule_access_restricted_to_ftp_port_21" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_http_port_80" {
+query "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -1271,7 +1271,7 @@ query "compute_firewall_rule_access_restricted_to_http_port_80" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_smtp_port_25" {
+query "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -1339,7 +1339,7 @@ query "compute_firewall_rule_access_restricted_to_smtp_port_25" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_microsoft_ds_port_445" {
+query "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -1407,7 +1407,7 @@ query "compute_firewall_rule_access_restricted_to_microsoft_ds_port_445" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_mongo_db_port_27017" {
+query "compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -1475,7 +1475,7 @@ query "compute_firewall_rule_access_restricted_to_mongo_db_port_27017" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_mysql_db_port_3306" {
+query "compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -1543,7 +1543,7 @@ query "compute_firewall_rule_access_restricted_to_mysql_db_port_3306" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_netbios_snn_port_139" {
+query "compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -1611,7 +1611,7 @@ query "compute_firewall_rule_access_restricted_to_netbios_snn_port_139" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_oracle_db_port_1521" {
+query "compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -1679,7 +1679,7 @@ query "compute_firewall_rule_access_restricted_to_oracle_db_port_1521" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_pop3_port_110" {
+query "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -1747,7 +1747,7 @@ query "compute_firewall_rule_access_restricted_to_pop3_port_110" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_postgresql_port_5432" {
+query "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -1815,7 +1815,7 @@ query "compute_firewall_rule_access_restricted_to_postgresql_port_5432" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_telnet_port_23" {
+query "compute_firewall_rule_ingress_access_restricted_to_telnet_port_23" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -2465,7 +2465,7 @@ query "compute_firewall_rule_restrict_ingress_all_with_no_specific_target" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_postgresql_port_10250" {
+query "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -2533,7 +2533,7 @@ query "compute_firewall_rule_access_restricted_to_postgresql_port_10250" {
   EOQ
 }
 
-query "compute_firewall_rule_access_restricted_to_postgresql_port_10255" {
+query "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255" {
   sql = <<-EOQ
     with ip_protocol_all as (
       select
@@ -2630,7 +2630,7 @@ query "compute_firewall_rule_restrict_ingress_all" {
         when name in (select name from ip_protocol_all) then title || ' allows ingress from internet to all ports.'
         else title || ' restricts ingress from internet to all ports.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -2686,7 +2686,7 @@ query "compute_instance_no_iam_write_permission" {
   EOQ
 }
 
-query "compute_firewall_rule_restrict_access_except_http_and_https" {
+query "compute_firewall_default_rule_restrict_ingress_access_except_http_and_https" {
   sql = <<-EOQ
     with default_firewall_rule as (
       select
@@ -2713,7 +2713,7 @@ query "compute_firewall_rule_restrict_access_except_http_and_https" {
         when name in (select name from default_firewall_rule) then title || ' is default firewall with public access.'
         else title || ' is default firewall with no public access.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ

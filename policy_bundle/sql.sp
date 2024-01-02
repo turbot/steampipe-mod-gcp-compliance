@@ -1064,7 +1064,7 @@ query "sql_instance_with_labels" {
       end as status,
       case
         when labels is not null then title || ' has labels attached.'
-        else title || ' has not labels attached.'
+        else title || ' no labels attached.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}

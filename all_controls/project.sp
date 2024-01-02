@@ -11,7 +11,7 @@ benchmark "all_controls_project" {
     control.project_access_approval_settings_enabled,
     control.project_no_api_key,
     control.project_service_cloudasset_api_enabled,
-    control.project_service_container_scanning_api_enabled,
+    control.project_service_container_scanning_api_enabled
   ]
 
   tags = merge(local.all_controls_project_common_tags, {

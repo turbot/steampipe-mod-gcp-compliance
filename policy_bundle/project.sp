@@ -117,7 +117,7 @@ query "project_service_container_scanning_api_enabled" {
           then name || ' container scanning API is enabled.'
         else name || ' container scanning API is disabled.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_project_service
     where

@@ -389,7 +389,7 @@ query "iam_user_kms_separation_of_duty_enforced" {
       from
         users_with_roles
       where
-        assigned_role = 'roles/s.admin'
+        assigned_role = 'roles/cloudkms.admin'
     )
     select
       distinct user_name as resource,

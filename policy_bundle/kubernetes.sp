@@ -195,7 +195,7 @@ control "kubernetes_cluster_release_channel_configured" {
 }
 
 control "kubernetes_cluster_zone_redundant" {
-  title = "GKE clusters release should zone redundant"
+  title = "GKE clusters release should be zone redundant"
   description = "This control ensures that GKE clusters is located in at least three zones."
   query = query.kubernetes_cluster_zone_redundant
 
@@ -203,15 +203,7 @@ control "kubernetes_cluster_zone_redundant" {
 }
 
 control "kubernetes_cluster_private_nodes_configured" {
-  title = "GKE clusters private nodes configured"
-  description = "This control ensures that GKE clusters private nodes are configured."
-  query = query.kubernetes_cluster_private_nodes_configured
-
-  tags = local.policy_bundle_kubernetes_common_tags
-}
-
-control "kubernetes_cluster_private_nodes_configured" {
-  title = "GKE clusters private nodes configured"
+  title = "GKE clusters private nodes should be configured"
   description = "This control ensures that GKE clusters private nodes are configured."
   query = query.kubernetes_cluster_private_nodes_configured
 
@@ -227,7 +219,7 @@ control "kubernetes_cluster_network_policy_enabled" {
 }
 
 control "kubernetes_cluster_client_certificate_authentication_enabled" {
-  title = "GKE clusters client certificate authentication enabled"
+  title = "GKE clusters client certificate authentication should be enabled"
   description = "This control ensures that GKE clusters client certificate authentication is enabled."
   query = query.kubernetes_cluster_client_certificate_authentication_enabled
 
@@ -618,7 +610,7 @@ query "kubernetes_cluster_binary_authorization_enabled" {
       case
        when binary_authorization is null
         or (binary_authorization ->> 'evaluationMode') ilike 'DISABLED'
-        or (binary_authorization ->> 'evaluationMode') ilike 'EVALUATION_MODE_UNSPECIFIED' then title || ' binary authorization disabled .'
+        or (binary_authorization ->> 'evaluationMode') ilike 'EVALUATION_MODE_UNSPECIFIED' then title || ' binary authorization disabled.'
         else title || ' binary authorization enabled.'
       end as reason
       ${local.tag_dimensions_sql}
@@ -637,8 +629,8 @@ query "kubernetes_cluster_release_channel_configured" {
         else 'alarm'
       end as status,
       case
-       when (release_channel -> 'channel') is not null then title || ' release channel configured .'
-        else title || ' release channel not configured .'
+       when (release_channel -> 'channel') is not null then title || ' release channel configured.'
+        else title || ' release channel not configured.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
@@ -765,7 +757,7 @@ query "kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled" {
         when np -> 'management' -> 'autoUpgrade' = 'true' and current_node_count < 3 then 'alarm'
         else 'ok'
       end as status,
-      title || ' has ' || current_node_count || ' node with auto upgrade enabled.' as reason
+      title || ' has ' || current_node_count || ' node(s) with auto upgrade enabled.' as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from

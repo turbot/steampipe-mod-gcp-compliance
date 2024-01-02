@@ -14,7 +14,7 @@ control "cloudfunction_function_vpc_connector_enabled" {
 
 control "cloudfunction_function_no_ingress_settings_allow_all" {
   title       = "Cloudfunction functions ingress settings should not be set to allow all"
-  description = "It is recommended that Cloudfunction functions ingress settings should not be set to allow all as it allow all inbound requests to the function."
+  description = "It is recommended that Cloudfunction functions ingress settings should not be set to `allow all` as it allow all inbound requests to the function."
   query       = query.cloudfunction_function_no_ingress_settings_allow_all
 
   tags = local.policy_bundle_cloudfunction_common_tags
@@ -118,7 +118,7 @@ query "cloudfunction_function_restricted_permission" {
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
     from
       gcp_cloudfunctions_function as f
-      left join unapproved_bindings as b on f.project = b.project and b.entity = concat('serviceAccount:' || f.service_account_email)
+      left join unapproved_bindings as b on f.project = b.project and b.entity = concat('serviceAccount:' || f.service_account_email);
   EOQ
 }
 
