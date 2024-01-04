@@ -9,6 +9,7 @@ benchmark "all_controls_storage" {
   description = "This section contains recommendations for configuring Storage resources."
   children = [
     control.require_bucket_policy_only,
+    control.storage_bucket_log_retention_policy_enabled,
     control.storage_bucket_log_retention_policy_lock_enabled,
     control.storage_bucket_not_publicly_accessible,
     control.storage_bucket_uniform_access_enabled

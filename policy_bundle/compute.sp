@@ -191,6 +191,278 @@ control "compute_ssl_policy_with_no_weak_cipher" {
   tags = local.policy_bundle_compute_common_tags
 }
 
+control "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to DNS port 53"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to DNS port 53."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_dns_port_53
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to FTP port 21"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to FTP port 21."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_ftp_port_21
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to HTTP port 80"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to HTTP port 80."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_http_port_80
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to SMTP port 25"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to SMTP port 25."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_smtp_port_25
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to Microsoft DS port 445"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Microsoft DS port 445."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to MongoDB port 27017"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MongoDB port 27017."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to MySQL DB port 3306"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MySQL DB port 3306."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to NetBIOS SSN port 139"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to NetBIOS SSN port 139."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to Oracle DB port 1521"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Oracle DB port 1521."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to POP3 port 110"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to POP3 port 110."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_pop3_port_110
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to PostgreSQL port 5432"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to PostgreSQL port 5432."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_telnet_port_23" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to Telnet port 23"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Telnet port 23."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_telnet_port_23
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_network_auto_create_subnetwork_enabled" {
+  title       = "Compute Networks should have auto create subnetwork enabled"
+  description = "This control ensures that auto create subnetwork is enabled for Compute Network. Legacy network is not recommended, subnetworks cannot be created in a legacy network."
+  query       = query.compute_network_auto_create_subnetwork_enabled
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_backend_bucket_no_dangling_storage_bucket" {
+  title       = "Compute Backend Bucket should not have dangling storage bucket"
+  description = "This control ensures that Compute Backend Bucket does not have dangling storage bucket."
+  query       = query.compute_backend_bucket_no_dangling_storage_bucket
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_preemptible_termination_disabled" {
+  title       = "Compute Instance preemptible termination should be disabled"
+  description = "This control ensures that Compute Instance preemptible termination is disabled. Compute Instance preemptible termination can lead to unexpected loss of service when the VM instance is terminated."
+  query       = query.compute_instance_preemptible_termination_disabled
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_with_custom_metadata" {
+  title       = "Compute Instances should have custom metadata"
+  description = "This control ensures that Compute Instance have custom metadata. Custom metadata facilitates simple identification and enhances searchability."
+  query       = query.compute_instance_with_custom_metadata
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_template_ip_forwarding_disabled" {
+  title       = "Compute Instance template IP forwarding should be disabled"
+  description = "Compute Engine instance template cannot forward a packet unless the source IP address of the packet matches the IP address of the instance. Similarly, GCP won't deliver a packet whose destination IP address is different than the IP address of the instance receiving the packet. However, both capabilities are required if you want to use instances to help route packets."
+  query       = query.compute_instance_template_ip_forwarding_disabled
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_target_https_proxy_quic_protocol_enabled" {
+  title       = "Compute Target HTTPS proxy QUIC protocol should be enabled"
+  description = "This control ensures that Compute Target HTTPS proxy QUIC protocol is enabled. Activating the QUIC protocol in load balancer target HTTPS proxies offers the benefit of quicker connection establishment."
+  query       = query.compute_target_https_proxy_quic_protocol_enabled
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_target_https_proxy_quic_protocol_no_default_ssl_policy" {
+  title       = "Compute Target HTTPS proxy should use custom SSL policy"
+  description = "This control ensures that Compute Target HTTPS proxy should use custom SSL policy."
+  query       = query.compute_target_https_proxy_quic_protocol_no_default_ssl_policy
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_no_disrupt_logging_permission" {
+  title       = "Compute Instances should restrict disrupt logging permission"
+  description = "This control ensures that Compute Instance does not disrupt logging permissions."
+  query       = query.compute_instance_no_disrupt_logging_permission
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_no_deployments_manager_permission" {
+  title       = "Compute Instances should restrict deployments manager permission"
+  description = "This control ensures that Compute Instance does not allow deployments manager permissions."
+  query       = query.compute_instance_no_deployments_manager_permission
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_no_database_write_permission" {
+  title       = "Compute Instances should restrict database write permission"
+  description = "This control ensures that Compute Instance does not allow database write permissions."
+  query       = query.compute_instance_no_database_write_permission
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_no_data_destruction_permission" {
+  title       = "Compute Instances should restrict data destruction permission"
+  description = "This control ensures that Compute Instance does not allow data destruction permissions."
+  query       = query.compute_instance_no_data_destruction_permission
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_no_service_account_impersonate_permission" {
+  title       = "Compute Instances should restrict service account impersonate permission"
+  description = "This control ensures that Compute Instance does not allow service account impersonate permissions."
+  query       = query.compute_instance_no_service_account_impersonate_permission
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_no_write_permission_on_deny_policy" {
+  title       = "Compute Instances should restrict write permission on deny policy"
+  description = "This control ensures that Compute Instance does not allow write permission on deny policies."
+  query       = query.compute_instance_no_write_permission_on_deny_policy
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_wth_no_high_level_basic_role" {
+  title       = "Compute Instances should restrict high level basic role"
+  description = "This control ensures that Compute Instance does not allow high level basic role."
+  query       = query.compute_instance_wth_no_high_level_basic_role
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_target_https_uses_latest_tls_version" {
+  title       = "Ensure HTTPS target use latest TLS version"
+  description = "This control ensures that HTTP target use latest TLS version."
+  query       = query.compute_target_https_uses_latest_tls_version
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_external_backend_service_iap_enabled" {
+  title       = "Ensure external backend service has IAP enabled"
+  description = "This control ensures that external backend service has IAP enabled."
+  query       = query.compute_external_backend_service_iap_enabled
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_restrict_ingress_all_with_no_specific_target" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to any port without any specific target"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to any port without any specific target."
+  query       = query.compute_firewall_rule_restrict_ingress_all_with_no_specific_target
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port 10250"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to port 10250."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port 10255"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to port 10255."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_restrict_ingress_all" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to any port"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to any port."
+  query       = query.compute_firewall_rule_restrict_ingress_all
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_instance_no_iam_write_permission" {
+  title       = "Compute Instances should restrict IAM write permission"
+  description = "This is control ensures that Compute Instance does not allow IAM write permissions."
+  query       = query.compute_instance_no_iam_write_permission
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_default_rule_restrict_ingress_access_except_http_and_https" {
+  title       = "Ensure no open default firewall rules allow ingress from 0.0.00/0 to any port"
+  description = "This control ensures that default firewall rules does not allow ingress from 0.0.00/0 to any port. This is not applicable to default HTTP and HTTPS firewall rule."
+  query       = query.compute_firewall_default_rule_restrict_ingress_access_except_http_and_https
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
 query "compute_firewall_rule_ssh_access_restricted" {
   sql = <<-EOQ
     with ip_protocol_all as (
@@ -808,5 +1080,1658 @@ query "compute_ssl_policy_with_no_weak_cipher" {
       end as reason
       ${local.common_dimensions_global_sql}
     from all_proxies;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '53'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 53
+            and split_part(port, '-', 2) :: integer >= 53
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to DNS port 53.'
+        else title || ' restricts access from internet to DNS port 53.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '21'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 21
+            and split_part(port, '-', 2) :: integer >= 21
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to port 21.'
+        else title || ' restricts access from internet to port 21.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '80'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 80
+            and split_part(port, '-', 2) :: integer >= 80
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to HTTP port 80.'
+        else title || ' restricts access from internet to HTTP port 80.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '25'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 25
+            and split_part(port, '-', 2) :: integer >= 25
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to SMTP port 25.'
+        else title || ' restricts access from internet to SMTP port 25.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '445'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 445
+            and split_part(port, '-', 2) :: integer >= 445
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to Microsoft DS port 445.'
+        else title || ' restricts access from internet to Microsof DS port 445.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '27017'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 27017
+            and split_part(port, '-', 2) :: integer >= 27017
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to MongoDB port 27017.'
+        else title || ' restricts access from internet to MongoDB port 27017.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '3306'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 3306
+            and split_part(port, '-', 2) :: integer >= 3306
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to MySQL port 3306.'
+        else title || ' restricts access from internet to MySQL port 3306.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '139'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 139
+            and split_part(port, '-', 2) :: integer >= 139
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to NetBIOS SSN port 139.'
+        else title || ' restricts access from internet to NetBIOS SSN port 139.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '1521'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 1521
+            and split_part(port, '-', 2) :: integer >= 1521
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to Oracle DB port 1521.'
+        else title || ' restricts access from internet to Oracle DB port 1521.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '110'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 110
+            and split_part(port, '-', 2) :: integer >= 110
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to POP3 port 110.'
+        else title || ' restricts access from internet to POP3 port 110.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '5432'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 5432
+            and split_part(port, '-', 2) :: integer >= 5432
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to PostgreSQL port 5432.'
+        else title || ' restricts access from internet to PostgreSQL port 5432.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_telnet_port_23" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '23'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 23
+            and split_part(port, '-', 2) :: integer >= 23
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to Telnet port 23.'
+        else title || ' restricts access from internet to Telnet port 23.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_network_auto_create_subnetwork_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when auto_create_subnetworks then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when auto_create_subnetworks then title || ' auto create subnetwork enabled.'
+        else title || ' auto create subnetwork disabled.'
+      end as reason
+      ${local.common_dimensions_global_sql}
+    from
+      gcp_compute_network;
+  EOQ
+}
+
+query "compute_backend_bucket_no_dangling_storage_bucket" {
+  sql = <<-EOQ
+    select
+      b.self_link resource,
+      case
+        when s.name is not null then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when s.name is not null then b.title || ' has no dangling storage bucket.'
+        else b.title || ' has dangling storage bucket.'
+      end as reason
+      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
+      ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
+    from
+      gcp_compute_backend_bucket as b
+      left join gcp_storage_bucket as s on s.name = b.name and s.project = b.project;
+  EOQ
+}
+
+query "compute_instance_preemptible_termination_disabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when name like 'gke-%' then 'skip'
+        when scheduling ->> 'preemptible' = 'true' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name like 'gke-%' and labels ? 'goog-gke-node'
+          then title || ' created by GKE.'
+        when scheduling ->> 'preemptible' = 'true' then title || ' preemptible termination enabled.'
+        else title || ' preemptible termination disabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_instance;
+  EOQ
+}
+
+query "compute_instance_with_custom_metadata" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when name like 'gke-%' then 'skip'
+        when metadata is not null then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when name like 'gke-%' and labels ? 'goog-gke-node'
+          then title || ' created by GKE.'
+        when metadata is not null then title || ' has custom metadata.'
+        else title || ' has no custom metadata.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_instance;
+  EOQ
+}
+
+query "compute_instance_template_ip_forwarding_disabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when instance_can_ip_forward then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when instance_can_ip_forward then title || ' IP forwarding enabled.'
+        else title || ' IP forwarding disabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_instance_template;
+  EOQ
+}
+
+query "compute_target_https_proxy_quic_protocol_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when quic_override = 'ENABLE' then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when quic_override = 'ENABLE' then title || ' QUIC override protocol enabled.'
+        else title || ' QUIC override protocol disabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_target_https_proxy;
+  EOQ
+}
+
+query "compute_target_https_proxy_quic_protocol_no_default_ssl_policy" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when ssl_policy = '' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when ssl_policy = '' then title || ' using default SSL policy.'
+        else title || ' using custom SSL policy.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_target_https_proxy;
+  EOQ
+}
+
+query "compute_instance_no_disrupt_logging_permission" {
+  sql = <<-EOQ
+    with role_with_disrupt_logging_permission as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p in ('logging.buckets.delete', 'logging.buckets.update', 'logging.logMetrics.delete', 'logging.logMetrics.update', 'logging.logs.delete', 'logging.sinks.delete', 'logging.sinks.update')
+      ), policy_with_disrupt_logging_permission as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in ('roles/logging.bucketWriter', 'roles/logging.configWriter', 'roles/logging.admin')
+        or p ->> 'role' in (select name from role_with_disrupt_logging_permission)
+    ), compute_instance_with_disrupt_logging_service_permission as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_disrupt_logging_permission as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow disrupt logging permission.'
+        else i.title || ' restrict disrupt logging permission.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_disrupt_logging_service_permission as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_instance_no_deployments_manager_permission" {
+  sql = <<-EOQ
+    with role_with_deployments_manager_permission as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p in ('deploymentmanager.deployments.create', 'deploymentmanager.deployments.update')
+      ), policy_with_deployments_manager_permission as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in ('roles/deploymentmanager.editor')
+        or p ->> 'role' in (select name from role_with_deployments_manager_permission)
+    ), compute_instance_with_deployments_manage_permission as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_deployments_manager_permission as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow deployment managers permission.'
+        else i.title || ' restrict deployment managers permission.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_deployments_manage_permission as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_instance_no_database_write_permission" {
+  sql = <<-EOQ
+    with role_with_deployments_manager_permission as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p in ('cloudsql.databases.update', 'cloudsql.instances.update', 'datastore.databases.update', 'datastore.entities.update', 'datastore.indexes.update', 'spanner.databases.update','spanner.databases.write','spanner.instances.update', 'bigtable.clusters.update', 'bigtable.instances.update', 'bigtable.tables.update', 'redis.instances.update', 'memcache.instances.update', 'datamigration.migrationjobs.update', 'datamigration.connectionprofiles.update', 'datamigration.conversionworkspaces.update', 'alloydb.clusters.update', 'alloydb.instances.update', 'gcp.redisenterprise.com-databases.update', 'gcp.redisenterprise.com-subscriptions.update')
+      ), policy_with_deployments_manager_permission as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in ('roles/cloudsql.admin', 'roles/cloudsql.instanceUser', 'roles/datastore.indexAdmin', 'roles/datastore.owner', 'roles/datastore.user', 'roles/alloydb.admin', 'roles/bigtable.admin', 'roles/datamigration.admin', 'roles/datamigration.serviceAgent', 'roles/memcache.admin', 'roles/redis.admin', 'roles/redisenterprisecloud.admin', 'roles/spanner.admin', 'roles/spanner.databaseAdmin')
+        or p ->> 'role' in (select name from role_with_deployments_manager_permission)
+    ), compute_instance_with_deployments_manage_permission as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_deployments_manager_permission as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow database write permission.'
+        else i.title || ' restrict database write permission.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_deployments_manage_permission as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_instance_no_data_destruction_permission" {
+  sql = <<-EOQ
+    with role_with_data_destruction_permission as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p in ( 'compute.instances.delete', 'compute.disks.delete', 'compute.snapshots.delete', 'compute.images.delete', 'storage.buckets.delete', 'cloudsql.databases.delete', 'cloudsql.instances.delete', 'file.instances.delete')
+      ), policy_with_data_destruction_permission as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in ('roles/cloudsql.admin', 'roles/cloudsql.instanceUser', 'roles/compute.admin' , 'roles/compute.instanceAdmin.v1')
+        or p ->> 'role' in (select name from role_with_data_destruction_permission)
+    ), compute_instance_with_data_destruction_permission as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_data_destruction_permission as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow data destruction permission.'
+        else i.title || ' restrict data destruction permission.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_data_destruction_permission as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_instance_no_service_account_impersonate_permission" {
+  sql = <<-EOQ
+    with role_with_service_account_impersonate_permission as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p in ('iam.serviceAccounts.getAccessToken', 'iam.serviceAccounts.signBlob', 'iam.serviceAccounts.signJwt', 'iam.serviceAccounts.implicitDelegation', 'iam.serviceAccounts.getOpenIdToken', 'iam.serviceAccounts.actAs')
+      ), policy_with_service_account_impersonate_permission as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in ('roles/iam.securityAdmin' )
+        or p ->> 'role' in (select name from role_with_service_account_impersonate_permission)
+    ), compute_instance_with_service_account_impersonate_permission as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_service_account_impersonate_permission as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow service account impersonate permission.'
+        else i.title || ' restrict service account impersonate permission.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_service_account_impersonate_permission as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_instance_no_write_permission_on_deny_policy" {
+  sql = <<-EOQ
+    with role_with_write_permission_on_deny_policy as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p in ( 'iam.denypolicies.delete', 'iam.denypolicies.update')
+      ), policy_with_write_permission_on_deny_policy as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in (select name from role_with_write_permission_on_deny_policy)
+    ), compute_instance_with_write_permission_on_deny_policy as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_write_permission_on_deny_policy as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow write permission on_deny policies.'
+        else i.title || ' restrict swrite permission on_deny policies.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_write_permission_on_deny_policy as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_instance_wth_no_high_level_basic_role" {
+  sql = <<-EOQ
+    with policy_with_high_level_basic_role as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in ( 'roles/owner' , 'roles/editor' )
+    ), compute_instance_with_high_level_basic_role as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_high_level_basic_role as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when i.name like 'gke-%' and labels ? 'goog-gke-node' then 'skip'
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when i.name like 'gke-%' and labels ? 'goog-gke-node' then title || ' created by GKE.'
+        when p.self_link is not null then i.title || ' allow high level basic role.'
+        else i.title || ' restrict high level basic role.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_high_level_basic_role as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_target_https_uses_latest_tls_version" {
+  sql = <<-EOQ
+    with all_proxies as (
+      select
+        name,
+        _ctx,
+        self_link,
+        split_part(kind, '#', 2) proxy_type,
+        ssl_policy,
+        title,
+        location,
+        project
+      from
+        gcp_compute_target_https_proxy
+    ),ssl_policy_with_no_latest_tls as (
+      select
+        self_link
+      from
+        gcp_compute_ssl_policy
+      where
+        (profile = 'MODERN' or profile = 'CUSTOM')
+        and min_tls_version = 'TLS_1_2'
+    )
+    select
+      self_link resource,
+      case
+        when ssl_policy = '' or ssl_policy in (select self_link from ssl_policy_with_no_latest_tls) then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when  ssl_policy = '' then  title || ' has no SSL policy.'
+        when ssl_policy in (select self_link from ssl_policy_with_no_latest_tls) then title || ' uses latest TLS version.'
+        else title || ' not uses letest TLS version.'
+      end as reason
+      ${local.common_dimensions_global_sql}
+    from
+      gcp_compute_target_https_proxy;
+  EOQ
+}
+
+query "compute_external_backend_service_iap_enabled" {
+  sql = <<-EOQ
+    select
+      self_link as resource,
+      case
+        when not load_balancing_scheme like 'EXTERNAL%' then 'skip'
+        when (iap -> 'enabled')::bool then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when not load_balancing_scheme like 'EXTERNAL%' then name || ' is external backend service.'
+        when (iap -> 'enabled')::bool then name || ' IAP enabled.'
+        else name || ' IAP disabled.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_backend_service;
+  EOQ
+}
+
+query "compute_firewall_rule_restrict_ingress_all_with_no_specific_target" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+       distinct name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and target_tags is null
+        and allowed is not null
+        and target_service_accounts is null
+      )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_all) then title || ' allows ingress from internet with no specific target.'
+        else title || ' restricts ingress from internet with no specific target.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '10250'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 10250
+            and split_part(port, '-', 2) :: integer >= 10250
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to DNS port 10250.'
+        else title || ' restricts access from internet to DNS port 10250.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '10255'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 10255
+            and split_part(port, '-', 2) :: integer >= 10255
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to DNS port 10255.'
+        else title || ' restricts access from internet to DNS port 10255.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_restrict_ingress_all" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+       distinct name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+         and allowed @> '[{"IPProtocol":"all"}]'
+      )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_all) then title || ' allows ingress from internet to all ports.'
+        else title || ' restricts ingress from internet to all ports.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_instance_no_iam_write_permission" {
+  sql = <<-EOQ
+    with role_with_iam_write_permission as (
+      select
+        distinct name,
+        project
+      from
+        gcp_iam_role,
+        jsonb_array_elements_text(included_permissions) as p
+      where
+        not is_gcp_managed
+        and p in ( 'accessapproval.requests.approve','accessapproval.requests.dismiss','accessapproval.settings.delete','accessapproval.settings.update','accesscontextmanager.accessLevels.create','accesscontextmanager.accessLevels.delete','accesscontextmanager.accessLevels.replaceAll','accesscontextmanager.accessLevels.update','accesscontextmanager.accessPolicies.create','accesscontextmanager.accessPolicies.delete','accesscontextmanager.accessPolicies.setIamPolicy','accesscontextmanager.accessPolicies.update','accesscontextmanager.gcpUserAccessBindings.create','accesscontextmanager.gcpUserAccessBindings.delete','accesscontextmanager.gcpUserAccessBindings.update','accesscontextmanager.policies.create','accesscontextmanager.policies.delete','accesscontextmanager.policies.setIamPolicy','accesscontextmanager.policies.update','iam.roles.create','iam.roles.delete','iam.roles.undelete', 'iam.roles.update','iam.serviceAccounts.getAccessToken','iam.serviceAccountKeys.create','iam.serviceAccountKeys.delete','iam.serviceAccounts.create','iam.serviceAccounts.delete','iam.serviceAccounts.disable','iam.serviceAccounts.enable','iam.serviceAccounts.setIamPolicy','iam.serviceAccounts.undelete','iam.serviceAccounts.update','iam.serviceAccounts.implicitDelegation','iam.serviceAccounts.signBlob','iam.serviceAccounts.signJwt','iam.serviceAccounts.actAs','compute.backendServices.setIamPolicy','compute.disks.removeResourcePolicies','compute.disks.setIamPolicy','compute.firewallPolicies.setIamPolicy','compute.globalOperations.setIamPolicy','compute.images.setIamPolicy','compute.instanceTemplates.setIamPolicy','compute.instances.removeResourcePolicies','compute.instances.setIamPolicy','compute.instances.setServiceAccount','compute.machineImages.setIamPolicy','compute.maintenancePolicies.setIamPolicy','compute.snapshots.setIamPolicy')
+      ), policy_with_iam_write_permission as (
+      select
+        distinct entity,
+        project
+      from
+        gcp_iam_policy,
+        jsonb_array_elements(bindings) as p,
+        jsonb_array_elements_text(p -> 'members') as entity
+      where
+        p ->> 'role' in (select name from role_with_iam_write_permission )
+    ), compute_instance_with_iam_write_permission as (
+      select
+        distinct self_link
+      from
+        gcp_compute_instance as i,
+        jsonb_array_elements(service_accounts) as e
+        left join policy_with_iam_write_permission as b on b.entity = concat('serviceAccount:' || (e ->> 'email'))
+      where
+        b.entity is not null
+    )
+    select
+      i.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then i.title || ' allow IAM write permission.'
+        else i.title || ' restrict IAM write permission'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_instance as i
+      left join compute_instance_with_iam_write_permission as p on p.self_link = i.self_link;
+  EOQ
+}
+
+query "compute_firewall_default_rule_restrict_ingress_access_except_http_and_https" {
+  sql = <<-EOQ
+    with default_firewall_rule as (
+      select
+       distinct name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::/0']
+        )
+         and name in ('default-allow-ssh', 'default-allow-icmp', 'default-allow-internal', 'default-allow-rdp')
+      )
+    select
+      self_link resource,
+      case
+        when not name like 'default-%' then 'skip'
+        when name in (select name from default_firewall_rule) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when not name like 'default-%' then title || ' is not default firewall.'
+        when name in (select name from default_firewall_rule) then title || ' is default firewall with public access.'
+        else title || ' is default firewall with no public access.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
   EOQ
 }

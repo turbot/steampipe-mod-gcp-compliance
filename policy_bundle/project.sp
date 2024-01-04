@@ -28,6 +28,14 @@ control "project_no_api_key" {
   tags = local.policy_bundle_project_common_tags
 }
 
+control "project_service_container_scanning_api_enabled" {
+  title       = "Ensure container vulnerability scanning is enabled"
+  description = "Container Vulnerability Scanning in Google Cloud Platform (GCP) refers to a security service that automatically performs vulnerability detection on container images stored in Container Registry and Artifact Registry. This service is designed to identify known security vulnerabilities in your container images."
+  query       = query.project_service_container_scanning_api_enabled
+
+  tags = local.policy_bundle_project_common_tags
+}
+
 query "project_access_approval_settings_enabled" {
   sql = <<-EOQ
     select
@@ -93,5 +101,26 @@ query "project_no_api_key" {
     from
       gcp_project as p
       left join project_api_key as k on k.project = p.project_id;
+  EOQ
+}
+
+query "project_service_container_scanning_api_enabled" {
+  sql = <<-EOQ
+    select
+      name as resource,
+      case
+        when state = 'ENABLED' then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when state = 'ENABLED'
+          then name || ' container scanning API is enabled.'
+        else name || ' container scanning API is disabled.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_project_service
+    where
+      name = 'containerscanning.googleapis.com';
   EOQ
 }
