@@ -194,7 +194,7 @@ control "compute_ssl_policy_with_no_weak_cipher" {
 control "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to DNS port 53"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to DNS port 53."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_dns_port_53
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_dns_port_53
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -202,7 +202,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
 control "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to FTP port 21"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to FTP port 21."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_ftp_port_21
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_ftp_port_21
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -210,7 +210,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
 control "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to HTTP port 80"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to HTTP port 80."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_http_port_80
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_http_port_80
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -218,7 +218,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
 control "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to SMTP port 25"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to SMTP port 25."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_smtp_port_25
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_smtp_port_25
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -226,7 +226,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
 control "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to Microsoft DS port 445"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Microsoft DS port 445."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -234,7 +234,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_44
 control "compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to MongoDB port 27017"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MongoDB port 27017."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -242,7 +242,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017"
 control "compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to MySQL DB port 3306"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MySQL DB port 3306."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -250,7 +250,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306" 
 control "compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to NetBIOS SSN port 139"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to NetBIOS SSN port 139."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -258,7 +258,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139
 control "compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to Oracle DB port 1521"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Oracle DB port 1521."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -266,7 +266,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521"
 control "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to POP3 port 110"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to POP3 port 110."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_pop3_port_110
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_pop3_port_110
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -274,7 +274,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
 control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to PostgreSQL port 5432"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to PostgreSQL port 5432."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -282,7 +282,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
 control "compute_firewall_rule_ingress_access_restricted_to_telnet_port_23" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to Telnet port 23"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Telnet port 23."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_telnet_port_23
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_telnet_port_23
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -290,7 +290,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_telnet_port_23" {
 control "compute_network_auto_create_subnetwork_enabled" {
   title       = "Compute Networks should have auto create subnetwork enabled"
   description = "This control ensures that auto create subnetwork is enabled for Compute Network. Legacy network is not recommended, subnetworks cannot be created in a legacy network."
-  query = query.compute_network_auto_create_subnetwork_enabled
+  query       = query.compute_network_auto_create_subnetwork_enabled
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -298,7 +298,7 @@ control "compute_network_auto_create_subnetwork_enabled" {
 control "compute_backend_bucket_no_dangling_storage_bucket" {
   title       = "Compute Backend Bucket should not have dangling storage bucket"
   description = "This control ensures that Compute Backend Bucket does not have dangling storage bucket."
-  query = query.compute_backend_bucket_no_dangling_storage_bucket
+  query       = query.compute_backend_bucket_no_dangling_storage_bucket
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -306,7 +306,7 @@ control "compute_backend_bucket_no_dangling_storage_bucket" {
 control "compute_instance_preemptible_termination_disabled" {
   title       = "Compute Instance preemptible termination should be disabled"
   description = "This control ensures that Compute Instance preemptible termination is disabled. Compute Instance preemptible termination can lead to unexpected loss of service when the VM instance is terminated."
-  query = query.compute_instance_preemptible_termination_disabled
+  query       = query.compute_instance_preemptible_termination_disabled
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -314,7 +314,7 @@ control "compute_instance_preemptible_termination_disabled" {
 control "compute_instance_with_custom_metadata" {
   title       = "Compute Instances should have custom metadata"
   description = "This control ensures that Compute Instance have custom metadata. Custom metadata facilitates simple identification and enhances searchability."
-  query = query.compute_instance_with_custom_metadata
+  query       = query.compute_instance_with_custom_metadata
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -322,7 +322,7 @@ control "compute_instance_with_custom_metadata" {
 control "compute_instance_template_ip_forwarding_disabled" {
   title       = "Compute Instance template IP forwarding should be disabled"
   description = "Compute Engine instance template cannot forward a packet unless the source IP address of the packet matches the IP address of the instance. Similarly, GCP won't deliver a packet whose destination IP address is different than the IP address of the instance receiving the packet. However, both capabilities are required if you want to use instances to help route packets."
-  query = query.compute_instance_template_ip_forwarding_disabled
+  query       = query.compute_instance_template_ip_forwarding_disabled
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -330,7 +330,7 @@ control "compute_instance_template_ip_forwarding_disabled" {
 control "compute_target_https_proxy_quic_protocol_enabled" {
   title       = "Compute Target HTTPS proxy QUIC protocol should be enabled"
   description = "This control ensures that Compute Target HTTPS proxy QUIC protocol is enabled. Activating the QUIC protocol in load balancer target HTTPS proxies offers the benefit of quicker connection establishment."
-  query = query.compute_target_https_proxy_quic_protocol_enabled
+  query       = query.compute_target_https_proxy_quic_protocol_enabled
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -338,71 +338,87 @@ control "compute_target_https_proxy_quic_protocol_enabled" {
 control "compute_target_https_proxy_quic_protocol_no_default_ssl_policy" {
   title       = "Compute Target HTTPS proxy should use custom SSL policy"
   description = "This control ensures that Compute Target HTTPS proxy should use custom SSL policy."
-  query = query.compute_target_https_proxy_quic_protocol_no_default_ssl_policy
+  query       = query.compute_target_https_proxy_quic_protocol_no_default_ssl_policy
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_no_disrupt_logging_permission" {
   title       = "Compute Instances should restrict disrupt logging permission"
-  description = "This is control ensures that Compute Instance does not disrupt logging permissions."
-  query = query.compute_instance_no_disrupt_logging_permission
+  description = "This control ensures that Compute Instance does not disrupt logging permissions."
+  query       = query.compute_instance_no_disrupt_logging_permission
 
   tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_no_deployments_manager_permission" {
   title       = "Compute Instances should restrict deployments manager permission"
-  description = "This is control ensures that Compute Instance does not allow deployments manager permissions."
+  description = "This control ensures that Compute Instance does not allow deployments manager permissions."
   query       = query.compute_instance_no_deployments_manager_permission
 
-  tags = local.policy_bundle_cloudfunction_common_tags
+  tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_no_database_write_permission" {
   title       = "Compute Instances should restrict database write permission"
-  description = "This is control ensures that Compute Instance does not allow database write permissions."
+  description = "This control ensures that Compute Instance does not allow database write permissions."
   query       = query.compute_instance_no_database_write_permission
 
-  tags = local.policy_bundle_cloudfunction_common_tags
+  tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_no_data_destruction_permission" {
   title       = "Compute Instances should restrict data destruction permission"
-  description = "This is control ensures that Compute Instance does not allow data destruction permissions."
+  description = "This control ensures that Compute Instance does not allow data destruction permissions."
   query       = query.compute_instance_no_data_destruction_permission
 
-  tags = local.policy_bundle_cloudfunction_common_tags
+  tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_no_service_account_impersonate_permission" {
   title       = "Compute Instances should restrict service account impersonate permission"
-  description = "This is control ensures that Compute Instance does not allow service account impersonate permissions."
+  description = "This control ensures that Compute Instance does not allow service account impersonate permissions."
   query       = query.compute_instance_no_service_account_impersonate_permission
 
-  tags = local.policy_bundle_cloudfunction_common_tags
+  tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_no_write_permission_on_deny_policy" {
   title       = "Compute Instances should restrict write permission on deny policy"
-  description = "This is control ensures that Compute Instance does not allow write permission on deny policies."
+  description = "This control ensures that Compute Instance does not allow write permission on deny policies."
   query       = query.compute_instance_no_write_permission_on_deny_policy
 
-  tags = local.policy_bundle_cloudfunction_common_tags
+  tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_instance_wth_no_high_level_basic_role" {
   title       = "Compute Instances should restrict high level basic role"
-  description = "This is control ensures that Compute Instance does not allow high level basic role."
+  description = "This control ensures that Compute Instance does not allow high level basic role."
   query       = query.compute_instance_wth_no_high_level_basic_role
 
-  tags = local.policy_bundle_cloudfunction_common_tags
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_target_https_uses_latest_tls_version" {
+  title       = "Ensure HTTPS target use latest TLS version"
+  description = "This control ensures that HTTP target use latest TLS version."
+  query       = query.compute_target_https_uses_latest_tls_version
+
+  tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_external_backend_service_iap_enabled" {
+  title       = "Ensure external backend service has IAP enabled"
+  description = "This control ensures that external backend service has IAP enabled."
+  query       = query.compute_external_backend_service_iap_enabled
+
+  tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_firewall_rule_restrict_ingress_all_with_no_specific_target" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to any port without any specific target"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to any port without any specific target."
-  query = query.compute_firewall_rule_restrict_ingress_all_with_no_specific_target
+  query       = query.compute_firewall_rule_restrict_ingress_all_with_no_specific_target
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -410,7 +426,7 @@ control "compute_firewall_rule_restrict_ingress_all_with_no_specific_target" {
 control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port 10250"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to port 10250."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -418,7 +434,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_1025
 control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port 10255"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to port 10255."
-  query = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -426,7 +442,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_1025
 control "compute_firewall_rule_restrict_ingress_all" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to any port"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to any port."
-  query = query.compute_firewall_rule_restrict_ingress_all
+  query       = query.compute_firewall_rule_restrict_ingress_all
 
   tags = local.policy_bundle_compute_common_tags
 }
@@ -436,7 +452,7 @@ control "compute_instance_no_iam_write_permission" {
   description = "This is control ensures that Compute Instance does not allow IAM write permissions."
   query       = query.compute_instance_no_iam_write_permission
 
-  tags = local.policy_bundle_cloudfunction_common_tags
+  tags = local.policy_bundle_compute_common_tags
 }
 
 control "compute_firewall_default_rule_restrict_ingress_access_except_http_and_https" {
@@ -444,7 +460,7 @@ control "compute_firewall_default_rule_restrict_ingress_access_except_http_and_h
   description = "This control ensures that default firewall rules does not allow ingress from 0.0.00/0 to any port. This is not applicable to default HTTP and HTTPS firewall rule."
   query       = query.compute_firewall_default_rule_restrict_ingress_access_except_http_and_https
 
-  tags = local.policy_bundle_cloudfunction_common_tags
+  tags = local.policy_bundle_compute_common_tags
 }
 
 query "compute_firewall_rule_ssh_access_restricted" {
@@ -1466,8 +1482,8 @@ query "compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017" {
       end as status,
       case
         when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
-          then title || ' allows access from internet to MongoDB port 445.'
-        else title || ' restricts access from internet to MongoDB port 445.'
+          then title || ' allows access from internet to MongoDB port 27017.'
+        else title || ' restricts access from internet to MongoDB port 27017.'
       end as reason
       ${local.common_dimensions_sql}
     from
@@ -1910,7 +1926,7 @@ query "compute_backend_bucket_no_dangling_storage_bucket" {
         else 'alarm'
       end as status,
       case
-        when s.name is not null then b.title || ' no dangling storage bucket.'
+        when s.name is not null then b.title || ' has no dangling storage bucket.'
         else b.title || ' has dangling storage bucket.'
       end as reason
       ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
@@ -2033,7 +2049,7 @@ query "compute_instance_no_disrupt_logging_permission" {
         jsonb_array_elements_text(included_permissions) as p
       where
         not is_gcp_managed
-        and p  in ('logging.buckets.delete', 'logging.buckets.update', 'logging.logMetrics.delete', 'logging.logMetrics.update', 'logging.logs.delete', 'logging.sinks.delete', 'logging.sinks.update' )
+        and p in ('logging.buckets.delete', 'logging.buckets.update', 'logging.logMetrics.delete', 'logging.logMetrics.update', 'logging.logs.delete', 'logging.sinks.delete', 'logging.sinks.update')
       ), policy_with_disrupt_logging_permission as (
       select
         distinct entity,
@@ -2043,8 +2059,8 @@ query "compute_instance_no_disrupt_logging_permission" {
         jsonb_array_elements(bindings) as p,
         jsonb_array_elements_text(p -> 'members') as entity
       where
-        p ->> 'role' in ('roles/logging.bucketWriter', 'roles/logging.configWriter', 'roles/logging.admin' )
-        or p ->> 'role' in (select name from role_with_disrupt_logging_permission )
+        p ->> 'role' in ('roles/logging.bucketWriter', 'roles/logging.configWriter', 'roles/logging.admin')
+        or p ->> 'role' in (select name from role_with_disrupt_logging_permission)
     ), compute_instance_with_disrupt_logging_service_permission as (
       select
         distinct self_link
@@ -2063,7 +2079,7 @@ query "compute_instance_no_disrupt_logging_permission" {
       end as status,
       case
         when p.self_link is not null then i.title || ' allow disrupt logging permission.'
-        else i.title || ' restrict disrupt logging permission'
+        else i.title || ' restrict disrupt logging permission.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
@@ -2084,7 +2100,7 @@ query "compute_instance_no_deployments_manager_permission" {
         jsonb_array_elements_text(included_permissions) as p
       where
         not is_gcp_managed
-        and p  in ('deploymentmanager.deployments.create', 'deploymentmanager.deployments.update' )
+        and p in ('deploymentmanager.deployments.create', 'deploymentmanager.deployments.update')
       ), policy_with_deployments_manager_permission as (
       select
         distinct entity,
@@ -2094,8 +2110,8 @@ query "compute_instance_no_deployments_manager_permission" {
         jsonb_array_elements(bindings) as p,
         jsonb_array_elements_text(p -> 'members') as entity
       where
-        p ->> 'role' in ('roles/deploymentmanager.editor' )
-        or p ->> 'role' in (select name from role_with_deployments_manager_permission )
+        p ->> 'role' in ('roles/deploymentmanager.editor')
+        or p ->> 'role' in (select name from role_with_deployments_manager_permission)
     ), compute_instance_with_deployments_manage_permission as (
       select
         distinct self_link
@@ -2114,7 +2130,7 @@ query "compute_instance_no_deployments_manager_permission" {
       end as status,
       case
         when p.self_link is not null then i.title || ' allow deployment managers permission.'
-        else i.title || ' restrict deployment managers permission'
+        else i.title || ' restrict deployment managers permission.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
@@ -2135,7 +2151,7 @@ query "compute_instance_no_database_write_permission" {
         jsonb_array_elements_text(included_permissions) as p
       where
         not is_gcp_managed
-        and p  in ('cloudsql.databases.update', 'cloudsql.instances.update', 'datastore.databases.update', 'datastore.entities.update', 'datastore.indexes.update', 'spanner.databases.update','spanner.databases.write','spanner.instances.update', 'bigtable.clusters.update', 'bigtable.instances.update', 'bigtable.tables.update', 'redis.instances.update', 'memcache.instances.update', 'datamigration.migrationjobs.update', 'datamigration.connectionprofiles.update', 'datamigration.conversionworkspaces.update', 'alloydb.clusters.update', 'alloydb.instances.update', 'gcp.redisenterprise.com-databases.update', 'gcp.redisenterprise.com-subscriptions.update' )
+        and p in ('cloudsql.databases.update', 'cloudsql.instances.update', 'datastore.databases.update', 'datastore.entities.update', 'datastore.indexes.update', 'spanner.databases.update','spanner.databases.write','spanner.instances.update', 'bigtable.clusters.update', 'bigtable.instances.update', 'bigtable.tables.update', 'redis.instances.update', 'memcache.instances.update', 'datamigration.migrationjobs.update', 'datamigration.connectionprofiles.update', 'datamigration.conversionworkspaces.update', 'alloydb.clusters.update', 'alloydb.instances.update', 'gcp.redisenterprise.com-databases.update', 'gcp.redisenterprise.com-subscriptions.update')
       ), policy_with_deployments_manager_permission as (
       select
         distinct entity,
@@ -2145,8 +2161,8 @@ query "compute_instance_no_database_write_permission" {
         jsonb_array_elements(bindings) as p,
         jsonb_array_elements_text(p -> 'members') as entity
       where
-        p ->> 'role' in ('roles/cloudsql.admin', 'roles/cloudsql.instanceUser', 'roles/datastore.indexAdmin', 'roles/datastore.owner', 'roles/datastore.user', 'roles/alloydb.admin', 'roles/bigtable.admin', 'roles/datamigration.admin', 'roles/datamigration.serviceAgent', 'roles/memcache.admin', 'roles/redis.admin', 'roles/redisenterprisecloud.admin', 'roles/spanner.admin' , 'roles/spanner.databaseAdmin')
-        or p ->> 'role' in (select name from role_with_deployments_manager_permission )
+        p ->> 'role' in ('roles/cloudsql.admin', 'roles/cloudsql.instanceUser', 'roles/datastore.indexAdmin', 'roles/datastore.owner', 'roles/datastore.user', 'roles/alloydb.admin', 'roles/bigtable.admin', 'roles/datamigration.admin', 'roles/datamigration.serviceAgent', 'roles/memcache.admin', 'roles/redis.admin', 'roles/redisenterprisecloud.admin', 'roles/spanner.admin', 'roles/spanner.databaseAdmin')
+        or p ->> 'role' in (select name from role_with_deployments_manager_permission)
     ), compute_instance_with_deployments_manage_permission as (
       select
         distinct self_link
@@ -2186,7 +2202,7 @@ query "compute_instance_no_data_destruction_permission" {
         jsonb_array_elements_text(included_permissions) as p
       where
         not is_gcp_managed
-        and p  in ( 'compute.instances.delete', 'compute.disks.delete', 'compute.snapshots.delete', 'compute.images.delete', 'storage.buckets.delete', 'cloudsql.databases.delete', 'cloudsql.instances.delete', 'file.instances.delete' )
+        and p in ( 'compute.instances.delete', 'compute.disks.delete', 'compute.snapshots.delete', 'compute.images.delete', 'storage.buckets.delete', 'cloudsql.databases.delete', 'cloudsql.instances.delete', 'file.instances.delete')
       ), policy_with_data_destruction_permission as (
       select
         distinct entity,
@@ -2196,8 +2212,8 @@ query "compute_instance_no_data_destruction_permission" {
         jsonb_array_elements(bindings) as p,
         jsonb_array_elements_text(p -> 'members') as entity
       where
-        p ->> 'role' in ('roles/cloudsql.admin', 'roles/cloudsql.instanceUser', 'roles/compute.admin' , 'roles/compute.instanceAdmin.v1' )
-        or p ->> 'role' in (select name from role_with_data_destruction_permission )
+        p ->> 'role' in ('roles/cloudsql.admin', 'roles/cloudsql.instanceUser', 'roles/compute.admin' , 'roles/compute.instanceAdmin.v1')
+        or p ->> 'role' in (select name from role_with_data_destruction_permission)
     ), compute_instance_with_data_destruction_permission as (
       select
         distinct self_link
@@ -2237,7 +2253,7 @@ query "compute_instance_no_service_account_impersonate_permission" {
         jsonb_array_elements_text(included_permissions) as p
       where
         not is_gcp_managed
-        and p  in ( 'iam.serviceAccounts.getAccessToken', 'iam.serviceAccounts.signBlob', 'iam.serviceAccounts.signJwt', 'iam.serviceAccounts.implicitDelegation', 'iam.serviceAccounts.getOpenIdToken', 'iam.serviceAccounts.actAs' )
+        and p in ('iam.serviceAccounts.getAccessToken', 'iam.serviceAccounts.signBlob', 'iam.serviceAccounts.signJwt', 'iam.serviceAccounts.implicitDelegation', 'iam.serviceAccounts.getOpenIdToken', 'iam.serviceAccounts.actAs')
       ), policy_with_service_account_impersonate_permission as (
       select
         distinct entity,
@@ -2248,7 +2264,7 @@ query "compute_instance_no_service_account_impersonate_permission" {
         jsonb_array_elements_text(p -> 'members') as entity
       where
         p ->> 'role' in ('roles/iam.securityAdmin' )
-        or p ->> 'role' in (select name from role_with_service_account_impersonate_permission )
+        or p ->> 'role' in (select name from role_with_service_account_impersonate_permission)
     ), compute_instance_with_service_account_impersonate_permission as (
       select
         distinct self_link
@@ -2288,7 +2304,7 @@ query "compute_instance_no_write_permission_on_deny_policy" {
         jsonb_array_elements_text(included_permissions) as p
       where
         not is_gcp_managed
-        and p  in ( 'iam.denypolicies.delete', 'iam.denypolicies.update' )
+        and p in ( 'iam.denypolicies.delete', 'iam.denypolicies.update')
       ), policy_with_write_permission_on_deny_policy as (
       select
         distinct entity,
@@ -2298,7 +2314,7 @@ query "compute_instance_no_write_permission_on_deny_policy" {
         jsonb_array_elements(bindings) as p,
         jsonb_array_elements_text(p -> 'members') as entity
       where
-        p ->> 'role' in (select name from role_with_write_permission_on_deny_policy )
+        p ->> 'role' in (select name from role_with_write_permission_on_deny_policy)
     ), compute_instance_with_write_permission_on_deny_policy as (
       select
         distinct self_link
@@ -2395,16 +2411,17 @@ query "compute_target_https_uses_latest_tls_version" {
     select
       self_link resource,
       case
-        when ssl_policy = ''  or ssl_policy in (select self_link from ssl_policy_with_no_latest_tls) then 'ok'
+        when ssl_policy = '' or ssl_policy in (select self_link from ssl_policy_with_no_latest_tls) then 'ok'
         else 'alarm'
       end as status,
       case
-        when  ssl_policy = ''  then  title || ' has no SSL policy.'
+        when  ssl_policy = '' then  title || ' has no SSL policy.'
         when ssl_policy in (select self_link from ssl_policy_with_no_latest_tls) then title || ' uses latest TLS version.'
-        else title ||  ' not uses letest TLS version.'
+        else title || ' not uses letest TLS version.'
       end as reason
       ${local.common_dimensions_global_sql}
-    from gcp_compute_target_https_proxy;
+    from
+      gcp_compute_target_https_proxy;
   EOQ
 }
 
@@ -2647,7 +2664,7 @@ query "compute_instance_no_iam_write_permission" {
         jsonb_array_elements_text(included_permissions) as p
       where
         not is_gcp_managed
-        and p in ( 'accessapproval.requests.approve','accessapproval.requests.dismiss','accessapproval.settings.delete','accessapproval.settings.update','accesscontextmanager.accessLevels.create','accesscontextmanager.accessLevels.delete','accesscontextmanager.accessLevels.replaceAll','accesscontextmanager.accessLevels.update','accesscontextmanager.accessPolicies.create','accesscontextmanager.accessPolicies.delete','accesscontextmanager.accessPolicies.setIamPolicy','accesscontextmanager.accessPolicies.update','accesscontextmanager.gcpUserAccessBindings.create','accesscontextmanager.gcpUserAccessBindings.delete','accesscontextmanager.gcpUserAccessBindings.update','accesscontextmanager.policies.create','accesscontextmanager.policies.delete','accesscontextmanager.policies.setIamPolicy','accesscontextmanager.policies.update','iam.roles.create','iam.roles.delete','iam.roles.undelete', 'iam.roles.update','iam.serviceAccounts.getAccessToken','iam.serviceAccountKeys.create','iam.serviceAccountKeys.delete','iam.serviceAccounts.create','iam.serviceAccounts.delete','iam.serviceAccounts.disable','iam.serviceAccounts.enable','iam.serviceAccounts.setIamPolicy','iam.serviceAccounts.undelete','iam.serviceAccounts.update','iam.serviceAccounts.implicitDelegation','iam.serviceAccounts.signBlob','iam.serviceAccounts.signJwt','iam.serviceAccounts.actAs','compute.backendServices.setIamPolicy','compute.disks.removeResourcePolicies','compute.disks.setIamPolicy','compute.firewallPolicies.setIamPolicy','compute.globalOperations.setIamPolicy','compute.images.setIamPolicy','compute.instanceTemplates.setIamPolicy','compute.instances.removeResourcePolicies','compute.instances.setIamPolicy','compute.instances.setServiceAccount','compute.machineImages.setIamPolicy','compute.maintenancePolicies.setIamPolicy','compute.snapshots.setIamPolicy' )
+        and p in ( 'accessapproval.requests.approve','accessapproval.requests.dismiss','accessapproval.settings.delete','accessapproval.settings.update','accesscontextmanager.accessLevels.create','accesscontextmanager.accessLevels.delete','accesscontextmanager.accessLevels.replaceAll','accesscontextmanager.accessLevels.update','accesscontextmanager.accessPolicies.create','accesscontextmanager.accessPolicies.delete','accesscontextmanager.accessPolicies.setIamPolicy','accesscontextmanager.accessPolicies.update','accesscontextmanager.gcpUserAccessBindings.create','accesscontextmanager.gcpUserAccessBindings.delete','accesscontextmanager.gcpUserAccessBindings.update','accesscontextmanager.policies.create','accesscontextmanager.policies.delete','accesscontextmanager.policies.setIamPolicy','accesscontextmanager.policies.update','iam.roles.create','iam.roles.delete','iam.roles.undelete', 'iam.roles.update','iam.serviceAccounts.getAccessToken','iam.serviceAccountKeys.create','iam.serviceAccountKeys.delete','iam.serviceAccounts.create','iam.serviceAccounts.delete','iam.serviceAccounts.disable','iam.serviceAccounts.enable','iam.serviceAccounts.setIamPolicy','iam.serviceAccounts.undelete','iam.serviceAccounts.update','iam.serviceAccounts.implicitDelegation','iam.serviceAccounts.signBlob','iam.serviceAccounts.signJwt','iam.serviceAccounts.actAs','compute.backendServices.setIamPolicy','compute.disks.removeResourcePolicies','compute.disks.setIamPolicy','compute.firewallPolicies.setIamPolicy','compute.globalOperations.setIamPolicy','compute.images.setIamPolicy','compute.instanceTemplates.setIamPolicy','compute.instances.removeResourcePolicies','compute.instances.setIamPolicy','compute.instances.setServiceAccount','compute.machineImages.setIamPolicy','compute.maintenancePolicies.setIamPolicy','compute.snapshots.setIamPolicy')
       ), policy_with_iam_write_permission as (
       select
         distinct entity,
@@ -2699,7 +2716,7 @@ query "compute_firewall_default_rule_restrict_ingress_access_except_http_and_htt
           source_ranges ?& array['0.0.0.0/0']
           or source_ranges ?& array['::/0']
         )
-         and name in ('default-allow-ssh' ,'default-allow-icmp', 'default-allow-internal', 'default-allow-rdp')
+         and name in ('default-allow-ssh', 'default-allow-icmp', 'default-allow-internal', 'default-allow-rdp')
       )
     select
       self_link resource,

@@ -30,7 +30,7 @@ control "cloudfunction_function_restricted_permission" {
 
 control "cloudfunction_function_restrict_public_access" {
   title       = "Cloudfunction functions should restrict public access"
-  description = "This is control ensures that Cloudfunction function is not publicly accessible."
+  description = "This control ensures that Cloudfunction function is not publicly accessible."
   query       = query.cloudfunction_function_restrict_public_access
 
   tags = local.policy_bundle_cloudfunction_common_tags
@@ -38,7 +38,7 @@ control "cloudfunction_function_restrict_public_access" {
 
 control "cloudfunction_function_no_deployments_manager_permission" {
   title       = "Cloudfunction functions should restrict deployments manager permission"
-  description = "This is control ensures that Cloudfunction function does not allow deployments manager permissions."
+  description = "This control ensures that Cloudfunction function does not allow deployments manager permissions."
   query       = query.cloudfunction_function_no_deployments_manager_permission
 
   tags = local.policy_bundle_cloudfunction_common_tags
@@ -46,7 +46,7 @@ control "cloudfunction_function_no_deployments_manager_permission" {
 
 control "cloudfunction_function_no_disrupt_logging_permission" {
   title       = "Cloudfunction functions should restrict disrupt logging permission"
-  description = "This is control ensures that Cloudfunction function does not disrupt logging permissions."
+  description = "This control ensures that Cloudfunction function does not disrupt logging permissions."
   query       = query.cloudfunction_function_no_disrupt_logging_permission
 
   tags = local.policy_bundle_cloudfunction_common_tags
@@ -183,8 +183,8 @@ query "cloudfunction_function_no_deployments_manager_permission" {
         else 'ok'
       end as status,
       case
-        when f.service_account_email is not null then f.title || ' allow deployment managers permission.'
-        else f.title || ' restrict deployment managers permission'
+        when f.service_account_email is not null then f.title || ' allow deployment manager's permission.'
+        else f.title || ' restrict deployment manager's permission.'
       end as reason
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
@@ -226,7 +226,7 @@ query "cloudfunction_function_no_disrupt_logging_permission" {
       end as status,
       case
         when f.service_account_email is not null then f.title || ' allow disrupt logging permission.'
-        else f.title || ' restrict disrupt logging permission'
+        else f.title || ' restrict disrupt logging permission.'
       end as reason
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}

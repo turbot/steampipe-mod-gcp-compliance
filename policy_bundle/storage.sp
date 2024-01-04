@@ -163,7 +163,7 @@ query "storage_bucket_log_retention_policy_enabled" {
       case
         when s.bucket_name is null then title || ' does not export logs.'
         when b.retention_policy is not null then title || ' retention policy defined.'
-        else title || '  retention policy not defined.'
+        else title || ' retention policy not defined.'
       end as reason
       ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
       ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}

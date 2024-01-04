@@ -115,121 +115,137 @@ control "gke_restrict_pod_traffic" {
 }
 
 control "kubernetes_cluster_kubernetes_alpha_enabled" {
-  title = "GKE clusters kubernetes alpha should be enabled"
+  title       = "GKE clusters kubernetes alpha should be enabled"
   description = "This control ensures that GKE clusters kubernetes alpha is enabled."
-  query = query.kubernetes_cluster_kubernetes_alpha_enabled
+  query       = query.kubernetes_cluster_kubernetes_alpha_enabled
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_logging_enabled" {
-  title = "GKE clusters logging should be enabled"
+  title       = "GKE clusters logging should be enabled"
   description = "This control ensures that GKE clusters logging is enabled."
-  query = query.kubernetes_cluster_logging_enabled
+  query       = query.kubernetes_cluster_logging_enabled
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_monitoring_enabled" {
-  title = "GKE clusters monitoring should be enabled"
+  title       = "GKE clusters monitoring should be enabled"
   description = "This control ensures that GKE clusters monitoring is enabled."
-  query = query.kubernetes_cluster_monitoring_enabled
+  query       = query.kubernetes_cluster_monitoring_enabled
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_no_default_network" {
-  title = "GKE clusters should not use default network"
+  title       = "GKE clusters should not use default network"
   description = "This control ensures that GKE clusters does not use default network."
-  query = query.kubernetes_cluster_no_default_network
+  query       = query.kubernetes_cluster_no_default_network
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_with_resource_labels" {
-  title = "GKE clusters should have resource labels"
+  title       = "GKE clusters should have resource labels"
   description = "This control ensures that GKE clusters have resource labels."
-  query = query.kubernetes_cluster_with_resource_labels
+  query       = query.kubernetes_cluster_with_resource_labels
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_database_encryption_enabled" {
-  title = "GKE clusters should have database encryption enabled"
+  title       = "GKE clusters should have database encryption enabled"
   description = "This control ensures that GKE clusters have database encryption enabled."
-  query = query.kubernetes_cluster_database_encryption_enabled
+  query       = query.kubernetes_cluster_database_encryption_enabled
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_shielded_nodes_enabled" {
-  title = "GKE clusters should have shielded nodes enabled"
+  title       = "GKE clusters should have shielded nodes enabled"
   description = "This control ensures that GKE clusters have shielded nodes enabled."
-  query = query.kubernetes_cluster_shielded_nodes_enabled
+  query       = query.kubernetes_cluster_shielded_nodes_enabled
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_shielded_instance_integrity_monitoring_enabled" {
-  title = "GKE clusters shielded nodes integrity monitoring should be enabled"
+  title       = "GKE clusters shielded nodes integrity monitoring should be enabled"
   description = "This control ensures that GKE clusters shielded nodes integrity monitoring is enabled."
-  query = query.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled
+  query       = query.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_binary_authorization_enabled" {
-  title = "GKE clusters binary authorization should be enabled"
+  title       = "GKE clusters binary authorization should be enabled"
   description = "This control ensures that GKE clusters binary authorization is enabled."
-  query = query.kubernetes_cluster_binary_authorization_enabled
+  query       = query.kubernetes_cluster_binary_authorization_enabled
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_release_channel_configured" {
-  title = "GKE clusters release channel should be configured"
+  title       = "GKE clusters release channel should be configured"
   description = "This control ensures that GKE clusters uses release channel for version management."
-  query = query.kubernetes_cluster_release_channel_configured
+  query       = query.kubernetes_cluster_release_channel_configured
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_zone_redundant" {
-  title = "GKE clusters release should be zone redundant"
+  title       = "GKE clusters release should be zone redundant"
   description = "This control ensures that GKE clusters is located in at least three zones."
-  query = query.kubernetes_cluster_zone_redundant
+  query       = query.kubernetes_cluster_zone_redundant
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_private_nodes_configured" {
-  title = "GKE clusters private nodes should be configured"
+  title       = "GKE clusters private nodes should be configured"
   description = "This control ensures that GKE clusters private nodes are configured."
-  query = query.kubernetes_cluster_private_nodes_configured
+  query       = query.kubernetes_cluster_private_nodes_configured
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_network_policy_enabled" {
-  title = "GKE clusters network policy should be enabled"
+  title       = "GKE clusters network policy should be enabled"
   description = "This control ensures that GKE clusters network policy is enabled."
-  query = query.kubernetes_cluster_network_policy_enabled
+  query       = query.kubernetes_cluster_network_policy_enabled
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_client_certificate_authentication_enabled" {
-  title = "GKE clusters client certificate authentication should be enabled"
+  title       = "GKE clusters client certificate authentication should be enabled"
   description = "This control ensures that GKE clusters client certificate authentication is enabled."
-  query = query.kubernetes_cluster_client_certificate_authentication_enabled
+  query       = query.kubernetes_cluster_client_certificate_authentication_enabled
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
 control "kubernetes_cluster_node_no_default_service_account" {
-  title = "GKE clusters nodes should not use default service account"
+  title       = "GKE clusters nodes should not use default service account"
   description = "This control ensures that GKE clusters nodes does not uses default service account. It is recommended to create and use a least privileged service account to run your GKE cluster instead of using the default service account."
-  query = query.kubernetes_cluster_node_no_default_service_account
+  query       = query.kubernetes_cluster_node_no_default_service_account
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled" {
+  title       = "GKE clusters with less than three nodes should have auto upgrade enabled"
+  description = "This control ensures that clusters with less than three nodes should have auto upgrade enabled."
+  query       = query.kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_incoming_traffic_open_to_all" {
+  title       = "GKE clusters should not allow incoming traffic from all sources across the internet"
+  description = "This control ensures that GKE clusters do not allow incoming traffic from all sources across the internet."
+  query       = query.kubernetes_cluster_incoming_traffic_open_to_all
 
   tags = local.policy_bundle_kubernetes_common_tags
 }
@@ -530,7 +546,7 @@ query "kubernetes_cluster_with_resource_labels" {
         else 'ok'
       end as status,
       case
-       when resource_labels is null then title || ' not having resource labels.'
+       when resource_labels is null then title || ' does not have resource labels.'
         else title || ' have resource labels.'
       end as reason
       ${local.tag_dimensions_sql}
