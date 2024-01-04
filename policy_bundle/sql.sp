@@ -267,21 +267,44 @@ control "sql_instance_sql_user_options_database_flag_not_configured" {
   tags = local.policy_bundle_sql_common_tags
 }
 
+control "sql_instance_with_labels" {
+  title       = "SQL Instances should have labels configured"
+  description = "It is recommended that SQL Instance is configured with proper labels."
+  query       = query.sql_instance_with_labels
+
+  tags = local.policy_bundle_sql_common_tags
+}
+
+control "sql_instance_mysql_binary_log_enabled" {
+  title       = "MySql Instances should have binary log enabled"
+  description = "This controls ensures that MySql instance have binary log enabled."
+  query       = query.sql_instance_mysql_binary_log_enabled
+
+  tags = local.policy_bundle_sql_common_tags
+}
+
 query "sql_instance_not_open_to_internet" {
   sql = <<-EOQ
     select
       self_link as resource,
       case
-        when ip_configuration -> 'authorizedNetworks' @> '[{"name": "internet", "value": "0.0.0.0/0"}]' then 'alarm'
+        when exists (
+          select 1
+          from jsonb_array_elements(ip_configuration -> 'authorizedNetworks') as authNet
+          where authNet ->> 'value' = '0.0.0.0/0' or authNet ->> 'value' = '::/0'
+        ) then 'alarm'
         else 'ok'
       end as status,
       case
-        when ip_configuration -> 'authorizedNetworks' @> '[{"name": "internet", "value": "0.0.0.0/0"}]'
-          then title || ' is open to internet.'
-        else title || ' is not open to internet.'
+        when exists (
+          select 1
+          from jsonb_array_elements(ip_configuration -> 'authorizedNetworks') as authNet
+          where authNet ->> 'value' = '0.0.0.0/0' or  authNet ->> 'value' = '::/0'
+        ) then title || ' is open to the internet.'
+        else title || ' is not open to the internet.'
       end as reason
-    ${local.tag_dimensions_sql}
-    ${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_sql_database_instance;
   EOQ
@@ -1023,6 +1046,46 @@ query "sql_instance_sql_user_options_database_flag_not_configured" {
         when database_flags @> '[{"name":"user options"}]'
           then title || ' ''user options'' database flag set.'
         else title || ' ''user options'' database flag not set.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_sql_database_instance;
+  EOQ
+}
+
+query "sql_instance_with_labels" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when labels is not null then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when labels is not null then title || ' has labels attached.'
+        else title || ' no labels attached.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_sql_database_instance;
+  EOQ
+}
+
+query "sql_instance_mysql_binary_log_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when database_version not like 'MYSQL%' then 'skip'
+        when binary_log_enabled then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when database_version not like 'MYSQL%' then title || ' not a MySQL database.'
+        when binary_log_enabled then title || ' binary log enabled.'
+        else title || ' binary log disabled.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}

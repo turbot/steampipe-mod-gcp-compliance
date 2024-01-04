@@ -114,6 +114,142 @@ control "gke_restrict_pod_traffic" {
   })
 }
 
+control "kubernetes_cluster_kubernetes_alpha_enabled" {
+  title       = "GKE clusters kubernetes alpha should be enabled"
+  description = "This control ensures that GKE clusters kubernetes alpha is enabled."
+  query       = query.kubernetes_cluster_kubernetes_alpha_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_logging_enabled" {
+  title       = "GKE clusters logging should be enabled"
+  description = "This control ensures that GKE clusters logging is enabled."
+  query       = query.kubernetes_cluster_logging_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_monitoring_enabled" {
+  title       = "GKE clusters monitoring should be enabled"
+  description = "This control ensures that GKE clusters monitoring is enabled."
+  query       = query.kubernetes_cluster_monitoring_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_no_default_network" {
+  title       = "GKE clusters should not use default network"
+  description = "This control ensures that GKE clusters does not use default network."
+  query       = query.kubernetes_cluster_no_default_network
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_with_resource_labels" {
+  title       = "GKE clusters should have resource labels"
+  description = "This control ensures that GKE clusters have resource labels."
+  query       = query.kubernetes_cluster_with_resource_labels
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_database_encryption_enabled" {
+  title       = "GKE clusters should have database encryption enabled"
+  description = "This control ensures that GKE clusters have database encryption enabled."
+  query       = query.kubernetes_cluster_database_encryption_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_shielded_nodes_enabled" {
+  title       = "GKE clusters should have shielded nodes enabled"
+  description = "This control ensures that GKE clusters have shielded nodes enabled."
+  query       = query.kubernetes_cluster_shielded_nodes_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_shielded_instance_integrity_monitoring_enabled" {
+  title       = "GKE clusters shielded nodes integrity monitoring should be enabled"
+  description = "This control ensures that GKE clusters shielded nodes integrity monitoring is enabled."
+  query       = query.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_binary_authorization_enabled" {
+  title       = "GKE clusters binary authorization should be enabled"
+  description = "This control ensures that GKE clusters binary authorization is enabled."
+  query       = query.kubernetes_cluster_binary_authorization_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_release_channel_configured" {
+  title       = "GKE clusters release channel should be configured"
+  description = "This control ensures that GKE clusters uses release channel for version management."
+  query       = query.kubernetes_cluster_release_channel_configured
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_zone_redundant" {
+  title       = "GKE clusters release should be zone redundant"
+  description = "This control ensures that GKE clusters is located in at least three zones."
+  query       = query.kubernetes_cluster_zone_redundant
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_private_nodes_configured" {
+  title       = "GKE clusters private nodes should be configured"
+  description = "This control ensures that GKE clusters private nodes are configured."
+  query       = query.kubernetes_cluster_private_nodes_configured
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_network_policy_enabled" {
+  title       = "GKE clusters network policy should be enabled"
+  description = "This control ensures that GKE clusters network policy is enabled."
+  query       = query.kubernetes_cluster_network_policy_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_client_certificate_authentication_enabled" {
+  title       = "GKE clusters client certificate authentication should be enabled"
+  description = "This control ensures that GKE clusters client certificate authentication is enabled."
+  query       = query.kubernetes_cluster_client_certificate_authentication_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_node_no_default_service_account" {
+  title       = "GKE clusters nodes should not use default service account"
+  description = "This control ensures that GKE clusters nodes does not uses default service account. It is recommended to create and use a least privileged service account to run your GKE cluster instead of using the default service account."
+  query       = query.kubernetes_cluster_node_no_default_service_account
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled" {
+  title       = "GKE clusters with less than three nodes should have auto upgrade enabled"
+  description = "This control ensures that clusters with less than three nodes should have auto upgrade enabled."
+  query       = query.kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_incoming_traffic_open_to_all" {
+  title       = "GKE clusters should not allow incoming traffic from all sources across the internet"
+  description = "This control ensures that GKE clusters do not allow incoming traffic from all sources across the internet."
+  query       = query.kubernetes_cluster_incoming_traffic_open_to_all
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
 query "kubernetes_cluster_private_cluster_config_enabled" {
   sql = <<-EOQ
     select
@@ -322,5 +458,356 @@ query "kubernetes_cluster_network_policy_installed" {
       ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_kubernetes_alpha_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when enable_kubernetes_alpha then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when enable_kubernetes_alpha then title || ' kubernetes alpha enabled.'
+        else title || ' kubernetes alpha disabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_logging_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when logging_service is null or logging_service = 'none' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+       when logging_service is null or logging_service = 'none' then title || ' logging disabled.'
+        else title || ' logging enabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_monitoring_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when monitoring_service is null or monitoring_service = 'none' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+       when monitoring_service is null or monitoring_service = 'none' then title || ' monitoring disabled.'
+        else title || ' monitoring enabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_no_default_network" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when network = 'default' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+       when network = 'default' then title || ' using default network.'
+        else title || ' not using default network.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_with_resource_labels" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when resource_labels is null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+       when resource_labels is null then title || ' does not have resource labels.'
+        else title || ' have resource labels.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_database_encryption_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when database_encryption_state <> 'ENCRYPTED' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+       when database_encryption_state <> 'ENCRYPTED' then title || ' database encryption disabled.'
+        else title || ' database encryption enabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_shielded_nodes_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when shielded_nodes_enabled then 'ok'
+        else 'alarm'
+      end as status,
+      case
+       when shielded_nodes_enabled then title || ' shielded nodes enabled.'
+        else title || ' shielded nodes disabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_shielded_instance_integrity_monitoring_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when (node_config -> 'shieldedInstanceConfig' ->> 'enableIntegrityMonitoring')::bool then 'ok'
+        else 'alarm'
+      end as status,
+      case
+       when (node_config -> 'shieldedInstanceConfig' ->> 'enableIntegrityMonitoring')::bool then title || ' shielded instance integrity monitoring enabled.'
+        else title || ' shielded instance integrity monitoring disabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_binary_authorization_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when binary_authorization is null
+        or (binary_authorization ->> 'evaluationMode') ilike 'DISABLED'
+        or (binary_authorization ->> 'evaluationMode') ilike 'EVALUATION_MODE_UNSPECIFIED' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+       when binary_authorization is null
+        or (binary_authorization ->> 'evaluationMode') ilike 'DISABLED'
+        or (binary_authorization ->> 'evaluationMode') ilike 'EVALUATION_MODE_UNSPECIFIED' then title || ' binary authorization disabled.'
+        else title || ' binary authorization enabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_release_channel_configured" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when (release_channel -> 'channel') is not null then 'ok'
+        else 'alarm'
+      end as status,
+      case
+       when (release_channel -> 'channel') is not null then title || ' release channel configured.'
+        else title || ' release channel not configured.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_zone_redundant" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when zone is not null and jsonb_array_length(locations) >= 3 then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when zone is not null and jsonb_array_length(locations) >= 3 then title || ' zone redundant.'
+        else title || ' not zone redundant.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_private_nodes_configured" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when private_cluster_config ->> 'enablePrivateNodes' = 'false'
+          or private_cluster_config -> 'enablePrivateNodes' is null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when private_cluster_config ->> 'enablePrivateNodes' = 'false'
+          or private_cluster_config -> 'enablePrivateNodes' is null then title || ' private nodes not configured.'
+        else title || ' private nodes configured.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_network_policy_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      addons_config -> 'networkPolicyConfig' ->> 'disabled' as ddd,
+      network_config ->> 'datapathProvider' as rr,
+      case
+        when (addons_config -> 'networkPolicyConfig' ->> 'disabled' = 'true'
+          or addons_config -> 'networkPolicyConfig' -> 'enabled' is null
+          or addons_config -> 'networkPolicyConfig' ->> 'enabled' = 'false'
+          )
+          and network_config ->> 'datapathProvider' <> 'ADVANCED_DATAPATH'
+           then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when (addons_config -> 'networkPolicyConfig' ->> 'disabled' = 'true'
+          or addons_config -> 'networkPolicyConfig' -> 'enabled' is null
+          or addons_config -> 'networkPolicyConfig' ->> 'enabled' = 'false'
+          )
+          and network_config ->> 'datapathProvider' <> 'ADVANCED_DATAPATH'
+          then title || ' network policy disabled.'
+        else title || ' network policy enabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_client_certificate_authentication_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when master_auth -> 'clusterCaCertificate' is not null or  master_auth -> 'clientKey' is not null then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when master_auth -> 'clusterCaCertificate' is not null or  master_auth -> 'clientKey' is not null then title || ' client certificate authentication enabled.'
+        else title || ' client certificate authentication disabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_node_no_default_service_account" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when np -> 'config' ->> 'serviceAccount' = 'default' then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when np -> 'config' ->> 'serviceAccount' = 'default' then title || ' cluster ' || ( np ->> 'name' ) || ' uses default service account.'
+        else title || ' cluster ' || ( np ->> 'name' ) || ' does not uses default service account.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster,
+      jsonb_array_elements(node_pools) as np;
+  EOQ
+}
+
+query "kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when np -> 'management' -> 'autoUpgrade' = 'true' and current_node_count < 3 then 'alarm'
+        else 'ok'
+      end as status,
+      title || ' has ' || current_node_count || ' node(s) with auto upgrade enabled.' as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster,
+      jsonb_array_elements(node_pools) as np;
+  EOQ
+}
+
+query "kubernetes_cluster_incoming_traffic_open_to_all" {
+  sql = <<-EOQ
+    with network_open_to_all as (
+      select
+        distinct network
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and source_ranges ?& array['0.0.0.0/0']
+    )
+    select
+      distinct self_link resource,
+      case
+        when a.network is not null then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when a.network is not null then title || ' allows incoming traffic from any source on the internet across all protocols.'
+        else title || ' restrict incoming traffic from any source on the internet across all protocols.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster as c
+      left join network_open_to_all as a on c.network_config ->> 'network' = concat('projects/' || split_part(a.network, 'projects/', 2));
   EOQ
 }

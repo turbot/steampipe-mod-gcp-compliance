@@ -11,6 +11,7 @@ benchmark "all_controls_sql" {
     control.prevent_public_ip_cloudsql,
     control.require_ssl_sql,
     control.sql_instance_automated_backups_enabled,
+    control.sql_instance_mysql_binary_log_enabled,
     control.sql_instance_mysql_local_infile_database_flag_off,
     control.sql_instance_mysql_skip_show_database_flag_on,
     control.sql_instance_not_publicly_accessible,
@@ -39,6 +40,7 @@ benchmark "all_controls_sql" {
     control.sql_instance_sql_remote_access_database_flag_off,
     control.sql_instance_sql_user_connections_database_flag_configured,
     control.sql_instance_sql_user_options_database_flag_not_configured,
+    control.sql_instance_with_labels,
     control.sql_world_readable
   ]
 
