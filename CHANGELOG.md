@@ -1,3 +1,16 @@
+## v0.25 [2024-01-04]
+
+_Enhancements_
+
+- Added 61 new controls to the `All Controls` benchmark across the following services: ([#140](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/140))
+  - `CloudFunctions`
+  - `Compute`
+  - `KMS`
+  - `Kubernetes`
+  - `Project`
+  - `SQL`
+  - `Storage`
+
 ## v0.24 [2023-11-14]
 
 _Bug fixes_
