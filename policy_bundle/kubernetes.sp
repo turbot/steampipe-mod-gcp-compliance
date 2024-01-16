@@ -250,6 +250,30 @@ control "kubernetes_cluster_incoming_traffic_open_to_all" {
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
+control "kubernetes_cluster_http_load_balancing_enabled" {
+  title       = "GKE clusters HTTP load balancing should be enabled"
+  description = "This control ensures that GKE clusters HTTP load balancing is enabled. This control is non-complaint if HTTP load balancing is disabled."
+  query       = query.kubernetes_cluster_http_load_balancing_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_intra_node_visibility_enabled" {
+  title       = "GKE clusters intra node visibility should be enabled"
+  description = "This control ensures that GKE clusters intra node visibility is enabled. This control is non-complaint if intra node visibility is disabled."
+  query       = query.kubernetes_cluster_intra_node_visibility_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
+control "kubernetes_cluster_shielded_node_secure_boot_enabled" {
+  title       = "GKE clusters shielded node secure boot should be enabled"
+  description = "This control ensures that GKE clusters shielded node secure boot is enabled. This control is non-complaint if ishielded node secure boot is disabled."
+  query       = query.kubernetes_cluster_shielded_node_secure_boot_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
 query "kubernetes_cluster_private_cluster_config_enabled" {
   sql = <<-EOQ
     select
@@ -274,11 +298,11 @@ query "kubernetes_cluster_dashboard_disabled" {
     select
     self_link resource,
     case
-      when addons_config -> 'kubernetesDashboard' ->> 'disabled' = 'true' then 'ok'
+      when addons_config -> 'KubernetesDashboard' ->> 'disabled' = 'true' then 'ok'
       else 'alarm'
     end as status,
     case
-      when addons_config -> 'kubernetesDashboard' ->> 'disabled' = 'true' then title || ' dashboard disabled.'
+      when addons_config -> 'KubernetesDashboard' ->> 'disabled' = 'true' then title || ' dashboard disabled.'
       else title || ' dashboard enabled.'
     end as reason
     ${local.tag_dimensions_sql}
@@ -293,11 +317,11 @@ query "kubernetes_cluster_service_account_default" {
     select
     self_link resource,
     case
-      when node_config ->> 'serviceAccount' = 'default' then 'alarm'
+      when node_config ->> 'ServiceAccount' = 'default' then 'alarm'
       else 'ok'
     end as status,
     case
-      when node_config ->> 'serviceAccount' = 'default' then title || ' default service account is used for project access.'
+      when node_config ->> 'ServiceAccount' = 'default' then title || ' default service account is used for project access.'
       else title || ' default service account is not used for project access.'
     end as reason
     ${local.tag_dimensions_sql}
@@ -331,11 +355,11 @@ query "kubernetes_cluster_legacy_endpoints_disabled" {
     select
     self_link resource,
     case
-      when node_config -> 'metadata' ->> 'disable-legacy-endpoints' = 'true' then 'ok'
+      when node_config -> 'Metadata' ->> 'disable-legacy-endpoints' = 'true' then 'ok'
       else 'alarm'
     end as status,
     case
-      when node_config -> 'metadata' ->> 'disable-legacy-endpoints' = 'true' then title || ' legacy endpoints disabled.'
+      when node_config -> 'Metadata' ->> 'disable-legacy-endpoints' = 'true' then title || ' legacy endpoints disabled.'
       else title || ' legacy endpoints enabled.'
     end as reason
     ${local.tag_dimensions_sql}
@@ -428,11 +452,11 @@ query "kubernetes_cluster_node_config_image_cos_containerd" {
     select
       self_link resource,
       case
-        when node_config ->> 'imageType' = 'COS_CONTAINERD' then 'ok'
+        when node_config ->> 'ImageType' = 'COS_CONTAINERD' then 'ok'
         else 'alarm'
       end as status,
       case
-        when node_config ->> 'imageType' = 'COS_CONTAINERD' then title || ' Container-Optimized OS(COS) is used.'
+        when node_config ->> 'ImageType' = 'COS_CONTAINERD' then title || ' Container-Optimized OS(COS) is used.'
         else title || ' Container-Optimized OS(COS) not used.'
       end as reason
       ${local.tag_dimensions_sql}
@@ -599,11 +623,11 @@ query "kubernetes_cluster_shielded_instance_integrity_monitoring_enabled" {
     select
       self_link resource,
       case
-        when (node_config -> 'shieldedInstanceConfig' ->> 'enableIntegrityMonitoring')::bool then 'ok'
+        when (node_config -> 'ShieldedInstanceConfig' ->> 'EnableIntegrityMonitoring')::bool then 'ok'
         else 'alarm'
       end as status,
       case
-       when (node_config -> 'shieldedInstanceConfig' ->> 'enableIntegrityMonitoring')::bool then title || ' shielded instance integrity monitoring enabled.'
+       when (node_config -> 'ShieldedInstanceConfig' ->> 'EnableIntegrityMonitoring')::bool then title || ' shielded instance integrity monitoring enabled.'
         else title || ' shielded instance integrity monitoring disabled.'
       end as reason
       ${local.tag_dimensions_sql}
@@ -699,23 +723,21 @@ query "kubernetes_cluster_network_policy_enabled" {
   sql = <<-EOQ
     select
       self_link resource,
-      addons_config -> 'networkPolicyConfig' ->> 'disabled' as ddd,
-      network_config ->> 'datapathProvider' as rr,
       case
-        when (addons_config -> 'networkPolicyConfig' ->> 'disabled' = 'true'
-          or addons_config -> 'networkPolicyConfig' -> 'enabled' is null
-          or addons_config -> 'networkPolicyConfig' ->> 'enabled' = 'false'
+        when (addons_config -> 'NetworkPolicyConfig' ->> 'disabled' = 'true'
+          or addons_config -> 'NetworkPolicyConfig' -> 'enabled' is null
+          or addons_config -> 'NetworkPolicyConfig' ->> 'enabled' = 'false'
           )
-          and network_config ->> 'datapathProvider' <> 'ADVANCED_DATAPATH'
+          and network_config ->> 'DatapathProvider' <> 'ADVANCED_DATAPATH'
            then 'alarm'
         else 'ok'
       end as status,
       case
-        when (addons_config -> 'networkPolicyConfig' ->> 'disabled' = 'true'
-          or addons_config -> 'networkPolicyConfig' -> 'enabled' is null
-          or addons_config -> 'networkPolicyConfig' ->> 'enabled' = 'false'
+        when (addons_config -> 'NetworkPolicyConfig' ->> 'disabled' = 'true'
+          or addons_config -> 'NetworkPolicyConfig' -> 'enabled' is null
+          or addons_config -> 'NetworkPolicyConfig' ->> 'enabled' = 'false'
           )
-          and network_config ->> 'datapathProvider' <> 'ADVANCED_DATAPATH'
+          and network_config ->> 'DatapathProvider' <> 'ADVANCED_DATAPATH'
           then title || ' network policy disabled.'
         else title || ' network policy enabled.'
       end as reason
@@ -809,5 +831,62 @@ query "kubernetes_cluster_incoming_traffic_open_to_all" {
     from
       gcp_kubernetes_cluster as c
       left join network_open_to_all as a on c.network_config ->> 'network' = concat('projects/' || split_part(a.network, 'projects/', 2));
+  EOQ
+}
+
+query "kubernetes_cluster_http_load_balancing_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when addons_config -> 'HttpLoadBalancing' ->> 'Disabled' = 'false' then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when addons_config -> 'HttpLoadBalancing' ->> 'Disabled' = 'false' then title || ' HTTP load balancing enabled.'
+        else title || ' HTTP load balancing disabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_intra_node_visibility_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when (network_config -> 'EnableIntraNodeVisibility')::bool then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when (network_config -> 'EnableIntraNodeVisibility')::bool then title || ' intra node visibility enabled.'
+        else title || ' intra node visibility disabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_shielded_node_secure_boot_enabled" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when (node_config -> 'ShieldedInstanceConfig' -> 'EnableSecureBoot')::bool then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when (node_config -> 'ShieldedInstanceConfig' -> 'EnableSecureBoot')::bool then title || ' shielded nodes secure boot enabled.'
+        else title || ' shielded nodes secure boot disabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
   EOQ
 }
