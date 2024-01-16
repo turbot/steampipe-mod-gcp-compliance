@@ -34,7 +34,7 @@ query "app_engine_application_iap_enabled" {
         when (iap -> 'enabled')::bool then title || ' IAP enabled.'
         else title || ' IAP disabled.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_app_engine_application;
   EOQ
