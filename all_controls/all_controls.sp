@@ -8,7 +8,9 @@ benchmark "all_controls" {
   title       = "All Controls"
   description = "This benchmark contains all controls grouped by service to help you detect resource configurations that do not meet best practices."
   children = [
+    benchmark.all_controls_appengine,
     benchmark.all_controls_bigquery,
+    benchmark.all_controls_cloudrun,
     benchmark.all_controls_compute,
     benchmark.all_controls_dataproc,
     benchmark.all_controls_dns,
