@@ -1,3 +1,16 @@
+## v0.26 [2024-02-22]
+
+_Dependencies_
+
+- GCP plugin `v0.49.0` or higher is now required. ([#143](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/143))
+
+_Enhancements_
+
+- Added 5 new controls to the `All Controls` benchmark across the following services: ([#143](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/143))
+  - `App Engine`
+  - `Clou dRun`
+  - `Kubernetes`
+
 ## v0.25 [2024-01-04]
 
 _Enhancements_
