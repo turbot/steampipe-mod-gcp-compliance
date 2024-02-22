@@ -8,7 +8,7 @@ _Enhancements_
 
 - Added 5 new controls to the `All Controls` benchmark across the following services: ([#143](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/143))
   - `App Engine`
-  - `Clou dRun`
+  - `Cloud Run`
   - `Kubernetes`
 
 ## v0.25 [2024-01-04]
