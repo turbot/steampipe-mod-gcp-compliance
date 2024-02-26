@@ -10,6 +10,7 @@ benchmark "all_controls" {
   children = [
     benchmark.all_controls_appengine,
     benchmark.all_controls_bigquery,
+    benchmark.all_controls_cloudfunction,
     benchmark.all_controls_cloudrun,
     benchmark.all_controls_compute,
     benchmark.all_controls_dataproc,
