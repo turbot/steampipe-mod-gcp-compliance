@@ -2,7 +2,7 @@
 
 _Bug fixes_
 
-- Fixed the hierarchy in the benchmark list by properly integrating `Cloud Functions` benchmark into its relevant benchmark. ([#146](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/146))
+- Fixed the hierarchy in the benchmark list by properly integrating `Cloud Functions` benchmark into `all_controls` benchmark. ([#146](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/146))
 
 ## v0.26 [2024-02-22]
 
