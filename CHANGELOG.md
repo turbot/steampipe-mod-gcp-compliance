@@ -1,3 +1,9 @@
+## v0.27 [2024-02-26]
+
+_Bug fixes_
+
+- Fixed the hierarchy in the benchmark list by properly integrating `Cloud Functions` benchmark into `all_controls` benchmark. ([#146](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/146))
+
 ## v0.26 [2024-02-22]
 
 _Dependencies_
