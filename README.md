@@ -8,10 +8,12 @@
 **Includes full support for v1.2.0 CIS, v1.3.0 CIS, v2.0.0 CIS, CFT Scorecard and Forseti Security benchmarks**.
 
 Run checks in a dashboard:
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v200_dashboard.png)
+<!-- ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v200_dashboard.png) -->
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/add-new-checks/docs/gcp_cis_v200_dashboard.png)
 
 Or in a terminal:
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v200_console.png)
+<!-- ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v200_console.png) -->
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/add-new-checks/docs/gcp_cis_v200_console.png)
 
 ## Documentation
 
@@ -43,7 +45,7 @@ Finally, install the mod:
 mkdir dashboards
 cd dashboards
 powerpipe mod init
-powerpipe mod install github.com/turbot/powerpipe-mod-gcp-compliance
+powerpipe mod install github.com/turbot/steampipe-mod-gcp-compliance
 ```
 
 ### Browsing Dashboards
@@ -60,7 +62,7 @@ Start the dashboard server:
 powerpipe server
 ```
 
-Browse and view your dashboards at **https://localhost:9033**.
+Browse and view your dashboards at **http://localhost:9033**.
 
 ### Running Checks in Your Terminal
 
