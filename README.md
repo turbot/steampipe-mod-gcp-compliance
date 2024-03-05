@@ -86,7 +86,7 @@ Different output formats are also available, for more information please see
 
 ### Common and Tag Dimensions
 
-The benchmark queries use common properties (like `connection_name`, `location` and `project`) and tags that are defined in the form of a default list of strings in the `mod.sp` file. These properties can be overwritten in several ways:
+The benchmark queries use common properties (like `connection_name`, `location` and `project`) and tags that are defined in the form of a default list of strings in the `variables.sp` file. These properties can be overwritten in several ways:
 
 It's easiest to setup your vars file, starting with the sample:
 
