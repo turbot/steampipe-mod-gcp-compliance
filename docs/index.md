@@ -2,12 +2,9 @@
 
 Run individual configuration, compliance and security controls or full compliance benchmarks for `CIS v1.2.0`, `CIS v1.3.0`, `Forseti Security` and `CFT Scorecard` for all your GCP projects.
 
-<!-- <img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_compliance_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_compliance_dashboard.png" width="50%" type="thumbnail"/>
 <img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v200_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v200_console.png" width="50%" type="thumbnail"/> -->
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/add-new-checks/docs/gcp_compliance_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/add-new-checks/docs/gcp_cis_v200_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/add-new-checks/docs/gcp_cis_v200_console.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v200_console.png" width="50%" type="thumbnail"/>
 
 ## Documentation
 
@@ -85,14 +82,14 @@ The benchmark queries use common properties (like `connection_name`, `location` 
 It's easiest to setup your vars file, starting with the sample:
 
 ```sh
-cp powerpipe.ppvar.example powerpipe.ppvars
-vi powerpipe.ppvars
+cp steampipe.spvars.example steampipe.spvars
+vi steampipe.spvars
 ```
 
 Alternatively you can pass variables on the command line:
 
 ```sh
-powerpipe benchmark run gcp_compliance.benchmark.cis_200 --var 'tag_dimensions=["environment", "owner"]'
+powerpipe benchmark run gcp_compliance.benchmark.cis_v200 --var 'tag_dimensions=["environment", "owner"]'
 ```
 
 Or through environment variables:

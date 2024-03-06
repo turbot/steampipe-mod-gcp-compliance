@@ -1,19 +1,19 @@
 # GCP Compliance Mod for Powerpipe
 
 > [!IMPORTANT]
-> Steampipe mods are [migrating to Powerpipe format](https://powerpipe.io) to gain new features. This mod currently works with both Steampipe and Powerpipe, but will only support Powerpipe from v1.x onward.
+> [Powerpipe](https://powerpipe.io) is now the preferred way to run this mod! [Migrating from Steampipe →](https://powerpipe.io/blog/migrating-from-steampipe)
+>
+> All v0.x versions of this mod will work in both Steampipe and Powerpipe, but v1.0.0 onwards will be in Powerpipe format only.
 
 80+ checks covering industry defined security best practices for Google Cloud services.
 
 **Includes full support for v1.2.0 CIS, v1.3.0 CIS, v2.0.0 CIS, CFT Scorecard and Forseti Security benchmarks**.
 
 Run checks in a dashboard:
-<!-- ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v200_dashboard.png) -->
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/add-new-checks/docs/gcp_cis_v200_dashboard.png)
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v200_dashboard.png)
 
 Or in a terminal:
-<!-- ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v200_console.png) -->
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/add-new-checks/docs/gcp_cis_v200_console.png)
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v200_console.png)
 
 ## Documentation
 
@@ -91,14 +91,14 @@ The benchmark queries use common properties (like `connection_name`, `location` 
 It's easiest to setup your vars file, starting with the sample:
 
 ```sh
-cp powerpipe.ppvar.example powerpipe.ppvars
-vi powerpipe.ppvars
+cp steampipe.spvars.example steampipe.spvars
+vi steampipe.spvars
 ```
 
 Alternatively you can pass variables on the command line:
 
 ```sh
-powerpipe benchmark run gcp_compliance.benchmark.cis_200 --var 'tag_dimensions=["environment", "owner"]'
+powerpipe benchmark run gcp_compliance.benchmark.cis_v200 --var 'tag_dimensions=["environment", "owner"]'
 ```
 
 Or through environment variables:
