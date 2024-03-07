@@ -111,8 +111,9 @@ query "logging_metric_alert_audit_configuration_changes" {
   sql = <<-EOQ
     with filter_data as (
       select
+        m.project as project,
         display_name alert_name,
-        m.name metric_name
+        count(m.name) metric_name
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
@@ -120,22 +121,25 @@ query "logging_metric_alert_audit_configuration_changes" {
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
+      group by
+        m.project, display_name, m.name
     )
     select
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
-        when (select count(metric_name) from filter_data) > 0 then 'ok'
+        when d.metric_name > 0 then 'ok'
         else 'alarm'
       end as status,
       case
-        when (select count(metric_name) from filter_data) > 0
+        when d.metric_name > 0
           then 'Log metric and alert exist for audit configuration changes.'
         else 'Log metric and alert do not exist for audit configuration changes.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_project;
+      gcp_project as p
+      left join filter_data as d on d.project = p.name;
   EOQ
 }
 
@@ -143,8 +147,9 @@ query "logging_metric_alert_custom_role_changes" {
   sql = <<-EOQ
     with filter_data as (
       select
+        m.project as project,
         display_name alert_name,
-        m.name metric_name
+        count(m.name) metric_name
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
@@ -152,22 +157,25 @@ query "logging_metric_alert_custom_role_changes" {
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
+      group by
+        m.project, display_name, m.name
     )
     select
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
-        when (select count(metric_name) from filter_data) > 0 then 'ok'
+        when d.metric_name > 0 then 'ok'
         else 'alarm'
       end as status,
       case
-        when (select count(metric_name) from filter_data) > 0
+        when d.metric_name > 0
           then 'Log metric and alert exist for custom role changes.'
         else 'Log metric and alert do not exist for custom role changes.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_project;
+      gcp_project as p
+      left join filter_data as d on d.project = p.name;
   EOQ
 }
 
@@ -175,8 +183,9 @@ query "logging_metric_alert_firewall_rule_changes" {
   sql = <<-EOQ
     with filter_data as (
       select
+        m.project as project,
         display_name alert_name,
-        m.name metric_name
+        count(m.name) metric_name
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
@@ -184,22 +193,25 @@ query "logging_metric_alert_firewall_rule_changes" {
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
+      group by
+        m.project, display_name, m.name
     )
     select
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
-        when (select count(metric_name) from filter_data) > 0 then 'ok'
+        when d.metric_name > 0 then 'ok'
         else 'alarm'
       end as status,
       case
-        when (select count(metric_name) from filter_data) > 0
+        when d.metric_name > 0
           then 'Log metric and alert exist for network firewall rule changes.'
         else 'Log metric and alert do not exist network for firewall rule changes.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_project;
+      gcp_project as p
+      left join filter_data as d on d.project = p.name;
   EOQ
 }
 
@@ -207,8 +219,9 @@ query "logging_metric_alert_network_changes" {
   sql = <<-EOQ
     with filter_data as (
       select
+        m.project as project,
         display_name alert_name,
-        m.name metric_name
+        count(m.name) metric_name
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
@@ -216,22 +229,25 @@ query "logging_metric_alert_network_changes" {
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
+      group by
+        m.project, display_name, m.name
     )
     select
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
-        when (select count(metric_name) from filter_data) > 0 then 'ok'
+        when d.metric_name > 0 then 'ok'
         else 'alarm'
       end as status,
       case
-        when (select count(metric_name) from filter_data) > 0
+        when d.metric_name > 0
           then 'Log metric and alert exist for network changes.'
         else 'Log metric and alert do not exist for network changes.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_project;
+      gcp_project as p
+      left join filter_data as d on d.project = p.name
   EOQ
 }
 
@@ -239,8 +255,9 @@ query "logging_metric_alert_network_route_changes" {
   sql = <<-EOQ
     with filter_data as (
       select
+        m.project as project,
         display_name alert_name,
-        m.name metric_name
+        count(m.name) metric_name
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
@@ -248,22 +265,25 @@ query "logging_metric_alert_network_route_changes" {
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
+      group by
+        m.project, display_name, m.name
     )
     select
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
-        when (select count(metric_name) from filter_data) > 0 then 'ok'
+        when d.metric_name > 0 then 'ok'
         else 'alarm'
       end as status,
       case
-        when (select count(metric_name) from filter_data) > 0
+        when d.metric_name > 0
           then 'Log metric and alert exist for network route changes.'
         else 'Log metric and alert do not exist for network route changes.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_project;
+      gcp_project as p
+      left join filter_data as d on d.project = p.name;
   EOQ
 }
 
@@ -271,8 +291,9 @@ query "logging_metric_alert_project_ownership_assignment" {
   sql = <<-EOQ
     with filter_data as (
       select
+        m.project as project,
         display_name alert_name,
-        m.name metric_name
+        count(m.name) metric_name
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
@@ -280,22 +301,25 @@ query "logging_metric_alert_project_ownership_assignment" {
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
+      group by
+        m.project, display_name, m.name
     )
     select
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
-        when (select count(metric_name) from filter_data) > 0 then 'ok'
+        when d.metric_name > 0  then 'ok'
         else 'alarm'
       end as status,
       case
-        when (select count(metric_name) from filter_data) > 0
+        when d.metric_name > 0
           then 'Log metric and alert exist for project ownership assignments/changes.'
         else 'Log metric and alert do not exist exist for project ownership assignments/changes.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_project;
+      gcp_project as p
+      left join filter_data as d on d.project = p.name;
   EOQ
 }
 
@@ -303,8 +327,9 @@ query "logging_metric_alert_sql_instance_configuration_changes" {
   sql = <<-EOQ
     with filter_data as (
       select
+        m.project as project,
         display_name alert_name,
-        m.name metric_name
+        count(m.name) metric_name
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
@@ -312,22 +337,25 @@ query "logging_metric_alert_sql_instance_configuration_changes" {
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
+      group by
+        m.project, display_name, m.name
     )
     select
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
-        when (select count(metric_name) from filter_data) > 0 then 'ok'
+        when d.metric_name > 0 then 'ok'
         else 'alarm'
       end as status,
       case
-        when (select count(metric_name) from filter_data) > 0
+        when d.metric_name > 0
           then 'Log metric and alert exist for SQL instance configuration changes.'
         else 'Log metric and alert do not exist for SQL instance configuration changes.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_project;
+      gcp_project as p
+      left join filter_data as d on d.project = p.name
   EOQ
 }
 
@@ -335,8 +363,9 @@ query "logging_metric_alert_storage_iam_permission_changes" {
   sql = <<-EOQ
     with filter_data as (
       select
+        m.project as project,
         display_name alert_name,
-        m.name metric_name
+        count(m.name) metric_name
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
@@ -344,22 +373,25 @@ query "logging_metric_alert_storage_iam_permission_changes" {
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
+      group by
+        m.project, display_name, m.name
     )
     select
       'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
       case
-        when (select count(metric_name) from filter_data) > 0 then 'ok'
+        when d.metric_name > 0 then 'ok'
         else 'alarm'
       end as status,
       case
-        when (select count(metric_name) from filter_data) > 0
+        when d.metric_name > 0
           then 'Log metric and alert exist for Storage IAM permission changes.'
         else 'Log metric and alert do not exist for Storage IAM permission changes.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_project;
+      gcp_project as p
+      left join filter_data as d on d.project = p.name;
   EOQ
 }
 
