@@ -153,7 +153,7 @@ query "logging_metric_alert_custom_role_changes" {
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
-        join gcp_logging_metric m on m.filter ~ '\s*resource.type\s*=\s*"iam_role"\s*AND\s*protoPayload.methodName\s*=\s*\"google.iam.admin.v1.CreateRole"\s*OR\s*protoPayload.methodName\s*=\s*"google.iam.admin.v1.DeleteRole"\s*OR\s*protoPayload.methodName\s*=\s*"google.iam.admin.v1.UpdateRole"\s*'
+        join gcp_logging_metric m on m.filter ~ '\s*resource\.type\s*=\s*"iam_role"\s*AND\s*\(\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.CreateRole"\s*OR\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.DeleteRole"\s*OR\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.UpdateRole"\s*\)'
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
@@ -189,7 +189,7 @@ query "logging_metric_alert_firewall_rule_changes" {
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
-        join gcp_logging_metric m on m.filter ~ '\s*resource.type\s*=\s*"gce_firewall_rule"\s*AND\s*protoPayload.methodName\s*=\s*"v1.compute.firewalls.patch"\s*OR\s*protoPayload.methodName\s*=\s*"v1.compute.firewalls.insert"\s*'
+        join gcp_logging_metric m on m.filter ~ '\s*resource\.type\s*=\s*"gce_firewall_rule"\s*AND\s*\(\s*protoPayload\.methodName\s*:\s*"compute\.firewalls\.patch"\s*OR\s*protoPayload\.methodName\s*:\s*"compute\.firewalls\.insert"\s*OR\s*protoPayload\.methodName\s*:\s*"compute\.firewalls\.delete"\s*\)'
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
@@ -225,7 +225,7 @@ query "logging_metric_alert_network_changes" {
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
-        join gcp_logging_metric m on m.filter ~ '\s*resource.type\s*=\s*gce_network\s*AND\s*protoPayload.methodName\s*=\s*"beta.compute.networks.insert"\s*OR\s*protoPayload.methodName\s*=\s*"beta.compute.networks.patch"\s*OR\s*protoPayload.methodName\s*=\s*"v1.compute.networks.delete"\s*OR\s*protoPayload.methodName\s*=\s*"v1.compute.networks.removePeering"\s*OR\s*protoPayload.methodName\s*=\s*"v1.compute.networks.addPeering"\s*'
+        join gcp_logging_metric m on m.filter ~ '\s*resource\.type\s*=\s*gce_network\s*AND\s*\(\s*protoPayload\.methodName\s*=\s*"beta\.compute\.networks\.insert"\s*OR\s*protoPayload\.methodName\s*=\s*"beta\.compute\.networks\.patch"\s*OR\s*protoPayload\.methodName\s*=\s*"v1\.compute\.networks\.delete"\s*OR\s*protoPayload\.methodName\s*=\s*"v1\.compute\.networks\.removePeering"\s*OR\s*protoPayload\.methodName\s*=\s*"v1\.compute\.networks\.addPeering"\s*\)'
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
@@ -261,7 +261,7 @@ query "logging_metric_alert_network_route_changes" {
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
-        join gcp_logging_metric m on m.filter ~ '\s*resource.type\s*=\s*"gce_route"\s*AND\s*protoPayload.methodName\s*=\s*"beta.compute.routes.patch"\s*OR\s*protoPayload.methodName\s*=\s*"beta.compute.routes.insert"\s*'
+        join gcp_logging_metric m on m.filter ~ '\s*resource\.type\s*=\s*"gce_route"\s*AND\s*\(\s*protoPayload\.methodName\s*:\s*"compute\.routes\.delete"\s*OR\s*protoPayload\.methodName\s*:\s*"compute\.routes\.insert"\s*\)'
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
@@ -369,7 +369,7 @@ query "logging_metric_alert_storage_iam_permission_changes" {
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
-        join gcp_logging_metric m on m.filter ~ '\s*resource.type\s*=\s*gcs_bucket\s*AND\s*protoPayload.methodName\s*=\s*"storage.setIamPermissions"\s*'
+        join gcp_logging_metric m on m.filter ~ '\s*resource\.type\s*=\s*"gcs_bucket"\s*AND\s*protoPayload\.methodName\s*=\s*"storage\.setIamPermissions"'
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
