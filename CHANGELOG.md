@@ -1,3 +1,9 @@
+## v0.29 [2024-03-20]
+
+_Bug fixes_
+
+- Fixed the CIS controls from `cis_v200_2_4` to `cis_v200_2_11` to correctly evaluate results when using the aggregator connection of the GCP plugin. ([#154](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/154))
+
 ## v0.28 [2024-03-06]
 
 _Powerpipe_
