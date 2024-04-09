@@ -225,19 +225,6 @@ control "cis_v300_6_2_8" {
   })
 }
 
-control "cis_v300_6_2_9" {
-  title         = "6.2.9 Ensure Instance IP assignment is set to private"
-  description   = "Instance addresses can be public IP or private IP. Public IP means that the instance is accessible through the public internet. In contrast, instances using only private IP are not accessible through the public internet, but are accessible through a Virtual Private Cloud (VPC)."
-  documentation = file("./cis_v300/docs/cis_v300_6_2_9.md")
-  query         = query.sql_instance_not_publicly_accessible
-
-  tags = merge(local.cis_v300_6_2_common_tags, {
-    cis_item_id = "6.2.9"
-    cis_level   = "1"
-    cis_type    = "automated"
-  })
-}
-
 benchmark "cis_v300_6_3" {
   title         = "6.3 SQL Server"
   documentation = file("./cis_v300/docs/cis_v300_6_3.md")
@@ -323,8 +310,8 @@ control "cis_v300_6_3_5" {
 }
 
 control "cis_v300_6_3_6" {
-  title         = "6.3.6 Ensure '3625 (trace flag)' database flag for Cloud SQL SQL Server instance is set to 'off'"
-  description   = "It is recommended to set 3625 (trace flag) database flag for Cloud SQL SQL Server instance to off."
+  title         = "6.3.6 Ensure '3625 (trace flag)' database flag for all Cloud SQL Server instances is set to 'on'"
+  description   = "It is recommended to set 3625 (trace flag) database flag for Cloud SQL SQL Server instance to on."
   documentation = file("./cis_v300/docs/cis_v300_6_3_6.md")
   query         = query.sql_instance_sql_3625_trace_database_flag_on
 
@@ -336,8 +323,8 @@ control "cis_v300_6_3_6" {
 }
 
 control "cis_v300_6_3_7" {
-  title         = "6.3.7 Ensure that the 'contained database authentication' database flag for Cloud SQL on the SQL Server instance is set to 'off'"
-  description   = "It is recommended to set contained database authentication database flag for Cloud SQL on the SQL Server instance is set to off."
+  title         = "6.3.7 Ensure that the 'contained database authentication' database flag for Cloud SQL on the SQL Server instance is not set to 'on'"
+  description   = "It is recommended not to set contained database authentication database flag for Cloud SQL on the SQL Server instance to on."
   documentation = file("./cis_v300/docs/cis_v300_6_3_7.md")
   query         = query.sql_instance_sql_contained_database_authentication_database_flag_off
 
