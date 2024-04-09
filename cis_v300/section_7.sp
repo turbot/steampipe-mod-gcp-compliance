@@ -10,7 +10,8 @@ benchmark "cis_v300_7" {
   children = [
     control.cis_v300_7_1,
     control.cis_v300_7_2,
-    control.cis_v300_7_3
+    control.cis_v300_7_3,
+    control.cis_v300_7_4
   ]
 
   tags = merge(local.cis_v300_7_common_tags, {
@@ -56,6 +57,20 @@ control "cis_v300_7_3" {
   tags = merge(local.cis_v300_7_common_tags, {
     cis_item_id = "7.3"
     cis_type    = "automated"
+    cis_level   = "2"
+    service     = "GCP/BigQuery"
+  })
+}
+
+control "cis_v300_7_4" {
+  title         = "7.4 Ensure all data in BigQuery has been classified"
+  description   = "BigQuery tables can contain sensitive data that for security purposes should be discovered, monitored, classified, and protected. Google Cloud's Sensitive Data Protection tools can automatically provide data classification of all BigQuery data across an organization."
+  query         = query.manual_control
+  documentation = file("./cis_v300/docs/cis_v300_7_4.md")
+
+  tags = merge(local.cis_v300_7_common_tags, {
+    cis_item_id = "7.4"
+    cis_type    = "manual"
     cis_level   = "2"
     service     = "GCP/BigQuery"
   })
