@@ -189,7 +189,7 @@ control "cis_v300_1_11" {
 control "cis_v300_1_12" {
   title         = "1.12 Ensure API Keys Only Exist for Active Services"
   description   = "API Keys should only be used for services in cases where other authentication methods are unavailable. Unused keys with their permissions in tact may still exist within a project. Keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to use standard authentication flow instead."
-  query         = query.manual_control
+  query         = query.project_no_api_key
   documentation = file("./cis_v300/docs/cis_v300_1_12.md")
 
   tags = merge(local.cis_v300_1_common_tags, {
