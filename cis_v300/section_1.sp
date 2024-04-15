@@ -33,7 +33,7 @@ benchmark "cis_v300_1" {
 }
 
 control "cis_v300_1_1" {
-  title         = "1.1 Ensure that corporate login credentials are used"
+  title         = "1.1 Ensure that Corporate Login Credentials are Used"
   description   = "Use corporate login credentials instead of personal accounts, such as Gmail accounts."
   query         = query.iam_user_uses_corporate_login_credentials
   documentation = file("./cis_v300/docs/cis_v300_1_1.md")
@@ -47,7 +47,7 @@ control "cis_v300_1_1" {
 }
 
 control "cis_v300_1_2" {
-  title         = "1.2 Ensure that multi-factor authentication is enabled for all non-service accounts"
+  title         = "1.2 Ensure that Multi-Factor Authentication is 'Enabled' for All Non-Service Accounts"
   description   = "Setup multi-factor authentication for Google Cloud Platform accounts."
   query         = query.manual_control
   documentation = file("./cis_v300/docs/cis_v300_1_2.md")
@@ -61,7 +61,7 @@ control "cis_v300_1_2" {
 }
 
 control "cis_v300_1_3" {
-  title         = "1.3 Ensure that Security Key Enforcement is enabled for all admin accounts"
+  title         = "1.3 Ensure that Security Key Enforcement is Enabled for All Admin Accounts"
   description   = "Setup Security Key Enforcement for Google Cloud Platform admin accounts."
   query         = query.manual_control
   documentation = file("./cis_v300/docs/cis_v300_1_3.md")
@@ -75,7 +75,7 @@ control "cis_v300_1_3" {
 }
 
 control "cis_v300_1_4" {
-  title         = "1.4 Ensure that there are only GCP-managed service account keys for each service account"
+  title         = "1.4 Ensure That There Are Only GCP-Managed Service Account Keys for Each Service Account"
   description   = "User managed service accounts should not have user-managed keys."
   query         = query.iam_service_account_gcp_managed_key
   documentation = file("./cis_v300/docs/cis_v300_1_4.md")
@@ -89,7 +89,7 @@ control "cis_v300_1_4" {
 }
 
 control "cis_v300_1_5" {
-  title         = "1.5 Ensure that Service Account has no Admin privileges"
+  title         = "1.5 Ensure That Service Account Has No Admin Privileges"
   description   = "A service account is a special Google account that belongs to an application or a VM, instead of to an individual end-user. The application uses the service account to call the service's Google API so that users aren't directly involved. It's recommended not to use admin access for ServiceAccount."
   query         = query.iam_service_account_without_admin_privilege
   documentation = file("./cis_v300/docs/cis_v300_1_5.md")
@@ -103,7 +103,7 @@ control "cis_v300_1_5" {
 }
 
 control "cis_v300_1_6" {
-  title         = "1.6 Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level"
+  title         = "1.6 Ensure That IAM Users Are Not Assigned the Service Account User or Service Account Token Creator Roles at Project Level"
   description   = "It is recommended to assign the Service Account User (iam.serviceAccountUser) and Service Account Token Creator (iam.serviceAccountTokenCreator) roles to a user for a specific service account rather than assigning the role to a user at project level."
   query         = query.iam_user_not_assigned_service_account_user_role_project_level
   documentation = file("./cis_v300/docs/cis_v300_1_6.md")
@@ -117,7 +117,7 @@ control "cis_v300_1_6" {
 }
 
 control "cis_v300_1_7" {
-  title         = "1.7 Ensure user-managed/external keys for service accounts are rotated every 90 days or fewer"
+  title         = "1.7 Ensure User-Managed/External Keys for Service Accounts Are Rotated Every 90 Days or Fewer"
   description   = "Service Account keys consist of a key ID (Private_key_Id) and Private key, which are used to sign programmatic requests users make to Google cloud services accessible to that particular service account. It is recommended that all Service Account keys are regularly rotated."
   query         = query.iam_service_account_key_age_90
   documentation = file("./cis_v300/docs/cis_v300_1_7.md")
@@ -131,7 +131,7 @@ control "cis_v300_1_7" {
 }
 
 control "cis_v300_1_8" {
-  title         = "1.8 Ensure that Separation of duties is enforced while assigning service account related roles to users"
+  title         = "1.8 Ensure That Separation of Duties Is Enforced While Assigning Service Account Related Roles to Users"
   description   = "It is recommended that the principle of 'Separation of Duties' is enforced while assigning service-account related roles to users."
   query         = query.iam_user_separation_of_duty_enforced
   documentation = file("./cis_v300/docs/cis_v300_1_8.md")
@@ -145,7 +145,7 @@ control "cis_v300_1_8" {
 }
 
 control "cis_v300_1_9" {
-  title         = "1.9 Ensure that Cloud KMS cryptokeys are not anonymously or publicly accessible"
+  title         = "1.9 Ensure That Cloud KMS Cryptokeys Are Not Anonymously or Publicly Accessible"
   description   = "It is recommended that the IAM policy on Cloud KMS cryptokeys should restrict anonymous and/or public access."
   query         = query.kms_key_not_publicly_accessible
   documentation = file("./cis_v300/docs/cis_v300_1_9.md")
@@ -159,7 +159,7 @@ control "cis_v300_1_9" {
 }
 
 control "cis_v300_1_10" {
-  title         = "1.10 Ensure KMS encryption keys are rotated within a period of 90 days"
+  title         = "1.10 Ensure KMS Encryption Keys Are Rotated Within a Period of 90 Days"
   description   = "Google Cloud Key Management Service stores cryptographic keys in a hierarchical structure designed for useful and elegant access control management. The format for the rotation schedule depends on the client library that is used. For the gcloud command-line tool, the next rotation time must be in ISO or RFC3339 format, and the rotation period must be in the form INTEGER[UNIT], where units can be one of seconds (s), minutes (m), hours (h) or days (d)."
   query         = query.kms_key_rotated_within_90_day
   documentation = file("./cis_v300/docs/cis_v300_1_10.md")
@@ -173,7 +173,7 @@ control "cis_v300_1_10" {
 }
 
 control "cis_v300_1_11" {
-  title         = "1.11 Ensure that Separation of duties is enforced while assigning KMS related roles to users"
+  title         = "1.11 Ensure That Separation of Duties Is Enforced While Assigning KMS Related Roles to Users"
   description   = "It is recommended that the principle of 'Separation of Duties' is enforced while assigning KMS related roles to users."
   query         = query.kms_key_separation_of_duties_enforced
   documentation = file("./cis_v300/docs/cis_v300_1_11.md")
@@ -201,7 +201,7 @@ control "cis_v300_1_12" {
 }
 
 control "cis_v300_1_13" {
-  title         = "1.13 Ensure API keys are restricted to use by only specified Hosts and Apps"
+  title         = "1.13 Ensure API Keys Are Restricted To Use by Only Specified Hosts and Apps"
   description   = "API Keys should only be used for services in cases where other authentication methods are unavailable. In this case, unrestricted keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to restrict API key usage to trusted hosts, HTTP referrers and apps. It is recommended to use the more secure standard authentication flow instead."
   query         = query.iam_api_key_restricts_websites_hosts_apps
   documentation = file("./cis_v300/docs/cis_v300_1_13.md")
@@ -215,7 +215,7 @@ control "cis_v300_1_13" {
 }
 
 control "cis_v300_1_14" {
-  title         = "1.14 Ensure API keys are restricted to only APIs that application needs access"
+  title         = "1.14 Ensure API Keys Are Restricted to Only APIs That Application Needs Access"
   description   = "API Keys should only be used for services in cases where other authentication methods are unavailable. API keys are always at risk because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to restrict API keys to use (call) only APIs required by an application."
   query         = query.iam_api_key_restricts_apis
   documentation = file("./cis_v300/docs/cis_v300_1_14.md")
@@ -229,7 +229,7 @@ control "cis_v300_1_14" {
 }
 
 control "cis_v300_1_15" {
-  title         = "1.15 Ensure API keys are rotated every 90 days"
+  title         = "1.15 Ensure API Keys Are Rotated Every 90 Days"
   description   = "API Keys should only be used for services in cases where other authentication methods are unavailable. If they are in use it is recommended to rotate API keys every 90 days."
   query         = query.iam_api_key_age_90
   documentation = file("./cis_v300/docs/cis_v300_1_15.md")
@@ -243,7 +243,7 @@ control "cis_v300_1_15" {
 }
 
 control "cis_v300_1_16" {
-  title         = "1.16 Ensure essential contacts is configured for Organization"
+  title         = "1.16 Ensure Essential Contacts is Configured for Organization"
   description   = "It is recommended that Essential Contacts is configured to designate email addresses for Google Cloud services to notify of important technical or security information."
   query         = query.organization_essential_contacts_configured
   documentation = file("./cis_v300/docs/cis_v300_1_16.md")
