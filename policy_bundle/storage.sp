@@ -168,7 +168,7 @@ query "storage_bucket_log_retention_policy_enabled" {
       ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
       ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
     from
-      gcp_storage_bucket as b
+      gcp_storage_buckets as b
       left join log_sink_buckets as s on s.bucket_name = b.name and b.project = s.project;
   EOQ
 }

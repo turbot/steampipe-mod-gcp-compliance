@@ -86,6 +86,15 @@ control "logging_sink_configured_for_all_resource" {
 
 query "logging_bucket_retention_policy_enabled" {
   sql = <<-EOQ
+    with logging_sinks as (
+      select
+        self_link,
+        title,
+        _ctx,
+        destination
+      from
+        gcp_logging_sink
+    )
     select
       s.self_link resource,
       case
@@ -100,7 +109,7 @@ query "logging_bucket_retention_policy_enabled" {
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "s.")}
     from
       gcp_storage_bucket b
-    join gcp_logging_sink s on (
+      join logging_sinks s on (
       split_part(s.destination, '/', 1) = 'storage.googleapis.com'
       and split_part(s.destination, '/', 2) = b.name
     );
@@ -318,7 +327,7 @@ query "logging_metric_alert_project_ownership_assignment" {
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_project as p
+      gcp_projects as p
       left join filter_data as d on d.project = p.name;
   EOQ
 }
@@ -354,7 +363,7 @@ query "logging_metric_alert_sql_instance_configuration_changes" {
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_project as p
+      gcp_projects as p
       left join filter_data as d on d.project = p.name
   EOQ
 }
@@ -390,7 +399,7 @@ query "logging_metric_alert_storage_iam_permission_changes" {
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_project as p
+      gcp_projects as p
       left join filter_data as d on d.project = p.name;
   EOQ
 }
@@ -398,31 +407,32 @@ query "logging_metric_alert_storage_iam_permission_changes" {
 query "logging_sink_configured_for_all_resource" {
   sql = <<-EOQ
     with project_sink_count as (
-  select
-    project,
-    count(*) no_of_sink
-  from
-    gcp_logging_sink
-  where
-    filter = ''
-    and destination != ''
-  group by project
-)
-select
-  'https://www.googleapis.com/logging/v2/projects/' || s.project resource,
-  case
-    when s.no_of_sink > 0 then 'ok'
-    else 'alarm'
-  end as status,
-  case
-    when s.no_of_sink > 0
-      then 'Sinks configured for all log entries.'
-    else 'Sinks not configured for all log entries.'
-  end as reason
-  ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "p.")}
-  ${replace(local.common_dimensions_qualifier_project_sql, "__QUALIFIER__", "p.")}
-from
-  gcp_project p
-  left join project_sink_count s on s.project = p.project_id;
+      select
+        project,
+        count(*) no_of_sink
+      from
+        gcp_logging_sink
+      where
+        filter = ''
+        and destination != ''
+      group by
+        project
+    )
+    select
+      'https://www.googleapis.com/logging/v2/projects/' || s.project resource,
+      case
+        when s.no_of_sink > 0 then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when s.no_of_sink > 0
+          then 'Sinks configured for all log entries.'
+        else 'Sinks not configured for all log entries.'
+      end as reason
+      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "p.")}
+      ${replace(local.common_dimensions_qualifier_project_sql, "__QUALIFIER__", "p.")}
+    from
+      gcp_project p
+      left join project_sink_count s on s.project = p.project_id;
   EOQ
 }
