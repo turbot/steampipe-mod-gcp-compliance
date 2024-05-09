@@ -327,7 +327,7 @@ query "logging_metric_alert_project_ownership_assignment" {
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_projects as p
+      gcp_project as p
       left join filter_data as d on d.project = p.name;
   EOQ
 }
@@ -363,7 +363,7 @@ query "logging_metric_alert_sql_instance_configuration_changes" {
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_projects as p
+      gcp_project as p
       left join filter_data as d on d.project = p.name
   EOQ
 }
@@ -399,7 +399,7 @@ query "logging_metric_alert_storage_iam_permission_changes" {
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
     from
-      gcp_projects as p
+      gcp_project as p
       left join filter_data as d on d.project = p.name;
   EOQ
 }
