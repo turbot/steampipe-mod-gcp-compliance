@@ -38,6 +38,15 @@ control "kms_key_separation_of_duties_enforced" {
   tags = local.policy_bundle_kms_common_tags
 }
 
+control "kms_key_users_limited_to_3" {
+  title       = "Ensure KMS encryption keys has three or less thab three number of users"
+  description = "It is recommended that KMS encryption keys users should be limited to three."
+  query       = query.kms_key_users_limited_to_3
+
+  tags = local.policy_bundle_kms_common_tags
+}
+
+
 query "kms_key_rotated_within_100_day" {
   sql = <<-EOQ
     select
@@ -168,5 +177,44 @@ query "kms_key_separation_of_duties_enforced" {
     from
       users_with_roles as r
       left join kms_roles_users as k on k.user_name = r.user_name and k.project = r.project
+  EOQ
+}
+
+query "kms_key_users_limited_to_3" {
+  sql = <<-EOQ
+    with public_keys as (
+      select
+        distinct self_link
+      from
+        gcp_parker.gcp_kms_key,
+        jsonb_array_elements(iam_policy -> 'bindings') as b
+      where
+        b -> 'members' ?| array['allAuthenticatedUsers', 'allUsers']
+    ), key_members_count as (
+       select
+        distinct self_link,
+        jsonb_array_length(b -> 'members') as members_count
+      from
+        gcp_parker.gcp_kms_key,
+        jsonb_array_elements(iam_policy -> 'bindings') as b
+    )
+    select
+      k.self_link as resource,
+      case
+        when p.self_link is not null then 'alarm'
+        when c.members_count > 3 then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when p.self_link is not null then title || ' in ' || k.key_ring_name || ' key ring  publicly accessible.'
+        when c.members_count is null then title || ' has no user.'
+        else title || ' has ' || (c.members_count) || ' user(s).'
+      end as reason
+      --${local.tag_dimensions_sql}
+      --${local.common_dimensions_sql}
+    from
+      gcp_parker.gcp_kms_key k
+      left join public_keys p on k.self_link = p.self_link
+      left join key_members_count as c on c.self_link = k.self_link;
   EOQ
 }

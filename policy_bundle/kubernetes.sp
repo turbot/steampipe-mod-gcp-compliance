@@ -274,6 +274,14 @@ control "kubernetes_cluster_shielded_node_secure_boot_enabled" {
   tags = local.policy_bundle_kubernetes_common_tags
 }
 
+control "kubernetes_cluster_subnetwork_private_ip_google_access_enabled" {
+  title = "Ensure Private Google Access is enabled for all subnetworks in kubernetes cluster"
+  description = "This control ensures that GKE clusters subnetworks have private google access enabled."
+  query = query.kubernetes_cluster_subnetwork_private_ip_google_access_enabled
+
+  tags = local.policy_bundle_kubernetes_common_tags
+}
+
 query "kubernetes_cluster_private_cluster_config_enabled" {
   sql = <<-EOQ
     select
@@ -888,5 +896,25 @@ query "kubernetes_cluster_shielded_node_secure_boot_enabled" {
       ${local.common_dimensions_sql}
     from
       gcp_kubernetes_cluster;
+  EOQ
+}
+
+query "kubernetes_cluster_subnetwork_private_ip_google_access_enabled" {
+  sql = <<-EOQ
+    select
+      c.self_link resource,
+      case
+        when s.private_ip_google_access then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when s.private_ip_google_access then c.title || ' private Google Access is enabled.'
+        else c.title || ' private Google Access is disabled.'
+      end as reason
+      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "c.")}
+      ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "c.")}
+    from
+      gcp_kubernetes_cluster as c
+      left join gcp_compute_subnetwork as s on concat('projects' , split_part(s.self_link , '/projects' ,2)) = c.network_config ->> 'Subnetwork';
   EOQ
 }
