@@ -86,6 +86,13 @@ query "project_no_api_key" {
         gcp_apikeys_key
       group by
         project
+    ), gcp_projects as (
+      select
+        self_link,
+        name,
+        project_id
+      from
+        gcp_project
     )
     select
       p.self_link as resource,
@@ -99,7 +106,7 @@ query "project_no_api_key" {
       end as reason
       ${local.common_dimensions_project_sql}
     from
-      gcp_project as p
+      gcp_projects as p
       left join project_api_key as k on k.project = p.project_id;
   EOQ
 }
