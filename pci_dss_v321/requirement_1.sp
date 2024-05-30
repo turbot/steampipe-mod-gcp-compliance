@@ -5,7 +5,7 @@ locals {
 }
 
 benchmark "pci_dss_v321_requirement_1" {
-  title       = "Requirement 1:  Install and maintain a firewall configuration to protect cardholder data"
+  title       = "Requirement 1: Install and maintain a firewall configuration to protect cardholder data"
   description = "This first requirement ensures that service providers and merchants maintain a secure network through the proper configuration of a firewall as well as routers if applicable. Properly configured firewalls protect your card data environment. Firewalls restrict incoming and outgoing network traffic through rules and criteria configured by your organization. Firewalls provide the first line of protection for your network. Organizations should establish firewalls and router standards, which allow for a standardized process for allowing or denying access rules to the network. Configuration rules should be reviewed bi-annually and ensure that there are no insecure access rules which can allow access to the card data environment."
 
   children = [
@@ -30,7 +30,7 @@ benchmark "pci_dss_v321_requirement_1_2" {
 }
 
 benchmark "pci_dss_v321_requirement_1_2_1" {
-  title       = "1.2.1  Restrict inbound and outbound traffic to that which is necessary for the cardholder data environment, and specifically deny all other traffic."
+  title       = "1.2.1 Restrict inbound and outbound traffic to that which is necessary for the cardholder data environment, and specifically deny all other traffic"
   description = "Customers are responsible for implementing GCP firewall rules and limiting inbound/outbound traffic to only business justified and necessary traffic. Customers must define explicit GCP firewall rules and deny all other traffic. Customers are responsible for verifying inbound and outbound traffic for their CDE which includes GCP GCE and GCS, and GCP VPCs. Customers are responsible for denying any traffic that is not explicitly required for the GCP Product to function."
 
   children = [
@@ -75,7 +75,7 @@ benchmark "pci_dss_v321_requirement_1_2_1" {
 
 
 benchmark "pci_dss_v321_requirement_1_3" {
-  title       = "1.3  Prohibit direct public access between the Internet and any system component in the cardholder data environment"
+  title       = "1.3 Prohibit direct public access between the Internet and any system component in the cardholder data environment"
   description = "Customers are responsible for implementing firewall rules and limiting ingress traffic to defined ports and protocols necessary for GCE instances within their DMZ."
 
   children = [
@@ -92,7 +92,7 @@ benchmark "pci_dss_v321_requirement_1_3" {
 }
 
 benchmark "pci_dss_v321_requirement_1_3_2" {
-  title       = "1.3.2 Limit inbound Internet traffic to IP addresses within the DMZ."
+  title       = "1.3.2 Limit inbound Internet traffic to IP addresses within the DMZ"
   description = "Customers are responsible for implementing firewall rules and limiting ingress traffic to defined ports and protocols necessary for GCE instances within their DMZ."
 
   children = [
@@ -128,6 +128,6 @@ benchmark "pci_dss_v321_requirement_1_3_7" {
   ]
 
   tags = merge(local.pci_dss_v321_requirement_4_common_tags, {
-    pci_dss_v321_item_id = "1.3.2"
+    pci_dss_v321_item_id = "1.3.7"
   })
 }

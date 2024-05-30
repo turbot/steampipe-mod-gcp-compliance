@@ -16,7 +16,7 @@ benchmark "pci_dss_v321_requirement_3" {
 }
 
 benchmark "pci_dss_v321_requirement_3_5" {
-  title       = "3.5  Document and implement procedures to protect keys used to secure stored cardholder data against disclosure and misuse."
+  title       = "3.5 Document and implement procedures to protect keys used to secure stored cardholder data against disclosure and misuse"
   description = "Customers are responsible for maintaining appropriate data retention policies and procedures, encryption technologies and key management processes for maintaining PCI DSS requirements."
 
   children = [
@@ -30,7 +30,7 @@ benchmark "pci_dss_v321_requirement_3_5" {
 }
 
 benchmark "pci_dss_v321_requirement_3_5_2" {
-  title       = "3.5.2 Restrict access to cryptographic keys to the fewest number of custodians necessary."
+  title       = "3.5.2 Restrict access to cryptographic keys to the fewest number of custodians necessary"
   description = "Customers are responsible for maintaining appropriate data retention policies and procedures, encryption technologies and key management processes for maintaining PCI DSS requirements."
 
   children = [

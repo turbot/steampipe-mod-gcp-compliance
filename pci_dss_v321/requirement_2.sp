@@ -5,7 +5,7 @@ locals {
 }
 
 benchmark "pci_dss_v321_requirement_2" {
-  title       = "Requirement 2: Do not use vendor-supplied defaults for system passwords and other security parameters."
+  title       = "Requirement 2: Do not use vendor-supplied defaults for system passwords and other security parameters"
   description = "It focuses on hardening your organization’s systems such as servers, network devices, applications, firewalls, wireless access points, etc. Most of the operating systems and devices come with factory default setting such as usernames, passwords, and other insecure configuration parameters. These default usernames and passwords are simple to guess, and most are even published on the Internet.Such default passwords and other security parameters are not permissible per this requirement. This requirement also asks to maintain an inventory of all the systems, configuration/hardening procedures. These procedures need to be followed every time a new system is introduced in the IT infrastructure."
 
   children = [
@@ -30,7 +30,7 @@ benchmark "pci_dss_v321_requirement_2_1" {
 }
 
 benchmark "pci_dss_v321_requirement_2_2" {
-  title       = "2.2  Develop configuration standards for all system components. Assure that these standards address all known security vulnerabilities and are consistent with industry-accepted system hardening standards"
+  title       = "2.2 Develop configuration standards for all system components. Assure that these standards address all known security vulnerabilities and are consistent with industry-accepted system hardening standards"
   description = "Customers are responsible for documenting, developing and implementing configuration standards for the GCP products in use that are within the CDE. This includes configuration standards for GCE, VPC, and GCS based on industry standards and hardening guidelines."
 
   children = [

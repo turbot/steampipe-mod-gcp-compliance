@@ -35,7 +35,7 @@ benchmark "pci_dss_v321_requirement_10_1" {
 }
 
 benchmark "pci_dss_v321_requirement_10_2" {
-  title       = "10.2  Implement automated audit trails for all system components to reconstruct the events"
+  title       = "10.2 Implement automated audit trails for all system components to reconstruct the events"
   description = "GCP customers are responsible for configuring logging parameters, when available. Customers are responsible to log and monitor their GCE, and GKE instances, systems and applications in alignment with PCI DSS requirements."
 
   children = [
@@ -53,7 +53,7 @@ benchmark "pci_dss_v321_requirement_10_2" {
 }
 
 benchmark "pci_dss_v321_requirement_10_2_2" {
-  title       = "10.2.2  All actions taken by any individual with root or administrative privileges"
+  title       = "10.2.2 All actions taken by any individual with root or administrative privileges"
   description = "GCP customers are responsible for configuring logging parameters, when available. Customers are responsible to log and monitor their GCE, and GKE instances, systems and applications in alignment with PCI DSS requirements."
 
   children = [
@@ -66,7 +66,7 @@ benchmark "pci_dss_v321_requirement_10_2_2" {
 }
 
 benchmark "pci_dss_v321_requirement_10_2_7" {
-  title       = "10.2.7  Creation and deletion of system-level objects"
+  title       = "10.2.7 Creation and deletion of system-level objects"
   description = "GCP customers are responsible for configuring logging parameters, when available. Customers are responsible to log and monitor their GCE, and GKE instances, systems and applications in alignment with PCI DSS requirements."
 
   children = [
@@ -79,7 +79,7 @@ benchmark "pci_dss_v321_requirement_10_2_7" {
 }
 
 benchmark "pci_dss_v321_requirement_10_4" {
-  title       = "10.4  Using time-synchronization technology, synchronize all critical system clocks and times and ensure that the following is implemented for acquiring, distributing, and storing time"
+  title       = "10.4 Using time-synchronization technology, synchronize all critical system clocks and times and ensure that the following is implemented for acquiring, distributing, and storing time"
   description = "GCP customers are responsible for appropriately managing network time protocol (NTP) configuration for their GCE and GKE instances."
 
   children = [
@@ -119,7 +119,7 @@ benchmark "pci_dss_v321_requirement_10_4_3" {
 }
 
 benchmark "pci_dss_v321_requirement_10_5" {
-  title       = "10.5  Secure audit trails so they cannot be altered"
+  title       = "10.5 Secure audit trails so they cannot be altered"
   description = "GCP Customers are responsible for setting permissions and access controls for audit logs. Identity Access Management (IAM) can be used to set permissions for accounts with access to online and offline log storage locations. Customers are responsible to log and monitor their GCE and GKE systems and instances in alignment with PCI DSS requirements."
 
   children = [
