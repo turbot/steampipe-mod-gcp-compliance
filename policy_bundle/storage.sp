@@ -223,8 +223,8 @@ query "storage_bucket_log_object_versioning_enabled" {
         when b.versioning_enabled then title || ' has object versioning enabled.'
         else title || ' has object versioning disabled.'
       end as reason
-      --${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
-      --${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
+      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
+      ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
     from
       gcp_storage_bucket as b
       left join log_sink_buckets as s on s.bucket_name = b.name and b.project = s.project;

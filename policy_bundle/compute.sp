@@ -943,7 +943,7 @@ query "compute_https_load_balancer_logging_enabled" {
       ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "m.")}
     from
       gcp_compute_url_map as m
-      left join  as s on s.self_link = m.default_service;
+      left join gcp_compute_backend_service as s on s.self_link = m.default_service;
   EOQ
 }
 
@@ -2990,7 +2990,7 @@ query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090" {
         )
         and (p ->> 'IPProtocol' = 'tcp')
         and (
-          port = '25'
+          port = '9090'
           or (
             port like '%-%'
             and split_part(port, '-', 1) :: integer <= 9090
@@ -3010,7 +3010,7 @@ query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090" {
           then title || ' allows access from internet to TCP port 9090.'
         else title || ' restricts access from internet to TCP port 9090.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -3235,7 +3235,7 @@ query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199" {
           then title || ' allows access from internet to TCP port 7199.'
         else title || ' restricts access from internet to TCP port 7199.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -3302,7 +3302,7 @@ query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888" {
           then title || ' allows access from internet to TCP port 8888.'
         else title || ' restricts access from internet to TCP port 8888.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -3369,7 +3369,7 @@ query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042" {
           then title || ' allows access from internet to TCP port 9042.'
         else title || ' restricts access from internet to TCP port 9042.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -3436,7 +3436,7 @@ query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160" {
           then title || ' allows access from internet to TCP port 9160.'
         else title || ' restricts access from internet to TCP port 9160.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -3573,7 +3573,7 @@ query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379" {
           then title || ' allows access from internet to TCP port 6379.'
         else title || ' restricts access from internet to TCP port 6379.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -3645,7 +3645,7 @@ query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139" {
           then title || ' allows access from internet to TCP port 137-139.'
         else title || ' restricts access from internet to TCP port 137-139.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
 
@@ -3718,7 +3718,7 @@ query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_2701
           then title || ' allows access from internet to TCP port 27017-27019.'
         else title || ' restricts access from internet to TCP port 27017-27019.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ
@@ -3853,7 +3853,7 @@ query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_636" {
           then title || ' allows access from internet to TCP port 636.'
         else title || ' restricts access from internet to TCP port 636.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_firewall;
   EOQ

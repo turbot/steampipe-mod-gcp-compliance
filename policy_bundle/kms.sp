@@ -218,8 +218,8 @@ query "kms_key_users_limited_to_3" {
         when c.members_count is null then title || ' has no user.'
         else title || ' has ' || (c.members_count) || ' user(s).'
       end as reason
-      --${local.tag_dimensions_sql}
-      --${local.common_dimensions_sql}
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_parker.gcp_kms_key k
       left join public_keys p on k.self_link = p.self_link
