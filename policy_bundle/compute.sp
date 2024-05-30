@@ -20,6 +20,7 @@ control "enable_network_flow_logs" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     cft_scorecard_v1 = "true"
+    pci_dss_v321     = "true"
     severity         = "high"
   })
 }
@@ -41,6 +42,7 @@ control "restrict_firewall_rule_ssh_world_open" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     cft_scorecard_v1      = "true"
     forseti_security_v226 = "true"
+    pci_dss_v321          = "true"
     severity              = "high"
   })
 }
@@ -51,6 +53,7 @@ control "restrict_firewall_rule_world_open_tcp_udp_all_ports" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     forseti_security_v226 = "true"
+    pci_dss_v321          = "true"
     severity              = "high"
   })
 }
@@ -140,7 +143,9 @@ control "compute_instance_with_no_default_service_account_with_full_access" {
   description = "To support principle of least privileges and prevent potential privilege escalation it is recommended that instances are not assigned to default service account Compute Engine default service account with Scope Allow full access to all Cloud APIs."
   query       = query.compute_instance_with_no_default_service_account_with_full_access
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_instance_with_no_default_service_account" {
@@ -148,7 +153,9 @@ control "compute_instance_with_no_default_service_account" {
   description = "It is recommended to configure your instance to not use the default Compute Engine service account because it has the Editor role on the project."
   query       = query.compute_instance_with_no_default_service_account
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_instance_with_no_public_ip_addresses" {
@@ -156,7 +163,9 @@ control "compute_instance_with_no_public_ip_addresses" {
   description = "Compute instances should not be configured to have external IP addresses."
   query       = query.compute_instance_with_no_public_ip_addresses
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_network_contains_no_default_network" {
@@ -188,7 +197,9 @@ control "compute_ssl_policy_with_no_weak_cipher" {
   description = "Secure Sockets Layer (SSL) policies determine what port Transport Layer Security (TLS) features clients are permitted to use when connecting to load balancers."
   query       = query.compute_ssl_policy_with_no_weak_cipher
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
@@ -196,7 +207,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to DNS port 53."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_dns_port_53
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
@@ -204,7 +217,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to FTP port 21."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_ftp_port_21
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
@@ -212,7 +227,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to HTTP port 80."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_http_port_80
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
@@ -220,7 +237,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to SMTP port 25."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_smtp_port_25
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445" {
@@ -228,7 +247,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_44
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Microsoft DS port 445."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017" {
@@ -244,7 +265,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306" 
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MySQL DB port 3306."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139" {
@@ -260,7 +283,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Oracle DB port 1521."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
@@ -268,7 +293,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to POP3 port 110."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_pop3_port_110
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432" {
@@ -276,7 +303,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to PostgreSQL port 5432."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_telnet_port_23" {
@@ -284,7 +313,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_telnet_port_23" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Telnet port 23."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_telnet_port_23
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_network_auto_create_subnetwork_enabled" {
@@ -420,7 +451,9 @@ control "compute_firewall_rule_restrict_ingress_all_with_no_specific_target" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to any port without any specific target."
   query       = query.compute_firewall_rule_restrict_ingress_all_with_no_specific_target
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250" {
@@ -444,7 +477,9 @@ control "compute_firewall_rule_restrict_ingress_all" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to any port."
   query       = query.compute_firewall_rule_restrict_ingress_all
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_instance_no_iam_write_permission" {
@@ -468,7 +503,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9090."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9200_9300" {
@@ -476,7 +513,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9200_9300" 
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9200 or 9300."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9200_9300
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_logging_enabled" {
@@ -484,7 +523,9 @@ control "compute_firewall_rule_logging_enabled" {
   description = "Firewall rules should have logging enabled. This control fails if logging is disabled for firewall rule."
   query       = query.compute_firewall_rule_logging_enabled
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 
@@ -493,7 +534,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001" 
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 7000 or 7001."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199" {
@@ -501,7 +544,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 7199."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888" {
@@ -509,7 +554,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 8888."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042" {
@@ -517,7 +564,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9042."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160" {
@@ -525,7 +574,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9160."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621" {
@@ -533,7 +584,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 61620 or 6162."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379" {
@@ -541,7 +594,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 6379."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139" {
@@ -549,7 +604,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 137 to 139."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27019" {
@@ -557,7 +614,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 27017 to 27019."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27019
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_636" {
@@ -565,7 +624,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_636" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 636."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_636
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389" {
@@ -573,7 +634,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 389."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11211" {
@@ -581,7 +644,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11211" 
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 11211."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11211
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11214_to_11215" {
@@ -589,7 +654,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11214_t
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 11214 to 11215."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11214_to_11215
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_2483_to_2484" {
@@ -597,10 +664,10 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_2483_to
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 2483 to 2484."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_2483_to_2484
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
-
-
 
 query "compute_firewall_rule_ssh_access_restricted" {
   sql = <<-EOQ

@@ -27,7 +27,9 @@ control "kms_key_rotated_within_90_day" {
   description = "Google Cloud Key Management Service stores cryptographic keys in a hierarchical structure designed for useful and elegant access control management. The format for the rotation schedule depends on the client library that is used. For the gcloud command-line tool, the next rotation time must be in ISO or RFC3339 format, and the rotation period must be in the form INTEGER[UNIT], where units can be one of seconds (s), minutes (m), hours (h) or days (d)."
   query       = query.kms_key_rotated_within_90_day
 
-  tags = local.policy_bundle_kms_common_tags
+  tags = merge(local.policy_bundle_kms_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "kms_key_separation_of_duties_enforced" {
@@ -43,9 +45,10 @@ control "kms_key_users_limited_to_3" {
   description = "It is recommended that KMS encryption keys users should be limited to three."
   query       = query.kms_key_users_limited_to_3
 
-  tags = local.policy_bundle_kms_common_tags
+  tags = merge(local.policy_bundle_kms_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
-
 
 query "kms_key_rotated_within_100_day" {
   sql = <<-EOQ

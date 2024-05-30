@@ -11,6 +11,7 @@ control "require_bq_table_iam" {
   tags = merge(local.policy_bundle_bigquery_common_tags, {
     cft_scorecard_v1      = "true"
     forseti_security_v226 = "true"
+    pci_dss_v321          = "true"
     severity              = "high"
   })
 }

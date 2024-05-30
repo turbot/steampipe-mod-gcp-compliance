@@ -65,7 +65,7 @@ benchmark "pci_dss_v321_requirement_1_2_1" {
     control.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_2483_to_2484,
     control.compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521,
     control.enable_gke_master_authorized_networks,
-    control.sql_instance_not_publicly_accessible
+    control.sql_instance_not_publicly_accessible,
   ]
 
   tags = merge(local.pci_dss_v321_requirement_1_common_tags, {

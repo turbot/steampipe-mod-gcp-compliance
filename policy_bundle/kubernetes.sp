@@ -10,6 +10,7 @@ control "allow_only_private_cluster" {
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
     cft_scorecard_v1 = "true"
+    pci_dss_v321     = "true"
     severity         = "high"
   })
 }
@@ -20,6 +21,7 @@ control "disable_gke_dashboard" {
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
     cft_scorecard_v1 = "true"
+    pci_dss_v321     = "true"
     severity         = "high"
   })
 }
@@ -40,6 +42,7 @@ control "disable_gke_legacy_abac" {
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
     cft_scorecard_v1 = "true"
+    pci_dss_v321     = "true"
     severity         = "high"
   })
 }
@@ -60,6 +63,7 @@ control "enable_alias_ip_ranges" {
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
     cft_scorecard_v1 = "true"
+    pci_dss_v321     = "true"
     severity         = "high"
   })
 }
@@ -70,6 +74,7 @@ control "enable_auto_repair" {
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
     cft_scorecard_v1 = "true"
+    pci_dss_v321     = "true"
     severity         = "high"
   })
 }
@@ -80,6 +85,7 @@ control "enable_auto_upgrade" {
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
     cft_scorecard_v1 = "true"
+    pci_dss_v321     = "true"
     severity         = "high"
   })
 }
@@ -90,6 +96,7 @@ control "enable_gke_master_authorized_networks" {
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
     cft_scorecard_v1 = "true"
+    pci_dss_v321     = "true"
     severity         = "high"
   })
 }
@@ -100,6 +107,7 @@ control "gke_container_optimized_os" {
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
     cft_scorecard_v1 = "true"
+    pci_dss_v321     = "true"
     severity         = "high"
   })
 }
@@ -127,7 +135,9 @@ control "kubernetes_cluster_logging_enabled" {
   description = "This control ensures that GKE clusters logging is enabled."
   query       = query.kubernetes_cluster_logging_enabled
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "kubernetes_cluster_monitoring_enabled" {
@@ -215,7 +225,9 @@ control "kubernetes_cluster_network_policy_enabled" {
   description = "This control ensures that GKE clusters network policy is enabled."
   query       = query.kubernetes_cluster_network_policy_enabled
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "kubernetes_cluster_client_certificate_authentication_enabled" {
@@ -231,7 +243,9 @@ control "kubernetes_cluster_node_no_default_service_account" {
   description = "This control ensures that GKE clusters nodes does not uses default service account. It is recommended to create and use a least privileged service account to run your GKE cluster instead of using the default service account."
   query       = query.kubernetes_cluster_node_no_default_service_account
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled" {
@@ -275,11 +289,13 @@ control "kubernetes_cluster_shielded_node_secure_boot_enabled" {
 }
 
 control "kubernetes_cluster_subnetwork_private_ip_google_access_enabled" {
-  title = "Ensure Private Google Access is enabled for all subnetworks in kubernetes cluster"
+  title       = "Ensure Private Google Access is enabled for all subnetworks in kubernetes cluster"
   description = "This control ensures that GKE clusters subnetworks have private google access enabled."
-  query = query.kubernetes_cluster_subnetwork_private_ip_google_access_enabled
+  query       = query.kubernetes_cluster_subnetwork_private_ip_google_access_enabled
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 query "kubernetes_cluster_private_cluster_config_enabled" {

@@ -19,7 +19,9 @@ control "storage_bucket_not_publicly_accessible" {
   description = "It is recommended that IAM policy on Cloud Storage bucket does not allows anonymous or public access."
   query       = query.storage_bucket_not_publicly_accessible
 
-  tags = local.policy_bundle_storage_common_tags
+  tags = merge(local.policy_bundle_storage_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "storage_bucket_uniform_access_enabled" {
@@ -43,15 +45,9 @@ control "storage_bucket_log_retention_policy_enabled" {
   description = "It is recommended that Cloud Storage buckets used for exporting logs have retention policy enabled."
   query       = query.storage_bucket_log_retention_policy_enabled
 
-  tags = local.policy_bundle_storage_common_tags
-}
-
-control "storage_bucket_uniform_access_enabled" {
-  title       = "Ensure that Cloud Storage buckets have uniform bucket-level access enabled"
-  description = "It is recommended that uniform bucket-level access is enabled on Cloud Storage buckets."
-  query       = query.storage_bucket_uniform_access_enabled
-
-  tags = local.policy_bundle_storage_common_tags
+  tags = merge(local.policy_bundle_storage_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "storage_bucket_log_object_versioning_enabled" {
@@ -59,7 +55,9 @@ control "storage_bucket_log_object_versioning_enabled" {
   description = "It is recommended that logging Cloud Storage buckets should have object versioning enabled."
   query       = query.storage_bucket_log_object_versioning_enabled
 
-  tags = local.policy_bundle_storage_common_tags
+  tags = merge(local.policy_bundle_storage_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "storage_bucket_log_not_publicly_accessible" {
@@ -67,7 +65,9 @@ control "storage_bucket_log_not_publicly_accessible" {
   description = "It is recommended that IAM policy on Cloud Storage bucket used for exporting logs does not allows anonymous or public access."
   query       = query.storage_bucket_log_not_publicly_accessible
 
-  tags = local.policy_bundle_storage_common_tags
+  tags = merge(local.policy_bundle_storage_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 query "storage_bucket_bucket_policy_only_enabled" {
