@@ -34,38 +34,38 @@ benchmark "pci_dss_v321_requirement_1_2_1" {
   description = "Customers are responsible for implementing GCP firewall rules and limiting inbound/outbound traffic to only business justified and necessary traffic. Customers must define explicit GCP firewall rules and deny all other traffic. Customers are responsible for verifying inbound and outbound traffic for their CDE which includes GCP GCE and GCS, and GCP VPCs. Customers are responsible for denying any traffic that is not explicitly required for the GCP Product to function."
 
   children = [
-    control.compute_firewall_rule_restrict_ingress_all,
-    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090,
-    control.compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445,
-    control.restrict_firewall_rule_world_open_tcp_udp_all_ports,
-    control.restrict_firewall_rule_ssh_world_open,
-    control.compute_firewall_rule_ingress_access_restricted_to_telnet_port_23,
     control.compute_firewall_rule_ingress_access_restricted_to_dns_port_53,
     control.compute_firewall_rule_ingress_access_restricted_to_ftp_port_21,
     control.compute_firewall_rule_ingress_access_restricted_to_http_port_80,
+    control.compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445,
     control.compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306,
+    control.compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521,
     control.compute_firewall_rule_ingress_access_restricted_to_pop3_port_110,
     control.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432,
     control.compute_firewall_rule_ingress_access_restricted_to_smtp_port_25,
-    control.compute_instance_with_no_public_ip_addresses,
-    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9200_9300,
+    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139,
+    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27019,
+    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621,
+    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_636,
+    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379,
     control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001,
     control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199,
     control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888,
     control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042,
+    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090,
     control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160,
-    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621,
-    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379,
-    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139,
-    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27019,
-    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_636,
-    control.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389,
+    control.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9200_9300,
     control.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11211,
     control.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11214_to_11215,
     control.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_2483_to_2484,
-    control.compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521,
+    control.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389,
+    control.compute_firewall_rule_ingress_access_restricted_to_telnet_port_23,
+    control.compute_firewall_rule_restrict_ingress_all,
+    control.compute_instance_with_no_public_ip_addresses,
     control.enable_gke_master_authorized_networks,
-    control.sql_instance_not_publicly_accessible,
+    control.restrict_firewall_rule_ssh_world_open,
+    control.restrict_firewall_rule_world_open_tcp_udp_all_ports,
+    control.sql_instance_not_publicly_accessible
   ]
 
   tags = merge(local.pci_dss_v321_requirement_1_common_tags, {
@@ -83,7 +83,7 @@ benchmark "pci_dss_v321_requirement_1_3" {
     benchmark.pci_dss_v321_requirement_1_3_4,
     benchmark.pci_dss_v321_requirement_1_3_7,
     control.kubernetes_cluster_network_policy_enabled,
-    control.kubernetes_cluster_subnetwork_private_ip_google_access_enabled,
+    control.kubernetes_cluster_subnetwork_private_ip_google_access_enabled
   ]
 
   tags = merge(local.pci_dss_v321_requirement_4_common_tags, {
@@ -96,8 +96,8 @@ benchmark "pci_dss_v321_requirement_1_3_2" {
   description = "Customers are responsible for implementing firewall rules and limiting ingress traffic to defined ports and protocols necessary for GCE instances within their DMZ."
 
   children = [
-    control.enable_gke_master_authorized_networks,
-    control.allow_only_private_cluster
+    control.allow_only_private_cluster,
+    control.enable_gke_master_authorized_networks
   ]
 
   tags = merge(local.pci_dss_v321_requirement_4_common_tags, {

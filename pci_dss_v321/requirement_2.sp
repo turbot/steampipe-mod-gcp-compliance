@@ -16,7 +16,6 @@ benchmark "pci_dss_v321_requirement_2" {
   tags = local.pci_dss_v321_requirement_2_common_tags
 }
 
-
 benchmark "pci_dss_v321_requirement_2_1" {
   title       = "2.1 Always change vendor-supplied defaults and remove or disable unnecessary default accounts before installing a system on the network"
   description = "Customers are responsible for changing vendor-supplied defaults on GCP products as applicable deployed within the customers CDE."
@@ -41,6 +40,6 @@ benchmark "pci_dss_v321_requirement_2_2" {
   ]
 
   tags = merge(local.pci_dss_v321_requirement_10_common_tags, {
-    pci_dss_v321_item_id = "2.1"
+    pci_dss_v321_item_id = "2.2"
   })
 }

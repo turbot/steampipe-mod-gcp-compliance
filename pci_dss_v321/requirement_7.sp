@@ -21,8 +21,8 @@ benchmark "pci_dss_v321_requirement_7_1" {
 
   children = [
     benchmark.pci_dss_v321_requirement_7_1_2,
-    control.storage_bucket_not_publicly_accessible,
     control.require_bq_table_iam,
+    control.storage_bucket_not_publicly_accessible
   ]
 
   tags = merge(local.pci_dss_v321_requirement_7_common_tags, {
@@ -35,9 +35,9 @@ benchmark "pci_dss_v321_requirement_7_1_2" {
   description = "GCP Customers are responsible for managing access to all GCP products (GCE, VPC, GCS) that are included in their CDE. GCP provides various mechanisms for controlling access to the services including IAM for integration with corporate directories and granular access controls to the GCP Management Console."
 
   children = [
-    control.only_my_domain,
     control.compute_instance_with_no_default_service_account_with_full_access,
-    control.iam_user_not_assigned_service_account_user_role_project_level
+    control.iam_user_not_assigned_service_account_user_role_project_level,
+    control.only_my_domain
   ]
 
   tags = merge(local.pci_dss_v321_requirement_7_common_tags, {

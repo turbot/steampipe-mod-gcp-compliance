@@ -23,10 +23,10 @@ benchmark "pci_dss_v321_requirement_10_1" {
   description = "GCP customers are responsible for configuring logging parameters, when available. Customers are responsible to log and monitor their GCE, and GKE instances, systems and applications in alignment with PCI DSS requirements."
 
   children = [
-    control.compute_firewall_rule_logging_enabled,
     control.audit_logging_configured_for_all_service,
-    control.kubernetes_cluster_logging_enabled,
+    control.compute_firewall_rule_logging_enabled,
     control.enable_network_flow_logs,
+    control.kubernetes_cluster_logging_enabled
   ]
 
   tags = merge(local.pci_dss_v321_requirement_10_common_tags, {
@@ -41,10 +41,10 @@ benchmark "pci_dss_v321_requirement_10_2" {
   children = [
     benchmark.pci_dss_v321_requirement_10_2_2,
     benchmark.pci_dss_v321_requirement_10_2_7,
-    control.compute_firewall_rule_logging_enabled,
     control.audit_logging_configured_for_all_service,
-    control.kubernetes_cluster_logging_enabled,
+    control.compute_firewall_rule_logging_enabled,
     control.enable_network_flow_logs,
+    control.kubernetes_cluster_logging_enabled
   ]
 
   tags = merge(local.pci_dss_v321_requirement_10_common_tags, {
@@ -123,9 +123,9 @@ benchmark "pci_dss_v321_requirement_10_5" {
   description = "GCP Customers are responsible for setting permissions and access controls for audit logs. Identity Access Management (IAM) can be used to set permissions for accounts with access to online and offline log storage locations. Customers are responsible to log and monitor their GCE and GKE systems and instances in alignment with PCI DSS requirements."
 
   children = [
-    control.storage_bucket_log_retention_policy_enabled,
+    control.storage_bucket_log_not_publicly_accessible,
     control.storage_bucket_log_object_versioning_enabled,
-    control.storage_bucket_log_not_publicly_accessible
+    control.storage_bucket_log_retention_policy_enabled
   ]
 
   tags = merge(local.pci_dss_v321_requirement_10_common_tags, {
