@@ -9,7 +9,9 @@ control "audit_logging_configured_for_all_service" {
   description = "It is recommended that Cloud Audit Logging is configured to track all admin activities and read, write access to user data."
   query       = query.audit_logging_configured_for_all_service
 
-  tags = local.policy_bundle_resourcemanager_common_tags
+  tags = merge(local.policy_bundle_resourcemanager_common_tags, {
+    hipaa = "true"
+  })
 }
 
 # Non-Config rule query

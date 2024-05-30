@@ -17,7 +17,9 @@ control "project_service_cloudasset_api_enabled" {
   description = "GCP Cloud Asset Inventory is services that provides a historical view of GCP resources and IAM policies through a time-series database. The information recorded includes metadata on Google Cloud resources, metadata on policies set on Google Cloud projects or resources, and runtime information gathered within a Google Cloud resource."
   query       = query.project_service_cloudasset_api_enabled
 
-  tags = local.policy_bundle_project_common_tags
+  tags = merge(local.policy_bundle_project_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "project_no_api_key" {

@@ -60,7 +60,9 @@ control "compute_disk_encrypted_with_csk" {
   description = "Customer-Supplied Encryption Keys (CSEK) are a feature in Google Cloud Storage and Google Compute Engine. If you supply your own encryption keys, Google uses your key to protect the Google-generated keys used to encrypt and decrypt your data. By default, Google Compute Engine encrypts all data at rest. Compute Engine handles and manages this encryption for you without any additional actions on your part. However, if you wanted to control and manage this encryption yourself, you can provide your own encryption keys."
   query       = query.compute_disk_encrypted_with_csk
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "compute_firewall_allow_connections_proxied_by_iap" {
@@ -84,7 +86,9 @@ control "compute_https_load_balancer_logging_enabled" {
   description = "Logging enabled on a HTTPS Load Balancer will show all network traffic and its destination."
   query       = query.compute_https_load_balancer_logging_enabled
 
-  tags = local.policy_bundle_compute_common_tags
+ tags = merge(local.policy_bundle_compute_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "compute_instance_block_project_wide_ssh_enabled" {
@@ -156,7 +160,9 @@ control "compute_instance_with_no_public_ip_addresses" {
   description = "Compute instances should not be configured to have external IP addresses."
   query       = query.compute_instance_with_no_public_ip_addresses
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "compute_network_contains_no_default_network" {
@@ -180,7 +186,9 @@ control "compute_network_dns_logging_enabled" {
   description = "Cloud DNS logging records the queries from the name servers within your VPC to Stackdriver. Logged queries can come from Compute Engine VMs, GKE containers, or other GCP resources provisioned within the VPC."
   query       = query.compute_network_dns_logging_enabled
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "compute_ssl_policy_with_no_weak_cipher" {
