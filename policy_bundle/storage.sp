@@ -10,6 +10,7 @@ control "require_bucket_policy_only" {
 
   tags = merge(local.policy_bundle_storage_common_tags, {
     cft_scorecard_v1 = "true"
+    hipaa            = "true"
     severity         = "high"
   })
 }
@@ -37,7 +38,9 @@ control "storage_bucket_log_retention_policy_lock_enabled" {
   description = "It is recommended that Cloud Storage buckets used for exporting logs are using bucket lock."
   query       = query.storage_bucket_log_retention_policy_lock_enabled
 
-  tags = local.policy_bundle_storage_common_tags
+  tags = merge(local.policy_bundle_storage_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "storage_bucket_log_retention_policy_enabled" {

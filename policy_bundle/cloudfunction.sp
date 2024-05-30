@@ -183,8 +183,8 @@ query "cloudfunction_function_no_deployments_manager_permission" {
         else 'ok'
       end as status,
       case
-        when f.service_account_email is not null then f.title || ' allow deployment manager's permission.'
-        else f.title || ' restrict deployment manager's permission.'
+        when f.service_account_email is not null then f.title || ' allow deployment manager''s permission.'
+        else f.title || ' restrict deployment manager''s permission.'
       end as reason
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "f.")}

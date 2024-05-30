@@ -19,7 +19,9 @@ control "kms_key_not_publicly_accessible" {
   description = "It is recommended that the IAM policy on Cloud KMS cryptokeys should restrict anonymous and/or public access."
   query       = query.kms_key_not_publicly_accessible
 
-  tags = local.policy_bundle_kms_common_tags
+  tags = merge(local.policy_bundle_kms_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "kms_key_rotated_within_90_day" {
@@ -28,6 +30,7 @@ control "kms_key_rotated_within_90_day" {
   query       = query.kms_key_rotated_within_90_day
 
   tags = merge(local.policy_bundle_kms_common_tags, {
+    hipaa        = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -37,7 +40,9 @@ control "kms_key_separation_of_duties_enforced" {
   description = "It is recommended that the principle of 'Separation of Duties' is enforced while assigning KMS related roles to users."
   query       = query.kms_key_separation_of_duties_enforced
 
-  tags = local.policy_bundle_kms_common_tags
+  tags = merge(local.policy_bundle_kms_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "kms_key_users_limited_to_3" {

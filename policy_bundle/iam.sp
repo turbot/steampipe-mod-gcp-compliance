@@ -89,6 +89,7 @@ control "iam_user_not_assigned_service_account_user_role_project_level" {
   query       = query.iam_user_not_assigned_service_account_user_role_project_level
 
   tags = merge(local.policy_bundle_iam_common_tags, {
+    hipaa        = "true"
     pci_dss_v321 = "true"
   })
 }

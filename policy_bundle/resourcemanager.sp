@@ -10,6 +10,7 @@ control "audit_logging_configured_for_all_service" {
   query       = query.audit_logging_configured_for_all_service
 
   tags = merge(local.policy_bundle_resourcemanager_common_tags, {
+    hipaa = "true"
     pci_dss_v321 = "true"
   })
 }
