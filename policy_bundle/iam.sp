@@ -88,7 +88,9 @@ control "iam_user_not_assigned_service_account_user_role_project_level" {
   description = "It is recommended to assign the Service Account User (iam.serviceAccountUser) and Service Account Token Creator (iam.serviceAccountTokenCreator) roles to a user for a specific service account rather than assigning the role to a user at project level."
   query       = query.iam_user_not_assigned_service_account_user_role_project_level
 
-  tags = local.policy_bundle_iam_common_tags
+  tags = merge(local.policy_bundle_iam_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "iam_user_separation_of_duty_enforced" {
