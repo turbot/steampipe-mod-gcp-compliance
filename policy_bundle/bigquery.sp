@@ -12,6 +12,7 @@ control "require_bq_table_iam" {
     cft_scorecard_v1      = "true"
     forseti_security_v226 = "true"
     hipaa                 = "true"
+    pci_dss_v321          = "true"
     severity              = "high"
   })
 }

@@ -11,7 +11,8 @@ benchmark "all_controls_kms" {
     control.cmek_rotation_one_hundred_days,
     control.kms_key_not_publicly_accessible,
     control.kms_key_rotated_within_90_day,
-    control.kms_key_separation_of_duties_enforced
+    control.kms_key_separation_of_duties_enforced,
+    control.kms_key_users_limited_to_3
   ]
 
   tags = merge(local.all_controls_kms_common_tags, {

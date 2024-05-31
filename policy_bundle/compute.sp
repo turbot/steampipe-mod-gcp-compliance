@@ -20,6 +20,7 @@ control "enable_network_flow_logs" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     cft_scorecard_v1 = "true"
+    pci_dss_v321     = "true"
     severity         = "high"
   })
 }
@@ -41,6 +42,7 @@ control "restrict_firewall_rule_ssh_world_open" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     cft_scorecard_v1      = "true"
     forseti_security_v226 = "true"
+    pci_dss_v321          = "true"
     severity              = "high"
   })
 }
@@ -51,6 +53,7 @@ control "restrict_firewall_rule_world_open_tcp_udp_all_ports" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     forseti_security_v226 = "true"
+    pci_dss_v321          = "true"
     severity              = "high"
   })
 }
@@ -86,7 +89,7 @@ control "compute_https_load_balancer_logging_enabled" {
   description = "Logging enabled on a HTTPS Load Balancer will show all network traffic and its destination."
   query       = query.compute_https_load_balancer_logging_enabled
 
- tags = merge(local.policy_bundle_compute_common_tags, {
+  tags = merge(local.policy_bundle_compute_common_tags, {
     hipaa = "true"
   })
 }
@@ -144,7 +147,9 @@ control "compute_instance_with_no_default_service_account_with_full_access" {
   description = "To support principle of least privileges and prevent potential privilege escalation it is recommended that instances are not assigned to default service account Compute Engine default service account with Scope Allow full access to all Cloud APIs."
   query       = query.compute_instance_with_no_default_service_account_with_full_access
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_instance_with_no_default_service_account" {
@@ -152,7 +157,9 @@ control "compute_instance_with_no_default_service_account" {
   description = "It is recommended to configure your instance to not use the default Compute Engine service account because it has the Editor role on the project."
   query       = query.compute_instance_with_no_default_service_account
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_instance_with_no_public_ip_addresses" {
@@ -161,7 +168,8 @@ control "compute_instance_with_no_public_ip_addresses" {
   query       = query.compute_instance_with_no_public_ip_addresses
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    hipaa = "true"
+    hipaa        = "true"
+    pci_dss_v321 = "true"
   })
 }
 
@@ -196,7 +204,9 @@ control "compute_ssl_policy_with_no_weak_cipher" {
   description = "Secure Sockets Layer (SSL) policies determine what port Transport Layer Security (TLS) features clients are permitted to use when connecting to load balancers."
   query       = query.compute_ssl_policy_with_no_weak_cipher
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
@@ -204,7 +214,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to DNS port 53."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_dns_port_53
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
@@ -212,7 +224,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to FTP port 21."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_ftp_port_21
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
@@ -220,7 +234,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to HTTP port 80."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_http_port_80
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
@@ -228,7 +244,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to SMTP port 25."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_smtp_port_25
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445" {
@@ -236,7 +254,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_44
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Microsoft DS port 445."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017" {
@@ -252,7 +272,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306" 
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MySQL DB port 3306."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139" {
@@ -268,7 +290,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Oracle DB port 1521."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
@@ -276,7 +300,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to POP3 port 110."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_pop3_port_110
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432" {
@@ -284,7 +310,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to PostgreSQL port 5432."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_telnet_port_23" {
@@ -292,7 +320,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_telnet_port_23" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Telnet port 23."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_telnet_port_23
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_network_auto_create_subnetwork_enabled" {
@@ -428,7 +458,9 @@ control "compute_firewall_rule_restrict_ingress_all_with_no_specific_target" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to any port without any specific target."
   query       = query.compute_firewall_rule_restrict_ingress_all_with_no_specific_target
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250" {
@@ -452,7 +484,9 @@ control "compute_firewall_rule_restrict_ingress_all" {
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to any port."
   query       = query.compute_firewall_rule_restrict_ingress_all
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "compute_instance_no_iam_write_permission" {
@@ -469,6 +503,177 @@ control "compute_firewall_default_rule_restrict_ingress_access_except_http_and_h
   query       = query.compute_firewall_default_rule_restrict_ingress_access_except_http_and_https
 
   tags = local.policy_bundle_compute_common_tags
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 9090"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9090."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9200_9300" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 9200 or 9300"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9200 or 9300."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9200_9300
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_logging_enabled" {
+  title       = "Ensure compute firewall rule have logging enabled"
+  description = "Firewall rules should have logging enabled. This control fails if logging is disabled for firewall rule."
+  query       = query.compute_firewall_rule_logging_enabled
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 7000 or 7001"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 7000 or 7001."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 7199"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 7199."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 8888"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 8888."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 9042"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9042."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 9160"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9160."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 61620 or 6162"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 61620 or 6162."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 6379"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 6379."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 137 to 139"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 137 to 139."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27019" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 27017 to 27019"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 27017 to 27019."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27019
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_636" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 636"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 636."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_636
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to TCP or UDP port 389"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 389."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11211" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to TCP or UDP port 11211"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 11211."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11211
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11214_to_11215" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to TCP or UDP port 11214 to 11215"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 11214 to 11215."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11214_to_11215
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
+}
+
+control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_2483_to_2484" {
+  title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to TCP or UDP port 2483 to 24845"
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 2483 to 2484."
+  query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_2483_to_2484
+
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 query "compute_firewall_rule_ssh_access_restricted" {
@@ -2737,6 +2942,1126 @@ query "compute_firewall_default_rule_restrict_ingress_access_except_http_and_htt
         when not name like 'default-%' then title || ' is not default firewall.'
         when name in (select name from default_firewall_rule) then title || ' is default firewall with public access.'
         else title || ' is default firewall with no public access.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp')
+        and (
+          port = '9090'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 9090
+            and split_part(port, '-', 2) :: integer >= 9090
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP port 9090.'
+        else title || ' restricts access from internet to TCP port 9090.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9200_9300" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp')
+        and (
+          port = '9200'
+          or port = '9300'
+          or (
+            port like '%-%'
+            and (
+              (split_part(port, '-', 1) :: integer <= 9200 and split_part(port, '-', 2) :: integer >= 9200)
+              or (split_part(port, '-', 1) :: integer <= 9300 and split_part(port, '-', 2) :: integer >= 9300)
+            )
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP port 9200 or 9300.'
+        else title || ' restricts access from internet to TCP port 9200 or 9300.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_logging_enabled" {
+  sql = <<-EOQ
+    select
+      self_link as resource,
+      case
+        when log_config_enable then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when log_config_enable then name || ' logging enabled.'
+        else name || ' logging disabled.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001" {
+  sql = <<-EOQ
+   with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp')
+        and (
+          port = '7000'
+          or port = '7001'
+          or (
+            port like '%-%'
+            and (
+              (split_part(port, '-', 1) :: integer <= 7000 and split_part(port, '-', 2) :: integer >= 7000)
+              or (split_part(port, '-', 1) :: integer <= 7001 and split_part(port, '-', 2) :: integer >= 7001)
+            )
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP port 7000 or 7001.'
+        else title || ' restricts access from internet to TCP port 7000 or 7001.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp')
+        and (
+          port = '7199'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 7199
+            and split_part(port, '-', 2) :: integer >= 7199
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP port 7199.'
+        else title || ' restricts access from internet to TCP port 7199.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp')
+        and (
+          port = '8888'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 8888
+            and split_part(port, '-', 2) :: integer >= 8888
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP port 8888.'
+        else title || ' restricts access from internet to TCP port 8888.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp')
+        and (
+          port = '9042'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 9042
+            and split_part(port, '-', 2) :: integer >= 9042
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP port 9042.'
+        else title || ' restricts access from internet to TCP port 9042.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp')
+        and (
+          port = '9160'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 9160
+            and split_part(port, '-', 2) :: integer >= 9160
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP port 9160.'
+        else title || ' restricts access from internet to TCP port 9160.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621" {
+  sql = <<-EOQ
+   with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp')
+        and (
+          port = '61620'
+          or port = '61621'
+          or (
+            port like '%-%'
+            and (
+              (split_part(port, '-', 1) :: integer <= 61620 and split_part(port, '-', 2) :: integer >= 61620)
+              or (split_part(port, '-', 1) :: integer <= 61621 and split_part(port, '-', 2) :: integer >= 61621)
+            )
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP port 61620 or 61621.'
+        else title || ' restricts access from internet to TCP port 61620 or 61621.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp')
+        and (
+          port = '6379'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 6379
+            and split_part(port, '-', 2) :: integer >= 6379
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP port 6379.'
+        else title || ' restricts access from internet to TCP port 6379.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp')
+        and (
+          port = '137'
+          or port = '138'
+          or port = '139'
+          or (
+            port like '%-%'
+            and (
+              (split_part(port, '-', 1) :: integer <= 137 and split_part(port, '-', 2) :: integer >= 137)
+              or (split_part(port, '-', 1) :: integer <= 138 and split_part(port, '-', 2) :: integer >= 138)
+              or (split_part(port, '-', 1) :: integer <= 139 and split_part(port, '-', 2) :: integer >= 139)
+            )
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP port 137-139.'
+        else title || ' restricts access from internet to TCP port 137-139.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27019" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp')
+        and (
+          port = '27017'
+          or port = '27018'
+          or port = '27019'
+          or (
+            port like '%-%'
+            and (
+              (split_part(port, '-', 1) :: integer <= 27017 and split_part(port, '-', 2) :: integer >= 27017)
+              or (split_part(port, '-', 1) :: integer <= 27018 and split_part(port, '-', 2) :: integer >= 27018)
+              or (split_part(port, '-', 1) :: integer <= 27019 and split_part(port, '-', 2) :: integer >= 27019)
+            )
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP port 27017-27019.'
+        else title || ' restricts access from internet to TCP port 27017-27019.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '389'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 389
+            and split_part(port, '-', 2) :: integer >= 389
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP or UDP port 389.'
+        else title || ' restricts access from internet to TCP or UDP port 389.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_port_636" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp')
+        and (
+          port = '636'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 636
+            and split_part(port, '-', 2) :: integer >= 636
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP port 636.'
+        else title || ' restricts access from internet to TCP port 636.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11211" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '11211'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 11211
+            and split_part(port, '-', 2) :: integer >= 11211
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp) or name in (select name from ip_protocol_all)
+          then title || ' allows access from internet to TCP or UDP port 11211.'
+        else title || ' restricts access from internet to TCP or UDP port 11211.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11214_to_11215" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp_11214_11215 as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '11214'
+          or port = '11215'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 11214
+            and split_part(port, '-', 2) :: integer >= 11214
+            and split_part(port, '-', 1) :: integer <= 11215
+            and split_part(port, '-', 2) :: integer >= 11215
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp_11214_11215) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp_11214_11215) then title || ' allows access from internet to TCP or UDP ports 11214-11215.'
+        when name in (select name from ip_protocol_all) then title || ' allows access from internet to all protocols.'
+        else title || ' restricts access from internet to TCP or UDP ports 11214-11215.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_firewall;
+  EOQ
+}
+
+query "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_2483_to_2484" {
+  sql = <<-EOQ
+    with ip_protocol_all as (
+      select
+        name
+      from
+        gcp_compute_firewall
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (
+          allowed @> '[{"IPProtocol":"all"}]'
+          or (allowed @> '[{"IPProtocol":"tcp"}]' and allowed -> 0 -> 'ports' is null)
+          or (allowed @> '[{"IPProtocol":"udp"}]' and allowed -> 0 -> 'ports' is null)
+        )
+    ),
+    ip_protocol_tcp_udp_2483_2484 as (
+      select
+        name
+      from
+        gcp_compute_firewall,
+        jsonb_array_elements(allowed) as p,
+        jsonb_array_elements_text(p -> 'ports') as port
+      where
+        direction = 'INGRESS'
+        and action = 'Allow'
+        and (
+          source_ranges ?& array['0.0.0.0/0']
+          or source_ranges ?& array['::0']
+          or source_ranges ?& array['0.0.0.0']
+          or source_ranges ?& array['::/0']
+          or source_ranges ?& array['::']
+        )
+        and (p ->> 'IPProtocol' = 'tcp' or  p ->> 'IPProtocol' = 'udp')
+        and (
+          port = '2483'
+          or port = '2484'
+          or (
+            port like '%-%'
+            and split_part(port, '-', 1) :: integer <= 2483
+            and split_part(port, '-', 2) :: integer >= 2483
+            and split_part(port, '-', 1) :: integer <= 2484
+            and split_part(port, '-', 2) :: integer >= 2484
+          )
+        )
+    )
+    select
+      self_link resource,
+      case
+        when name in (select name from ip_protocol_tcp_udp_2483_2484) then 'alarm'
+        when name in (select name from ip_protocol_all) then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when name in (select name from ip_protocol_tcp_udp_2483_2484) then title || ' allows access from internet to TCP or UDP ports 2483-2484.'
+        when name in (select name from ip_protocol_all) then title || ' allows access from internet to all protocols.'
+        else title || ' restricts access from internet to TCP or UDP ports 2483-2484.'
       end as reason
       ${local.common_dimensions_sql}
     from
