@@ -1,3 +1,14 @@
+## v0.31 [2024-05-31]
+
+_What's new?_
+
+- Added HIPAA benchmark (`powerpipe benchmark run gcp_compliance.benchmark.hipaa`). ([#165](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/165))
+- Added PCI DSS v3.2.1 benchmark (`powerpipe benchmark run gcp_compliance.benchmark.pci_dss_v321`). ([#163](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/163))
+
+_Enhancements_
+
+- Optimized several queries to minimize API usage, achieving faster performance. ([#162](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/162))
+
 ## v0.30 [2024-04-16]
 
 _What's new?_
