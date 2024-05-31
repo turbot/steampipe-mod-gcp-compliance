@@ -11,6 +11,8 @@ control "require_bq_table_iam" {
   tags = merge(local.policy_bundle_bigquery_common_tags, {
     cft_scorecard_v1      = "true"
     forseti_security_v226 = "true"
+    hipaa                 = "true"
+    pci_dss_v321          = "true"
     severity              = "high"
   })
 }
@@ -42,7 +44,9 @@ control "bigquery_dataset_encrypted_with_cmk" {
   description = "BigQuery by default encrypts the data as rest by employing Envelope Encryption using Google managed cryptographic keys. The data is encrypted using the data encryption keys and data encryption keys themselves are further encrypted using key encryption keys. This is seamless and does not require any additional input from the user. However, if you want to have greater control, Customer-managed encryption keys (CMEK) can be used as encryption key management solutions for BigQuery Data Sets."
   query       = query.bigquery_dataset_encrypted_with_cmk
 
-  tags = local.policy_bundle_bigquery_common_tags
+  tags = merge(local.policy_bundle_bigquery_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "bigquery_table_encrypted_with_cmk" {
@@ -50,7 +54,9 @@ control "bigquery_table_encrypted_with_cmk" {
   description = "BigQuery by default encrypts the data as rest by employing Envelope Encryption using Google managed cryptographic keys. The data is encrypted using the data encryption keys and data encryption keys themselves are further encrypted using key encryption keys. This is seamless and does not require any additional input from the user. However, if you want to have greater control, Customer-managed encryption keys (CMEK) can be used as encryption key management solutions for BigQuery Data Sets. If CMEK is used, the CMEK is used to encrypt the data encryption keys instead of using Google-managed encryption keys."
   query       = query.bigquery_table_encrypted_with_cmk
 
-  tags = local.policy_bundle_bigquery_common_tags
+  tags = merge(local.policy_bundle_bigquery_common_tags, {
+    hipaa = "true"
+  })
 }
 
 query "bigquery_dataset_not_publicly_accessible" {

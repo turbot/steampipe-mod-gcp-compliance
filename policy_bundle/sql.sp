@@ -21,6 +21,7 @@ control "prevent_public_ip_cloudsql" {
 
   tags = merge(local.policy_bundle_sql_common_tags, {
     cft_scorecard_v1 = "true"
+    hipaa            = "true"
     severity         = "high"
   })
 }
@@ -31,6 +32,7 @@ control "require_ssl_sql" {
 
   tags = merge(local.policy_bundle_sql_common_tags, {
     cft_scorecard_v1 = "true"
+    pci_dss_v321     = "true"
     severity         = "high"
   })
 }
@@ -40,7 +42,9 @@ control "sql_instance_automated_backups_enabled" {
   description = "It is recommended to have all SQL database instances set to enable automated backups."
   query       = query.sql_instance_automated_backups_enabled
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "sql_instance_mysql_local_infile_database_flag_off" {
@@ -56,7 +60,9 @@ control "sql_instance_mysql_skip_show_database_flag_on" {
   description = "It is recommended to set skip_show_database database flag for Cloud SQL Mysql instance to on."
   query       = query.sql_instance_mysql_skip_show_database_flag_on
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "sql_instance_not_publicly_accessible" {
@@ -64,7 +70,9 @@ control "sql_instance_not_publicly_accessible" {
   description = "Instance addresses can be public IP or private IP. Public IP means that the instance is accessible through the public internet. In contrast, instances using only private IP are not accessible through the public internet, but are accessible through a Virtual Private Cloud (VPC)."
   query       = query.sql_instance_not_publicly_accessible
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    pci_dss_v321 = "true"
+  })
 }
 
 control "sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled" {
@@ -72,7 +80,9 @@ control "sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled" {
   description = "Ensure cloudsql.enable_pgaudit database flag for Cloud SQL PostgreSQL instance is set to on to allow for centralized logging."
   query       = query.sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "sql_instance_postgresql_log_checkpoints_database_flag_on" {
@@ -224,7 +234,9 @@ control "sql_instance_sql_contained_database_authentication_database_flag_off" {
   description = "It is recommended to set contained database authentication database flag for Cloud SQL on the SQL Server instance is set to off."
   query       = query.sql_instance_sql_contained_database_authentication_database_flag_off
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "sql_instance_sql_cross_db_ownership_chaining_database_flag_off" {
@@ -232,7 +244,9 @@ control "sql_instance_sql_cross_db_ownership_chaining_database_flag_off" {
   description = "It is recommended to set cross db ownership chaining database flag for Cloud SQL SQL Server instance to off."
   query       = query.sql_instance_sql_cross_db_ownership_chaining_database_flag_off
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "sql_instance_sql_external_scripts_enabled_database_flag_off" {

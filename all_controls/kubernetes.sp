@@ -36,6 +36,7 @@ benchmark "all_controls_kubernetes" {
     control.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled,
     control.kubernetes_cluster_shielded_node_secure_boot_enabled,
     control.kubernetes_cluster_shielded_nodes_enabled,
+    control.kubernetes_cluster_subnetwork_private_ip_google_access_enabled,
     control.kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled,
     control.kubernetes_cluster_with_resource_labels,
     control.kubernetes_cluster_zone_redundant

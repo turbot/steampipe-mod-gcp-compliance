@@ -17,7 +17,9 @@ control "logging_metric_alert_audit_configuration_changes" {
   description = "Cloud audit logging records information includes the identity of the API caller, the time of the API call, the source IP address of the API caller, the request parameters, and the response elements returned by GCP services. Cloud audit logging provides a history of GCP API calls for an account, including API calls made via the console, SDKs, command-line tools, and other GCP services."
   query       = query.logging_metric_alert_audit_configuration_changes
 
-  tags = local.policy_bundle_logging_common_tags
+  tags = merge(local.policy_bundle_logging_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "logging_metric_alert_custom_role_changes" {
@@ -25,7 +27,9 @@ control "logging_metric_alert_custom_role_changes" {
   description = "It is recommended that a metric filter and alarm be established for changes to Identity and Access Management (IAM) role creation, deletion and updating activities."
   query       = query.logging_metric_alert_custom_role_changes
 
-  tags = local.policy_bundle_logging_common_tags
+  tags = merge(local.policy_bundle_logging_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "logging_metric_alert_firewall_rule_changes" {
@@ -33,7 +37,9 @@ control "logging_metric_alert_firewall_rule_changes" {
   description = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) Network Firewall rule changes."
   query       = query.logging_metric_alert_firewall_rule_changes
 
-  tags = local.policy_bundle_logging_common_tags
+  tags = merge(local.policy_bundle_logging_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "logging_metric_alert_network_changes" {
@@ -41,7 +47,9 @@ control "logging_metric_alert_network_changes" {
   description = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) network changes."
   query       = query.logging_metric_alert_network_changes
 
-  tags = local.policy_bundle_logging_common_tags
+  tags = merge(local.policy_bundle_logging_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "logging_metric_alert_network_route_changes" {
@@ -49,7 +57,9 @@ control "logging_metric_alert_network_route_changes" {
   description = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) network route changes."
   query       = query.logging_metric_alert_network_route_changes
 
-  tags = local.policy_bundle_logging_common_tags
+  tags = merge(local.policy_bundle_logging_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "logging_metric_alert_project_ownership_assignment" {
@@ -57,7 +67,9 @@ control "logging_metric_alert_project_ownership_assignment" {
   description = "In order to prevent unnecessary project ownership assignments to users/service-accounts and further misuses of projects and resources, all roles/Owner assignments should be monitored. Members (users/Service-Accounts) with a role assignment to primitive role roles/Owner are project owners."
   query       = query.logging_metric_alert_project_ownership_assignment
 
-  tags = local.policy_bundle_logging_common_tags
+  tags = merge(local.policy_bundle_logging_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "logging_metric_alert_sql_instance_configuration_changes" {
@@ -65,7 +77,9 @@ control "logging_metric_alert_sql_instance_configuration_changes" {
   description = "It is recommended that a metric filter and alarm be established for SQL instance configuration changes."
   query       = query.logging_metric_alert_sql_instance_configuration_changes
 
-  tags = local.policy_bundle_logging_common_tags
+  tags = merge(local.policy_bundle_logging_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "logging_metric_alert_storage_iam_permission_changes" {
@@ -73,7 +87,9 @@ control "logging_metric_alert_storage_iam_permission_changes" {
   description = "It is recommended that a metric filter and alarm be established for Cloud Storage Bucket IAM changes."
   query       = query.logging_metric_alert_storage_iam_permission_changes
 
-  tags = local.policy_bundle_logging_common_tags
+  tags = merge(local.policy_bundle_logging_common_tags, {
+    hipaa = "true"
+  })
 }
 
 control "logging_sink_configured_for_all_resource" {
@@ -81,11 +97,22 @@ control "logging_sink_configured_for_all_resource" {
   description = "It is recommended to create a sink that will export copies of all the log entries. This can help aggregate logs from multiple projects and export them to a Security Information and Event Management (SIEM)."
   query       = query.logging_sink_configured_for_all_resource
 
-  tags = local.policy_bundle_logging_common_tags
+  tags = merge(local.policy_bundle_logging_common_tags, {
+    hipaa = "true"
+  })
 }
 
 query "logging_bucket_retention_policy_enabled" {
   sql = <<-EOQ
+    with logging_sinks as (
+      select
+        self_link,
+        title,
+        _ctx,
+        destination
+      from
+        gcp_logging_sink
+    )
     select
       s.self_link resource,
       case
@@ -100,7 +127,7 @@ query "logging_bucket_retention_policy_enabled" {
       ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "s.")}
     from
       gcp_storage_bucket b
-    join gcp_logging_sink s on (
+      join logging_sinks s on (
       split_part(s.destination, '/', 1) = 'storage.googleapis.com'
       and split_part(s.destination, '/', 2) = b.name
     );
@@ -398,31 +425,32 @@ query "logging_metric_alert_storage_iam_permission_changes" {
 query "logging_sink_configured_for_all_resource" {
   sql = <<-EOQ
     with project_sink_count as (
-  select
-    project,
-    count(*) no_of_sink
-  from
-    gcp_logging_sink
-  where
-    filter = ''
-    and destination != ''
-  group by project
-)
-select
-  'https://www.googleapis.com/logging/v2/projects/' || s.project resource,
-  case
-    when s.no_of_sink > 0 then 'ok'
-    else 'alarm'
-  end as status,
-  case
-    when s.no_of_sink > 0
-      then 'Sinks configured for all log entries.'
-    else 'Sinks not configured for all log entries.'
-  end as reason
-  ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "p.")}
-  ${replace(local.common_dimensions_qualifier_project_sql, "__QUALIFIER__", "p.")}
-from
-  gcp_project p
-  left join project_sink_count s on s.project = p.project_id;
+      select
+        project,
+        count(*) no_of_sink
+      from
+        gcp_logging_sink
+      where
+        filter = ''
+        and destination != ''
+      group by
+        project
+    )
+    select
+      'https://www.googleapis.com/logging/v2/projects/' || s.project resource,
+      case
+        when s.no_of_sink > 0 then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when s.no_of_sink > 0
+          then 'Sinks configured for all log entries.'
+        else 'Sinks not configured for all log entries.'
+      end as reason
+      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "p.")}
+      ${replace(local.common_dimensions_qualifier_project_sql, "__QUALIFIER__", "p.")}
+    from
+      gcp_project p
+      left join project_sink_count s on s.project = p.project_id;
   EOQ
 }
