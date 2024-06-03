@@ -22,7 +22,7 @@ benchmark "nist_csf_v10_id_am_1" {
   title       = "ID.AM-1"
   description = "Physical devices and systems within the organization are inventoried."
   children = [
-    control.project_service_cloudasset_api_enabled,
+    control.project_service_cloudasset_api_enabled
   ]
 
   tags = local.nist_csf_v10_common_tags

@@ -4,7 +4,7 @@ benchmark "nist_csf_v10_rs" {
 
   children = [
     benchmark.nist_csf_v10_rs_an,
-    benchmark.nist_csf_v10_rs_co,
+    benchmark.nist_csf_v10_rs_co
   ]
 
   tags = local.nist_csf_v10_common_tags
@@ -24,8 +24,8 @@ benchmark "nist_csf_v10_rs_an_1" {
   title       = "RS.AN-1"
   description = "Notifications from detection systems are investigated."
   children = [
-    control.compute_network_dns_logging_enabled,
     control.audit_logging_configured_for_all_service,
+    control.compute_network_dns_logging_enabled
   ]
 
   tags = local.nist_csf_v10_common_tags

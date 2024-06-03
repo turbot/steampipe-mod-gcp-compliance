@@ -4,9 +4,9 @@ benchmark "nist_csf_v10_pr" {
 
   children = [
     benchmark.nist_csf_v10_pr_ac,
-    benchmark.nist_csf_v10_pr_pt,
     benchmark.nist_csf_v10_pr_ds,
     benchmark.nist_csf_v10_pr_ip,
+    benchmark.nist_csf_v10_pr_pt
   ]
 
   tags = local.nist_csf_v10_common_tags
@@ -17,7 +17,7 @@ benchmark "nist_csf_v10_pr_pt" {
   description = "Anomalous activity is detected and the potential impact of events is understood."
   children = [
     benchmark.nist_csf_v10_pr_pt_1,
-    benchmark.nist_csf_v10_pr_pt_3,
+    benchmark.nist_csf_v10_pr_pt_3
   ]
 
   tags = local.nist_csf_v10_common_tags
@@ -27,17 +27,17 @@ benchmark "nist_csf_v10_pr_pt_1" {
   title       = "PR.PT-1"
   description = "Audit/log records are determined, documented, implemented, and reviewed in accordance with policy."
   children = [
-    control.compute_network_dns_logging_enabled,
     control.audit_logging_configured_for_all_service,
+    control.compute_network_dns_logging_enabled,
     control.logging_metric_alert_audit_configuration_changes,
-    control.logging_metric_alert_storage_iam_permission_changes,
     control.logging_metric_alert_custom_role_changes,
     control.logging_metric_alert_firewall_rule_changes,
-    control.logging_sink_configured_for_all_resource,
     control.logging_metric_alert_network_changes,
-    control.logging_metric_alert_project_ownership_assignment,
     control.logging_metric_alert_network_route_changes,
+    control.logging_metric_alert_project_ownership_assignment,
     control.logging_metric_alert_sql_instance_configuration_changes,
+    control.logging_metric_alert_storage_iam_permission_changes,
+    control.logging_sink_configured_for_all_resource
   ]
 
   tags = local.nist_csf_v10_common_tags
@@ -68,11 +68,11 @@ benchmark "nist_csf_v10_pr_ds_1" {
   title       = "PR.DS-1"
   description = "Data-at-rest is protected."
   children = [
-    control.kms_key_rotated_within_90_day,
     control.bigquery_dataset_encrypted_with_cmk,
-    control.dataproc_cluster_encryption_with_cmek,
     control.bigquery_table_encrypted_with_cmk,
     control.compute_disk_encrypted_with_csk,
+    control.dataproc_cluster_encryption_with_cmek,
+    control.kms_key_rotated_within_90_day
   ]
 
   tags = local.nist_csf_v10_common_tags
@@ -103,8 +103,8 @@ benchmark "nist_csf_v10_pr_ac_1" {
   title       = "PR.AC-1"
   description = "Identities and credentials are issued, managed, verified, revoked, andaudited for authorized devices, users and processes."
   children = [
-    control.compute_instance_with_no_default_service_account,
     control.compute_instance_with_no_default_service_account_with_full_access,
+    control.compute_instance_with_no_default_service_account
   ]
 
   tags = local.nist_csf_v10_common_tags
@@ -114,21 +114,21 @@ benchmark "nist_csf_v10_pr_ac_4" {
   title       = "PR.AC-4"
   description = "Access permissions and authorizations are managed, incorporating the principles of least privilege and separation of duties"
   children = [
-    control.kms_key_not_publicly_accessible,
-    control.storage_bucket_not_publicly_accessible,
-    control.require_bq_table_iam,
     control.compute_instance_with_no_public_ip_addresses,
-    control.sql_instance_not_publicly_accessible,
-    control.require_bucket_policy_only,
     control.iam_service_account_without_admin_privilege,
     control.iam_user_not_assigned_service_account_user_role_project_level,
-    control.kms_key_separation_of_duties_enforced,
     control.iam_user_separation_of_duty_enforced,
+    control.kms_key_not_publicly_accessible,
+    control.kms_key_separation_of_duties_enforced,
+    control.prevent_public_ip_cloudsql,
+    control.require_bq_table_iam,
+    control.require_bucket_policy_only,
+    control.sql_instance_mysql_skip_show_database_flag_on,
+    control.sql_instance_not_publicly_accessible,
     control.sql_instance_sql_contained_database_authentication_database_flag_off,
     control.sql_instance_sql_cross_db_ownership_chaining_database_flag_off,
-    control.prevent_public_ip_cloudsql,
-    control.sql_instance_mysql_skip_show_database_flag_on,
     control.storage_bucket_log_retention_policy_lock_enabled,
+    control.storage_bucket_not_publicly_accessible
   ]
 
   tags = local.nist_csf_v10_common_tags
@@ -140,7 +140,7 @@ benchmark "nist_csf_v10_pr_ip" {
   children = [
     benchmark.nist_csf_v10_pr_ip_1,
     benchmark.nist_csf_v10_pr_ip_2,
-   benchmark.nist_csf_v10_pr_ip_4
+    benchmark.nist_csf_v10_pr_ip_4
   ]
 
   tags = local.nist_csf_v10_common_tags
@@ -150,15 +150,15 @@ benchmark "nist_csf_v10_pr_ip_1" {
   title       = "PR.IP-1"
   description = "A baseline configuration of information technology/industrial control systems is created and maintained incorporating security principles (e.g. concept of least functionality)."
   children = [
-    control.dns_managed_zone_dnssec_enabled,
     control.compute_network_contains_no_default_network,
     control.compute_network_contains_no_legacy_network,
+    control.dns_managed_zone_dnssec_enabled,
     control.dnssec_prevent_rsasha1_ksk,
     control.sql_instance_mysql_local_infile_database_flag_off,
     control.sql_instance_sql_3625_trace_database_flag_on,
-    control.sql_instance_sql_user_options_database_flag_not_configured,
-    control.sql_instance_sql_user_connections_database_flag_configured,
     control.sql_instance_sql_external_scripts_enabled_database_flag_off,
+    control.sql_instance_sql_user_connections_database_flag_configured,
+    control.sql_instance_sql_user_options_database_flag_not_configured
   ]
 
   tags = local.nist_csf_v10_common_tags
@@ -170,7 +170,7 @@ benchmark "nist_csf_v10_pr_ip_2" {
   children = [
     control.iam_api_key_age_90,
     control.iam_api_key_restricts_apis,
-    control.project_no_api_key,
+    control.project_no_api_key
   ]
 
   tags = local.nist_csf_v10_common_tags

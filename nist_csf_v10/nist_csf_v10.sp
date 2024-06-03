@@ -14,7 +14,7 @@ benchmark "nist_csf_v10" {
     benchmark.nist_csf_v10_de,
     benchmark.nist_csf_v10_id,
     benchmark.nist_csf_v10_pr,
-    benchmark.nist_csf_v10_rs,
+    benchmark.nist_csf_v10_rs
   ]
 
   tags = local.nist_csf_v10_common_tags
