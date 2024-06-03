@@ -11,6 +11,7 @@ control "require_bucket_policy_only" {
   tags = merge(local.policy_bundle_storage_common_tags, {
     cft_scorecard_v1 = "true"
     hipaa            = "true"
+    nist_csf_v10     = "true"
     severity         = "high"
   })
 }
@@ -22,6 +23,7 @@ control "storage_bucket_not_publicly_accessible" {
 
   tags = merge(local.policy_bundle_storage_common_tags, {
     pci_dss_v321 = "true"
+    nist_csf_v10 = "true"
   })
 }
 
@@ -39,7 +41,8 @@ control "storage_bucket_log_retention_policy_lock_enabled" {
   query       = query.storage_bucket_log_retention_policy_lock_enabled
 
   tags = merge(local.policy_bundle_storage_common_tags, {
-    hipaa = "true"
+    hipaa        = "true"
+    nist_csf_v10 = "true"
   })
 }
 

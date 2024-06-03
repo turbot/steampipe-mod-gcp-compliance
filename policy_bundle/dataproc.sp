@@ -10,7 +10,8 @@ control "dataproc_cluster_encryption_with_cmek" {
   query       = query.dataproc_cluster_encryption_with_cmek
 
   tags = merge(local.policy_bundle_dataproc_common_tags, {
-    hipaa = "true"
+    hipaa        = "true"
+    nist_csf_v10 = "true"
   })
 }
 

@@ -20,6 +20,7 @@ control "enable_network_flow_logs" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     cft_scorecard_v1 = "true"
+    nist_csf_v10     = "true"
     pci_dss_v321     = "true"
     severity         = "high"
   })
@@ -64,7 +65,8 @@ control "compute_disk_encrypted_with_csk" {
   query       = query.compute_disk_encrypted_with_csk
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    hipaa = "true"
+    hipaa        = "true"
+    nist_csf_v10 = "true"
   })
 }
 
@@ -149,6 +151,7 @@ control "compute_instance_with_no_default_service_account_with_full_access" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     pci_dss_v321 = "true"
+    nist_csf_v10 = "true"
   })
 }
 
@@ -159,6 +162,7 @@ control "compute_instance_with_no_default_service_account" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     pci_dss_v321 = "true"
+    nist_csf_v10 = "true"
   })
 }
 
@@ -170,6 +174,7 @@ control "compute_instance_with_no_public_ip_addresses" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     hipaa        = "true"
     pci_dss_v321 = "true"
+    nist_csf_v10 = "true"
   })
 }
 
@@ -178,7 +183,9 @@ control "compute_network_contains_no_default_network" {
   description = "To prevent the use of default network, a project should not have a default network."
   query       = query.compute_network_contains_no_default_network
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v10 = "true"
+  })
 }
 
 control "compute_network_contains_no_legacy_network" {
@@ -186,7 +193,9 @@ control "compute_network_contains_no_legacy_network" {
   description = "In order to prevent use of legacy networks, a project should not have a legacy network configured."
   query       = query.compute_network_contains_no_legacy_network
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v10 = "true"
+  })
 }
 
 control "compute_network_dns_logging_enabled" {
@@ -195,7 +204,8 @@ control "compute_network_dns_logging_enabled" {
   query       = query.compute_network_dns_logging_enabled
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    hipaa = "true"
+    hipaa        = "true"
+    nist_csf_v10 = "true"
   })
 }
 
@@ -534,7 +544,6 @@ control "compute_firewall_rule_logging_enabled" {
     pci_dss_v321 = "true"
   })
 }
-
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 7000 or 7001"

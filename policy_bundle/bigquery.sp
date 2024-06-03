@@ -12,6 +12,7 @@ control "require_bq_table_iam" {
     cft_scorecard_v1      = "true"
     forseti_security_v226 = "true"
     hipaa                 = "true"
+    nist_csf_v10          = "true"
     pci_dss_v321          = "true"
     severity              = "high"
   })
@@ -45,7 +46,8 @@ control "bigquery_dataset_encrypted_with_cmk" {
   query       = query.bigquery_dataset_encrypted_with_cmk
 
   tags = merge(local.policy_bundle_bigquery_common_tags, {
-    hipaa = "true"
+    hipaa        = "true"
+    nist_csf_v10 = "true"
   })
 }
 
@@ -55,7 +57,8 @@ control "bigquery_table_encrypted_with_cmk" {
   query       = query.bigquery_table_encrypted_with_cmk
 
   tags = merge(local.policy_bundle_bigquery_common_tags, {
-    hipaa = "true"
+    hipaa        = "true"
+    nist_csf_v10 = "true"
   })
 }
 

@@ -9,7 +9,9 @@ control "organization_essential_contacts_configured" {
   description = "It is recommended that Essential Contacts is configured to designate email addresses for Google Cloud services to notify of important technical or security information."
   query       = query.organization_essential_contacts_configured
 
-  tags = local.policy_bundle_organization_common_tags
+  tags = merge(local.policy_bundle_organization_common_tags, {
+    nist_csf_v10 = "true"
+  })
 }
 
 query "organization_essential_contacts_configured" {
