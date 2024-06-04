@@ -37,7 +37,8 @@ benchmark "nist_csf_v10_pr_pt_1" {
     control.logging_metric_alert_project_ownership_assignment,
     control.logging_metric_alert_sql_instance_configuration_changes,
     control.logging_metric_alert_storage_iam_permission_changes,
-    control.logging_sink_configured_for_all_resource
+    control.logging_sink_configured_for_all_resource,
+    control.compute_https_load_balancer_logging_enabled,
   ]
 
   tags = local.nist_csf_v10_common_tags
@@ -58,6 +59,7 @@ benchmark "nist_csf_v10_pr_ds" {
   description = "Information and records (data) are managed consistent with the organization’s risk strategy to protect the confidentiality, integrity, and availability of information."
   children = [
     benchmark.nist_csf_v10_pr_ds_1,
+    benchmark.nist_csf_v10_pr_ds_2,
     benchmark.nist_csf_v10_pr_ds_3
   ]
 
@@ -72,7 +74,18 @@ benchmark "nist_csf_v10_pr_ds_1" {
     control.bigquery_table_encrypted_with_cmk,
     control.compute_disk_encrypted_with_csk,
     control.dataproc_cluster_encryption_with_cmek,
-    control.kms_key_rotated_within_90_day
+    control.kms_key_rotated_within_90_day,
+    control.compute_instance_confidential_computing_enabled,
+  ]
+
+  tags = local.nist_csf_v10_common_tags
+}
+
+benchmark "nist_csf_v10_pr_ds_2" {
+  title       = "PR.DS-2"
+  description = "DData-in-transit is protected."
+  children = [
+    control.compute_instance_block_project_wide_ssh_enabled
   ]
 
   tags = local.nist_csf_v10_common_tags

@@ -92,7 +92,8 @@ control "compute_https_load_balancer_logging_enabled" {
   query       = query.compute_https_load_balancer_logging_enabled
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    hipaa = "true"
+    hipaa        = "true"
+    nist_csf_v10 = "true"
   })
 }
 
@@ -101,7 +102,9 @@ control "compute_instance_block_project_wide_ssh_enabled" {
   description = "It is recommended to use Instance specific SSH key(s) instead of using common/shared project-wide SSH key(s) to access Instances."
   query       = query.compute_instance_block_project_wide_ssh_enabled
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v10 = "true"
+  })
 }
 
 control "compute_instance_confidential_computing_enabled" {
@@ -109,7 +112,9 @@ control "compute_instance_confidential_computing_enabled" {
   description = "Google Cloud encrypts data at-rest and in-transit, but customer data must be decrypted for processing. Confidential Computing is a breakthrough technology which encrypts data in-use—while it is being processed. Confidential Computing environments keep data encrypted in memory and elsewhere outside the central processing unit (CPU)."
   query       = query.compute_instance_confidential_computing_enabled
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v10 = "true"
+  })
 }
 
 control "compute_instance_ip_forwarding_disabled" {

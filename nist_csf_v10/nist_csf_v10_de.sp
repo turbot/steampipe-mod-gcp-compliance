@@ -50,7 +50,8 @@ benchmark "nist_csf_v10_de_ae_3" {
     control.sql_instance_postgresql_log_min_duration_statement_database_flag_disabled,
     control.sql_instance_postgresql_log_min_error_statement_database_flag_configured,
     control.sql_instance_postgresql_log_min_messages_database_flag_error,
-    control.sql_instance_postgresql_log_statement_database_flag_ddl
+    control.sql_instance_postgresql_log_statement_database_flag_ddl,
+    control.compute_https_load_balancer_logging_enabled,
   ]
 
   tags = local.nist_csf_v10_common_tags
