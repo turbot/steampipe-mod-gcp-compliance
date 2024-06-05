@@ -24,7 +24,7 @@ benchmark "nist_csf_v10_de_ae_2" {
   title       = "DE.AE-2"
   description = "Detected events are analyzed to understand attack targets and methods."
   children = [
-    control.audit_logging_configured_for_all_service
+    control.audit_logging_configured_for_all_service,
     control.compute_network_dns_logging_enabled
   ]
 

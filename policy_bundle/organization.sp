@@ -10,7 +10,8 @@ control "organization_essential_contacts_configured" {
   query       = query.organization_essential_contacts_configured
 
   tags = merge(local.policy_bundle_organization_common_tags, {
-    nist_csf_v10 = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 

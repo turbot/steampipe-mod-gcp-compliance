@@ -9,9 +9,10 @@ control "dnssec_prevent_rsasha1_ksk" {
   query = query.dns_managed_zone_key_signing_not_using_rsasha1
 
   tags = merge(local.policy_bundle_dns_common_tags, {
-    cft_scorecard_v1 = "true"
-    nist_csf_v10     = "true"
-    severity         = "high"
+    cft_scorecard_v1  = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+    severity          = "high"
   })
 }
 
@@ -31,7 +32,8 @@ control "dns_managed_zone_dnssec_enabled" {
   query       = query.dns_managed_zone_dnssec_enabled
 
   tags = merge(local.policy_bundle_dns_common_tags, {
-    nist_csf_v10 = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 

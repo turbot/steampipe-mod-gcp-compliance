@@ -85,7 +85,8 @@ control "iam_service_account_without_admin_privilege" {
   query       = query.iam_service_account_without_admin_privilege
 
   tags = merge(local.policy_bundle_iam_common_tags, {
-    nist_csf_v10 = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -95,9 +96,10 @@ control "iam_user_not_assigned_service_account_user_role_project_level" {
   query       = query.iam_user_not_assigned_service_account_user_role_project_level
 
   tags = merge(local.policy_bundle_iam_common_tags, {
-    hipaa        = "true"
-    nist_csf_v10 = "true"
-    pci_dss_v321 = "true"
+    hipaa             = "true"
+    nist_csf_v10      = "true"
+    nist_800_53_rev_5 = "true"
+    pci_dss_v321      = "true"
   })
 }
 
@@ -107,7 +109,8 @@ control "iam_user_separation_of_duty_enforced" {
   query       = query.iam_user_separation_of_duty_enforced
 
   tags = merge(local.policy_bundle_iam_common_tags, {
-    nist_csf_v10 = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
