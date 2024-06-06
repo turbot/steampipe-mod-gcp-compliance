@@ -35,6 +35,7 @@ benchmark "nist_csf_v10_de_ae_3" {
   title       = "DE.AE-3"
   description = "Event data are collected and correlated from multiple sources and sensors."
   children = [
+    control.compute_https_load_balancer_logging_enabled,
     control.logging_metric_alert_audit_configuration_changes,
     control.logging_metric_alert_custom_role_changes,
     control.logging_metric_alert_firewall_rule_changes,
@@ -50,8 +51,7 @@ benchmark "nist_csf_v10_de_ae_3" {
     control.sql_instance_postgresql_log_min_duration_statement_database_flag_disabled,
     control.sql_instance_postgresql_log_min_error_statement_database_flag_configured,
     control.sql_instance_postgresql_log_min_messages_database_flag_error,
-    control.sql_instance_postgresql_log_statement_database_flag_ddl,
-    control.compute_https_load_balancer_logging_enabled,
+    control.sql_instance_postgresql_log_statement_database_flag_ddl
   ]
 
   tags = local.nist_csf_v10_common_tags

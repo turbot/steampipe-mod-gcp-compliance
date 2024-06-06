@@ -1,6 +1,6 @@
 benchmark "nist_800_53_rev_5_au" {
   title       = "Audit and Accountability (AU)"
-  description = "The AU control family consists of security controls related to an organization’s audit capabilities. This includes audit policies and procedures, audit logging, audit report generation, and protection of audit information."
+  description = "The AU control family consists of security controls related to an organization's audit capabilities. This includes audit policies and procedures, audit logging, audit report generation, and protection of audit information."
   children = [
     benchmark.nist_800_53_rev_5_au_2,
     benchmark.nist_800_53_rev_5_au_3,

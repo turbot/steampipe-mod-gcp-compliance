@@ -17,8 +17,8 @@ benchmark "nist_800_53_rev_5_ia_5" {
     control.compute_disk_encrypted_with_csk,
     control.compute_instance_block_project_wide_ssh_enabled,
     control.compute_instance_confidential_computing_enabled,
-    control.compute_instance_with_no_default_service_account_with_full_access,
     control.compute_instance_with_no_default_service_account,
+    control.compute_instance_with_no_default_service_account_with_full_access,
     control.dataproc_cluster_encryption_with_cmek,
     control.kms_key_rotated_within_90_day
   ]

@@ -21,7 +21,7 @@ benchmark "nist_800_53_rev_5_si_4" {
 
 benchmark "nist_800_53_rev_5_si_7" {
   title       = "Software, Firmware, and Information Integrity (SI-7)"
-  description = "a. Employ integrity verification tools to detect unauthorized changes to the following software, firmware, and information: [Assignment: organization-defined software, firmware, and information]; and b. Take the following actions when unauthorized changes to the software, firmware, and information are detected: [Assignment: organization-defined actions]."
+  description = "a. Employ integrity verification tools to detect unauthorized changes to the following software, firmware, and information: [Assignment: organization-defined software, firmware, and information]; and b. Take the following actions when unauthorized changes to the software, firmware, and information are detected: [Assignment: organization-defined actions]."
   children = [
     control.sql_instance_sql_external_scripts_enabled_database_flag_off
   ]
