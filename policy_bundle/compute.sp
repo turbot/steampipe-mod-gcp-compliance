@@ -168,9 +168,9 @@ control "compute_instance_with_no_default_service_account_with_full_access" {
   query       = query.compute_instance_with_no_default_service_account_with_full_access
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    pci_dss_v321      = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    pci_dss_v321      = "true"
   })
 }
 
@@ -180,9 +180,9 @@ control "compute_instance_with_no_default_service_account" {
   query       = query.compute_instance_with_no_default_service_account
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    pci_dss_v321      = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    pci_dss_v321      = "true"
   })
 }
 
@@ -193,9 +193,9 @@ control "compute_instance_with_no_public_ip_addresses" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     hipaa             = "true"
-    pci_dss_v321      = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    pci_dss_v321      = "true"
   })
 }
 

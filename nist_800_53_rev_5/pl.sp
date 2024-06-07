@@ -5,9 +5,7 @@ benchmark "nist_800_53_rev_5_pl" {
     benchmark.nist_800_53_rev_5_pl_8
   ]
 
-  tags = merge(local.nist_800_53_rev_5_common_tags, {
-    service = "AWS/GuardDuty"
-  })
+ tags = local.nist_800_53_rev_5_common_tags
 }
 
 benchmark "nist_800_53_rev_5_pl_8" {
@@ -19,7 +17,5 @@ benchmark "nist_800_53_rev_5_pl_8" {
     control.project_no_api_key
   ]
 
-  tags = merge(local.nist_800_53_rev_5_common_tags, {
-    service = "AWS/GuardDuty"
-  })
+ tags = local.nist_800_53_rev_5_common_tags
 }

@@ -36,7 +36,7 @@ benchmark "nist_csf_v10_pr_ac_1" {
 
 benchmark "nist_csf_v10_pr_ac_4" {
   title       = "PR.AC-4"
-  description = "Access permissions and authorizations are managed, incorporating the principles of least privilege and separation of duties"
+  description = "Access permissions and authorizations are managed, incorporating the principles of least privilege and separation of duties."
   children = [
     control.compute_instance_with_no_public_ip_addresses,
     control.iam_service_account_without_admin_privilege,
