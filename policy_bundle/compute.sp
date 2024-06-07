@@ -9,8 +9,9 @@ control "restrict_firewall_rule_rdp_world_open" {
   query = query.compute_firewall_rule_rdp_access_restricted
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    cft_scorecard_v1 = "true"
-    severity         = "high"
+    cft_scorecard_v1  = "true"
+    nist_800_53_rev_5 = "true"
+    severity          = "high"
   })
 }
 
@@ -19,9 +20,11 @@ control "enable_network_flow_logs" {
   query = query.compute_subnetwork_flow_log_enabled
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    cft_scorecard_v1 = "true"
-    pci_dss_v321     = "true"
-    severity         = "high"
+    cft_scorecard_v1  = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+    pci_dss_v321      = "true"
+    severity          = "high"
   })
 }
 
@@ -42,6 +45,7 @@ control "restrict_firewall_rule_ssh_world_open" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     cft_scorecard_v1      = "true"
     forseti_security_v226 = "true"
+    nist_800_53_rev_5     = "true"
     pci_dss_v321          = "true"
     severity              = "high"
   })
@@ -64,7 +68,9 @@ control "compute_disk_encrypted_with_csk" {
   query       = query.compute_disk_encrypted_with_csk
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -90,7 +96,9 @@ control "compute_https_load_balancer_logging_enabled" {
   query       = query.compute_https_load_balancer_logging_enabled
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -99,7 +107,10 @@ control "compute_instance_block_project_wide_ssh_enabled" {
   description = "It is recommended to use Instance specific SSH key(s) instead of using common/shared project-wide SSH key(s) to access Instances."
   query       = query.compute_instance_block_project_wide_ssh_enabled
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "compute_instance_confidential_computing_enabled" {
@@ -107,7 +118,10 @@ control "compute_instance_confidential_computing_enabled" {
   description = "Google Cloud encrypts data at-rest and in-transit, but customer data must be decrypted for processing. Confidential Computing is a breakthrough technology which encrypts data in-use—while it is being processed. Confidential Computing environments keep data encrypted in memory and elsewhere outside the central processing unit (CPU)."
   query       = query.compute_instance_confidential_computing_enabled
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "compute_instance_ip_forwarding_disabled" {
@@ -115,7 +129,9 @@ control "compute_instance_ip_forwarding_disabled" {
   description = "Compute Engine instance cannot forward a packet unless the source IP address of the packet matches the IP address of the instance. Similarly, GCP won't deliver a packet whose destination IP address is different than the IP address of the instance receiving the packet. However, both capabilities are required if you want to use instances to help route packets."
   query       = query.compute_instance_ip_forwarding_disabled
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_800_53_rev_5 = "true"
+  })
 }
 
 control "compute_instance_oslogin_enabled" {
@@ -123,7 +139,9 @@ control "compute_instance_oslogin_enabled" {
   description = "Enabling OS login binds SSH certificates to IAM users and facilitates effective SSH certificate management."
   query       = query.compute_instance_oslogin_enabled
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_800_53_rev_5 = "true"
+  })
 }
 
 control "compute_instance_serial_port_connection_disabled" {
@@ -131,7 +149,9 @@ control "compute_instance_serial_port_connection_disabled" {
   description = "Interacting with a serial port is often referred to as the serial console, which is similar to using a terminal window, in that input and output is entirely in text mode and there is no graphical interface or mouse support."
   query       = query.compute_instance_serial_port_connection_disabled
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_800_53_rev_5 = "true"
+  })
 }
 
 control "compute_instance_shielded_vm_enabled" {
@@ -148,7 +168,9 @@ control "compute_instance_with_no_default_service_account_with_full_access" {
   query       = query.compute_instance_with_no_default_service_account_with_full_access
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    pci_dss_v321 = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+    pci_dss_v321      = "true"
   })
 }
 
@@ -158,7 +180,9 @@ control "compute_instance_with_no_default_service_account" {
   query       = query.compute_instance_with_no_default_service_account
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    pci_dss_v321 = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+    pci_dss_v321      = "true"
   })
 }
 
@@ -168,8 +192,10 @@ control "compute_instance_with_no_public_ip_addresses" {
   query       = query.compute_instance_with_no_public_ip_addresses
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    hipaa        = "true"
-    pci_dss_v321 = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+    pci_dss_v321      = "true"
   })
 }
 
@@ -178,7 +204,10 @@ control "compute_network_contains_no_default_network" {
   description = "To prevent the use of default network, a project should not have a default network."
   query       = query.compute_network_contains_no_default_network
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "compute_network_contains_no_legacy_network" {
@@ -186,7 +215,10 @@ control "compute_network_contains_no_legacy_network" {
   description = "In order to prevent use of legacy networks, a project should not have a legacy network configured."
   query       = query.compute_network_contains_no_legacy_network
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "compute_network_dns_logging_enabled" {
@@ -195,7 +227,9 @@ control "compute_network_dns_logging_enabled" {
   query       = query.compute_network_dns_logging_enabled
 
   tags = merge(local.policy_bundle_compute_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -534,7 +568,6 @@ control "compute_firewall_rule_logging_enabled" {
     pci_dss_v321 = "true"
   })
 }
-
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.00/0 to port TCP 7000 or 7001"

@@ -56,7 +56,9 @@ control "iam_api_key_age_90" {
   description = "It is recommended to rotate API keys every 90 days."
   query       = query.iam_api_key_age_90
 
-  tags = local.policy_bundle_iam_common_tags
+  tags = merge(local.cis_v120_1_common_tags, {
+    nist_csf_v10 = "true"
+  })
 }
 
 control "iam_api_key_restricts_apis" {
@@ -64,7 +66,9 @@ control "iam_api_key_restricts_apis" {
   description = "API keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to restrict API keys to use (call) only APIs required by an application."
   query       = query.iam_api_key_restricts_apis
 
-  tags = local.policy_bundle_iam_common_tags
+  tags = merge(local.cis_v120_1_common_tags, {
+    nist_csf_v10 = "true"
+  })
 }
 
 control "iam_api_key_restricts_websites_hosts_apps" {
@@ -80,7 +84,10 @@ control "iam_service_account_without_admin_privilege" {
   description = "A service account is a special Google account that belongs to an application or a VM, instead of to an individual end-user. The application uses the service account to call the service's Google API so that users aren't directly involved. It's recommended not to use admin access for ServiceAccount."
   query       = query.iam_service_account_without_admin_privilege
 
-  tags = local.policy_bundle_iam_common_tags
+  tags = merge(local.policy_bundle_iam_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "iam_user_not_assigned_service_account_user_role_project_level" {
@@ -89,8 +96,10 @@ control "iam_user_not_assigned_service_account_user_role_project_level" {
   query       = query.iam_user_not_assigned_service_account_user_role_project_level
 
   tags = merge(local.policy_bundle_iam_common_tags, {
-    hipaa        = "true"
-    pci_dss_v321 = "true"
+    hipaa             = "true"
+    nist_csf_v10      = "true"
+    nist_800_53_rev_5 = "true"
+    pci_dss_v321      = "true"
   })
 }
 
@@ -99,7 +108,10 @@ control "iam_user_separation_of_duty_enforced" {
   description = "It is recommended that the principle of 'Separation of Duties' is enforced while assigning service-account related roles to users."
   query       = query.iam_user_separation_of_duty_enforced
 
-  tags = local.policy_bundle_iam_common_tags
+  tags = merge(local.policy_bundle_iam_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "iam_user_kms_separation_of_duty_enforced" {

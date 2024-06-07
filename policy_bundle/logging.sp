@@ -18,7 +18,9 @@ control "logging_metric_alert_audit_configuration_changes" {
   query       = query.logging_metric_alert_audit_configuration_changes
 
   tags = merge(local.policy_bundle_logging_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -28,7 +30,9 @@ control "logging_metric_alert_custom_role_changes" {
   query       = query.logging_metric_alert_custom_role_changes
 
   tags = merge(local.policy_bundle_logging_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -38,7 +42,9 @@ control "logging_metric_alert_firewall_rule_changes" {
   query       = query.logging_metric_alert_firewall_rule_changes
 
   tags = merge(local.policy_bundle_logging_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -48,7 +54,9 @@ control "logging_metric_alert_network_changes" {
   query       = query.logging_metric_alert_network_changes
 
   tags = merge(local.policy_bundle_logging_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -58,7 +66,9 @@ control "logging_metric_alert_network_route_changes" {
   query       = query.logging_metric_alert_network_route_changes
 
   tags = merge(local.policy_bundle_logging_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -68,7 +78,9 @@ control "logging_metric_alert_project_ownership_assignment" {
   query       = query.logging_metric_alert_project_ownership_assignment
 
   tags = merge(local.policy_bundle_logging_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -78,7 +90,9 @@ control "logging_metric_alert_sql_instance_configuration_changes" {
   query       = query.logging_metric_alert_sql_instance_configuration_changes
 
   tags = merge(local.policy_bundle_logging_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -88,7 +102,9 @@ control "logging_metric_alert_storage_iam_permission_changes" {
   query       = query.logging_metric_alert_storage_iam_permission_changes
 
   tags = merge(local.policy_bundle_logging_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -98,7 +114,9 @@ control "logging_sink_configured_for_all_resource" {
   query       = query.logging_sink_configured_for_all_resource
 
   tags = merge(local.policy_bundle_logging_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 

@@ -20,7 +20,9 @@ control "kms_key_not_publicly_accessible" {
   query       = query.kms_key_not_publicly_accessible
 
   tags = merge(local.policy_bundle_kms_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -30,8 +32,10 @@ control "kms_key_rotated_within_90_day" {
   query       = query.kms_key_rotated_within_90_day
 
   tags = merge(local.policy_bundle_kms_common_tags, {
-    hipaa        = "true"
-    pci_dss_v321 = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+    pci_dss_v321      = "true"
   })
 }
 
@@ -41,7 +45,9 @@ control "kms_key_separation_of_duties_enforced" {
   query       = query.kms_key_separation_of_duties_enforced
 
   tags = merge(local.policy_bundle_kms_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
