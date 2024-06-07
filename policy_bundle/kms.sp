@@ -46,7 +46,7 @@ control "kms_key_separation_of_duties_enforced" {
 }
 
 control "kms_key_users_limited_to_3" {
-  title       = "Ensure KMS encryption keys has three or less thab three number of users"
+  title       = "Ensure KMS encryption keys has three or less than three number of users"
   description = "It is recommended that KMS encryption keys users should be limited to three."
   query       = query.kms_key_users_limited_to_3
 
@@ -194,7 +194,7 @@ query "kms_key_users_limited_to_3" {
       select
         distinct self_link
       from
-        gcp_parker.gcp_kms_key,
+        gcp_kms_key,
         jsonb_array_elements(iam_policy -> 'bindings') as b
       where
         b -> 'members' ?| array['allAuthenticatedUsers', 'allUsers']
@@ -203,7 +203,7 @@ query "kms_key_users_limited_to_3" {
         distinct self_link,
         jsonb_array_length(b -> 'members') as members_count
       from
-        gcp_parker.gcp_kms_key,
+        gcp_kms_key,
         jsonb_array_elements(iam_policy -> 'bindings') as b
     )
     select
@@ -221,7 +221,7 @@ query "kms_key_users_limited_to_3" {
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
-      gcp_parker.gcp_kms_key k
+      gcp_kms_key k
       left join public_keys p on k.self_link = p.self_link
       left join key_members_count as c on c.self_link = k.self_link;
   EOQ
