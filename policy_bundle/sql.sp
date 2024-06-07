@@ -11,6 +11,7 @@ control "sql_world_readable" {
   tags = merge(local.policy_bundle_sql_common_tags, {
     cft_scorecard_v1      = "true"
     forseti_security_v226 = "true"
+    nist_800_53_rev_5     = "true"
     severity              = "high"
   })
 }
@@ -20,9 +21,11 @@ control "prevent_public_ip_cloudsql" {
   query = query.sql_instance_with_no_public_ips
 
   tags = merge(local.policy_bundle_sql_common_tags, {
-    cft_scorecard_v1 = "true"
-    hipaa            = "true"
-    severity         = "high"
+    cft_scorecard_v1  = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+    severity          = "high"
   })
 }
 
@@ -43,7 +46,8 @@ control "sql_instance_automated_backups_enabled" {
   query       = query.sql_instance_automated_backups_enabled
 
   tags = merge(local.policy_bundle_sql_common_tags, {
-    hipaa = "true"
+    hipaa        = "true"
+    nist_csf_v10 = "true"
   })
 }
 
@@ -52,7 +56,10 @@ control "sql_instance_mysql_local_infile_database_flag_off" {
   description = "It is recommended to set the local_infile database flag for a Cloud SQL MySQL instance to off."
   query       = query.sql_instance_mysql_local_infile_database_flag_off
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "sql_instance_mysql_skip_show_database_flag_on" {
@@ -61,7 +68,9 @@ control "sql_instance_mysql_skip_show_database_flag_on" {
   query       = query.sql_instance_mysql_skip_show_database_flag_on
 
   tags = merge(local.policy_bundle_sql_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -71,6 +80,7 @@ control "sql_instance_not_publicly_accessible" {
   query       = query.sql_instance_not_publicly_accessible
 
   tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_csf_v10 = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -98,7 +108,10 @@ control "sql_instance_postgresql_log_connections_database_flag_on" {
   description = "Enabling the log_connections setting causes each attempted connection to the server to be logged, along with successful completion of client authentication. This parameter cannot be changed after the session starts."
   query       = query.sql_instance_postgresql_log_connections_database_flag_on
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "sql_instance_postgresql_log_disconnections_database_flag_on" {
@@ -106,7 +119,10 @@ control "sql_instance_postgresql_log_disconnections_database_flag_on" {
   description = "Enabling the log_disconnections setting logs the end of each session, including the session duration."
   query       = query.sql_instance_postgresql_log_disconnections_database_flag_on
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "sql_instance_postgresql_log_duration_database_flag_on" {
@@ -122,7 +138,10 @@ control "sql_instance_postgresql_log_error_verbosity_database_flag_default_or_st
   description = "The log_error_verbosity flag controls the verbosity/details of messages logged. Valid values are: 'TERSE', 'DEFAULT', and 'VERBOSE'."
   query       = query.sql_instance_postgresql_log_error_verbosity_database_flag_default_or_stricter
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "sql_instance_postgresql_log_executor_stats_database_flag_off" {
@@ -154,7 +173,10 @@ control "sql_instance_postgresql_log_min_duration_statement_database_flag_disabl
   description = "The log_min_duration_statement flag defines the minimum amount of execution time of a statement in milliseconds where the total duration of the statement is logged. Ensure that log_min_duration_statement is disabled, i.e., a value of -1 is set."
   query       = query.sql_instance_postgresql_log_min_duration_statement_database_flag_disabled
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "sql_instance_postgresql_log_min_error_statement_database_flag_configured" {
@@ -162,7 +184,10 @@ control "sql_instance_postgresql_log_min_error_statement_database_flag_configure
   description = "The log_min_error_statement flag defines the minimum message severity level that are considered as an error statement. Messages for error statements are logged with the SQL statement. Valid values include DEBUG5, DEBUG4, DEBUG3, DEBUG2, DEBUG1, INFO, NOTICE, WARNING, ERROR, LOG, FATAL, and PANIC. Each severity level includes the subsequent levels mentioned above. Ensure a value of ERROR or stricter is set."
   query       = query.sql_instance_postgresql_log_min_error_statement_database_flag_configured
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "sql_instance_postgresql_log_min_messages_database_flag_error" {
@@ -170,7 +195,10 @@ control "sql_instance_postgresql_log_min_messages_database_flag_error" {
   description = "The log_min_messages flag defines the minimum message severity level that is considered as an error statement. Messages for error statements are logged with the SQL statement. Valid values include DEBUG5, DEBUG4, DEBUG3, DEBUG2, DEBUG1, INFO, NOTICE, WARNING, ERROR, LOG, FATAL, and PANIC. Each severity level includes the subsequent levels mentioned above."
   query       = query.sql_instance_postgresql_log_min_messages_database_flag_error
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "sql_instance_postgresql_log_parser_stats_database_flag_off" {
@@ -194,7 +222,10 @@ control "sql_instance_postgresql_log_statement_database_flag_ddl" {
   description = "The value of log_statement flag determined the SQL statements that are logged. Valid values are: 'none', 'ddl', 'mod', and 'all'."
   query       = query.sql_instance_postgresql_log_statement_database_flag_ddl
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "sql_instance_postgresql_log_statement_stats_database_flag_off" {
@@ -226,7 +257,10 @@ control "sql_instance_sql_3625_trace_database_flag_on" {
   description = "It is recommended to set 3625 (trace flag) database flag for Cloud SQL SQL Server instance to off."
   query       = query.sql_instance_sql_3625_trace_database_flag_on
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "sql_instance_sql_contained_database_authentication_database_flag_off" {
@@ -235,7 +269,9 @@ control "sql_instance_sql_contained_database_authentication_database_flag_off" {
   query       = query.sql_instance_sql_contained_database_authentication_database_flag_off
 
   tags = merge(local.policy_bundle_sql_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -245,7 +281,9 @@ control "sql_instance_sql_cross_db_ownership_chaining_database_flag_off" {
   query       = query.sql_instance_sql_cross_db_ownership_chaining_database_flag_off
 
   tags = merge(local.policy_bundle_sql_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -254,7 +292,10 @@ control "sql_instance_sql_external_scripts_enabled_database_flag_off" {
   description = "It is recommended to set external scripts enabled database flag for Cloud SQL SQL Server instance to off."
   query       = query.sql_instance_sql_external_scripts_enabled_database_flag_off
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "sql_instance_sql_remote_access_database_flag_off" {
@@ -262,7 +303,9 @@ control "sql_instance_sql_remote_access_database_flag_off" {
   description = "It is recommended to set remote access database flag for Cloud SQL SQL Server instance to off."
   query       = query.sql_instance_sql_remote_access_database_flag_off
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+  })
 }
 
 control "sql_instance_sql_user_connections_database_flag_configured" {
@@ -270,7 +313,10 @@ control "sql_instance_sql_user_connections_database_flag_configured" {
   description = "It is recommended to set remote access database flag for Cloud SQL SQL Server instance to off."
   query       = query.sql_instance_sql_user_connections_database_flag_configured
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "sql_instance_sql_user_options_database_flag_not_configured" {
@@ -278,7 +324,10 @@ control "sql_instance_sql_user_options_database_flag_not_configured" {
   description = "It is recommended that, user options database flag for Cloud SQL SQL Server instance should not be configured."
   query       = query.sql_instance_sql_user_options_database_flag_not_configured
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
+  })
 }
 
 control "sql_instance_with_labels" {

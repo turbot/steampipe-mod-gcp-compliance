@@ -18,7 +18,9 @@ control "project_service_cloudasset_api_enabled" {
   query       = query.project_service_cloudasset_api_enabled
 
   tags = merge(local.policy_bundle_project_common_tags, {
-    hipaa = "true"
+    hipaa             = "true"
+    nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 

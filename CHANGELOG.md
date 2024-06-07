@@ -1,3 +1,15 @@
+## v0.32 [2024-06-07]
+
+_What's new?_
+
+- Added NIST Cybersecurity Framework (CSF) v1.0 benchmark (`powerpipe benchmark run gcp_compliance.benchmark.nist_csf_v10`). ([#168](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/168))
+- Added NIST 800-53 Revision 5 benchmark (`powerpipe benchmark run gcp_compliance.benchmark.nist_800_53_rev_5`). ([#168](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/168))
+
+_Bug fixes_
+
+- Fixed the `kms_key_users_limited_to_3` query to correctly return data by removing the hardcoded GCP connection name. ([#170](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/170))
+- Fixed the `logging_bucket_retention_policy_enabled` query to correctly return data by adding the missing `project` column to the query. ([#173](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/173))
+
 ## v0.31 [2024-05-31]
 
 _What's new?_

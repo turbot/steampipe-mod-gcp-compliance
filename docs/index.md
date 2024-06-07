@@ -1,6 +1,6 @@
 # GCP Compliance Mod
 
-Run individual configuration, compliance and security controls or full compliance benchmarks for `CIS v1.2.0`, `CIS v1.3.0`, `CIS v2.0.0`, `CIS v3.0.0`, `Forseti Security`, `CFT Scorecard`, `HIPAA` and `PCI DSS v3.2.1` for all your GCP projects.
+Run individual configuration, compliance and security controls or full compliance benchmarks for `CIS v1.2.0`, `CIS v1.3.0`, `CIS v2.0.0`, `CIS v3.0.0`, `Forseti Security`, `CFT Scorecard`, `HIPAA`, `PCI DSS v3.2.1`, `NIST CSF v1.0` and `NIST 800-53 Revision 5` for all your GCP projects.
 
 <img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_compliance_dashboard.png" width="50%" type="thumbnail"/>
 <img src="https://raw.githubusercontent.com/turbot/steampipe-mod-gcp-compliance/main/docs/gcp_cis_v200_dashboard.png" width="50%" type="thumbnail"/>
