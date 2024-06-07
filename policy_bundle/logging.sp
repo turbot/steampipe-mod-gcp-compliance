@@ -109,6 +109,7 @@ query "logging_bucket_retention_policy_enabled" {
         self_link,
         title,
         _ctx,
+        project,
         destination
       from
         gcp_logging_sink
