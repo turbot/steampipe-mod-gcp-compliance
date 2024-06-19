@@ -11,6 +11,7 @@ control "alloydb_instance_log_error_verbosity_database_flag_default_or_stricter"
 
   tags = merge(local.policy_bundle_alloydb_common_tags, {
     nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -21,6 +22,7 @@ control "alloydb_instance_log_min_error_statement_database_flag_configured" {
 
   tags = merge(local.policy_bundle_alloydb_common_tags, {
     nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
@@ -31,6 +33,7 @@ control "alloydb_instance_log_min_messages_database_flag_error" {
 
   tags = merge(local.policy_bundle_alloydb_common_tags, {
     nist_800_53_rev_5 = "true"
+    nist_csf_v10      = "true"
   })
 }
 
