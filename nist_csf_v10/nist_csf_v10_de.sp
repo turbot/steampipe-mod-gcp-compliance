@@ -35,6 +35,9 @@ benchmark "nist_csf_v10_de_ae_3" {
   title       = "DE.AE-3"
   description = "Event data are collected and correlated from multiple sources and sensors."
   children = [
+    control.alloydb_instance_log_error_verbosity_database_flag_default_or_stricter,
+    control.alloydb_instance_log_min_error_statement_database_flag_configured,
+    control.alloydb_instance_log_min_messages_database_flag_error,
     control.compute_https_load_balancer_logging_enabled,
     control.logging_metric_alert_audit_configuration_changes,
     control.logging_metric_alert_custom_role_changes,
@@ -71,6 +74,9 @@ benchmark "nist_csf_v10_de_cm_1" {
   title       = "DE.CM-1"
   description = "The network is monitored to detect potential cybersecurity events."
   children = [
+    control.alloydb_instance_log_error_verbosity_database_flag_default_or_stricter,
+    control.alloydb_instance_log_min_error_statement_database_flag_configured,
+    control.alloydb_instance_log_min_messages_database_flag_error,
     control.enable_network_flow_logs,
     control.sql_instance_postgresql_log_connections_database_flag_on,
     control.sql_instance_postgresql_log_disconnections_database_flag_on,
