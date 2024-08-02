@@ -35,6 +35,9 @@ benchmark "nist_800_53_rev_5_au_3" {
   title       = "Content of Audit Records (AU-3)"
   description = "The information system generates audit records containing information that establishes what type of event occurred, when the event occurred, where the event occurred, the source of the event, the outcome of the event, and the identity of any individuals or subjects associated with the event."
   children = [
+    control.alloydb_instance_log_error_verbosity_database_flag_default_or_stricter,
+    control.alloydb_instance_log_min_error_statement_database_flag_configured,
+    control.alloydb_instance_log_min_messages_database_flag_error,
     control.compute_network_dns_logging_enabled,
     control.sql_instance_postgresql_log_connections_database_flag_on,
     control.sql_instance_postgresql_log_disconnections_database_flag_on,
@@ -63,6 +66,9 @@ benchmark "nist_800_53_rev_5_au_7" {
   title       = "Audit Record Reduction And Report Generation (AU-7)"
   description = "Support for real-time audit review, analysis, and reporting requirements without altering original audit records."
   children = [
+    control.alloydb_instance_log_error_verbosity_database_flag_default_or_stricter,
+    control.alloydb_instance_log_min_error_statement_database_flag_configured,
+    control.alloydb_instance_log_min_messages_database_flag_error,
     control.audit_logging_configured_for_all_service,
     control.compute_network_dns_logging_enabled,
     control.logging_metric_alert_audit_configuration_changes,
@@ -90,6 +96,9 @@ benchmark "nist_800_53_rev_5_au_12" {
   title       = "Audit Record Generation (AU-12)"
   description = "Audit events defined in AU-2. Allow trusted personnel to select which events to audit. Generate audit records for events."
   children = [
+    control.alloydb_instance_log_error_verbosity_database_flag_default_or_stricter,
+    control.alloydb_instance_log_min_error_statement_database_flag_configured,
+    control.alloydb_instance_log_min_messages_database_flag_error,
     control.compute_https_load_balancer_logging_enabled,
     control.logging_metric_alert_audit_configuration_changes,
     control.logging_metric_alert_custom_role_changes,
