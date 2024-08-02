@@ -1,3 +1,12 @@
+## v0.33 [2024-08-02]
+
+_Enhancements_
+
+- Added the following controls to the `All Controls` benchmark: ([#176](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/176))
+  - `alloydb_instance_log_error_verbosity_database_flag_default_or_stricter`
+  - `alloydb_instance_log_min_error_statement_database_flag_configured`
+  - `alloydb_instance_log_min_messages_database_flag_error`
+
 ## v0.32 [2024-06-07]
 
 _What's new?_
