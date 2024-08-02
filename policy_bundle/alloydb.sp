@@ -60,7 +60,7 @@ query "alloydb_instance_log_error_verbosity_database_flag_default_or_stricter" {
 
 query "alloydb_instance_log_min_error_statement_database_flag_configured" {
   sql = <<-EOQ
-select
+    select
       self_link resource,
       case
         when database_flags is not null and database_flags ? 'log_min_error_statement' then 'ok'
