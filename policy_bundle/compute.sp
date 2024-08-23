@@ -142,7 +142,7 @@ control "compute_instance_ip_forwarding_disabled" {
 }
 
 control "compute_instance_oslogin_enabled" {
-  title       = "Ensure OS login is enabled for a Project"
+  title       = "Ensure OS login is enabled for all instances in the Project"
   description = "Enabling OS login binds SSH certificates to IAM users and facilitates effective SSH certificate management."
   query       = query.compute_instance_oslogin_enabled
 

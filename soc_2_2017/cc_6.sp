@@ -56,6 +56,7 @@ benchmark "soc_2_2017_cc_6_1_3" {
   description = "Entity uses Sprinto, a continuous monitoring system, to alert the security team to update the access levels of team members whose roles have changed."
 
   children = [
+    control.alloydb_cluster_encrypted_with_cmk,
     control.bigquery_dataset_encrypted_with_cmk,
     control.bigquery_table_encrypted_with_cmk,
     control.compute_disk_encrypted_with_csk,
@@ -91,7 +92,8 @@ benchmark "soc_2_2017_cc_6_1_4" {
 
   children = [
     control.compute_instance_oslogin_enabled,
-    control.iam_service_account_without_admin_privilege
+    control.iam_service_account_without_admin_privilege,
+    control.project_oslogin_enabled
   ]
 
   tags = merge(local.soc_2_2017_cc_6_common_tags, {
@@ -105,6 +107,7 @@ benchmark "soc_2_2017_cc_6_1_6" {
 
   children = [
     control.compute_instance_oslogin_enabled,
+    control.project_oslogin_enabled
   ]
 
   tags = merge(local.soc_2_2017_cc_6_common_tags, {
@@ -145,7 +148,8 @@ benchmark "soc_2_2017_cc_6_1_8" {
   children = [
     control.compute_instance_block_project_wide_ssh_enabled,
     control.compute_instance_oslogin_enabled,
-    control.iam_service_account_without_admin_privilege
+    control.iam_service_account_without_admin_privilege,
+    control.project_oslogin_enabled
   ]
 
   tags = merge(local.soc_2_2017_cc_6_common_tags, {
@@ -157,7 +161,8 @@ benchmark "soc_2_2017_cc_6_1_9" {
   title       = "CC6.1.9"
 
   children = [
-    control.compute_instance_oslogin_enabled
+    control.compute_instance_oslogin_enabled,
+    control.project_oslogin_enabled
   ]
 
   tags = merge(local.soc_2_2017_cc_6_common_tags, {
@@ -167,9 +172,9 @@ benchmark "soc_2_2017_cc_6_1_9" {
 
 benchmark "soc_2_2017_cc_6_1_10" {
   title       = "CC6.1.10"
-  description = ""
 
   children = [
+    control.alloydb_cluster_encrypted_with_cmk,
     control.bigquery_dataset_encrypted_with_cmk,
     control.bigquery_table_encrypted_with_cmk,
     control.compute_disk_encrypted_with_csk,

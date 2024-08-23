@@ -41,6 +41,14 @@ control "project_service_container_scanning_api_enabled" {
   tags = local.policy_bundle_project_common_tags
 }
 
+control "project_oslogin_enabled" {
+  title       = "Ensure OS login is enabled at Project level"
+  description = "Enabling OS login binds SSH certificates to IAM users and facilitates effective SSH certificate management."
+  query       = query.project_oslogin_enabled
+
+  tags = local.policy_bundle_project_common_tags
+}
+
 query "project_access_approval_settings_enabled" {
   sql = <<-EOQ
     select
@@ -134,5 +142,23 @@ query "project_service_container_scanning_api_enabled" {
       gcp_project_service
     where
       name = 'containerscanning.googleapis.com';
+  EOQ
+}
+
+query "project_oslogin_enabled" {
+  sql = <<-EOQ
+    select
+      id resource,
+      case
+        when common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"TRUE"}]' then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"TRUE"}]' then title || ' OS login enabled.'
+        else title || ' OS login disabled.'
+      end as reason
+      --${local.common_dimensions_sql}
+    from
+      gcp_compute_project_metadata;
   EOQ
 }
