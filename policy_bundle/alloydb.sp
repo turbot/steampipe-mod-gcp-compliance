@@ -12,6 +12,7 @@ control "alloydb_instance_log_error_verbosity_database_flag_default_or_stricter"
   tags = merge(local.policy_bundle_alloydb_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -23,6 +24,7 @@ control "alloydb_instance_log_min_error_statement_database_flag_configured" {
   tags = merge(local.policy_bundle_alloydb_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -34,6 +36,16 @@ control "alloydb_instance_log_min_messages_database_flag_error" {
   tags = merge(local.policy_bundle_alloydb_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
+  })
+}
+
+control "alloydb_cluster_encrypted_with_cmk" {
+  title = "Alloy DB clusters should use customer-managed encryption key (CMEK) for encryption"
+  query = query.alloydb_cluster_encrypted_with_cmk
+
+  tags = merge(local.policy_bundle_alloydb_common_tags, {
+    soc_2_2017 = "true"
   })
 }
 
@@ -97,5 +109,23 @@ query "alloydb_instance_log_min_messages_database_flag_error" {
       ${local.common_dimensions_sql}
     from
       gcp_alloydb_instance;
+  EOQ
+}
+
+query "alloydb_cluster_encrypted_with_cmk" {
+  sql = <<-EOQ
+    select
+      self_link resource,
+      case
+        when encryption_info  ->> 'encryptionType' = 'CUSTOMER_MANAGED_ENCRYPTION' then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when encryption_info  ->> 'encryptionType' = 'CUSTOMER_MANAGED_ENCRYPTION' then title || ' encrypted with customer-managed encryption keys.'
+        else title || ' encrypted with Google-managed encryption keys.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_alloydb_cluster;
   EOQ
 }

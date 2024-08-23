@@ -16,6 +16,7 @@ control "require_bq_table_iam" {
     nist_csf_v10          = "true"
     pci_dss_v321          = "true"
     severity              = "high"
+    soc_2_2017            = "true"
   })
 }
 
@@ -50,6 +51,7 @@ control "bigquery_dataset_encrypted_with_cmk" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -62,6 +64,7 @@ control "bigquery_table_encrypted_with_cmk" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 

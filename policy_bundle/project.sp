@@ -21,6 +21,7 @@ control "project_service_cloudasset_api_enabled" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -36,6 +37,14 @@ control "project_service_container_scanning_api_enabled" {
   title       = "Ensure container vulnerability scanning is enabled"
   description = "Container Vulnerability Scanning in Google Cloud Platform (GCP) refers to a security service that automatically performs vulnerability detection on container images stored in Container Registry and Artifact Registry. This service is designed to identify known security vulnerabilities in your container images."
   query       = query.project_service_container_scanning_api_enabled
+
+  tags = local.policy_bundle_project_common_tags
+}
+
+control "project_oslogin_enabled" {
+  title       = "Ensure OS login is enabled at Project level"
+  description = "Enabling OS login binds SSH certificates to IAM users and facilitates effective SSH certificate management."
+  query       = query.project_oslogin_enabled
 
   tags = local.policy_bundle_project_common_tags
 }
@@ -133,5 +142,23 @@ query "project_service_container_scanning_api_enabled" {
       gcp_project_service
     where
       name = 'containerscanning.googleapis.com';
+  EOQ
+}
+
+query "project_oslogin_enabled" {
+  sql = <<-EOQ
+    select
+      id resource,
+      case
+        when common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"TRUE"}]' then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"TRUE"}]' then title || ' OS login enabled.'
+        else title || ' OS login disabled.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      gcp_compute_project_metadata;
   EOQ
 }

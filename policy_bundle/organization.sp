@@ -12,6 +12,7 @@ control "organization_essential_contacts_configured" {
   tags = merge(local.policy_bundle_organization_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
