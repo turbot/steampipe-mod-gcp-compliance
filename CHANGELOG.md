@@ -1,3 +1,9 @@
+## v0.34 [2024-08-23]
+
+_What's new?_
+
+- Added SOC2 2017 benchmark (`powerpipe benchmark run gcp_compliance.benchmark.soc_2_2017`). ([#181](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/181))
+
 ## v0.33 [2024-08-02]
 
 _Enhancements_
