@@ -17,7 +17,6 @@ benchmark "soc_2_2017_cc_3" {
 
 benchmark "soc_2_2017_cc_3_2" {
   title       = "CC3.2 COSO Principle 7: The entity identifies risks to the achievement of its objectives across the entity and analyzes risks as a basis for determining how the risks should be managed"
-  # documentation = file("./soc_2/docs/cc_2_1.md")
 
   children = [
     benchmark.soc_2_2017_cc_3_2_6
@@ -29,8 +28,7 @@ benchmark "soc_2_2017_cc_3_2" {
 }
 
 benchmark "soc_2_2017_cc_3_2_6" {
-  title       = "CC3.3.6"
-  # documentation = file("./soc_2/docs/cc_2_1.md")
+  title       = "CC3.2.6"
 
   children = [
     control.project_service_cloudasset_api_enabled

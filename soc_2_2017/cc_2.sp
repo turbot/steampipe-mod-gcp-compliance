@@ -17,7 +17,6 @@ benchmark "soc_2_2017_cc_2" {
 
 benchmark "soc_2_2017_cc_2_3" {
   title       = "CC2.3 COSO Principle 15: The entity communicates with external parties regarding matters affecting the functioning of internal control"
-  documentation = file("./soc_2/docs/cc_2_1.md")
 
   children = [
     benchmark.soc_2_2017_cc_2_3_1
@@ -30,7 +29,6 @@ benchmark "soc_2_2017_cc_2_3" {
 
 benchmark "soc_2_2017_cc_2_3_1" {
   title       = "CC2.3.1"
-  documentation = file("./soc_2/docs/cc_2_1.md")
 
   children = [
     control.organization_essential_contacts_configured

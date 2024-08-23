@@ -12,6 +12,7 @@ control "restrict_firewall_rule_rdp_world_open" {
     cft_scorecard_v1  = "true"
     nist_800_53_rev_5 = "true"
     severity          = "high"
+    soc_2_2017        = "true"
   })
 }
 
@@ -25,6 +26,7 @@ control "enable_network_flow_logs" {
     nist_csf_v10      = "true"
     pci_dss_v321      = "true"
     severity          = "high"
+    soc_2_2017        = "true"
   })
 }
 
@@ -48,6 +50,7 @@ control "restrict_firewall_rule_ssh_world_open" {
     nist_800_53_rev_5     = "true"
     pci_dss_v321          = "true"
     severity              = "high"
+    soc_2_2017            = "true"
   })
 }
 
@@ -71,6 +74,7 @@ control "compute_disk_encrypted_with_csk" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -110,6 +114,7 @@ control "compute_instance_block_project_wide_ssh_enabled" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -121,6 +126,7 @@ control "compute_instance_confidential_computing_enabled" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -131,6 +137,7 @@ control "compute_instance_ip_forwarding_disabled" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -141,6 +148,7 @@ control "compute_instance_oslogin_enabled" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -151,6 +159,7 @@ control "compute_instance_serial_port_connection_disabled" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -171,6 +180,7 @@ control "compute_instance_with_no_default_service_account_with_full_access" {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
     pci_dss_v321      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -183,6 +193,7 @@ control "compute_instance_with_no_default_service_account" {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
     pci_dss_v321      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -196,6 +207,7 @@ control "compute_instance_with_no_public_ip_addresses" {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
     pci_dss_v321      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -207,6 +219,7 @@ control "compute_network_contains_no_default_network" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -218,6 +231,7 @@ control "compute_network_contains_no_legacy_network" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -230,6 +244,7 @@ control "compute_network_dns_logging_enabled" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 

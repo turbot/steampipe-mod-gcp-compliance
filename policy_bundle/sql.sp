@@ -13,6 +13,7 @@ control "sql_world_readable" {
     forseti_security_v226 = "true"
     nist_800_53_rev_5     = "true"
     severity              = "high"
+    soc_2_2017            = "true"
   })
 }
 
@@ -71,6 +72,7 @@ control "sql_instance_mysql_skip_show_database_flag_on" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -82,6 +84,7 @@ control "sql_instance_not_publicly_accessible" {
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_csf_v10 = "true"
     pci_dss_v321 = "true"
+    soc_2_2017   = "true"
   })
 }
 
@@ -111,6 +114,7 @@ control "sql_instance_postgresql_log_connections_database_flag_on" {
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -122,6 +126,7 @@ control "sql_instance_postgresql_log_disconnections_database_flag_on" {
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -141,6 +146,7 @@ control "sql_instance_postgresql_log_error_verbosity_database_flag_default_or_st
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -176,6 +182,7 @@ control "sql_instance_postgresql_log_min_duration_statement_database_flag_disabl
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -187,6 +194,7 @@ control "sql_instance_postgresql_log_min_error_statement_database_flag_configure
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -198,6 +206,7 @@ control "sql_instance_postgresql_log_min_messages_database_flag_error" {
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -225,6 +234,7 @@ control "sql_instance_postgresql_log_statement_database_flag_ddl" {
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -249,7 +259,9 @@ control "sql_instance_sql_3625_trace_database_flag_off" {
   description = "It is recommended to set 3625 (trace flag) database flag for Cloud SQL SQL Server instance to off."
   query       = query.sql_instance_sql_3625_trace_database_flag_off
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    soc_2_2017 = "true"
+  })
 }
 
 control "sql_instance_sql_3625_trace_database_flag_on" {
@@ -272,6 +284,7 @@ control "sql_instance_sql_contained_database_authentication_database_flag_off" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -284,6 +297,7 @@ control "sql_instance_sql_cross_db_ownership_chaining_database_flag_off" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -295,6 +309,7 @@ control "sql_instance_sql_external_scripts_enabled_database_flag_off" {
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -305,6 +320,7 @@ control "sql_instance_sql_remote_access_database_flag_off" {
 
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_800_53_rev_5 = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -316,6 +332,7 @@ control "sql_instance_sql_user_connections_database_flag_configured" {
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -327,6 +344,7 @@ control "sql_instance_sql_user_options_database_flag_not_configured" {
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 

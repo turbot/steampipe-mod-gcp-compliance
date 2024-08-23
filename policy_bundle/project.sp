@@ -21,6 +21,7 @@ control "project_service_cloudasset_api_enabled" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 

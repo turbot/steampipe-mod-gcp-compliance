@@ -23,6 +23,7 @@ control "kms_key_not_publicly_accessible" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -36,6 +37,7 @@ control "kms_key_rotated_within_90_day" {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
     pci_dss_v321      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -48,6 +50,7 @@ control "kms_key_separation_of_duties_enforced" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
