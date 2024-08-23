@@ -13,6 +13,7 @@ control "dnssec_prevent_rsasha1_ksk" {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
     severity          = "high"
+    soc_2_2017        = "true"
   })
 }
 
@@ -34,6 +35,7 @@ control "dns_managed_zone_dnssec_enabled" {
   tags = merge(local.policy_bundle_dns_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 

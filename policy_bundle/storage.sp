@@ -14,6 +14,7 @@ control "require_bucket_policy_only" {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
     severity          = "high"
+    soc_2_2017        = "true"
   })
 }
 
@@ -26,6 +27,7 @@ control "storage_bucket_not_publicly_accessible" {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
     pci_dss_v321      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -46,6 +48,7 @@ control "storage_bucket_log_retention_policy_lock_enabled" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 

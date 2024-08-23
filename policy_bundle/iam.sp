@@ -87,6 +87,7 @@ control "iam_service_account_without_admin_privilege" {
   tags = merge(local.policy_bundle_iam_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -100,6 +101,7 @@ control "iam_user_not_assigned_service_account_user_role_project_level" {
     nist_csf_v10      = "true"
     nist_800_53_rev_5 = "true"
     pci_dss_v321      = "true"
+    soc_2_2017        = "true"
   })
 }
 
@@ -111,6 +113,7 @@ control "iam_user_separation_of_duty_enforced" {
   tags = merge(local.policy_bundle_iam_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    soc_2_2017        = "true"
   })
 }
 
