@@ -124,7 +124,7 @@ query "alloydb_cluster_encrypted_with_cmk" {
         when encryption_info  ->> 'encryptionType' = 'CUSTOMER_MANAGED_ENCRYPTION' then title || ' encrypted with customer-managed encryption keys.'
         else title || ' encrypted with Google-managed encryption keys.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_alloydb_cluster;
   EOQ

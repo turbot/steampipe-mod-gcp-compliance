@@ -157,7 +157,7 @@ query "project_oslogin_enabled" {
         when common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"TRUE"}]' then title || ' OS login enabled.'
         else title || ' OS login disabled.'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       gcp_compute_project_metadata;
   EOQ
