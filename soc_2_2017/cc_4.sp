@@ -21,6 +21,7 @@ benchmark "soc_2_2017_cc_4_1" {
   children = [
     benchmark.soc_2_2017_cc_4_1_1,
     benchmark.soc_2_2017_cc_4_1_2,
+    benchmark.soc_2_2017_cc_4_1_4,
     benchmark.soc_2_2017_cc_4_1_3,
     benchmark.soc_2_2017_cc_4_1_5,
     benchmark.soc_2_2017_cc_4_1_6,

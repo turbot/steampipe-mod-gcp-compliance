@@ -19,7 +19,10 @@ benchmark "soc_2_2017_cc_5_2" {
   title       = "CC5.2 COSO Principle 11: The entity also selects and develops general control activities over technology to support the achievement of objectives"
 
   children = [
-    benchmark.soc_2_2017_cc_5_2_1
+    benchmark.soc_2_2017_cc_5_2_1,
+    benchmark.soc_2_2017_cc_5_2_2,
+    benchmark.soc_2_2017_cc_5_2_3,
+    benchmark.soc_2_2017_cc_5_2_4
   ]
 
   tags = merge(local.soc_2_2017_cc_5_common_tags, {
@@ -57,7 +60,6 @@ benchmark "soc_2_2017_cc_5_2_2" {
     soc_2_2017_item_id = "5.2.2"
   })
 }
-
 
 benchmark "soc_2_2017_cc_5_2_3" {
   title       = "CC5.2.3"
