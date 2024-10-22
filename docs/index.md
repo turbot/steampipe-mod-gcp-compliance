@@ -82,8 +82,8 @@ The benchmark queries use common properties (like `connection_name`, `location` 
 It's easiest to setup your vars file, starting with the sample:
 
 ```sh
-cp steampipe.spvars.example steampipe.spvars
-vi steampipe.spvars
+cp steampipe.ppvars.example steampipe.ppvars
+vi steampipe.ppvars
 ```
 
 Alternatively you can pass variables on the command line:
