@@ -290,6 +290,7 @@ control "cis_v120_6_2_12" {
     cis_item_id = "6.2.12"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "GCP/SQL"
   })
 }
 
