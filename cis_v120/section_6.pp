@@ -290,6 +290,7 @@ control "cis_v120_6_2_12" {
     cis_item_id = "6.2.12"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "GCP/SQL"
   })
 }
 
@@ -329,6 +330,7 @@ control "cis_v120_6_2_15" {
     cis_item_id = "6.2.15"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/SQL"
   })
 }
 
@@ -342,6 +344,7 @@ control "cis_v120_6_2_16" {
     cis_item_id = "6.2.16"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/SQL"
   })
 }
 

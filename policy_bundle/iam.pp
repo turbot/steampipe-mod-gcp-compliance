@@ -56,7 +56,7 @@ control "iam_api_key_age_90" {
   description = "It is recommended to rotate API keys every 90 days."
   query       = query.iam_api_key_age_90
 
-  tags = merge(local.cis_v120_1_common_tags, {
+  tags = merge(local.policy_bundle_iam_common_tags, {
     nist_csf_v10 = "true"
   })
 }
@@ -66,7 +66,7 @@ control "iam_api_key_restricts_apis" {
   description = "API keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to restrict API keys to use (call) only APIs required by an application."
   query       = query.iam_api_key_restricts_apis
 
-  tags = merge(local.cis_v120_1_common_tags, {
+  tags = merge(local.policy_bundle_iam_common_tags, {
     nist_csf_v10 = "true"
   })
 }
