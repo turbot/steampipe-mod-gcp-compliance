@@ -1,3 +1,9 @@
+## v1.0.2 [2025-04-14]
+
+_Bug fixes_
+
+- Added the missing `GCP/IAM` and `GCP/SQL` service tags to relevant controls. ([#188](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/188))
+
 ## v1.0.1 [2024-10-24]
 
 _Bug fixes_
