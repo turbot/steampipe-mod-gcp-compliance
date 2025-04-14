@@ -222,6 +222,7 @@ control "cis_v200_6_2_8" {
     cis_item_id = "6.2.8"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/SQL"
   })
 }
 
@@ -235,6 +236,7 @@ control "cis_v200_6_2_9" {
     cis_item_id = "6.2.9"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "GCP/SQL"
   })
 }
 
