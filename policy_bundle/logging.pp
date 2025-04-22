@@ -293,7 +293,7 @@ query "logging_metric_alert_network_changes" {
       ${local.common_dimensions_project_sql}
     from
       gcp_project as p
-      left join filter_data as d on d.project = p.name
+      left join filter_data as d on d.project = p.name;
   EOQ
 }
 
