@@ -1,3 +1,10 @@
+## v1.0.3 [2025-04-22]
+
+_Bug fixes_
+
+- Fixed control titles to correctly use `0.0.0.0/0` instead of `0.0.00/0`. ([#191](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/191)) (Thanks [@akumar-99](https://github.com/akumar-99) for the contribution!)
+- Fixed a syntax issue by adding a missing semicolon at the end of the `logging_metric_alert_network_changes` query. ([#190](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/190)) (Thanks [@tolgaOzen](https://github.com/tolgaOzen) for the contribution!)
+
 ## v1.0.2 [2025-04-14]
 
 _Bug fixes_
