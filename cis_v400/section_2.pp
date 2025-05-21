@@ -74,7 +74,7 @@ control "cis_v400_2_3" {
 }
 
 control "cis_v400_2_4" {
-  title         = "2.4 Ensure Log Metric Filter and Alerts Exist for Project Ownership Assignments/Changes "
+  title         = "2.4 Ensure Log Metric Filter and Alerts Exist for Project Ownership Assignments/Changes"
   description   = "In order to prevent unnecessary project ownership assignments to users/service-accounts and further misuses of projects and resources, all roles/Owner assignments should be monitored. Members (users/Service-Accounts) with a role assignment to primitive role roles/Owner are project owners."
   query         = query.logging_metric_alert_project_ownership_assignment
   documentation = file("./cis_v400/docs/cis_v400_2_4.md")

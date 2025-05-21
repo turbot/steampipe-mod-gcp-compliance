@@ -175,7 +175,7 @@ control "cis_v400_6_2_4" {
 
 control "cis_v400_6_2_5" {
   title         = "6.2.5 Ensure that the 'Log_min_messages' Flag for a Cloud SQL PostgreSQL Instance is set at minimum to 'Warning'"
-  description   = "The log_min_messages flag defines the minimum message severity level that is considered as an error statement. Messages for error statements are logged with the SQL statement. Valid values include DEBUG5, DEBUG4, DEBUG3, DEBUG2, DEBUG1, INFO, NOTICE, WARNING, ERROR, LOG, FATAL, and PANIC. Each severity level includes the subsequent levels mentioned above."
+  description   = "The log_min_messages flag defines the minimum message severity level that is considered as an error statement. Messages for error statements are logged with the SQL statement. Valid values include DEBUG5, DEBUG4, DEBUG3, DEBUG2, DEBUG1, INFO, NOTICE, WARNING, ERROR, LOG, FATAL, and PANIC. Each severity level includes the subsequent levels mentioned above. ERROR is considered the best practice setting. Changes should only be made in accordance with the organization's logging policy."
   documentation = file("./cis_v400/docs/cis_v400_6_2_5.md")
   query         = query.sql_instance_postgresql_log_min_messages_database_flag_error
   tags = merge(local.cis_v400_6_2_common_tags, {
@@ -244,7 +244,7 @@ benchmark "cis_v400_6_3" {
 }
 
 control "cis_v400_6_3_1" {
-  title         = "6.3.1 Ensure 'external scripts enabled' database flag for Cloud SQL SQL Server instance is set to 'off"
+  title         = "6.3.1 Ensure 'external scripts enabled' database flag for Cloud SQL SQL Server Instance is set to 'off"
   description   = "It is recommended to set external scripts enabled database flag for Cloud SQL SQL Server instance to off."
   documentation = file("./cis_v400/docs/cis_v400_6_3_1.md")
   query         = query.sql_instance_sql_external_scripts_enabled_database_flag_off
@@ -257,7 +257,7 @@ control "cis_v400_6_3_1" {
 }
 
 control "cis_v400_6_3_2" {
-  title         = "6.3.2 Ensure that the 'cross db ownership chaining' database flag for Cloud SQL SQL Server instance is set to 'off'"
+  title         = "6.3.2 Ensure that the 'cross db ownership chaining' database flag for Cloud SQL SQL Server Instance is set to 'off'"
   description   = "It is recommended to set cross db ownership chaining database flag for Cloud SQL SQL Server instance to off."
   documentation = file("./cis_v400/docs/cis_v400_6_3_2.md")
   query         = query.sql_instance_sql_cross_db_ownership_chaining_database_flag_off
@@ -283,8 +283,8 @@ control "cis_v400_6_3_3" {
 }
 
 control "cis_v400_6_3_4" {
-  title         = "6.3.4 Ensure 'user options' database flag for Cloud SQL SQL Server instance is not configured"
-  description   = "It is recommended that, user options database flag for Cloud SQL SQL Server instance should not be configured."
+  title         = "6.3.4 Ensure 'user options' database flag for Cloud SQL SQL Server Instance is not configured"
+  description   = "The user options option specifies global defaults for all users. A list of default query processing options is established for the duration of a user's work session. The user options option allows you to change the default values of the SET options (if the server's default settings are not appropriate)."
   documentation = file("./cis_v400/docs/cis_v400_6_3_4.md")
   query         = query.sql_instance_sql_user_options_database_flag_not_configured
 
@@ -309,7 +309,7 @@ control "cis_v400_6_3_5" {
 }
 
 control "cis_v400_6_3_6" {
-  title         = "6.3.6 Ensure '3625 (trace flag)' database flag for all Cloud SQL Server instances is set to 'on'"
+  title         = "6.3.6 Ensure '3625 (trace flag)' Database flag for all Cloud SQL Server Instances is set to 'on'"
   description   = "It is recommended to set 3625 (trace flag) database flag for Cloud SQL SQL Server instance to on."
   documentation = file("./cis_v400/docs/cis_v400_6_3_6.md")
   query         = query.sql_instance_sql_3625_trace_database_flag_on
@@ -322,8 +322,8 @@ control "cis_v400_6_3_6" {
 }
 
 control "cis_v400_6_3_7" {
-  title         = "6.3.7 Ensure that the 'contained database authentication' database flag for Cloud SQL on the SQL Server instance is not set to 'on'"
-  description   = "It is recommended not to set contained database authentication database flag for Cloud SQL on the SQL Server instance to on."
+  title         = "6.3.7 Ensure that the 'contained database authentication' database flag for Cloud SQL SQL Server instance is not set to 'off'"
+  description   = "A contained database includes all database settings and metadata required to define the database and has no configuration dependencies on the instance of the Database Engine where the database is installed. Users can connect to the database without authenticating a login at the Database Engine level. Isolating the database from the Database Engine makes it possible to easily move the database to another instance of SQL Server. Contained databases have some unique threats that should be understood and mitigated by SQL Server Database Engine administrators. Most of the threats are related to the USER WITH PASSWORD authentication process, which moves the authentication boundary from the Database Engine level to the database level, hence this is recommended not to enable this flag. This recommendation is applicable to SQL Server database instances."
   documentation = file("./cis_v400/docs/cis_v400_6_3_7.md")
   query         = query.sql_instance_sql_contained_database_authentication_database_flag_off
 
@@ -348,7 +348,7 @@ control "cis_v400_6_4" {
 }
 
 control "cis_v400_6_5" {
-  title         = "6.5 Ensure That Cloud SQL Database Instances Do Not Implicitly Whitelist All Public IP Addresses ("
+  title         = "6.5 Ensure That Cloud SQL Database Instances Do Not Implicitly Whitelist All Public IP Addresses"
   description   = "Database Server should accept connections only from trusted Network(s)/IP(s) and restrict access from public IP addresses."
   documentation = file("./cis_v400/docs/cis_v400_6_5.md")
   query         = query.sql_instance_not_open_to_internet

@@ -84,7 +84,7 @@ control "cis_v400_4_4" {
 }
 
 control "cis_v400_4_5" {
-  title         = "4.5 Ensure ‘Enable Connecting to Serial Ports’ Is Not Enabled for VM Instance "
+  title         = "4.5 Ensure 'Enable Connecting to Serial Ports' Is Not Enabled for VM Instance "
   description   = "Interacting with a serial port is often referred to as the serial console, which is similar to using a terminal window, in that input and output is entirely in text mode and there is no graphical interface or mouse support."
   query         = query.compute_instance_serial_port_connection_disabled
   documentation = file("./cis_v400/docs/cis_v400_4_5.md")

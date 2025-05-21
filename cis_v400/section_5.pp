@@ -33,7 +33,7 @@ control "cis_v400_5_1" {
 }
 
 control "cis_v400_5_2" {
-  title         = "5.2 Ensure That Cloud Storage Buckets Have Uniform BucketLevel Access Enabled"
+  title         = "5.2 Ensure That Cloud Storage Buckets Have Uniform Bucket-Level Access Enabled"
   description   = "It is recommended that uniform bucket-level access is enabled on Cloud Storage buckets."
   query         = query.storage_bucket_uniform_access_enabled
   documentation = file("./cis_v400/docs/cis_v400_5_2.md")

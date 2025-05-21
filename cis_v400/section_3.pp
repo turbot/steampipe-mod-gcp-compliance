@@ -41,7 +41,7 @@ control "cis_v400_3_1" {
 
 control "cis_v400_3_2" {
   title         = "3.2 Ensure Legacy Networks Do Not Exist for Older Projects"
-  description   = "In order to prevent use of legacy networks, a project should not have a legacy network configured."
+  description   = "In order to prevent use of legacy networks, a project should not have a legacy network configured. As of now, Legacy Networks are gradually being phased out, and you can no longer create projects with them. This recommendation is to check older projects to ensure that they are not using Legacy Networks."
   query         = query.compute_network_contains_no_legacy_network
   documentation = file("./cis_v400/docs/cis_v400_3_2.md")
 
@@ -110,7 +110,7 @@ control "cis_v400_3_6" {
 }
 
 control "cis_v400_3_7" {
-  title         = "3.7 Ensure That RDP Access Is Restricted From the Internet "
+  title         = "3.7 Ensure That RDP Access Is Restricted From the Internet"
   description   = "GCP Firewall Rules are specific to a VPC Network. Each rule either allows or denies traffic when its conditions are met. Its conditions allow users to specify the type of traffic, such as ports and protocols, and the source or destination of the traffic, including IP addresses, subnets, and instances."
   query         = query.compute_firewall_rule_rdp_access_restricted
   documentation = file("./cis_v400/docs/cis_v400_3_7.md")
