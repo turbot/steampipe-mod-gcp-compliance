@@ -309,7 +309,7 @@ control "cis_v400_6_3_5" {
 }
 
 control "cis_v400_6_3_6" {
-  title         = "6.3.6 Ensure '3625 (trace flag)' Database flag for all Cloud SQL Server Instances is set to 'on'"
+  title         = "6.3.6 Ensure '3625 (trace flag)' Database Flag for all Cloud SQL SQL Server Instances Is Set to 'on'"
   description   = "It is recommended to set 3625 (trace flag) database flag for Cloud SQL SQL Server instance to on."
   documentation = file("./cis_v400/docs/cis_v400_6_3_6.md")
   query         = query.sql_instance_sql_3625_trace_database_flag_on
@@ -322,7 +322,7 @@ control "cis_v400_6_3_6" {
 }
 
 control "cis_v400_6_3_7" {
-  title         = "6.3.7 Ensure that the 'contained database authentication' database flag for Cloud SQL SQL Server instance is not set to 'off'"
+  title         = "6.3.7 Ensure 'contained database authentication' Database Flag for Cloud SQL SQL Server Instance Is Set to 'off'"
   description   = "A contained database includes all database settings and metadata required to define the database and has no configuration dependencies on the instance of the Database Engine where the database is installed. Users can connect to the database without authenticating a login at the Database Engine level. Isolating the database from the Database Engine makes it possible to easily move the database to another instance of SQL Server. Contained databases have some unique threats that should be understood and mitigated by SQL Server Database Engine administrators. Most of the threats are related to the USER WITH PASSWORD authentication process, which moves the authentication boundary from the Database Engine level to the database level, hence this is recommended not to enable this flag. This recommendation is applicable to SQL Server database instances."
   documentation = file("./cis_v400/docs/cis_v400_6_3_7.md")
   query         = query.sql_instance_sql_contained_database_authentication_database_flag_off

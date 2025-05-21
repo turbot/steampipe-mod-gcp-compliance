@@ -199,7 +199,7 @@ query "logging_metric_alert_custom_role_changes" {
       from
         gcp_monitoring_alert_policy,
         jsonb_array_elements(conditions) as filter_condition
-        join gcp_logging_metric m on m.filter ~ '\s*resource\.type\s*=\s*"iam_role"\s*AND\s*\(\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.CreateRole"\s*OR\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.DeleteRole"\s*OR\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.UpdateRole"\s*\)'
+        join gcp_logging_metric m on m.filter ~ '\s*resource\.type\s*=\s*"iam_role"\s*AND\s*\(\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.CreateRole"\s*OR\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.DeleteRole"\s*OR\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.UpdateRole"\s*OR\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.UndeleteRole"\s*\)'
         and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
       where
         enabled
