@@ -104,7 +104,7 @@ control "cis_v400_2_5" {
 control "cis_v400_2_6" {
   title         = "2.6 Ensure That the Log Metric Filter and Alerts Exist for Custom Role Changes"
   description   = "It is recommended that a metric filter and alarm be established for changes to Identity and Access Management (IAM) role creation, deletion and updating activities."
-  query         = query.logging_metric_alert_custom_role_changes
+  query         = query.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role
   documentation = file("./cis_v400/docs/cis_v400_2_6.md")
 
   tags = merge(local.cis_v400_2_common_tags, {
