@@ -11,6 +11,7 @@ benchmark "all_controls_logging" {
     control.logging_bucket_retention_policy_enabled,
     control.logging_metric_alert_audit_configuration_changes,
     control.logging_metric_alert_custom_role_changes,
+    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
     control.logging_metric_alert_firewall_rule_changes,
     control.logging_metric_alert_network_changes,
     control.logging_metric_alert_network_route_changes,

@@ -36,6 +36,14 @@ control "logging_metric_alert_custom_role_changes" {
   })
 }
 
+control "logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role" {
+  title       = "Ensure that the log metric filter and alerts exist for Custom Role changes including undelete operations"
+  description = "It is recommended that a metric filter and alarm be established for changes to Identity and Access Management (IAM) role creation, deletion, updating, and undeleting activities."
+  query       = query.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role
+
+  tags = local.policy_bundle_logging_common_tags
+}
+
 control "logging_metric_alert_firewall_rule_changes" {
   title       = "Ensure that the log metric filter and alerts exist for VPC Network Firewall rule changes"
   description = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) Network Firewall rule changes."
