@@ -43,7 +43,7 @@ control "cis_v400_4_1" {
 
 control "cis_v400_4_2" {
   title         = "4.2 Ensure That Instances Are Not Configured To Use the Default Service Account With Full Access to All Cloud APIs"
-  description   = "To support principle of least privileges and prevent potential privilege escalation it is recommended that instances are not assigned to default service account Compute Engine default service account with Scope Allow full access to all Cloud APIs."
+  description   = "To support principle of least privileges and prevent potential privilege escalation it is recommended that instances are not assigned to default service account `Compute Engine default service account` with Scope `Allow full access to all Cloud APIs`."
   query         = query.compute_instance_with_no_default_service_account_with_full_access
   documentation = file("./cis_v400/docs/cis_v400_4_2.md")
 
@@ -84,7 +84,7 @@ control "cis_v400_4_4" {
 }
 
 control "cis_v400_4_5" {
-  title         = "4.5 Ensure 'Enable Connecting to Serial Ports' Is Not Enabled for VM Instance "
+  title         = "4.5 Ensure 'Enable Connecting to Serial Ports' Is Not Enabled for VM Instance"
   description   = "Interacting with a serial port is often referred to as the serial console, which is similar to using a terminal window, in that input and output is entirely in text mode and there is no graphical interface or mouse support."
   query         = query.compute_instance_serial_port_connection_disabled
   documentation = file("./cis_v400/docs/cis_v400_4_5.md")
@@ -112,7 +112,7 @@ control "cis_v400_4_6" {
 }
 
 control "cis_v400_4_7" {
-  title         = "4.7 Ensure VM Disks for Critical VMs Are Encrypted With Customer-Supplied Encryption Keys"
+  title         = "4.7 Ensure VM Disks for Critical VMs Are Encrypted With Customer-Supplied Encryption Keys (CSEK)"
   description   = "Customer-Supplied Encryption Keys (CSEK) are a feature in Google Cloud Storage and Google Compute Engine. If you supply your own encryption keys, Google uses your key to protect the Google-generated keys used to encrypt and decrypt your data. By default, Google Compute Engine encrypts all data at rest. Compute Engine handles and manages this encryption for you without any additional actions on your part. However, if you wanted to control and manage this encryption yourself, you can provide your own encryption keys."
   query         = query.compute_disk_encrypted_with_csk
   documentation = file("./cis_v400/docs/cis_v400_4_7.md")
@@ -127,7 +127,7 @@ control "cis_v400_4_7" {
 
 control "cis_v400_4_8" {
   title         = "4.8 Ensure Compute Instances Are Launched With Shielded VM Enabled"
-  description   = "To defend against against advanced threats and ensure that the boot loader and firmware on your VMs are signed and untampered, it is recommended that Compute instances are launched with Shielded VM enabled."
+  description   = "To defend against advanced threats and ensure that the boot loader and firmware on your VMs are signed and untampered, it is recommended that Compute instances are launched with Shielded VM enabled."
   query         = query.compute_instance_shielded_vm_enabled
   documentation = file("./cis_v400/docs/cis_v400_4_8.md")
 
@@ -182,7 +182,7 @@ control "cis_v400_4_11" {
 }
 
 control "cis_v400_4_12" {
-  title         = "4.12 Ensure the Latest Operating System Updates Are Installed On Your Virtual Machines in All Project"
+  title         = "4.12 Ensure the Latest Operating System Updates Are Installed On Your Virtual Machines in All Projects"
   description   = "Google Cloud Virtual Machines have the ability via an OS Config agent API to periodically (about every 10 minutes) report OS inventory data. A patch compliance API periodically reads this data, and cross references metadata to determine if the latest updates are installed."
   query         = query.manual_control
   documentation = file("./cis_v400/docs/cis_v400_4_12.md")

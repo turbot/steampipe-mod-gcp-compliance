@@ -34,7 +34,7 @@ benchmark "cis_v400_1" {
 
 control "cis_v400_1_1" {
   title         = "1.1 Ensure that Corporate Login Credentials are Used"
-  description   = "Use corporate login credentials instead of personal accounts, such as Gmail accounts."
+  description   = "Use corporate login credentials instead of consumer accounts, such as Gmail accounts."
   query         = query.iam_user_uses_corporate_login_credentials
   documentation = file("./cis_v400/docs/cis_v400_1_1.md")
 
@@ -76,7 +76,7 @@ control "cis_v400_1_3" {
 
 control "cis_v400_1_4" {
   title         = "1.4 Ensure That There Are Only GCP-Managed Service Account Keys for Each Service Account"
-  description   = "User managed service accounts should not have user-managed keys."
+  description   = "User-managed service accounts should not have user-managed keys."
   query         = query.iam_service_account_gcp_managed_key
   documentation = file("./cis_v400/docs/cis_v400_1_4.md")
 
@@ -146,7 +146,7 @@ control "cis_v400_1_8" {
 
 control "cis_v400_1_9" {
   title         = "1.9 Ensure That Cloud KMS Cryptokeys Are Not Anonymously or Publicly Accessible"
-  description   = "It is recommended that the IAM policy on Cloud KMS cryptokeys should restrict anonymous and/or public access."
+  description   = "It is recommended that the IAM policy on Cloud KMS `cryptokeys` should restrict anonymous and/or public access."
   query         = query.kms_key_not_publicly_accessible
   documentation = file("./cis_v400/docs/cis_v400_1_9.md")
 

@@ -27,7 +27,7 @@ benchmark "cis_v400_3" {
 
 control "cis_v400_3_1" {
   title         = "3.1 Ensure That the Default Network Does Not Exist in a Project"
-  description   = "To prevent use of default network, a project should not have a default network."
+  description   = "To prevent use of `default` network, a project should not have a `default` network."
   query         = query.compute_network_contains_no_default_network
   documentation = file("./cis_v400/docs/cis_v400_3_1.md")
 
@@ -97,7 +97,7 @@ control "cis_v400_3_5" {
 
 control "cis_v400_3_6" {
   title         = "3.6 Ensure That SSH Access Is Restricted From the Internet"
-  description   = "GCP Firewall Rules are specific to a VPC Network. Each rule either allows or denies traffic when its conditions are met. Its conditions allow the user to specify the type of traffic, such as ports and protocols, and the source or destination of the traffic, including IP addresses, subnets, and instances."
+  description   = "GCP `Firewall Rules` are specific to a `VPC Network`. Each rule either allows or denies traffic when its conditions are met. Its conditions allow the user to specify the type of traffic, such as ports and protocols, and the source or destination of the traffic, including IP addresses, subnets, and instances."
   query         = query.compute_firewall_rule_ssh_access_restricted
   documentation = file("./cis_v400/docs/cis_v400_3_6.md")
 
@@ -111,7 +111,7 @@ control "cis_v400_3_6" {
 
 control "cis_v400_3_7" {
   title         = "3.7 Ensure That RDP Access Is Restricted From the Internet"
-  description   = "GCP Firewall Rules are specific to a VPC Network. Each rule either allows or denies traffic when its conditions are met. Its conditions allow users to specify the type of traffic, such as ports and protocols, and the source or destination of the traffic, including IP addresses, subnets, and instances."
+  description   = "GCP `Firewall Rules` are specific to a `VPC Network`. Each rule either allows or denies traffic when its conditions are met. Its conditions allow users to specify the type of traffic, such as ports and protocols, and the source or destination of the traffic, including IP addresses, subnets, and instances."
   query         = query.compute_firewall_rule_rdp_access_restricted
   documentation = file("./cis_v400/docs/cis_v400_3_7.md")
 

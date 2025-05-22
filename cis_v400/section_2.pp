@@ -32,7 +32,7 @@ benchmark "cis_v400_2" {
 }
 
 control "cis_v400_2_1" {
-  title         = "2.1 Ensure That Cloud Audit Logging Is Configured Properly "
+  title         = "2.1 Ensure That Cloud Audit Logging Is Configured Properly"
   description   = "It is recommended that Cloud Audit Logging is configured to track all admin activities and read, write access to user data."
   query         = query.audit_logging_configured_for_all_service
   documentation = file("./cis_v400/docs/cis_v400_2_1.md")
@@ -89,7 +89,7 @@ control "cis_v400_2_4" {
 
 control "cis_v400_2_5" {
   title         = "2.5 Ensure That the Log Metric Filter and Alerts Exist for Audit Configuration Changes"
-  description   = "Google Cloud Platform (GCP) services write audit log entries to the Admin Activity and Data Access logs to help answer the questions of, 'who did what, where, and when?' within GCP projects."
+  description   = "Google Cloud Platform (GCP) services write audit log entries to the Admin Activity and Data Access logs to help answer the questions of, \"who did what, where, and when?\" within GCP projects."
   query         = query.logging_metric_alert_audit_configuration_changes
   documentation = file("./cis_v400/docs/cis_v400_2_5.md")
 

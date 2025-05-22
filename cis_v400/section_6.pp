@@ -72,7 +72,7 @@ control "cis_v400_6_1_1" {
 
 control "cis_v400_6_1_2" {
   title         = "6.1.2 Ensure 'Skip_show_database' Database Flag for Cloud SQL MySQL Instance Is Set to 'On'"
-  description   = "It is recommended to set skip_show_database database flag for Cloud SQL Mysql instance to on."
+  description   = "It is recommended to set `skip_show_database` database flag for Cloud SQL Mysql instance to `on`."
   documentation = file("./cis_v400/docs/cis_v400_6_1_2.md")
   query         = query.sql_instance_mysql_skip_show_database_flag_on
 
@@ -86,7 +86,7 @@ control "cis_v400_6_1_2" {
 
 control "cis_v400_6_1_3" {
   title         = "6.1.3 Ensure That the 'Local_infile' Database Flag for a Cloud SQL MySQL Instance Is Set to 'Off'"
-  description   = "It is recommended to set the local_infile database flag for a Cloud SQL MySQL instance to off."
+  description   = "It is recommended to set the `local_infile` database flag for a Cloud SQL MySQL instance to `off`."
   documentation = file("./cis_v400/docs/cis_v400_6_1_3.md")
   query         = query.sql_instance_mysql_local_infile_database_flag_off
 
@@ -120,7 +120,7 @@ benchmark "cis_v400_6_2" {
 
 control "cis_v400_6_2_1" {
   title         = "6.2.1 Ensure 'Log_error_verbosity' Database Flag for Cloud SQL PostgreSQL Instance Is Set to 'DEFAULT' or Stricter"
-  description   = "The log_error_verbosity flag controls the verbosity/details of messages logged. Valid values are: 'TERSE', 'DEFAULT', and 'VERBOSE'."
+  description   = "The `log_error_verbosity` flag controls the verbosity/details of messages logged. Valid values are: 'TERSE', 'DEFAULT', and 'VERBOSE'."
   documentation = file("./cis_v400/docs/cis_v400_6_2_1.md")
   query         = query.sql_instance_postgresql_log_error_verbosity_database_flag_default_or_stricter
 
@@ -134,7 +134,7 @@ control "cis_v400_6_2_1" {
 
 control "cis_v400_6_2_2" {
   title         = "6.2.2 Ensure That the 'Log_connections' Database Flag for Cloud SQL PostgreSQL Instance Is Set to 'On'"
-  description   = "Enabling the log_connections setting causes each attempted connection to the server to be logged, along with successful completion of client authentication. This parameter cannot be changed after the session starts."
+  description   = "Enabling the `log_connections` setting causes each attempted connection to the server to be logged, along with successful completion of client authentication. This parameter cannot be changed after the session starts."
   documentation = file("./cis_v400/docs/cis_v400_6_2_2.md")
   query         = query.sql_instance_postgresql_log_connections_database_flag_on
 
@@ -148,7 +148,7 @@ control "cis_v400_6_2_2" {
 
 control "cis_v400_6_2_3" {
   title         = "6.2.3 Ensure That the 'Log_disconnections' Database Flag for Cloud SQL PostgreSQL Instance Is Set to 'On'"
-  description   = "Enabling the log_disconnections setting logs the end of each session, including the session duration."
+  description   = "Enabling the `log_disconnections` setting logs the end of each session, including the session duration."
   documentation = file("./cis_v400/docs/cis_v400_6_2_3.md")
   query         = query.sql_instance_postgresql_log_disconnections_database_flag_on
 
@@ -162,7 +162,7 @@ control "cis_v400_6_2_3" {
 
 control "cis_v400_6_2_4" {
   title         = "6.2.4 Ensure 'Log_statement' Database Flag for Cloud SQL PostgreSQL Instance Is Set Appropriately"
-  description   = "The value of log_statement flag determined the SQL statements that are logged. Valid values are: 'none', 'ddl', 'mod', and 'all'."
+  description   = "The value of `log_statement` flag determined the SQL statements that are logged. Valid values are: 'none', 'ddl', 'mod', and 'all'."
   documentation = file("./cis_v400/docs/cis_v400_6_2_4.md")
   query         = query.sql_instance_postgresql_log_statement_database_flag_ddl
   tags = merge(local.cis_v400_6_2_common_tags, {
@@ -175,7 +175,7 @@ control "cis_v400_6_2_4" {
 
 control "cis_v400_6_2_5" {
   title         = "6.2.5 Ensure that the 'Log_min_messages' Flag for a Cloud SQL PostgreSQL Instance is set at minimum to 'Warning'"
-  description   = "The log_min_messages flag defines the minimum message severity level that is considered as an error statement. Messages for error statements are logged with the SQL statement. Valid values include DEBUG5, DEBUG4, DEBUG3, DEBUG2, DEBUG1, INFO, NOTICE, WARNING, ERROR, LOG, FATAL, and PANIC. Each severity level includes the subsequent levels mentioned above. ERROR is considered the best practice setting. Changes should only be made in accordance with the organization's logging policy."
+  description   = "The `log_min_messages` flag defines the minimum message severity level that is considered as an error statement. Messages for error statements are logged with the SQL statement. Valid values include DEBUG5, DEBUG4, DEBUG3, DEBUG2, DEBUG1, INFO, NOTICE, WARNING, ERROR, LOG, FATAL, and PANIC. Each severity level includes the subsequent levels mentioned above. ERROR is considered the best practice setting. Changes should only be made in accordance with the organization's logging policy."
   documentation = file("./cis_v400/docs/cis_v400_6_2_5.md")
   query         = query.sql_instance_postgresql_log_min_messages_database_flag_error
   tags = merge(local.cis_v400_6_2_common_tags, {
@@ -187,7 +187,7 @@ control "cis_v400_6_2_5" {
 
 control "cis_v400_6_2_6" {
   title         = "6.2.6 Ensure 'Log_min_error_statement' Database Flag for Cloud SQL PostgreSQL Instance Is Set to 'Error' or Stricter"
-  description   = "The log_min_error_statement flag defines the minimum message severity level that are considered as an error statement. Messages for error statements are logged with the SQL statement. Valid values include DEBUG5, DEBUG4, DEBUG3, DEBUG2, DEBUG1, INFO, NOTICE, WARNING, ERROR, LOG, FATAL, and PANIC. Each severity level includes the subsequent levels mentioned above. Ensure a value of ERROR or stricter is set."
+  description   = "The `log_min_error_statement` flag defines the minimum message severity level that are considered as an error statement."
   documentation = file("./cis_v400/docs/cis_v400_6_2_6.md")
   query         = query.sql_instance_postgresql_log_min_error_statement_database_flag_configured
 
@@ -199,8 +199,8 @@ control "cis_v400_6_2_6" {
 }
 
 control "cis_v400_6_2_7" {
-  title         = "6.2.7 Ensure That the 'Log_min_duration_statement' Database Flag for Cloud SQL PostgreSQL Instance Is Set to '-1'"
-  description   = "The log_min_duration_statement flag defines the minimum amount of execution time of a statement in milliseconds where the total duration of the statement is logged. Ensure that log_min_duration_statement is disabled, i.e., a value of -1 is set."
+  title         = "6.2.7 Ensure That the 'Log_min_duration_statement' Database Flag for Cloud SQL PostgreSQL Instance Is Set to '-1' (Disabled)"
+  description   = "The `log_min_duration_statement` flag defines the minimum amount of execution time of a statement in milliseconds where the total duration of the statement is logged. Ensure that log_min_duration_statement is disabled, i.e., a value of -1 is set."
   documentation = file("./cis_v400/docs/cis_v400_6_2_7.md")
   query         = query.sql_instance_postgresql_log_min_duration_statement_database_flag_disabled
 
@@ -244,8 +244,8 @@ benchmark "cis_v400_6_3" {
 }
 
 control "cis_v400_6_3_1" {
-  title         = "6.3.1 Ensure 'external scripts enabled' database flag for Cloud SQL SQL Server Instance is set to 'off"
-  description   = "It is recommended to set external scripts enabled database flag for Cloud SQL SQL Server instance to off."
+  title         = "6.3.1 Ensure 'external scripts enabled' Database Flag for Cloud SQL SQL Server Instance Is Set to 'off'"
+  description   = "It is recommended to set `external scripts enabled` database flag for Cloud SQL SQL Server instance to `off`."
   documentation = file("./cis_v400/docs/cis_v400_6_3_1.md")
   query         = query.sql_instance_sql_external_scripts_enabled_database_flag_off
 
@@ -257,8 +257,8 @@ control "cis_v400_6_3_1" {
 }
 
 control "cis_v400_6_3_2" {
-  title         = "6.3.2 Ensure that the 'cross db ownership chaining' database flag for Cloud SQL SQL Server Instance is set to 'off'"
-  description   = "It is recommended to set cross db ownership chaining database flag for Cloud SQL SQL Server instance to off."
+  title         = "6.3.2 Ensure 'cross db ownership chaining' Database Flag for Cloud SQL SQL Server Instance Is Set to 'off'"
+  description   = "It is recommended to set `cross db ownership chaining` database flag for Cloud SQL SQL Server instance to `off`."
   documentation = file("./cis_v400/docs/cis_v400_6_3_2.md")
   query         = query.sql_instance_sql_cross_db_ownership_chaining_database_flag_off
 
@@ -270,8 +270,8 @@ control "cis_v400_6_3_2" {
 }
 
 control "cis_v400_6_3_3" {
-  title         = "6.3.3 Ensure 'user Connections' Database Flag for Cloud Sql Sql Server Instance Is Set to a Non-limiting Value"
-  description   = "It is recommended to set user connections database flag for Cloud SQL SQL Server instance according organization-defined value."
+  title         = "6.3.3 Ensure 'user Connections' Database Flag for Cloud SQL SQL Server Instance Is Set to a Non-limiting Value"
+  description   = "It is recommended to check the `user connections` for a Cloud SQL SQL Server instance to ensure that it is not artificially limiting connections."
   documentation = file("./cis_v400/docs/cis_v400_6_3_3.md")
   query         = query.sql_instance_sql_user_connections_database_flag_configured
 
@@ -283,8 +283,8 @@ control "cis_v400_6_3_3" {
 }
 
 control "cis_v400_6_3_4" {
-  title         = "6.3.4 Ensure 'user options' database flag for Cloud SQL SQL Server Instance is not configured"
-  description   = "The user options option specifies global defaults for all users. A list of default query processing options is established for the duration of a user's work session. The user options option allows you to change the default values of the SET options (if the server's default settings are not appropriate)."
+  title         = "6.3.4 Ensure 'user options' Database Flag for Cloud SQL SQL Server Instance Is Not Configured"
+  description   = "The `user options` option specifies global defaults for all users. A list of default query processing options is established for the duration of a user's work session. The user options option allows you to change the default values of the SET options (if the server's default settings are not appropriate)."
   documentation = file("./cis_v400/docs/cis_v400_6_3_4.md")
   query         = query.sql_instance_sql_user_options_database_flag_not_configured
 
@@ -296,8 +296,8 @@ control "cis_v400_6_3_4" {
 }
 
 control "cis_v400_6_3_5" {
-  title         = "6.3.5 Ensure 'remote access' database flag for Cloud SQL SQL Server instance is set to 'off'"
-  description   = "It is recommended to set remote access database flag for Cloud SQL SQL Server instance to off."
+  title         = "6.3.5 Ensure 'remote access' Database Flag for Cloud SQL SQL Server Instance Is Set to 'off'"
+  description   = "It is recommended to set `remote access` database flag for Cloud SQL SQL Server instance to `off`."
   documentation = file("./cis_v400/docs/cis_v400_6_3_5.md")
   query         = query.sql_instance_sql_remote_access_database_flag_off
 
@@ -310,7 +310,7 @@ control "cis_v400_6_3_5" {
 
 control "cis_v400_6_3_6" {
   title         = "6.3.6 Ensure '3625 (trace flag)' Database Flag for all Cloud SQL SQL Server Instances Is Set to 'on'"
-  description   = "It is recommended to set 3625 (trace flag) database flag for Cloud SQL SQL Server instance to on."
+  description   = "It is recommended to set `3625 (trace flag)` database flag for Cloud SQL SQL Server instance to `on`."
   documentation = file("./cis_v400/docs/cis_v400_6_3_6.md")
   query         = query.sql_instance_sql_3625_trace_database_flag_on
 
