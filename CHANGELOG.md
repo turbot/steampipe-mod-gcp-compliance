@@ -1,3 +1,9 @@
+## v1.1.0 [2025-05-23]
+
+_What's new?_
+
+- Added CIS v4.0.0 benchmark (`powerpipe benchmark run gcp_compliance.benchmark.cis_v400`). ([#195](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/195))
+
 ## v1.0.3 [2025-04-22]
 
 _Bug fixes_
