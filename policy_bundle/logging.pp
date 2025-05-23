@@ -36,6 +36,14 @@ control "logging_metric_alert_custom_role_changes" {
   })
 }
 
+control "logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role" {
+  title       = "Ensure that the log metric filter and alerts exist for Custom Role changes including undelete operations"
+  description = "It is recommended that a metric filter and alarm be established for changes to Identity and Access Management (IAM) role creation, deletion, updating, and undeleting activities."
+  query       = query.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role
+
+  tags = local.policy_bundle_logging_common_tags
+}
+
 control "logging_metric_alert_firewall_rule_changes" {
   title       = "Ensure that the log metric filter and alerts exist for VPC Network Firewall rule changes"
   description = "It is recommended that a metric filter and alarm be established for Virtual Private Cloud (VPC) Network Firewall rule changes."
@@ -180,6 +188,42 @@ query "logging_metric_alert_audit_configuration_changes" {
         when d.metric_name > 0
           then 'Log metric and alert exist for audit configuration changes.'
         else 'Log metric and alert do not exist for audit configuration changes.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_project_sql}
+    from
+      gcp_project as p
+      left join filter_data as d on d.project = p.name;
+  EOQ
+}
+
+query "logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role" {
+  sql = <<-EOQ
+    with filter_data as (
+      select
+        m.project as project,
+        display_name alert_name,
+        count(m.name) metric_name
+      from
+        gcp_monitoring_alert_policy,
+        jsonb_array_elements(conditions) as filter_condition
+        join gcp_logging_metric m on m.filter ~ '\s*resource\.type\s*=\s*"iam_role"\s*AND\s*\(\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.CreateRole"\s*OR\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.DeleteRole"\s*OR\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.UpdateRole"\s*OR\s*protoPayload\.methodName\s*=\s*"google\.iam\.admin\.v1\.UndeleteRole"\s*\)'
+        and filter_condition -> 'conditionThreshold' ->> 'filter' like '%metric.type="' || m.metric_descriptor_type || '"%'
+      where
+        enabled
+      group by
+        m.project, display_name, m.name
+    )
+    select
+      'https://cloudresourcemanager.googleapis.com/v1/projects/' || project_id resource,
+      case
+        when d.metric_name > 0 then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when d.metric_name > 0
+          then 'Log metric and alert exist for custom role changes.'
+        else 'Log metric and alert do not exist for custom role changes.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_project_sql}
