@@ -51,8 +51,8 @@ benchmark "nist_csf_v2_pr_aa_02" {
     control.iam_user_kms_separation_of_duty_enforced,
     control.iam_user_separation_of_duty_enforced,
     control.kms_key_separation_of_duties_enforced,
-    control.sql_instance_sql_contained_database_authentication_database_flag_off,
-    control.kubernetes_cluster_client_certificate_authentication_enabled
+    control.kubernetes_cluster_client_certificate_authentication_enabled,
+    control.sql_instance_sql_contained_database_authentication_database_flag_off
   ]
 }
 
@@ -68,8 +68,8 @@ benchmark "nist_csf_v2_pr_aa_03" {
     control.iam_service_account_key_age_90,
     control.iam_service_account_without_admin_privilege,
     control.iam_user_not_assigned_service_account_user_role_project_level,
-    control.sql_instance_sql_contained_database_authentication_database_flag_off,
-    control.kubernetes_cluster_client_certificate_authentication_enabled
+    control.kubernetes_cluster_client_certificate_authentication_enabled,
+    control.sql_instance_sql_contained_database_authentication_database_flag_off
   ]
 }
 
@@ -77,14 +77,14 @@ benchmark "nist_csf_v2_pr_aa_04" {
   title       = "PR.AA-04"
   description = "Identity assertions are protected, conveyed, and verified."
   children = [
+    control.compute_https_load_balancer_logging_enabled,
+    control.compute_ssl_policy_with_no_weak_cipher,
+    control.compute_target_https_uses_latest_tls_version,
     control.kms_key_not_publicly_accessible,
     control.kms_key_rotated_within_90_day,
     control.kms_key_separation_of_duties_enforced,
     control.kms_key_users_limited_to_3,
-    control.require_ssl_sql,
-    control.compute_ssl_policy_with_no_weak_cipher,
-    control.compute_https_load_balancer_logging_enabled,
-    control.compute_target_https_uses_latest_tls_version
+    control.require_ssl_sql
   ]
 }
 
@@ -131,18 +131,18 @@ benchmark "nist_csf_v2_pr_ds_01" {
   description = "The confidentiality, integrity, and availability of data-at-rest are protected."
   children = [
     control.cmek_rotation_one_hundred_days,
+    control.compute_disk_encrypted_with_csk,
+    control.dataproc_cluster_encryption_with_cmek,
     control.kms_key_not_publicly_accessible,
     control.kms_key_rotated_within_90_day,
     control.kms_key_separation_of_duties_enforced,
     control.kms_key_users_limited_to_3,
-    control.compute_disk_encrypted_with_csk,
-    control.storage_bucket_not_publicly_accessible,
-    control.storage_bucket_log_retention_policy_enabled,
-    control.storage_bucket_log_object_versioning_enabled,
+    control.sql_instance_automated_backups_enabled,
     control.sql_instance_not_publicly_accessible,
     control.sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled,
-    control.sql_instance_automated_backups_enabled,
-    control.dataproc_cluster_encryption_with_cmek
+    control.storage_bucket_log_object_versioning_enabled,
+    control.storage_bucket_log_retention_policy_enabled,
+    control.storage_bucket_not_publicly_accessible
   ]
 }
 
@@ -150,11 +150,11 @@ benchmark "nist_csf_v2_pr_ds_02" {
   title       = "PR.DS-02"
   description = "The confidentiality, integrity, and availability of data-in-transit are protected."
   children = [
-    control.require_ssl_sql,
     control.compute_firewall_default_rule_restrict_ingress_access_except_http_and_https,
     control.compute_https_load_balancer_logging_enabled,
     control.compute_ssl_policy_with_no_weak_cipher,
-    control.compute_target_https_uses_latest_tls_version
+    control.compute_target_https_uses_latest_tls_version,
+    control.require_ssl_sql
   ]
 }
 
@@ -171,11 +171,11 @@ benchmark "nist_csf_v2_pr_ds_11" {
   title       = "PR.DS-11"
   description = "Backups of data are created, protected, maintained, and tested."
   children = [
+    control.logging_bucket_retention_policy_enabled,
     control.sql_instance_automated_backups_enabled,
     control.storage_bucket_log_object_versioning_enabled,
     control.storage_bucket_log_retention_policy_enabled,
-    control.storage_bucket_log_retention_policy_lock_enabled,
-    control.logging_bucket_retention_policy_enabled
+    control.storage_bucket_log_retention_policy_lock_enabled
   ]
 }
 
@@ -197,12 +197,12 @@ benchmark "nist_csf_v2_pr_ps_01" {
   description = "Configuration management practices are established and applied."
   children = [
     control.compute_instance_oslogin_enabled,
-    control.logging_metric_alert_audit_configuration_changes,
-    control.logging_metric_alert_sql_instance_configuration_changes,
     control.kubernetes_cluster_binary_authorization_enabled,
     control.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled,
     control.kubernetes_cluster_shielded_node_secure_boot_enabled,
-    control.kubernetes_cluster_shielded_nodes_enabled
+    control.kubernetes_cluster_shielded_nodes_enabled,
+    control.logging_metric_alert_audit_configuration_changes,
+    control.logging_metric_alert_sql_instance_configuration_changes
   ]
 }
 
@@ -230,10 +230,16 @@ benchmark "nist_csf_v2_pr_ps_04" {
   title       = "PR.PS-04"
   description = "Log records are generated and made available for continuous monitoring."
   children = [
+    control.compute_firewall_rule_logging_enabled,
+    control.compute_https_load_balancer_logging_enabled,
+    control.compute_network_dns_logging_enabled,
+    control.enable_network_flow_logs,
+    control.kubernetes_cluster_logging_enabled,
+    control.kubernetes_cluster_monitoring_enabled,
     control.logging_bucket_retention_policy_enabled,
     control.logging_metric_alert_audit_configuration_changes,
-    control.logging_metric_alert_custom_role_changes,
     control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
+    control.logging_metric_alert_custom_role_changes,
     control.logging_metric_alert_firewall_rule_changes,
     control.logging_metric_alert_network_changes,
     control.logging_metric_alert_network_route_changes,
@@ -241,15 +247,9 @@ benchmark "nist_csf_v2_pr_ps_04" {
     control.logging_metric_alert_sql_instance_configuration_changes,
     control.logging_metric_alert_storage_iam_permission_changes,
     control.logging_sink_configured_for_all_resource,
-    control.kubernetes_cluster_logging_enabled,
-    control.kubernetes_cluster_monitoring_enabled,
-    control.storage_bucket_log_retention_policy_enabled,
     control.storage_bucket_log_object_versioning_enabled,
-    control.storage_bucket_log_retention_policy_lock_enabled,
-    control.compute_firewall_rule_logging_enabled,
-    control.compute_https_load_balancer_logging_enabled,
-    control.compute_network_dns_logging_enabled,
-    control.enable_network_flow_logs
+    control.storage_bucket_log_retention_policy_enabled,
+    control.storage_bucket_log_retention_policy_lock_enabled
   ]
 }
 
@@ -267,8 +267,8 @@ benchmark "nist_csf_v2_pr_ps_06" {
   title       = "PR.PS-06"
   description = "Secure software development practices are integrated, and their performance is monitored throughout the software development life cycle."
   children = [
-    control.project_service_container_scanning_api_enabled,
-    control.kubernetes_cluster_binary_authorization_enabled
+    control.kubernetes_cluster_binary_authorization_enabled,
+    control.project_service_container_scanning_api_enabled
   ]
 }
 
@@ -288,14 +288,6 @@ benchmark "nist_csf_v2_pr_ir_01" {
   description = "Networks and environments are protected from unauthorized logical access and usage."
   children = [
     control.cloudfunction_function_vpc_connector_enabled,
-    control.enable_gke_master_authorized_networks,
-    control.kubernetes_cluster_network_policy_enabled,
-    control.kubernetes_cluster_no_default_network,
-    control.kubernetes_cluster_private_nodes_configured,
-    control.kubernetes_cluster_subnetwork_private_ip_google_access_enabled,
-    control.logging_metric_alert_firewall_rule_changes,
-    control.logging_metric_alert_network_changes,
-    control.logging_metric_alert_network_route_changes,
     control.compute_firewall_allow_connections_proxied_by_iap,
     control.compute_firewall_allow_tcp_connections_proxied_by_iap,
     control.compute_firewall_default_rule_restrict_ingress_access_except_http_and_https,
@@ -336,8 +328,16 @@ benchmark "nist_csf_v2_pr_ir_01" {
     control.compute_network_contains_no_default_network,
     control.compute_network_contains_no_legacy_network,
     control.compute_network_dns_logging_enabled,
+    control.enable_gke_master_authorized_networks,
     control.enable_network_flow_logs,
     control.enable_network_private_google_access,
+    control.kubernetes_cluster_network_policy_enabled,
+    control.kubernetes_cluster_no_default_network,
+    control.kubernetes_cluster_private_nodes_configured,
+    control.kubernetes_cluster_subnetwork_private_ip_google_access_enabled,
+    control.logging_metric_alert_firewall_rule_changes,
+    control.logging_metric_alert_network_changes,
+    control.logging_metric_alert_network_route_changes,
     control.restrict_firewall_rule_rdp_world_open,
     control.restrict_firewall_rule_ssh_world_open,
     control.restrict_firewall_rule_world_open_tcp_udp_all_ports
@@ -364,17 +364,17 @@ benchmark "nist_csf_v2_pr_ir_03" {
   description = "Mechanisms are implemented to achieve resilience requirements in normal and adverse situations."
   children = [
     control.compute_instance_shielded_vm_enabled,
+    control.enable_auto_repair,
+    control.enable_auto_upgrade,
     control.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled,
     control.kubernetes_cluster_shielded_node_secure_boot_enabled,
     control.kubernetes_cluster_shielded_nodes_enabled,
+    control.kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled,
+    control.logging_bucket_retention_policy_enabled,
     control.sql_instance_automated_backups_enabled,
     control.storage_bucket_log_object_versioning_enabled,
     control.storage_bucket_log_retention_policy_enabled,
-    control.storage_bucket_log_retention_policy_lock_enabled,
-    control.logging_bucket_retention_policy_enabled,
-    control.enable_auto_repair,
-    control.enable_auto_upgrade,
-    control.kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled
+    control.storage_bucket_log_retention_policy_lock_enabled
   ]
 }
 
@@ -382,12 +382,12 @@ benchmark "nist_csf_v2_pr_ir_04" {
   title       = "PR.IR-04"
   description = "Adequate resource capacity to ensure availability is maintained."
   children = [
+    control.enable_auto_repair,
+    control.enable_auto_upgrade,
+    control.kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled,
     control.sql_instance_automated_backups_enabled,
     control.storage_bucket_log_object_versioning_enabled,
     control.storage_bucket_log_retention_policy_enabled,
-    control.storage_bucket_log_retention_policy_lock_enabled,
-    control.enable_auto_repair,
-    control.enable_auto_upgrade,
-    control.kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled
+    control.storage_bucket_log_retention_policy_lock_enabled
   ]
 }

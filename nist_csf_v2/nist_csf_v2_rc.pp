@@ -42,9 +42,9 @@ benchmark "nist_csf_v2_rc_rp_03" {
   title       = "RC.RP-03"
   description = "The integrity of backups and other restoration assets is verified before using them for restoration."
   children = [
+    control.logging_bucket_retention_policy_enabled,
     control.sql_instance_automated_backups_enabled,
-    control.storage_bucket_log_retention_policy_enabled,
-    control.logging_bucket_retention_policy_enabled
+    control.storage_bucket_log_retention_policy_enabled
   ]
 }
 
@@ -61,9 +61,9 @@ benchmark "nist_csf_v2_rc_rp_05" {
   title       = "RC.RP-05"
   description = "The integrity of restored assets is verified, systems and services are restored, and normal operating status is confirmed."
   children = [
+    control.logging_bucket_retention_policy_enabled,
     control.sql_instance_automated_backups_enabled,
-    control.storage_bucket_log_retention_policy_enabled,
-    control.logging_bucket_retention_policy_enabled
+    control.storage_bucket_log_retention_policy_enabled
   ]
 }
 

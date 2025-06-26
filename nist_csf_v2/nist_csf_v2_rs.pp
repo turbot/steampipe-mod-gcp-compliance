@@ -65,7 +65,6 @@ benchmark "nist_csf_v2_rs_ma_04" {
   title       = "RS.MA-04"
   description = "Incidents are escalated or elevated as needed."
   children = [
-    control.organization_essential_contacts_configured,
     control.logging_metric_alert_audit_configuration_changes,
     control.logging_metric_alert_custom_role_changes,
     control.logging_metric_alert_firewall_rule_changes,
@@ -73,7 +72,8 @@ benchmark "nist_csf_v2_rs_ma_04" {
     control.logging_metric_alert_network_route_changes,
     control.logging_metric_alert_project_ownership_assignment,
     control.logging_metric_alert_sql_instance_configuration_changes,
-    control.logging_metric_alert_storage_iam_permission_changes
+    control.logging_metric_alert_storage_iam_permission_changes,
+    control.organization_essential_contacts_configured
   ]
 }
 
