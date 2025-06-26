@@ -11,6 +11,7 @@ control "denylist_public_users" {
   tags = merge(local.policy_bundle_iam_common_tags, {
     cft_scorecard_v1      = "true"
     forseti_security_v226 = "true"
+    nist_csf_v2           = "true"
     severity              = "high"
   })
 }
@@ -21,6 +22,7 @@ control "only_my_domain" {
 
   tags = merge(local.policy_bundle_iam_common_tags, {
     forseti_security_v226 = "true"
+    nist_csf_v2           = "true"
     severity              = "high"
   })
 }
@@ -31,6 +33,7 @@ control "iam_restrict_service_account_key_age_one_hundred_days" {
 
   tags = merge(local.policy_bundle_iam_common_tags, {
     forseti_security_v226 = "true"
+    nist_csf_v2           = "true"
     severity              = "high"
   })
 }
@@ -40,7 +43,9 @@ control "iam_service_account_gcp_managed_key" {
   description = "User managed service accounts should not have user-managed keys."
   query       = query.iam_service_account_gcp_managed_key
 
-  tags = local.policy_bundle_iam_common_tags
+  tags = merge(local.policy_bundle_iam_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 control "iam_service_account_key_age_90" {
@@ -48,7 +53,9 @@ control "iam_service_account_key_age_90" {
   description = "Service Account keys consist of a key ID (Private_key_Id) and Private key, which are used to sign programmatic requests users make to Google cloud services accessible to that particular service account. It is recommended that all Service Account keys are regularly rotated."
   query       = query.iam_service_account_key_age_90
 
-  tags = local.policy_bundle_iam_common_tags
+  tags = merge(local.policy_bundle_iam_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 control "iam_api_key_age_90" {
@@ -58,6 +65,7 @@ control "iam_api_key_age_90" {
 
   tags = merge(local.policy_bundle_iam_common_tags, {
     nist_csf_v10 = "true"
+    nist_csf_v2  = "true"
   })
 }
 
@@ -68,6 +76,7 @@ control "iam_api_key_restricts_apis" {
 
   tags = merge(local.policy_bundle_iam_common_tags, {
     nist_csf_v10 = "true"
+    nist_csf_v2  = "true"
   })
 }
 
@@ -76,7 +85,9 @@ control "iam_api_key_restricts_websites_hosts_apps" {
   description = "Unrestricted keys are insecure because they can be viewed publicly, such as from within a browser, or they can be accessed on a device where the key resides. It is recommended to restrict API key usage to trusted hosts, HTTP referrers and apps."
   query       = query.iam_api_key_restricts_websites_hosts_apps
 
-  tags = local.policy_bundle_iam_common_tags
+  tags = merge(local.policy_bundle_iam_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 control "iam_service_account_without_admin_privilege" {
@@ -87,6 +98,7 @@ control "iam_service_account_without_admin_privilege" {
   tags = merge(local.policy_bundle_iam_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }
@@ -99,6 +111,7 @@ control "iam_user_not_assigned_service_account_user_role_project_level" {
   tags = merge(local.policy_bundle_iam_common_tags, {
     hipaa             = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     nist_800_53_rev_5 = "true"
     pci_dss_v321      = "true"
     soc_2_2017        = "true"
@@ -113,6 +126,7 @@ control "iam_user_separation_of_duty_enforced" {
   tags = merge(local.policy_bundle_iam_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }
@@ -122,7 +136,9 @@ control "iam_user_kms_separation_of_duty_enforced" {
   description = "It is recommended that the principle of 'Separation of Duties' is enforced while assigning KMS related roles to users."
   query       = query.iam_user_kms_separation_of_duty_enforced
 
-  tags = local.policy_bundle_iam_common_tags
+  tags = merge(local.policy_bundle_iam_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 query "iam_user_denylist_public" {
