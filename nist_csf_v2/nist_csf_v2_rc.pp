@@ -2,8 +2,33 @@ benchmark "nist_csf_v2_rc" {
   title       = "RECOVER (RC)"
   description = "Assets and operations affected by a cybersecurity incident are restored."
   children = [
-    benchmark.nist_csf_v2_rc_rp,
-    benchmark.nist_csf_v2_rc_co
+    benchmark.nist_csf_v2_rc_co,
+    benchmark.nist_csf_v2_rc_rp
+  ]
+}
+
+benchmark "nist_csf_v2_rc_co" {
+  title       = "RC.CO"
+  description = "Incident Recovery Communication (RC.CO): Restoration activities are coordinated with internal and external parties."
+  children = [
+    benchmark.nist_csf_v2_rc_co_03,
+    benchmark.nist_csf_v2_rc_co_04
+  ]
+}
+
+benchmark "nist_csf_v2_rc_co_03" {
+  title       = "RC.CO-03"
+  description = "Recovery activities and progress in restoring operational capabilities are communicated to designated internal and external stakeholders."
+  children = [
+    control.organization_essential_contacts_configured
+  ]
+}
+
+benchmark "nist_csf_v2_rc_co_04" {
+  title       = "RC.CO-04"
+  description = "Public updates on incident recovery are shared using approved methods and messaging."
+  children = [
+    control.organization_essential_contacts_configured
   ]
 }
 
@@ -73,30 +98,5 @@ benchmark "nist_csf_v2_rc_rp_06" {
   children = [
     control.audit_logging_configured_for_all_service,
     control.logging_bucket_retention_policy_enabled
-  ]
-}
-
-benchmark "nist_csf_v2_rc_co" {
-  title       = "RC.CO"
-  description = "Incident Recovery Communication (RC.CO): Restoration activities are coordinated with internal and external parties."
-  children = [
-    benchmark.nist_csf_v2_rc_co_03,
-    benchmark.nist_csf_v2_rc_co_04
-  ]
-}
-
-benchmark "nist_csf_v2_rc_co_03" {
-  title       = "RC.CO-03"
-  description = "Recovery activities and progress in restoring operational capabilities are communicated to designated internal and external stakeholders."
-  children = [
-    control.organization_essential_contacts_configured
-  ]
-}
-
-benchmark "nist_csf_v2_rc_co_04" {
-  title       = "RC.CO-04"
-  description = "Public updates on incident recovery are shared using approved methods and messaging."
-  children = [
-    control.organization_essential_contacts_configured
   ]
 }

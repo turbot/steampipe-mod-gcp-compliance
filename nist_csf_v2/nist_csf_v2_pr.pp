@@ -4,8 +4,8 @@ benchmark "nist_csf_v2_pr" {
   children = [
     benchmark.nist_csf_v2_pr_aa,
     benchmark.nist_csf_v2_pr_ds,
-    benchmark.nist_csf_v2_pr_ps,
-    benchmark.nist_csf_v2_pr_ir
+    benchmark.nist_csf_v2_pr_ir,
+    benchmark.nist_csf_v2_pr_ps
   ]
 }
 
@@ -179,99 +179,6 @@ benchmark "nist_csf_v2_pr_ds_11" {
   ]
 }
 
-benchmark "nist_csf_v2_pr_ps" {
-  title       = "PR.PS"
-  description = "Platform Security (PR.PS): The hardware, software (e.g., firmware, operating systems, applications), and services of physical and virtual platforms are managed consistent with the organization's risk strategy to protect their confidentiality, integrity, and availability."
-  children = [
-    benchmark.nist_csf_v2_pr_ps_01,
-    benchmark.nist_csf_v2_pr_ps_02,
-    benchmark.nist_csf_v2_pr_ps_03,
-    benchmark.nist_csf_v2_pr_ps_04,
-    benchmark.nist_csf_v2_pr_ps_05,
-    benchmark.nist_csf_v2_pr_ps_06
-  ]
-}
-
-benchmark "nist_csf_v2_pr_ps_01" {
-  title       = "PR.PS-01"
-  description = "Configuration management practices are established and applied."
-  children = [
-    control.compute_instance_oslogin_enabled,
-    control.kubernetes_cluster_binary_authorization_enabled,
-    control.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled,
-    control.kubernetes_cluster_shielded_node_secure_boot_enabled,
-    control.kubernetes_cluster_shielded_nodes_enabled,
-    control.logging_metric_alert_audit_configuration_changes,
-    control.logging_metric_alert_sql_instance_configuration_changes
-  ]
-}
-
-benchmark "nist_csf_v2_pr_ps_02" {
-  title       = "PR.PS-02"
-  description = "Software is maintained, replaced, and removed commensurate with risk."
-  children = [
-    control.enable_auto_repair,
-    control.enable_auto_upgrade,
-    control.kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled
-  ]
-}
-
-benchmark "nist_csf_v2_pr_ps_03" {
-  title       = "PR.PS-03"
-  description = "Hardware is maintained, replaced, and removed commensurate with risk."
-  children = [
-    control.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled,
-    control.kubernetes_cluster_shielded_node_secure_boot_enabled,
-    control.kubernetes_cluster_shielded_nodes_enabled
-  ]
-}
-
-benchmark "nist_csf_v2_pr_ps_04" {
-  title       = "PR.PS-04"
-  description = "Log records are generated and made available for continuous monitoring."
-  children = [
-    control.compute_firewall_rule_logging_enabled,
-    control.compute_https_load_balancer_logging_enabled,
-    control.compute_network_dns_logging_enabled,
-    control.enable_network_flow_logs,
-    control.kubernetes_cluster_logging_enabled,
-    control.kubernetes_cluster_monitoring_enabled,
-    control.logging_bucket_retention_policy_enabled,
-    control.logging_metric_alert_audit_configuration_changes,
-    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
-    control.logging_metric_alert_custom_role_changes,
-    control.logging_metric_alert_firewall_rule_changes,
-    control.logging_metric_alert_network_changes,
-    control.logging_metric_alert_network_route_changes,
-    control.logging_metric_alert_project_ownership_assignment,
-    control.logging_metric_alert_sql_instance_configuration_changes,
-    control.logging_metric_alert_storage_iam_permission_changes,
-    control.logging_sink_configured_for_all_resource,
-    control.storage_bucket_log_object_versioning_enabled,
-    control.storage_bucket_log_retention_policy_enabled,
-    control.storage_bucket_log_retention_policy_lock_enabled
-  ]
-}
-
-benchmark "nist_csf_v2_pr_ps_05" {
-  title       = "PR.PS-05"
-  description = "Installation and execution of unauthorized software are prevented."
-  children = [
-    control.kubernetes_cluster_binary_authorization_enabled,
-    control.kubernetes_cluster_shielded_node_secure_boot_enabled,
-    control.kubernetes_cluster_shielded_nodes_enabled
-  ]
-}
-
-benchmark "nist_csf_v2_pr_ps_06" {
-  title       = "PR.PS-06"
-  description = "Secure software development practices are integrated, and their performance is monitored throughout the software development life cycle."
-  children = [
-    control.kubernetes_cluster_binary_authorization_enabled,
-    control.project_service_container_scanning_api_enabled
-  ]
-}
-
 benchmark "nist_csf_v2_pr_ir" {
   title       = "PR.IR"
   description = "Technology Infrastructure Resilience (PR.IR): Security architectures are managed with the organization's risk strategy to protect asset confidentiality, integrity, and availability, and organizational resilience."
@@ -389,5 +296,98 @@ benchmark "nist_csf_v2_pr_ir_04" {
     control.storage_bucket_log_object_versioning_enabled,
     control.storage_bucket_log_retention_policy_enabled,
     control.storage_bucket_log_retention_policy_lock_enabled
+  ]
+}
+
+benchmark "nist_csf_v2_pr_ps" {
+  title       = "PR.PS"
+  description = "Platform Security (PR.PS): The hardware, software (e.g., firmware, operating systems, applications), and services of physical and virtual platforms are managed consistent with the organization's risk strategy to protect their confidentiality, integrity, and availability."
+  children = [
+    benchmark.nist_csf_v2_pr_ps_01,
+    benchmark.nist_csf_v2_pr_ps_02,
+    benchmark.nist_csf_v2_pr_ps_03,
+    benchmark.nist_csf_v2_pr_ps_04,
+    benchmark.nist_csf_v2_pr_ps_05,
+    benchmark.nist_csf_v2_pr_ps_06
+  ]
+}
+
+benchmark "nist_csf_v2_pr_ps_01" {
+  title       = "PR.PS-01"
+  description = "Configuration management practices are established and applied."
+  children = [
+    control.compute_instance_oslogin_enabled,
+    control.kubernetes_cluster_binary_authorization_enabled,
+    control.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled,
+    control.kubernetes_cluster_shielded_node_secure_boot_enabled,
+    control.kubernetes_cluster_shielded_nodes_enabled,
+    control.logging_metric_alert_audit_configuration_changes,
+    control.logging_metric_alert_sql_instance_configuration_changes
+  ]
+}
+
+benchmark "nist_csf_v2_pr_ps_02" {
+  title       = "PR.PS-02"
+  description = "Software is maintained, replaced, and removed commensurate with risk."
+  children = [
+    control.enable_auto_repair,
+    control.enable_auto_upgrade,
+    control.kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled
+  ]
+}
+
+benchmark "nist_csf_v2_pr_ps_03" {
+  title       = "PR.PS-03"
+  description = "Hardware is maintained, replaced, and removed commensurate with risk."
+  children = [
+    control.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled,
+    control.kubernetes_cluster_shielded_node_secure_boot_enabled,
+    control.kubernetes_cluster_shielded_nodes_enabled
+  ]
+}
+
+benchmark "nist_csf_v2_pr_ps_04" {
+  title       = "PR.PS-04"
+  description = "Log records are generated and made available for continuous monitoring."
+  children = [
+    control.compute_firewall_rule_logging_enabled,
+    control.compute_https_load_balancer_logging_enabled,
+    control.compute_network_dns_logging_enabled,
+    control.enable_network_flow_logs,
+    control.kubernetes_cluster_logging_enabled,
+    control.kubernetes_cluster_monitoring_enabled,
+    control.logging_bucket_retention_policy_enabled,
+    control.logging_metric_alert_audit_configuration_changes,
+    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
+    control.logging_metric_alert_custom_role_changes,
+    control.logging_metric_alert_firewall_rule_changes,
+    control.logging_metric_alert_network_changes,
+    control.logging_metric_alert_network_route_changes,
+    control.logging_metric_alert_project_ownership_assignment,
+    control.logging_metric_alert_sql_instance_configuration_changes,
+    control.logging_metric_alert_storage_iam_permission_changes,
+    control.logging_sink_configured_for_all_resource,
+    control.storage_bucket_log_object_versioning_enabled,
+    control.storage_bucket_log_retention_policy_enabled,
+    control.storage_bucket_log_retention_policy_lock_enabled
+  ]
+}
+
+benchmark "nist_csf_v2_pr_ps_05" {
+  title       = "PR.PS-05"
+  description = "Installation and execution of unauthorized software are prevented."
+  children = [
+    control.kubernetes_cluster_binary_authorization_enabled,
+    control.kubernetes_cluster_shielded_node_secure_boot_enabled,
+    control.kubernetes_cluster_shielded_nodes_enabled
+  ]
+}
+
+benchmark "nist_csf_v2_pr_ps_06" {
+  title       = "PR.PS-06"
+  description = "Secure software development practices are integrated, and their performance is monitored throughout the software development life cycle."
+  children = [
+    control.kubernetes_cluster_binary_authorization_enabled,
+    control.project_service_container_scanning_api_enabled
   ]
 }

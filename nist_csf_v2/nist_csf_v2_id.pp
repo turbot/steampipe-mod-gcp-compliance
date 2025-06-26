@@ -3,8 +3,8 @@ benchmark "nist_csf_v2_id" {
   description = "The organization's current cybersecurity risks are understood."
   children = [
     benchmark.nist_csf_v2_id_am,
-    benchmark.nist_csf_v2_id_ra,
-    benchmark.nist_csf_v2_id_im
+    benchmark.nist_csf_v2_id_im,
+    benchmark.nist_csf_v2_id_ra
   ]
 }
 
@@ -100,6 +100,56 @@ benchmark "nist_csf_v2_id_am_08" {
     control.logging_bucket_retention_policy_enabled,
     control.project_service_cloudasset_api_enabled,
     control.storage_bucket_log_retention_policy_enabled
+  ]
+}
+
+benchmark "nist_csf_v2_id_im" {
+  title       = "ID.IM"
+  description = "Improvement (ID.IM): Improvements to organizational cybersecurity risk management processes, procedures and activities are identified across all CSF Functions."
+  children = [
+    benchmark.nist_csf_v2_id_im_01,
+    benchmark.nist_csf_v2_id_im_02,
+    benchmark.nist_csf_v2_id_im_03,
+    benchmark.nist_csf_v2_id_im_04
+  ]
+}
+
+benchmark "nist_csf_v2_id_im_01" {
+  title       = "ID.IM-01"
+  description = "Improvements are identified from evaluations."
+  children = [
+    control.audit_logging_configured_for_all_service,
+    control.logging_metric_alert_audit_configuration_changes,
+    control.sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled
+  ]
+}
+
+benchmark "nist_csf_v2_id_im_02" {
+  title       = "ID.IM-02"
+  description = "Improvements are identified from security tests and exercises, including those done in coordination with suppliers and relevant third parties."
+  children = [
+    control.audit_logging_configured_for_all_service,
+    control.logging_metric_alert_audit_configuration_changes,
+    control.sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled
+  ]
+}
+
+benchmark "nist_csf_v2_id_im_03" {
+  title       = "ID.IM-03"
+  description = "Improvements are identified from execution of operational processes, procedures, and activities."
+  children = [
+    control.audit_logging_configured_for_all_service,
+    control.logging_bucket_retention_policy_enabled,
+    control.logging_metric_alert_audit_configuration_changes,
+    control.sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled
+  ]
+}
+
+benchmark "nist_csf_v2_id_im_04" {
+  title       = "ID.IM-04"
+  description = "Incident response plans and other cybersecurity plans that affect operations are established, communicated, maintained, and improved."
+  children = [
+    control.organization_essential_contacts_configured
   ]
 }
 
@@ -261,55 +311,5 @@ benchmark "nist_csf_v2_id_ra_10" {
   children = [
     control.audit_logging_configured_for_all_service,
     control.project_service_cloudasset_api_enabled
-  ]
-}
-
-benchmark "nist_csf_v2_id_im" {
-  title       = "ID.IM"
-  description = "Improvement (ID.IM): Improvements to organizational cybersecurity risk management processes, procedures and activities are identified across all CSF Functions."
-  children = [
-    benchmark.nist_csf_v2_id_im_01,
-    benchmark.nist_csf_v2_id_im_02,
-    benchmark.nist_csf_v2_id_im_03,
-    benchmark.nist_csf_v2_id_im_04
-  ]
-}
-
-benchmark "nist_csf_v2_id_im_01" {
-  title       = "ID.IM-01"
-  description = "Improvements are identified from evaluations."
-  children = [
-    control.audit_logging_configured_for_all_service,
-    control.logging_metric_alert_audit_configuration_changes,
-    control.sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled
-  ]
-}
-
-benchmark "nist_csf_v2_id_im_02" {
-  title       = "ID.IM-02"
-  description = "Improvements are identified from security tests and exercises, including those done in coordination with suppliers and relevant third parties."
-  children = [
-    control.audit_logging_configured_for_all_service,
-    control.logging_metric_alert_audit_configuration_changes,
-    control.sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled
-  ]
-}
-
-benchmark "nist_csf_v2_id_im_03" {
-  title       = "ID.IM-03"
-  description = "Improvements are identified from execution of operational processes, procedures, and activities."
-  children = [
-    control.audit_logging_configured_for_all_service,
-    control.logging_bucket_retention_policy_enabled,
-    control.logging_metric_alert_audit_configuration_changes,
-    control.sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled
-  ]
-}
-
-benchmark "nist_csf_v2_id_im_04" {
-  title       = "ID.IM-04"
-  description = "Incident response plans and other cybersecurity plans that affect operations are established, communicated, maintained, and improved."
-  children = [
-    control.organization_essential_contacts_configured
   ]
 }

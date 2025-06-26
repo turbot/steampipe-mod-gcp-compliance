@@ -3,10 +3,10 @@ benchmark "nist_csf_v2_gv" {
   description = "The organization's cybersecurity risk management strategy, expectations, and policy are established, communicated, and monitored."
   children = [
     benchmark.nist_csf_v2_gv_oc,
+    benchmark.nist_csf_v2_gv_ov,
+    benchmark.nist_csf_v2_gv_po,
     benchmark.nist_csf_v2_gv_rm,
     benchmark.nist_csf_v2_gv_rr,
-    benchmark.nist_csf_v2_gv_po,
-    benchmark.nist_csf_v2_gv_ov,
     benchmark.nist_csf_v2_gv_sc
   ]
 }
@@ -77,6 +77,114 @@ benchmark "nist_csf_v2_gv_oc_05" {
   children = [
     control.organization_essential_contacts_configured,
     control.project_service_cloudasset_api_enabled
+  ]
+}
+
+benchmark "nist_csf_v2_gv_ov" {
+  title       = "Oversight (GV.OV)"
+  description = "Results of organization-wide cybersecurity risk management activities and performance are used to inform, improve, and adjust the risk management strategy."
+  children = [
+    benchmark.nist_csf_v2_gv_ov_01,
+    benchmark.nist_csf_v2_gv_ov_02,
+    benchmark.nist_csf_v2_gv_ov_03
+  ]
+}
+
+benchmark "nist_csf_v2_gv_ov_01" {
+  title       = "GV.OV-01"
+  description = "Cybersecurity risk management strategy outcomes are reviewed to inform and adjust strategy and direction."
+  children = [
+    control.audit_logging_configured_for_all_service,
+    control.logging_metric_alert_audit_configuration_changes,
+    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
+    control.logging_metric_alert_custom_role_changes,
+    control.logging_metric_alert_firewall_rule_changes,
+    control.logging_metric_alert_network_changes,
+    control.logging_metric_alert_network_route_changes,
+    control.logging_metric_alert_project_ownership_assignment,
+    control.logging_metric_alert_sql_instance_configuration_changes,
+    control.logging_metric_alert_storage_iam_permission_changes,
+    control.logging_sink_configured_for_all_resource
+  ]
+}
+
+benchmark "nist_csf_v2_gv_ov_02" {
+  title       = "GV.OV-02"
+  description = "The cybersecurity risk management strategy is reviewed and adjusted to ensure coverage of organizational requirements and risks."
+  children = [
+    control.audit_logging_configured_for_all_service,
+    control.logging_metric_alert_audit_configuration_changes,
+    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
+    control.logging_metric_alert_custom_role_changes,
+    control.logging_metric_alert_firewall_rule_changes,
+    control.logging_metric_alert_network_changes,
+    control.logging_metric_alert_network_route_changes,
+    control.logging_metric_alert_project_ownership_assignment,
+    control.logging_metric_alert_sql_instance_configuration_changes,
+    control.logging_metric_alert_storage_iam_permission_changes,
+    control.logging_sink_configured_for_all_resource
+  ]
+}
+
+benchmark "nist_csf_v2_gv_ov_03" {
+  title       = "GV.OV-03"
+  description = "Organizational cybersecurity risk management performance is evaluated and reviewed for adjustments needed."
+  children = [
+    control.audit_logging_configured_for_all_service,
+    control.logging_metric_alert_audit_configuration_changes,
+    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
+    control.logging_metric_alert_custom_role_changes,
+    control.logging_metric_alert_firewall_rule_changes,
+    control.logging_metric_alert_network_changes,
+    control.logging_metric_alert_network_route_changes,
+    control.logging_metric_alert_project_ownership_assignment,
+    control.logging_metric_alert_sql_instance_configuration_changes,
+    control.logging_metric_alert_storage_iam_permission_changes,
+    control.logging_sink_configured_for_all_resource
+  ]
+}
+
+benchmark "nist_csf_v2_gv_po" {
+  title       = "Policy (GV.PO)"
+  description = "Organizational cybersecurity policy is established, communicated, and enforced."
+  children = [
+    benchmark.nist_csf_v2_gv_po_01,
+    benchmark.nist_csf_v2_gv_po_02
+  ]
+}
+
+benchmark "nist_csf_v2_gv_po_01" {
+  title       = "GV.PO-01"
+  description = "Policy for managing cybersecurity risks is established based on organizational context, cybersecurity strategy, and priorities and is communicated and enforced."
+  children = [
+    control.audit_logging_configured_for_all_service,
+    control.logging_metric_alert_audit_configuration_changes,
+    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
+    control.logging_metric_alert_custom_role_changes,
+    control.logging_metric_alert_firewall_rule_changes,
+    control.logging_metric_alert_network_changes,
+    control.logging_metric_alert_network_route_changes,
+    control.logging_metric_alert_project_ownership_assignment,
+    control.logging_metric_alert_sql_instance_configuration_changes,
+    control.logging_metric_alert_storage_iam_permission_changes
+  ]
+}
+
+benchmark "nist_csf_v2_gv_po_02" {
+  title       = "GV.PO-02"
+  description = "Policy for managing cybersecurity risks is reviewed, updated, communicated, and enforced to reflect changes in requirements, threats, technology, and organizational mission."
+  children = [
+    control.audit_logging_configured_for_all_service,
+    control.logging_metric_alert_audit_configuration_changes,
+    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
+    control.logging_metric_alert_custom_role_changes,
+    control.logging_metric_alert_firewall_rule_changes,
+    control.logging_metric_alert_network_changes,
+    control.logging_metric_alert_network_route_changes,
+    control.logging_metric_alert_project_ownership_assignment,
+    control.logging_metric_alert_sql_instance_configuration_changes,
+    control.logging_metric_alert_storage_iam_permission_changes,
+    control.logging_sink_configured_for_all_resource
   ]
 }
 
@@ -254,114 +362,6 @@ benchmark "nist_csf_v2_gv_rr_04" {
     control.logging_metric_alert_custom_role_changes,
     control.logging_metric_alert_project_ownership_assignment,
     control.project_access_approval_settings_enabled
-  ]
-}
-
-benchmark "nist_csf_v2_gv_po" {
-  title       = "Policy (GV.PO)"
-  description = "Organizational cybersecurity policy is established, communicated, and enforced."
-  children = [
-    benchmark.nist_csf_v2_gv_po_01,
-    benchmark.nist_csf_v2_gv_po_02
-  ]
-}
-
-benchmark "nist_csf_v2_gv_po_01" {
-  title       = "GV.PO-01"
-  description = "Policy for managing cybersecurity risks is established based on organizational context, cybersecurity strategy, and priorities and is communicated and enforced."
-  children = [
-    control.audit_logging_configured_for_all_service,
-    control.logging_metric_alert_audit_configuration_changes,
-    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
-    control.logging_metric_alert_custom_role_changes,
-    control.logging_metric_alert_firewall_rule_changes,
-    control.logging_metric_alert_network_changes,
-    control.logging_metric_alert_network_route_changes,
-    control.logging_metric_alert_project_ownership_assignment,
-    control.logging_metric_alert_sql_instance_configuration_changes,
-    control.logging_metric_alert_storage_iam_permission_changes
-  ]
-}
-
-benchmark "nist_csf_v2_gv_po_02" {
-  title       = "GV.PO-02"
-  description = "Policy for managing cybersecurity risks is reviewed, updated, communicated, and enforced to reflect changes in requirements, threats, technology, and organizational mission."
-  children = [
-    control.audit_logging_configured_for_all_service,
-    control.logging_metric_alert_audit_configuration_changes,
-    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
-    control.logging_metric_alert_custom_role_changes,
-    control.logging_metric_alert_firewall_rule_changes,
-    control.logging_metric_alert_network_changes,
-    control.logging_metric_alert_network_route_changes,
-    control.logging_metric_alert_project_ownership_assignment,
-    control.logging_metric_alert_sql_instance_configuration_changes,
-    control.logging_metric_alert_storage_iam_permission_changes,
-    control.logging_sink_configured_for_all_resource
-  ]
-}
-
-benchmark "nist_csf_v2_gv_ov" {
-  title       = "Oversight (GV.OV)"
-  description = "Results of organization-wide cybersecurity risk management activities and performance are used to inform, improve, and adjust the risk management strategy."
-  children = [
-    benchmark.nist_csf_v2_gv_ov_01,
-    benchmark.nist_csf_v2_gv_ov_02,
-    benchmark.nist_csf_v2_gv_ov_03
-  ]
-}
-
-benchmark "nist_csf_v2_gv_ov_01" {
-  title       = "GV.OV-01"
-  description = "Cybersecurity risk management strategy outcomes are reviewed to inform and adjust strategy and direction."
-  children = [
-    control.audit_logging_configured_for_all_service,
-    control.logging_metric_alert_audit_configuration_changes,
-    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
-    control.logging_metric_alert_custom_role_changes,
-    control.logging_metric_alert_firewall_rule_changes,
-    control.logging_metric_alert_network_changes,
-    control.logging_metric_alert_network_route_changes,
-    control.logging_metric_alert_project_ownership_assignment,
-    control.logging_metric_alert_sql_instance_configuration_changes,
-    control.logging_metric_alert_storage_iam_permission_changes,
-    control.logging_sink_configured_for_all_resource
-  ]
-}
-
-benchmark "nist_csf_v2_gv_ov_02" {
-  title       = "GV.OV-02"
-  description = "The cybersecurity risk management strategy is reviewed and adjusted to ensure coverage of organizational requirements and risks."
-  children = [
-    control.audit_logging_configured_for_all_service,
-    control.logging_metric_alert_audit_configuration_changes,
-    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
-    control.logging_metric_alert_custom_role_changes,
-    control.logging_metric_alert_firewall_rule_changes,
-    control.logging_metric_alert_network_changes,
-    control.logging_metric_alert_network_route_changes,
-    control.logging_metric_alert_project_ownership_assignment,
-    control.logging_metric_alert_sql_instance_configuration_changes,
-    control.logging_metric_alert_storage_iam_permission_changes,
-    control.logging_sink_configured_for_all_resource
-  ]
-}
-
-benchmark "nist_csf_v2_gv_ov_03" {
-  title       = "GV.OV-03"
-  description = "Organizational cybersecurity risk management performance is evaluated and reviewed for adjustments needed."
-  children = [
-    control.audit_logging_configured_for_all_service,
-    control.logging_metric_alert_audit_configuration_changes,
-    control.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role,
-    control.logging_metric_alert_custom_role_changes,
-    control.logging_metric_alert_firewall_rule_changes,
-    control.logging_metric_alert_network_changes,
-    control.logging_metric_alert_network_route_changes,
-    control.logging_metric_alert_project_ownership_assignment,
-    control.logging_metric_alert_sql_instance_configuration_changes,
-    control.logging_metric_alert_storage_iam_permission_changes,
-    control.logging_sink_configured_for_all_resource
   ]
 }
 
