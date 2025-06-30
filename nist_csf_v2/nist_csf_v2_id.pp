@@ -1,5 +1,5 @@
 benchmark "nist_csf_v2_id" {
-  title       = "IDENTIFY (ID)"
+  title       = "Identify (ID)"
   description = "The organization's current cybersecurity risks are understood."
   children = [
     benchmark.nist_csf_v2_id_am,
@@ -9,8 +9,8 @@ benchmark "nist_csf_v2_id" {
 }
 
 benchmark "nist_csf_v2_id_am" {
-  title       = "ID.AM"
-  description = "Asset Management (ID.AM): Assets (e.g., data, hardware, software, systems, facilities, services, people) that enable the organization to achieve business purposes are identified and managed consistent with their relative importance to organizational objectives and the organization's risk strategy."
+  title       = "Asset Management (ID.AM)"
+  description = "Assets (e.g., data, hardware, software, systems, facilities, services, people) that enable the organization to achieve business purposes are identified and managed consistent with their relative importance to organizational objectives and the organization's risk strategy."
   children = [
     benchmark.nist_csf_v2_id_am_01,
     benchmark.nist_csf_v2_id_am_02,
@@ -104,8 +104,8 @@ benchmark "nist_csf_v2_id_am_08" {
 }
 
 benchmark "nist_csf_v2_id_im" {
-  title       = "ID.IM"
-  description = "Improvement (ID.IM): Improvements to organizational cybersecurity risk management processes, procedures and activities are identified across all CSF Functions."
+  title       = "Improvement (ID.IM)"
+  description = "Improvements to organizational cybersecurity risk management processes, procedures and activities are identified across all CSF Functions."
   children = [
     benchmark.nist_csf_v2_id_im_01,
     benchmark.nist_csf_v2_id_im_02,
@@ -154,8 +154,8 @@ benchmark "nist_csf_v2_id_im_04" {
 }
 
 benchmark "nist_csf_v2_id_ra" {
-  title       = "ID.RA"
-  description = "Risk Assessment (ID.RA): The cybersecurity risk to the organization, assets, and individuals is understood by the organization."
+  title       = "Risk Assessment (ID.RA)"
+  description = "The cybersecurity risk to the organization, assets, and individuals is understood by the organization."
   children = [
     benchmark.nist_csf_v2_id_ra_01,
     benchmark.nist_csf_v2_id_ra_02,

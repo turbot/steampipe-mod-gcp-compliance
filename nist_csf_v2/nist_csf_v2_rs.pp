@@ -1,5 +1,5 @@
 benchmark "nist_csf_v2_rs" {
-  title       = "RESPOND (RS)"
+  title       = "Respond (RS)"
   description = "Actions regarding a detected cybersecurity incident are taken."
   children = [
     benchmark.nist_csf_v2_rs_an,
@@ -10,8 +10,8 @@ benchmark "nist_csf_v2_rs" {
 }
 
 benchmark "nist_csf_v2_rs_an" {
-  title       = "RS.AN"
-  description = "Incident Analysis (RS.AN): Investigations are conducted to ensure effective response and support forensics and recovery activities."
+  title       = "Incident Analysis (RS.AN)"
+  description = "Investigations are conducted to ensure effective response and support forensics and recovery activities."
   children = [
     benchmark.nist_csf_v2_rs_an_03,
     benchmark.nist_csf_v2_rs_an_06,
@@ -71,8 +71,8 @@ benchmark "nist_csf_v2_rs_an_08" {
 }
 
 benchmark "nist_csf_v2_rs_co" {
-  title       = "RS.CO"
-  description = "Incident Response Reporting and Communication (RS.CO): Response activities are coordinated with internal and external stakeholders as required by laws, regulations, or policies."
+  title       = "Incident Response Reporting and Communication (RS.CO)"
+  description = "Response activities are coordinated with internal and external stakeholders as required by laws, regulations, or policies."
   children = [
     benchmark.nist_csf_v2_rs_co_02,
     benchmark.nist_csf_v2_rs_co_03
@@ -96,8 +96,8 @@ benchmark "nist_csf_v2_rs_co_03" {
 }
 
 benchmark "nist_csf_v2_rs_ma" {
-  title       = "RS.MA"
-  description = "Incident Management (RS.MA): Responses to detected cybersecurity incidents are managed."
+  title       = "Incident Management (RS.MA)"
+  description = "Responses to detected cybersecurity incidents are managed."
   children = [
     benchmark.nist_csf_v2_rs_ma_01,
     benchmark.nist_csf_v2_rs_ma_02,
@@ -180,8 +180,8 @@ benchmark "nist_csf_v2_rs_ma_05" {
 }
 
 benchmark "nist_csf_v2_rs_mi" {
-  title       = "RS.MI"
-  description = "Incident Mitigation (RS.MI): Activities are performed to prevent expansion of an event and mitigate its effects."
+  title       = "Incident Mitigation (RS.MI)"
+  description = "Activities are performed to prevent expansion of an event and mitigate its effects."
   children = [
     benchmark.nist_csf_v2_rs_mi_01,
     benchmark.nist_csf_v2_rs_mi_02

@@ -1,5 +1,5 @@
 benchmark "nist_csf_v2_de" {
-  title       = "DETECT (DE)"
+  title       = "Detect (DE)"
   description = "Possible cybersecurity attacks and compromises are found and analyzed."
   children = [
     benchmark.nist_csf_v2_de_ae,
@@ -8,8 +8,8 @@ benchmark "nist_csf_v2_de" {
 }
 
 benchmark "nist_csf_v2_de_ae" {
-  title       = "DE.AE"
-  description = "Adverse Event Analysis (DE.AE): Anomalies, indicators of compromise, and other potentially adverse events are analyzed to characterize the events and detect cybersecurity incidents."
+  title       = "Anomalies and Events (DE.AE)"
+  description = "Anomalies, indicators of compromise, and other potentially adverse events are analyzed to characterize the events and detect cybersecurity incidents."
   children = [
     benchmark.nist_csf_v2_de_ae_02,
     benchmark.nist_csf_v2_de_ae_03,
@@ -100,8 +100,8 @@ benchmark "nist_csf_v2_de_ae_08" {
 }
 
 benchmark "nist_csf_v2_de_cm" {
-  title       = "DE.CM"
-  description = "Continuous Monitoring (DE.CM): Assets are monitored to find anomalies, indicators of compromise, and other potentially adverse events."
+  title       = "Continuous Monitoring (DE.CM)"
+  description = "Assets are monitored to find anomalies, indicators of compromise, and other potentially adverse events."
   children = [
     benchmark.nist_csf_v2_de_cm_01,
     benchmark.nist_csf_v2_de_cm_02,

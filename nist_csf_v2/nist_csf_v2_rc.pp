@@ -1,5 +1,5 @@
 benchmark "nist_csf_v2_rc" {
-  title       = "RECOVER (RC)"
+  title       = "Recover (RC)"
   description = "Assets and operations affected by a cybersecurity incident are restored."
   children = [
     benchmark.nist_csf_v2_rc_co,
@@ -8,8 +8,8 @@ benchmark "nist_csf_v2_rc" {
 }
 
 benchmark "nist_csf_v2_rc_co" {
-  title       = "RC.CO"
-  description = "Incident Recovery Communication (RC.CO): Restoration activities are coordinated with internal and external parties."
+  title       = "Incident Recovery Communication (RC.CO)"
+  description = "Restoration activities are coordinated with internal and external parties."
   children = [
     benchmark.nist_csf_v2_rc_co_03,
     benchmark.nist_csf_v2_rc_co_04
@@ -33,8 +33,8 @@ benchmark "nist_csf_v2_rc_co_04" {
 }
 
 benchmark "nist_csf_v2_rc_rp" {
-  title       = "RC.RP"
-  description = "Incident Recovery Plan Execution (RC.RP): Restoration activities are performed to ensure operational availability of systems and services affected by cybersecurity incidents."
+  title       = "Incident Recovery Plan Execution (RC.RP)"
+  description = "Restoration activities are performed to ensure operational availability of systems and services affected by cybersecurity incidents."
   children = [
     benchmark.nist_csf_v2_rc_rp_01,
     benchmark.nist_csf_v2_rc_rp_02,

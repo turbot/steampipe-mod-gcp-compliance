@@ -1,5 +1,5 @@
 benchmark "nist_csf_v2_gv" {
-  title       = "GOVERN (GV)"
+  title       = "Govern (GV)"
   description = "The organization's cybersecurity risk management strategy, expectations, and policy are established, communicated, and monitored."
   children = [
     benchmark.nist_csf_v2_gv_oc,

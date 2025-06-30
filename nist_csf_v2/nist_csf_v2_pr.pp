@@ -1,5 +1,5 @@
 benchmark "nist_csf_v2_pr" {
-  title       = "PROTECT (PR)"
+  title       = "Protect (PR)"
   description = "Safeguards to manage the organization's cybersecurity risks are used."
   children = [
     benchmark.nist_csf_v2_pr_aa,
@@ -10,8 +10,8 @@ benchmark "nist_csf_v2_pr" {
 }
 
 benchmark "nist_csf_v2_pr_aa" {
-  title       = "PR.AA"
-  description = "Identity Management, Authentication, and Access Control (PR.AA): Access to physical and logical assets is limited to authorized users, services, and hardware and managed commensurate with the assessed risk of unauthorized access."
+  title       = "Identity Management, Authentication, and Access Control (PR.AA)"
+  description = "Access to physical and logical assets is limited to authorized users, services, and hardware and managed commensurate with the assessed risk of unauthorized access."
   children = [
     benchmark.nist_csf_v2_pr_aa_01,
     benchmark.nist_csf_v2_pr_aa_02,
@@ -116,8 +116,8 @@ benchmark "nist_csf_v2_pr_aa_06" {
 }
 
 benchmark "nist_csf_v2_pr_ds" {
-  title       = "PR.DS"
-  description = "Data Security (PR.DS): Data are managed consistent with the organization's risk strategy to protect the confidentiality, integrity, and availability of information."
+  title       = "Data Security (PR.DS)"
+  description = "Data are managed consistent with the organization's risk strategy to protect the confidentiality, integrity, and availability of information."
   children = [
     benchmark.nist_csf_v2_pr_ds_01,
     benchmark.nist_csf_v2_pr_ds_02,
@@ -180,8 +180,8 @@ benchmark "nist_csf_v2_pr_ds_11" {
 }
 
 benchmark "nist_csf_v2_pr_ir" {
-  title       = "PR.IR"
-  description = "Technology Infrastructure Resilience (PR.IR): Security architectures are managed with the organization's risk strategy to protect asset confidentiality, integrity, and availability, and organizational resilience."
+  title       = "Technology Infrastructure Resilience (PR.IR)"
+  description = "Security architectures are managed with the organization's risk strategy to protect asset confidentiality, integrity, and availability, and organizational resilience."
   children = [
     benchmark.nist_csf_v2_pr_ir_01,
     benchmark.nist_csf_v2_pr_ir_02,
@@ -300,7 +300,7 @@ benchmark "nist_csf_v2_pr_ir_04" {
 }
 
 benchmark "nist_csf_v2_pr_ps" {
-  title       = "PR.PS"
+  title       = "Platform Security (PR.PS)"
   description = "Platform Security (PR.PS): The hardware, software (e.g., firmware, operating systems, applications), and services of physical and virtual platforms are managed consistent with the organization's risk strategy to protect their confidentiality, integrity, and availability."
   children = [
     benchmark.nist_csf_v2_pr_ps_01,
