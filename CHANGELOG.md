@@ -1,3 +1,9 @@
+## v1.2.0 [2025-07-01]
+
+_What's new?_
+
+- Added `NIST Cybersecurity Framework (CSF) v2.0` benchmark (`powerpipe benchmark run gcp_compliance.benchmark.nist_csf_v2`). ([#200](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/200))
+
 ## v1.1.0 [2025-05-23]
 
 _What's new?_
