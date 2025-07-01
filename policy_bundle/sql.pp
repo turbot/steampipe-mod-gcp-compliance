@@ -422,15 +422,15 @@ query "sql_instance_with_no_public_ips" {
 query "sql_instance_require_ssl_enabled" {
   sql = <<-EOQ
     select
-      self_link resource,
+       self_link resource,
       case
-        when ip_configuration -> 'requireSsl' is null then 'alarm'
-        else 'ok'
+        when ip_configuration ->> 'sslMode' = 'ENCRYPTED_ONLY' then 'ok'
+        else 'alarm'
       end as status,
       case
-        when ip_configuration -> 'requireSsl' is null
-          then title || ' does not enforce SSL connections.'
-        else title || ' enforces SSL connections.'
+        when ip_configuration ->> 'sslMode' = 'ENCRYPTED_ONLY'
+          then title || ' enforces SSL connections.'
+        else title || ' does not enforce SSL connections.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
