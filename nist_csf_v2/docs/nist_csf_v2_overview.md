@@ -1,6 +1,6 @@
-# NIST Cybersecurity Framework (CSF) 2.0 Overview
+To obtain the latest version of the official guide, please visit https://www.nist.gov/cyberframework/framework.
 
-## Introduction
+## Overview
 
 The NIST Cybersecurity Framework (CSF) 2.0, published by the National Institute of Standards and Technology (NIST) in February 2024, provides guidance to organizations of all sizes and sectors for managing and reducing cybersecurity risks. The CSF offers a taxonomy of high-level cybersecurity outcomes, enabling organizations to understand, assess, prioritize, and communicate their cybersecurity efforts. It is designed to be flexible, technology-neutral, and adaptable to any organization's unique mission, risk appetite, and requirements.
 
@@ -35,8 +35,3 @@ NIST provides a suite of online resources to complement the CSF, including:
 - **Quick Start Guides (QSGs)**: Actionable guidance for using the CSF and its resources.
 - **Community and Organizational Profile Templates**: Tools to help organizations implement and assess the CSF.
 
-## Conclusion
-
-The NIST CSF 2.0 is a foundational resource for managing cybersecurity risk, supporting organizations in understanding, assessing, prioritizing, and communicating their cybersecurity posture. It is intended to be adapted and used in conjunction with other risk management resources to address the evolving landscape of cybersecurity threats and opportunities.
-
-For more information and the latest resources, visit the [NIST CSF website](https://www.nist.gov/cyberframework).
