@@ -9,7 +9,9 @@ control "logging_bucket_retention_policy_enabled" {
   description = "Enabling retention policies on log buckets will protect logs stored in cloud storage buckets from being overwritten or accidentally deleted. It is recommended to set up retention policies and configure Bucket Lock on all storage buckets that are used as log sinks."
   query       = query.logging_bucket_retention_policy_enabled
 
-  tags = local.policy_bundle_logging_common_tags
+  tags = merge(local.policy_bundle_logging_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 control "logging_metric_alert_audit_configuration_changes" {
@@ -21,6 +23,7 @@ control "logging_metric_alert_audit_configuration_changes" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
   })
 }
 
@@ -33,6 +36,7 @@ control "logging_metric_alert_custom_role_changes" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
   })
 }
 
@@ -41,7 +45,9 @@ control "logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role" 
   description = "It is recommended that a metric filter and alarm be established for changes to Identity and Access Management (IAM) role creation, deletion, updating, and undeleting activities."
   query       = query.logging_metric_alert_custom_role_changes_with_iam_admin_undelete_role
 
-  tags = local.policy_bundle_logging_common_tags
+  tags = merge(local.policy_bundle_logging_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 control "logging_metric_alert_firewall_rule_changes" {
@@ -53,6 +59,7 @@ control "logging_metric_alert_firewall_rule_changes" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
   })
 }
 
@@ -65,6 +72,7 @@ control "logging_metric_alert_network_changes" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
   })
 }
 
@@ -77,6 +85,7 @@ control "logging_metric_alert_network_route_changes" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
   })
 }
 
@@ -89,6 +98,7 @@ control "logging_metric_alert_project_ownership_assignment" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
   })
 }
 
@@ -101,6 +111,7 @@ control "logging_metric_alert_sql_instance_configuration_changes" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
   })
 }
 
@@ -113,6 +124,7 @@ control "logging_metric_alert_storage_iam_permission_changes" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
   })
 }
 
@@ -125,6 +137,7 @@ control "logging_sink_configured_for_all_resource" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
   })
 }
 

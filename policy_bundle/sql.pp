@@ -36,6 +36,7 @@ control "require_ssl_sql" {
 
   tags = merge(local.policy_bundle_sql_common_tags, {
     cft_scorecard_v1 = "true"
+    nist_csf_v2      = "true"
     pci_dss_v321     = "true"
     severity         = "high"
   })
@@ -49,6 +50,7 @@ control "sql_instance_automated_backups_enabled" {
   tags = merge(local.policy_bundle_sql_common_tags, {
     hipaa        = "true"
     nist_csf_v10 = "true"
+    nist_csf_v2  = "true"
   })
 }
 
@@ -83,6 +85,7 @@ control "sql_instance_not_publicly_accessible" {
 
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_csf_v10 = "true"
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
     soc_2_2017   = "true"
   })
@@ -94,7 +97,8 @@ control "sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled" {
   query       = query.sql_instance_postgresql_cloudsql_pgaudit_database_flag_enabled
 
   tags = merge(local.policy_bundle_sql_common_tags, {
-    hipaa = "true"
+    hipaa       = "true"
+    nist_csf_v2 = "true"
   })
 }
 
@@ -103,7 +107,9 @@ control "sql_instance_postgresql_log_checkpoints_database_flag_on" {
   description = "Ensure that the log_checkpoints database flag for the Cloud SQL PostgreSQL instance is set to on."
   query       = query.sql_instance_postgresql_log_checkpoints_database_flag_on
 
-  tags = local.policy_bundle_sql_common_tags
+  tags = merge(local.policy_bundle_sql_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 control "sql_instance_postgresql_log_connections_database_flag_on" {
@@ -114,6 +120,7 @@ control "sql_instance_postgresql_log_connections_database_flag_on" {
   tags = merge(local.policy_bundle_sql_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }
@@ -284,6 +291,7 @@ control "sql_instance_sql_contained_database_authentication_database_flag_off" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }

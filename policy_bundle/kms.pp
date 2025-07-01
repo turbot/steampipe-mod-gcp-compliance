@@ -10,6 +10,7 @@ control "cmek_rotation_one_hundred_days" {
 
   tags = merge(local.policy_bundle_kms_common_tags, {
     forseti_security_v226 = "true"
+    nist_csf_v2           = "true"
     severity              = "high"
   })
 }
@@ -23,6 +24,7 @@ control "kms_key_not_publicly_accessible" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }
@@ -36,6 +38,7 @@ control "kms_key_rotated_within_90_day" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     pci_dss_v321      = "true"
     soc_2_2017        = "true"
   })
@@ -50,6 +53,7 @@ control "kms_key_separation_of_duties_enforced" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }
@@ -60,6 +64,7 @@ control "kms_key_users_limited_to_3" {
   query       = query.kms_key_users_limited_to_3
 
   tags = merge(local.policy_bundle_kms_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }

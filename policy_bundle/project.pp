@@ -9,7 +9,9 @@ control "project_access_approval_settings_enabled" {
   description = "GCP Access Approval enables you to require your organizations' explicit approval whenever Google support try to access your projects. You can then select users within your organization who can approve these requests through giving them a security role in IAM. All access requests display which Google Employee requested them in an email or Pub/Sub message that you can choose to Approve. This adds an additional control and logging of who in your organization approved/denied these requests."
   query       = query.project_access_approval_settings_enabled
 
-  tags = local.policy_bundle_project_common_tags
+  tags = merge(local.policy_bundle_project_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 control "project_service_cloudasset_api_enabled" {
@@ -21,6 +23,7 @@ control "project_service_cloudasset_api_enabled" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }
@@ -38,7 +41,9 @@ control "project_service_container_scanning_api_enabled" {
   description = "Container Vulnerability Scanning in Google Cloud Platform (GCP) refers to a security service that automatically performs vulnerability detection on container images stored in Container Registry and Artifact Registry. This service is designed to identify known security vulnerabilities in your container images."
   query       = query.project_service_container_scanning_api_enabled
 
-  tags = local.policy_bundle_project_common_tags
+  tags = merge(local.policy_bundle_project_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 control "project_oslogin_enabled" {

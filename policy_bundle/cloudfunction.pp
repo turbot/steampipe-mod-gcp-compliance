@@ -9,7 +9,9 @@ control "cloudfunction_function_vpc_connector_enabled" {
   description = "It is recommended that Cloudfunction functions VPC connector is enabled."
   query       = query.cloudfunction_function_vpc_connector_enabled
 
-  tags = local.policy_bundle_cloudfunction_common_tags
+  tags = merge(local.policy_bundle_cloudfunction_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 control "cloudfunction_function_no_ingress_settings_allow_all" {
