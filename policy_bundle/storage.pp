@@ -61,7 +61,7 @@ control "storage_bucket_log_retention_policy_enabled" {
   query       = query.storage_bucket_log_retention_policy_enabled
 
   tags = merge(local.policy_bundle_storage_common_tags, {
-    nist_csf_v10 = "true"
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -72,7 +72,7 @@ control "storage_bucket_log_object_versioning_enabled" {
   query       = query.storage_bucket_log_object_versioning_enabled
 
   tags = merge(local.policy_bundle_storage_common_tags, {
-    nist_csf_v10 = "true"
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -83,7 +83,7 @@ control "storage_bucket_log_not_publicly_accessible" {
   query       = query.storage_bucket_log_not_publicly_accessible
 
   tags = merge(local.policy_bundle_storage_common_tags, {
-    nist_csf_v10 = "true"
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
