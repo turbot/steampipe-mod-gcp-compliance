@@ -11,6 +11,7 @@ control "restrict_firewall_rule_rdp_world_open" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     cft_scorecard_v1  = "true"
     nist_800_53_rev_5 = "true"
+    nist_csf_v2       = "true"
     severity          = "high"
     soc_2_2017        = "true"
   })
@@ -24,6 +25,7 @@ control "enable_network_flow_logs" {
     cft_scorecard_v1  = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     pci_dss_v321      = "true"
     severity          = "high"
     soc_2_2017        = "true"
@@ -36,6 +38,7 @@ control "enable_network_private_google_access" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     cft_scorecard_v1 = "true"
+    nist_csf_v2      = "true"
     severity         = "high"
   })
 }
@@ -47,6 +50,7 @@ control "restrict_firewall_rule_ssh_world_open" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     cft_scorecard_v1      = "true"
     forseti_security_v226 = "true"
+    nist_csf_v2           = "true"
     nist_800_53_rev_5     = "true"
     pci_dss_v321          = "true"
     severity              = "high"
@@ -61,6 +65,7 @@ control "restrict_firewall_rule_world_open_tcp_udp_all_ports" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     forseti_security_v226 = "true"
     pci_dss_v321          = "true"
+    nist_csf_v2           = "true"
     severity              = "high"
   })
 }
@@ -72,6 +77,7 @@ control "compute_disk_encrypted_with_csk" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     hipaa             = "true"
+    nist_csf_v2       = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
     soc_2_2017        = "true"
@@ -83,7 +89,9 @@ control "compute_firewall_allow_connections_proxied_by_iap" {
   description = "Access to VMs should be restricted by firewall rules that allow only IAP traffic by ensuring only connections proxied by the IAP are allowed. To ensure that load balancing works correctly health checks should also be allowed."
   query       = query.compute_firewall_allow_connections_proxied_by_iap
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 control "compute_firewall_allow_tcp_connections_proxied_by_iap" {
@@ -91,7 +99,9 @@ control "compute_firewall_allow_tcp_connections_proxied_by_iap" {
   description = "IAP authenticates the user requests to your apps via a Google single sign in. You can then manage these users with permissions to control access. It is recommended to use both IAP permissions and firewalls to restrict this access to your apps with sensitive information."
   query       = query.compute_firewall_allow_tcp_connections_proxied_by_iap
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 control "compute_https_load_balancer_logging_enabled" {
@@ -103,6 +113,7 @@ control "compute_https_load_balancer_logging_enabled" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
   })
 }
 
@@ -114,6 +125,7 @@ control "compute_instance_block_project_wide_ssh_enabled" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }
@@ -126,6 +138,7 @@ control "compute_instance_confidential_computing_enabled" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }
@@ -148,6 +161,7 @@ control "compute_instance_oslogin_enabled" {
 
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }
@@ -158,6 +172,7 @@ control "compute_instance_serial_port_connection_disabled" {
   query       = query.compute_instance_serial_port_connection_disabled
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2       = "true"
     nist_800_53_rev_5 = "true"
     soc_2_2017        = "true"
   })
@@ -168,7 +183,9 @@ control "compute_instance_shielded_vm_enabled" {
   description = "To defend against advanced threats and ensure that the boot loader and firmware on your VMs are signed and untampered, it is recommended that Compute instances are launched with Shielded VM enabled."
   query       = query.compute_instance_shielded_vm_enabled
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2 = "true"
+  })
 }
 
 control "compute_instance_with_no_default_service_account_with_full_access" {
@@ -192,6 +209,7 @@ control "compute_instance_with_no_default_service_account" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     pci_dss_v321      = "true"
     soc_2_2017        = "true"
   })
@@ -206,6 +224,7 @@ control "compute_instance_with_no_public_ip_addresses" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     pci_dss_v321      = "true"
     soc_2_2017        = "true"
   })
@@ -219,6 +238,7 @@ control "compute_network_contains_no_default_network" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }
@@ -231,6 +251,7 @@ control "compute_network_contains_no_legacy_network" {
   tags = merge(local.policy_bundle_compute_common_tags, {
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }
@@ -244,6 +265,7 @@ control "compute_network_dns_logging_enabled" {
     hipaa             = "true"
     nist_800_53_rev_5 = "true"
     nist_csf_v10      = "true"
+    nist_csf_v2       = "true"
     soc_2_2017        = "true"
   })
 }
@@ -254,6 +276,7 @@ control "compute_ssl_policy_with_no_weak_cipher" {
   query       = query.compute_ssl_policy_with_no_weak_cipher
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -264,6 +287,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_dns_port_53
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -274,6 +298,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_ftp_port_21
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -284,6 +309,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_http_port_80
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -294,6 +320,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_smtp_port_25
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -304,6 +331,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_44
   query       = query.compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -313,7 +341,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017"
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MongoDB port 27017."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306" {
@@ -322,6 +352,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306" 
   query       = query.compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -331,7 +362,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to NetBIOS SSN port 139."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521" {
@@ -340,6 +373,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521"
   query       = query.compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -350,6 +384,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_pop3_port_110
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -360,6 +395,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
   query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -370,6 +406,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_telnet_port_23" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_telnet_port_23
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -379,7 +416,9 @@ control "compute_network_auto_create_subnetwork_enabled" {
   description = "This control ensures that auto create subnetwork is enabled for Compute Network. Legacy network is not recommended, subnetworks cannot be created in a legacy network."
   query       = query.compute_network_auto_create_subnetwork_enabled
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "compute_backend_bucket_no_dangling_storage_bucket" {
@@ -491,7 +530,9 @@ control "compute_target_https_uses_latest_tls_version" {
   description = "This control ensures that HTTP target use latest TLS version."
   query       = query.compute_target_https_uses_latest_tls_version
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "compute_external_backend_service_iap_enabled" {
@@ -508,6 +549,7 @@ control "compute_firewall_rule_restrict_ingress_all_with_no_specific_target" {
   query       = query.compute_firewall_rule_restrict_ingress_all_with_no_specific_target
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -517,7 +559,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_1025
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to port 10250."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255" {
@@ -525,7 +569,9 @@ control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_1025
   description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to port 10255."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "compute_firewall_rule_restrict_ingress_all" {
@@ -534,6 +580,7 @@ control "compute_firewall_rule_restrict_ingress_all" {
   query       = query.compute_firewall_rule_restrict_ingress_all
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -551,7 +598,9 @@ control "compute_firewall_default_rule_restrict_ingress_access_except_http_and_h
   description = "This control ensures that default firewall rules does not allow ingress from 0.0.0.0/0 to any port. This is not applicable to default HTTP and HTTPS firewall rule."
   query       = query.compute_firewall_default_rule_restrict_ingress_access_except_http_and_https
 
-  tags = local.policy_bundle_compute_common_tags
+  tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090" {
@@ -560,6 +609,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -570,6 +620,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9200_9300" 
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9200_9300
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -580,6 +631,7 @@ control "compute_firewall_rule_logging_enabled" {
   query       = query.compute_firewall_rule_logging_enabled
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -590,6 +642,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001" 
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -600,6 +653,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -610,6 +664,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -620,6 +675,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -630,6 +686,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -640,6 +697,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -650,6 +708,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -660,6 +719,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139"
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -670,6 +730,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27019
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -680,6 +741,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_636" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_636
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -690,6 +752,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389" {
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -700,6 +763,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11211" 
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11211
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -710,6 +774,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11214_t
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11214_to_11215
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -720,6 +785,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_2483_to
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_2483_to_2484
 
   tags = merge(local.policy_bundle_compute_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }

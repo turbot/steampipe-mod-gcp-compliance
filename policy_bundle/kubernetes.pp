@@ -85,6 +85,7 @@ control "enable_auto_upgrade" {
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
     cft_scorecard_v1 = "true"
+    nist_csf_v2      = "true"
     pci_dss_v321     = "true"
     severity         = "high"
   })
@@ -96,6 +97,7 @@ control "enable_gke_master_authorized_networks" {
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
     cft_scorecard_v1 = "true"
+    nist_csf_v2      = "true"
     pci_dss_v321     = "true"
     severity         = "high"
   })
@@ -136,6 +138,7 @@ control "kubernetes_cluster_logging_enabled" {
   query       = query.kubernetes_cluster_logging_enabled
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -145,7 +148,9 @@ control "kubernetes_cluster_monitoring_enabled" {
   description = "This control ensures that GKE clusters monitoring is enabled."
   query       = query.kubernetes_cluster_monitoring_enabled
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "kubernetes_cluster_no_default_network" {
@@ -153,7 +158,9 @@ control "kubernetes_cluster_no_default_network" {
   description = "This control ensures that GKE clusters does not use default network."
   query       = query.kubernetes_cluster_no_default_network
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "kubernetes_cluster_with_resource_labels" {
@@ -177,7 +184,9 @@ control "kubernetes_cluster_shielded_nodes_enabled" {
   description = "This control ensures that GKE clusters have shielded nodes enabled."
   query       = query.kubernetes_cluster_shielded_nodes_enabled
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "kubernetes_cluster_shielded_instance_integrity_monitoring_enabled" {
@@ -185,7 +194,9 @@ control "kubernetes_cluster_shielded_instance_integrity_monitoring_enabled" {
   description = "This control ensures that GKE clusters shielded nodes integrity monitoring is enabled."
   query       = query.kubernetes_cluster_shielded_instance_integrity_monitoring_enabled
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "kubernetes_cluster_binary_authorization_enabled" {
@@ -193,7 +204,9 @@ control "kubernetes_cluster_binary_authorization_enabled" {
   description = "This control ensures that GKE clusters binary authorization is enabled."
   query       = query.kubernetes_cluster_binary_authorization_enabled
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "kubernetes_cluster_release_channel_configured" {
@@ -217,7 +230,9 @@ control "kubernetes_cluster_private_nodes_configured" {
   description = "This control ensures that GKE clusters private nodes are configured."
   query       = query.kubernetes_cluster_private_nodes_configured
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "kubernetes_cluster_network_policy_enabled" {
@@ -226,6 +241,7 @@ control "kubernetes_cluster_network_policy_enabled" {
   query       = query.kubernetes_cluster_network_policy_enabled
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }
@@ -235,7 +251,9 @@ control "kubernetes_cluster_client_certificate_authentication_enabled" {
   description = "This control ensures that GKE clusters client certificate authentication is enabled."
   query       = query.kubernetes_cluster_client_certificate_authentication_enabled
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "kubernetes_cluster_node_no_default_service_account" {
@@ -253,7 +271,9 @@ control "kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled" {
   description = "This control ensures that clusters with less than three nodes should have auto upgrade enabled."
   query       = query.kubernetes_cluster_with_less_than_three_node_auto_upgrade_enabled
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "kubernetes_cluster_incoming_traffic_open_to_all" {
@@ -285,7 +305,9 @@ control "kubernetes_cluster_shielded_node_secure_boot_enabled" {
   description = "This control ensures that GKE clusters shielded node secure boot is enabled. This control is non-complaint if ishielded node secure boot is disabled."
   query       = query.kubernetes_cluster_shielded_node_secure_boot_enabled
 
-  tags = local.policy_bundle_kubernetes_common_tags
+  tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    nist_csf_v2  = "true"
+  })
 }
 
 control "kubernetes_cluster_subnetwork_private_ip_google_access_enabled" {
@@ -294,6 +316,7 @@ control "kubernetes_cluster_subnetwork_private_ip_google_access_enabled" {
   query       = query.kubernetes_cluster_subnetwork_private_ip_google_access_enabled
 
   tags = merge(local.policy_bundle_kubernetes_common_tags, {
+    nist_csf_v2  = "true"
     pci_dss_v321 = "true"
   })
 }

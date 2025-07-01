@@ -27,6 +27,7 @@ control "restrict_gmail_bigquery_dataset" {
   tags = merge(local.policy_bundle_bigquery_common_tags, {
     cft_scorecard_v1      = "true"
     forseti_security_v226 = "true"
+    nist_csf_v2           = "true"
     severity              = "high"
   })
 }
@@ -38,6 +39,7 @@ control "restrict_googlegroups_bigquery_dataset" {
   tags = merge(local.policy_bundle_bigquery_common_tags, {
     cft_scorecard_v1      = "true"
     forseti_security_v226 = "true"
+    nist_csf_v2           = "true"
     severity              = "high"
   })
 }
