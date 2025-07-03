@@ -1,3 +1,9 @@
+## v1.2.0 [2025-07-03]
+
+_Bug fixes_
+
+- Fixed the `sql_instance_require_ssl_enabled` query to correctly identify SQL instances that do not enforce SSL connections. ([#204](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/204))
+
 ## v1.2.0 [2025-07-01]
 
 _What's new?_
