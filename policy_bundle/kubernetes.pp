@@ -324,19 +324,19 @@ control "kubernetes_cluster_subnetwork_private_ip_google_access_enabled" {
 query "kubernetes_cluster_private_cluster_config_enabled" {
   sql = <<-EOQ
     select
-    self_link resource,
-    case
-      when private_cluster_config is null then 'alarm'
-      else 'ok'
-    end as status,
-    case
-      when private_cluster_config is null then title || ' private cluster config disabled.'
-      else title || ' private cluster config enabled.'
-    end as reason
-    ${local.tag_dimensions_sql}
-    ${local.common_dimensions_sql}
-  from
-    gcp_kubernetes_cluster;
+      self_link resource,
+      case
+        when private_cluster_config ->> 'enablePrivateEndpoint' = 'true' then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when private_cluster_config ->> 'enablePrivateEndpoint' = 'true' then title || ' is not publicly accessible.'
+        else title || ' is publicly accessible.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      gcp_kubernetes_cluster;
   EOQ
 }
 
