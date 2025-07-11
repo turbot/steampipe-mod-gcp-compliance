@@ -326,11 +326,11 @@ query "kubernetes_cluster_private_cluster_config_enabled" {
     select
       self_link resource,
       case
-        when private_cluster_config ->> 'enablePrivateEndpoint' = 'true' then 'ok'
+        when (private_cluster_config -> 'enablePrivateEndpoint')::bool then 'ok'
         else 'alarm'
       end as status,
       case
-        when private_cluster_config ->> 'enablePrivateEndpoint' = 'true' then title || ' is not publicly accessible.'
+        when (private_cluster_config -> 'enablePrivateEndpoint')::bool then title || ' is not publicly accessible.'
         else title || ' is publicly accessible.'
       end as reason
       ${local.tag_dimensions_sql}
