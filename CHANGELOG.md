@@ -1,10 +1,10 @@
-## v1.2.1 [2025-07-11]
+## v1.2.2 [2025-07-11]
 
 _Bug fixes_
 
 - Fixed the `kubernetes_cluster_private_cluster_config_enabled` query to correctly identify publicly accessible clusters. ([#202](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/202))
 
-## v1.2.0 [2025-07-03]
+## v1.2.1 [2025-07-03]
 
 _Bug fixes_
 
