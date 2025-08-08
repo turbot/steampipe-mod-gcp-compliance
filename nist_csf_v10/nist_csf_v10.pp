@@ -6,7 +6,7 @@ locals {
 }
 
 benchmark "nist_csf_v10" {
-  title         = "NIST Cybersecurity Framework (CSF) v1.0"
+  title         = "GCP NIST Cybersecurity Framework (CSF) v1.0"
   description   = "NIST Cybersecurity Framework is a set of best practices, standards, and recommendations that help an organization improve its cybersecurity measures."
   documentation = file("./nist_csf_v10/docs/nist_csf_v10_overview.md")
 

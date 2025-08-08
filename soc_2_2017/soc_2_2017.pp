@@ -6,7 +6,7 @@ locals {
 }
 
 benchmark "soc_2_2017" {
-  title         = "SOC2 2017"
+  title         = "GCP SOC2 2017"
   description   = "The Service and Organization Controls (SOC) 2 is a report based on the Auditing Standards Board of the American Institute of Certified Public Accountants (AICPA) SSAE 18, which evaluates the service organization’s controls relevant to the Trust Services Criteria of security, availability, processing integrity, confidentiality, or privacy."
   documentation = file("./soc_2_2017/docs/soc_2_2017_overview.md")
 
