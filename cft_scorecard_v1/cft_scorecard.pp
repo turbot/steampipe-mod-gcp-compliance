@@ -5,7 +5,7 @@ locals {
 }
 
 benchmark "cft_scorecard_v1" {
-  title         = "CFT Scorecard v1"
+  title         = "GCP CFT Scorecard v1"
   documentation = file("./cft_scorecard_v1/docs/cft_scorecard_overview.md")
   children = [
     control.allow_only_private_cluster,
