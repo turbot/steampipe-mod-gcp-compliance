@@ -6,6 +6,7 @@ mod "gcp_compliance" {
   documentation = file("./docs/index.md")
   icon          = "/images/mods/turbot/gcp-compliance.svg"
   categories    = ["cis", "compliance", "gcp", "public cloud", "security"]
+  database      = var.database
 
   opengraph {
     title       = "Powerpipe Mod for GCP Compliance"
