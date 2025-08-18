@@ -155,11 +155,21 @@ query "project_oslogin_enabled" {
     select
       id resource,
       case
-        when common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"TRUE"}]' then 'ok'
+        when exists (
+          select 1
+          from jsonb_array_elements(common_instance_metadata -> 'items') as items
+          where items ->> 'key' = 'enable-oslogin'
+            and lower(items ->> 'value') = 'true'
+        ) then 'ok'
         else 'alarm'
       end as status,
       case
-        when common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"TRUE"}]' then title || ' OS login enabled.'
+        when exists (
+          select 1
+          from jsonb_array_elements(common_instance_metadata -> 'items') as items
+          where items ->> 'key' = 'enable-oslogin'
+            and lower(items ->> 'value') = 'true'
+        ) then title || ' OS login enabled.'
         else title || ' OS login disabled.'
       end as reason
       ${local.common_dimensions_sql}
