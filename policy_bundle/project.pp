@@ -153,13 +153,13 @@ query "project_service_container_scanning_api_enabled" {
 query "project_oslogin_enabled" {
   sql = <<-EOQ
     select
-      id resource,
+      id as resource,
       case
         when exists (
           select 1
           from jsonb_array_elements(common_instance_metadata -> 'items') as items
-          where items ->> 'key' = 'enable-oslogin'
-            and lower(items ->> 'value') = 'true'
+          where lower(items ->> 'key') = 'enable-oslogin'
+            and lower(items ->> 'value') in ('true','y','yes','1')
         ) then 'ok'
         else 'alarm'
       end as status,
@@ -167,8 +167,8 @@ query "project_oslogin_enabled" {
         when exists (
           select 1
           from jsonb_array_elements(common_instance_metadata -> 'items') as items
-          where items ->> 'key' = 'enable-oslogin'
-            and lower(items ->> 'value') = 'true'
+          where lower(items ->> 'key') = 'enable-oslogin'
+            and lower(items ->> 'value') in ('true','y','yes','1')
         ) then title || ' OS login enabled.'
         else title || ' OS login disabled.'
       end as reason
