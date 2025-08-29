@@ -153,13 +153,23 @@ query "project_service_container_scanning_api_enabled" {
 query "project_oslogin_enabled" {
   sql = <<-EOQ
     select
-      id resource,
+      id as resource,
       case
-        when common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"TRUE"}]' then 'ok'
+        when exists (
+          select 1
+          from jsonb_array_elements(common_instance_metadata -> 'items') as items
+          where lower(items ->> 'key') = 'enable-oslogin'
+            and lower(items ->> 'value') in ('true','y','yes','1')
+        ) then 'ok'
         else 'alarm'
       end as status,
       case
-        when common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"TRUE"}]' then title || ' OS login enabled.'
+        when exists (
+          select 1
+          from jsonb_array_elements(common_instance_metadata -> 'items') as items
+          where lower(items ->> 'key') = 'enable-oslogin'
+            and lower(items ->> 'value') in ('true','y','yes','1')
+        ) then title || ' OS login enabled.'
         else title || ' OS login disabled.'
       end as reason
       ${local.common_dimensions_sql}
