@@ -6,7 +6,7 @@ locals {
 }
 
 benchmark "cis_v120" {
-  title         = "CIS v1.2.0"
+  title         = "GCP CIS v1.2.0"
   description   = "The CIS Google Cloud Platform Foundations Security Benchmark covers foundational elements of Google Cloud Platform."
   documentation = file("./cis_v120/docs/cis_overview.md")
   children = [
