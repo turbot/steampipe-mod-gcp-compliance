@@ -1129,31 +1129,59 @@ query "compute_instance_ip_forwarding_disabled" {
 
 query "compute_instance_oslogin_enabled" {
   sql = <<-EOQ
-    select
-      i.self_link resource,
-      case
-        when m.common_instance_metadata -> 'items' is null or not (m.common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin"}]') then 'alarm'
-        when m.common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"FALSE"}]' then 'alarm'
-        when m.common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"TRUE"}]' and i.metadata -> 'items' @> '[{"key":"enable-oslogin","value":"FALSE"}]' then 'alarm'
-        else 'ok'
-      end as status,
-      case
-        when
-          m.common_instance_metadata -> 'items' is null
-          or not(m.common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin"}]')
-          or m.common_instance_metadata -> 'items' @> '[{"key": "enable-oslogin", "value": "FALSE"}]'
-          then i.title || ' has OS login disabled at project level.'
-        when m.common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"TRUE"}]' and i.metadata -> 'items' @> '[{"key":"enable-oslogin","value":"FALSE"}]'
-          then i.title || ' OS login settings is disabled.'
-        when m.common_instance_metadata -> 'items' @> '[{"key":"enable-oslogin","value":"TRUE"}]' and i.metadata -> 'items' is null
-          then i.title || ' inherits OS login settings from project level.'
-        else i.title || ' OS login enabled.'
-      end as reason
-      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "i.")}
-      ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "i.")}
-    from
-      gcp_compute_instance i
-      left join gcp_compute_project_metadata m on i.project = m.project;
+    with project_metadata as (
+      select
+        m.project,
+        coalesce(
+          (
+            select lower(item ->> 'value')
+            from jsonb_array_elements(m.common_instance_metadata -> 'items') as item
+            where lower(item ->> 'key') = 'enable-oslogin'
+            limit 1
+          ), ''
+        ) as project_oslogin
+      from
+        gcp_compute_project_metadata m
+    ), instance_metadata as (
+      select
+        i.self_link,
+        i.title,
+        i.project,
+        i.tags,
+        i.location,
+        i._ctx,
+        coalesce(
+          (
+            select lower(item ->> 'value')
+            from jsonb_array_elements(i.metadata -> 'items') as item
+            where lower(item ->> 'key') = 'enable-oslogin'
+            limit 1
+          ), ''
+        ) as instance_oslogin
+      from
+        gcp_compute_instance i
+    )
+  select
+    i.self_link as resource,
+    case
+      when pm.project_oslogin = '' then 'alarm'
+      when pm.project_oslogin in ('false', 'n', 'no', '0') then 'alarm'
+      when pm.project_oslogin in ('true', 'y', 'yes', '1')
+          and i.instance_oslogin in ('false', 'n', 'no', '0') then 'alarm'
+      else 'ok'
+    end as status,
+    case
+      when pm.project_oslogin = '' then i.title || ' has OS login disabled at project level.'
+      when pm.project_oslogin in ('false', 'n', 'no', '0') then i.title || ' has OS login disabled at project level.'
+      when pm.project_oslogin in ('true', 'y', 'yes', '1') and i.instance_oslogin in ('false', 'n', 'no', '0') then i.title || ' OS login setting is disabled at instance level.'
+      when pm.project_oslogin in ('true', 'y', 'yes', '1') and i.instance_oslogin = '' then i.title || ' inherits OS login enabled setting from project level.'
+      else i.title || ' OS login enabled.'
+    end as reason
+    ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "i.")}
+    ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "i.")}
+  from
+    instance_metadata i
+    left join project_metadata pm on pm.project = i.project;
   EOQ
 }
 

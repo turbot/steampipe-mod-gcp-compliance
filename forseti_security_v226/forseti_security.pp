@@ -5,7 +5,7 @@ locals {
 }
 
 benchmark "forseti_security_v226" {
-  title         = "Forseti Security v2.26.0"
+  title         = "GCP Forseti Security v2.26.0"
   description   = "Forseti Security Benchmark covers foundational security elements of Google Cloud Platform."
   documentation = file("./forseti_security_v226/docs/forseti_security_overview.md")
 
