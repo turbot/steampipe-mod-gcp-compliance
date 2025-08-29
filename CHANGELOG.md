@@ -1,3 +1,13 @@
+## v1.3.0 [2025-08-29]
+
+_Enhancements_
+
+- Updated all top-level benchmark titles to include `GCP` for clearer cloud provider identification. ([#211](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/211))
+
+_Bug fixes_
+
+- Fixed `compute_instance_oslogin_enabled` and `project_oslogin_enabled` queries to correctly handle case-sensitive columns to ensure accurate compliance results. ([#214](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/214))
+
 ## v1.2.2 [2025-07-11]
 
 _Bug fixes_
