@@ -1,3 +1,9 @@
+## v1.3.1 [2025-09-25]
+
+_Bug fixes_
+
+- Fixed the `cis_v400_8_1` control to correctly reference the `dataproc_cluster_encryption_with_cmek` query instead of `bigquery_dataset_not_publicly_accessible`. ([#218](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/218))
+
 ## v1.3.0 [2025-08-29]
 
 _Enhancements_
