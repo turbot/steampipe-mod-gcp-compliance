@@ -188,6 +188,8 @@ query "bigquery_table_encrypted_with_cmk" {
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
-      gcp_bigquery_table;
+      gcp_bigquery_table
+    where
+      type != 'VIEW';
   EOQ
 }
