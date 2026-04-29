@@ -283,7 +283,7 @@ control "compute_ssl_policy_with_no_weak_cipher" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to DNS port 53"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to DNS port 53."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to DNS port 53."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_dns_port_53
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -294,7 +294,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_dns_port_53" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to FTP port 21"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to FTP port 21."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to FTP port 21."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_ftp_port_21
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -305,7 +305,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_ftp_port_21" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to HTTP port 80"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to HTTP port 80."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to HTTP port 80."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_http_port_80
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -316,7 +316,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_http_port_80" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to SMTP port 25"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to SMTP port 25."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to SMTP port 25."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_smtp_port_25
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -327,7 +327,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_smtp_port_25" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to Microsoft DS port 445"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Microsoft DS port 445."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to Microsoft DS port 445."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_445
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -338,7 +338,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_microsoft_ds_port_44
 
 control "compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to MongoDB port 27017"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MongoDB port 27017."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to MongoDB port 27017."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -348,7 +348,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_mongo_db_port_27017"
 
 control "compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to MySQL DB port 3306"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to MySQL DB port 3306."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to MySQL DB port 3306."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -359,7 +359,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_mysql_db_port_3306" 
 
 control "compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to NetBIOS SSN port 139"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to NetBIOS SSN port 139."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to NetBIOS SSN port 139."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -369,7 +369,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_netbios_snn_port_139
 
 control "compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to Oracle DB port 1521"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Oracle DB port 1521."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to Oracle DB port 1521."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -380,7 +380,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_oracle_db_port_1521"
 
 control "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to POP3 port 110"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to POP3 port 110."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to POP3 port 110."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_pop3_port_110
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -391,7 +391,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_pop3_port_110" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to PostgreSQL port 5432"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to PostgreSQL port 5432."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to PostgreSQL port 5432."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -402,7 +402,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_5432
 
 control "compute_firewall_rule_ingress_access_restricted_to_telnet_port_23" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to Telnet port 23"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to Telnet port 23."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to Telnet port 23."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_telnet_port_23
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -545,7 +545,7 @@ control "compute_external_backend_service_iap_enabled" {
 
 control "compute_firewall_rule_restrict_ingress_all_with_no_specific_target" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to any port without any specific target"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to any port without any specific target."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to any port without any specific target."
   query       = query.compute_firewall_rule_restrict_ingress_all_with_no_specific_target
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -556,7 +556,7 @@ control "compute_firewall_rule_restrict_ingress_all_with_no_specific_target" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port 10250"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to port 10250."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to port 10250."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10250
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -566,7 +566,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_1025
 
 control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port 10255"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to port 10255."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to port 10255."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_postgresql_port_10255
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -576,7 +576,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_postgresql_port_1025
 
 control "compute_firewall_rule_restrict_ingress_all" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to any port"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to any port."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to any port."
   query       = query.compute_firewall_rule_restrict_ingress_all
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -605,7 +605,7 @@ control "compute_firewall_default_rule_restrict_ingress_access_except_http_and_h
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port TCP 9090"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9090."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9090."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -616,7 +616,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9090" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9200_9300" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port TCP 9200 or 9300"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9200 or 9300."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9200 or 9300."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9200_9300
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -638,7 +638,7 @@ control "compute_firewall_rule_logging_enabled" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port TCP 7000 or 7001"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 7000 or 7001."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP port 7000 or 7001."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -649,7 +649,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7000_7001" 
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port TCP 7199"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 7199."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP port 7199."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -660,7 +660,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_7199" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port TCP 8888"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 8888."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP port 8888."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -671,7 +671,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_8888" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port TCP 9042"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9042."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9042."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -682,7 +682,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9042" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port TCP 9160"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9160."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP port 9160."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -693,7 +693,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_9160" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port TCP 61620 or 6162"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 61620 or 6162."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP port 61620 or 6162."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -704,7 +704,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_61620_61621
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port TCP 6379"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 6379."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP port 6379."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -715,7 +715,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_6379" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port TCP 137 to 139"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 137 to 139."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP port 137 to 139."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -726,7 +726,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_137_to_139"
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27019" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port TCP 27017 to 27019"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 27017 to 27019."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP port 27017 to 27019."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27019
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -737,7 +737,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_27017_to_27
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_636" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to port TCP 636"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP port 636."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP port 636."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_port_636
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -748,7 +748,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_port_636" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to TCP or UDP port 389"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 389."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 389."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -759,7 +759,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_389" {
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11211" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to TCP or UDP port 11211"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 11211."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 11211."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11211
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -770,7 +770,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11211" 
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11214_to_11215" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to TCP or UDP port 11214 to 11215"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 11214 to 11215."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 11214 to 11215."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11214_to_11215
 
   tags = merge(local.policy_bundle_compute_common_tags, {
@@ -781,7 +781,7 @@ control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_11214_t
 
 control "compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_2483_to_2484" {
   title       = "Ensure no open firewall rules allow ingress from 0.0.0.0/0 to TCP or UDP port 2483 to 24845"
-  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to AWS resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 2483 to 2484."
+  description = "Firewall rules provide stateful filtering of ingress/egress network traffic to GCP resources. It is recommended that no security group allows unrestricted ingress access to TCP or UDP port 2483 to 2484."
   query       = query.compute_firewall_rule_ingress_access_restricted_to_tcp_udp_port_2483_to_2484
 
   tags = merge(local.policy_bundle_compute_common_tags, {
