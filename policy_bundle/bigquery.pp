@@ -177,10 +177,13 @@ query "bigquery_table_encrypted_with_cmk" {
     select
       self_link resource,
       case
+        when type = 'VIEW' then 'skip'
         when kms_key_name is null then 'alarm'
         else 'ok'
       end as status,
       case
+        when type = 'VIEW'
+          then title || ' is a view and does not store data.'
         when kms_key_name is null
           then title || ' encrypted with Google managed cryptographic keys.'
         else title || ' encrypted with customer-managed encryption keys.'
@@ -188,8 +191,6 @@ query "bigquery_table_encrypted_with_cmk" {
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
-      gcp_bigquery_table
-    where
-      type != 'VIEW';
+      gcp_bigquery_table;
   EOQ
 }
