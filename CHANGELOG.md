@@ -1,3 +1,10 @@
+## v1.3.2 [2026-05-28]
+
+_Bug fixes_
+
+- Fixed the `bigquery_table_encrypted_with_cmk` query to skip BigQuery views, which do not store data and cannot be encrypted with a customer-managed encryption key (CMEK). ([#224](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/224)) (Thanks [@tpoindessous](https://github.com/tpoindessous) for the contribution!)
+- Fixed incorrect references to `AWS` in the compute control descriptions to correctly reference `GCP`. ([#228](https://github.com/turbot/steampipe-mod-gcp-compliance/pull/228)) (Thanks [@dark-panda](https://github.com/dark-panda) for the contribution!)
+
 ## v1.3.1 [2025-09-25]
 
 _Bug fixes_
